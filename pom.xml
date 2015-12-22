@@ -20,7 +20,7 @@
         <selenium.version>2.43.0</selenium.version>
         <surefire.version>2.11</surefire.version>
         <!--<maven.compiler.version>2.3.2</maven.compiler.version>-->
-        <maven.compiler.version>3.3.9</maven.compiler.version>
+        <maven.compiler.version>3.1</maven.compiler.version>
 
     </properties>
 
