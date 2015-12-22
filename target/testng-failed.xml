@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [Default Suite]">
+  <test name="AppiumTest(failed)">
+    <classes>
+      <class name="testpackage.Tests.BasicPlaybackSampleApp.BasicTests">
+        <methods>
+          <include name="beforeMethod"/>
+          <include name="beforeTest"/>
+          <include name="afterMethod"/>
+          <include name="HLSVideoTest"/>
+          <include name="afterTest"/>
+          <include name="AspectRatioTest"/>
+        </methods>
+      </class> <!-- testpackage.Tests.BasicPlaybackSampleApp.BasicTests -->
+    </classes>
+  </test> <!-- AppiumTest(failed) -->
+</suite> <!-- Failed suite [Default Suite] -->

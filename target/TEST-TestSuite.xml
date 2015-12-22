@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="12" failures="2" name="TestSuite" time="742.101" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.65-b01"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/bsondur/IdeaProjects/testMavenProj"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/bsondur/IdeaProjects/testMavenProj"/>
+    <property name="java.runtime.version" value="1.8.0_65-b17"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/mt/3mgxbqdx2gz_3kxpy3hcwpcw0000gn/T/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="suiteXmlFile" value="temp-testng-customsuite.xml"/>
+    <property name="classworlds.conf" value="/Users/bsondur/Documents/maven/apache-maven-3.3.9/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/bsondur/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.10.5"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/bsondur"/>
+    <property name="user.timezone" value="America/Los_Angeles"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="bsondur"/>
+    <property name="java.class.path" value="/Users/bsondur/Documents/maven/apache-maven-3.3.9/boot/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test -DsuiteXmlFile=temp-testng-customsuite.xml"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_65"/>
+    <property name="java.ext.dirs" value="/Users/bsondur/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Users/bsondur/Documents/maven/apache-maven-3.3.9"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="AspectRatioTest" time="96.961">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at testpackage.utils.eventVerification.verifyEvent(eventVerification.java:27)
+	at testpackage.Tests.BasicPlaybackSampleApp.BasicTests.AspectRatioTest(BasicTests.java:155)
+</failure>
+    <system-out>BeforeTest 
+
+/Users/bsondur/IdeaProjects/testMavenProj
+beforeMethod 
+
+ Screen Mode &quot;P&quot;
+BasicPlaybackSample App Launched successfully. Activity :- com.ooyala.sample.lists.BasicPlaybackListActivity
+
+Player Video was loaded successfully . Activity  :- com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity
+
+Event Recieved From SDK AND Sample App :- Notification Received: playStarted - state: READYcount: 8
+ Video Started to Play 
+
+
+Event Recieved From SDK AND Sample App :- Notification Received: stateChanged - state: PAUSEDcount: 12
+ Playing Video Was Paused 
+
+
+ Seeking -------------------------  
+Event Recieved From SDK AND Sample App :- Notification Received: seekCompleted - state: LOADINGcount: 14
+ Playing Video was Seeked 
+
+
+</system-out>
+  </testcase>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="HLSVideoTest" time="70.819">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at testpackage.utils.eventVerification.verifyEvent(eventVerification.java:27)
+	at testpackage.Tests.BasicPlaybackSampleApp.BasicTests.HLSVideoTest(BasicTests.java:229)
+</failure>
+    <system-out>AfterMethod 
+
+beforeMethod 
+
+ Screen Mode &quot;P&quot;
+BasicPlaybackSample App Launched successfully. Activity :- com.ooyala.sample.lists.BasicPlaybackListActivity
+
+Player Video was loaded successfully . Activity  :- com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity
+
+Event Recieved From SDK AND Sample App :- Notification Received: playStarted - state: READYcount: 8
+ Video Started to Play 
+
+
+Event Recieved From SDK AND Sample App :- Notification Received: stateChanged - state: PAUSEDcount: 12
+ Playing Video Was Paused 
+
+
+ Seeking -------------------------  
+Event Recieved From SDK AND Sample App :- Notification Received: seekCompleted - state: LOADINGcount: 14
+ Playing Video was Seeked 
+
+
+</system-out>
+  </testcase>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="MP4VideoTest" time="54.399"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="MultiAdCombinationTest" time="51.148"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="OoyalaADMidRollTest" time="67.388"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="OoyalaADPostRollTest" time="28.472"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="OoyalaAdPreRollTest" time="29.886"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="VASTADMidRollTest" time="40.703"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="VASTADPostRollTest" time="28.985"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="VASTAdPreRollTest" time="30.167"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="VASTAdWrapperTest" time="31.376"/>
+  <testcase classname="testpackage.Tests.BasicPlaybackSampleApp.BasicTests" name="VODwithCCTest" time="64.471"/>
+</testsuite>
