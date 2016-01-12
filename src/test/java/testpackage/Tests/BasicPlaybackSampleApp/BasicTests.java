@@ -87,8 +87,9 @@ public class BasicTests {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //screenshotDevice.screenshot(driver);
-        Thread.sleep(10000);
         removeEventsLogFile.removeEventsFileLog();
+        Thread.sleep(10000);
+
     }
 
 
