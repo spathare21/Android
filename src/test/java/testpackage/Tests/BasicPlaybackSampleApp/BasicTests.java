@@ -11,6 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 import testpackage.BasicPlaybackSampleApp.pageObjects.pageObjectsBasicPlayback;
 import testpackage.utils.eventVerification;
 import testpackage.utils.removeEventsLogFile;
+import testpackage.utils.pushLogFileToDevice;
 import testpackage.utils.screenshotDevice;
 import testpackage.utils.setUpAndroidDriver;
 import testpackage.utils.loadPropertyValues;
@@ -49,7 +50,9 @@ public class BasicTests {
     //public void beforeTest() throws Exception{
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        removeEventsLogFile.removeEventsFileLog();
+        //removeEventsLogFile.removeEventsFileLog(); create events file
+        pushLogFileToDevice logpush=new pushLogFileToDevice();
+        logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.lists.BasicPlaybackListActivity") {
             driver.startActivity("com.ooyala.sample.BasicPlaybackSampleApp","com.ooyala.sample.lists.BasicPlaybackListActivity");
         }
