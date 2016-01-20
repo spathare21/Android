@@ -3,9 +3,9 @@ package testpackage.utils;
 /**
  * Created by bsondur on 1/11/16.
  */
-public class pushLogFileToDevice {
+public class PushLogFileToDevice {
 
-    public void pushLogFile(){
+    public static void pushLogFile(){
 
         try
         {

@@ -1,4 +1,4 @@
-package testpackage.Tests.BasicPlaybackSampleApp;
+package testpackage.tests.basicplaybacksampleapp;
 /**
  * Created by bsondur on 11/16/15.
  */
@@ -9,12 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.BasicPlaybackSampleApp.pageObjects.pageObjectsBasicPlayback;
-import testpackage.utils.eventVerification;
-import testpackage.utils.removeEventsLogFile;
-import testpackage.utils.pushLogFileToDevice;
-import testpackage.utils.screenshotDevice;
-import testpackage.utils.setUpAndroidDriver;
-import testpackage.utils.loadPropertyValues;
+import testpackage.utils.*;
+import testpackage.utils.RemoveEventsLogFile;
+import testpackage.utils.PushLogFileToDevice;
+import testpackage.utils.LoadPropertyValues;
 import java.util.Properties;
 import java.io.IOException;
 
@@ -29,7 +27,7 @@ public class BasicTests {
 
         System.out.println(System.getProperty("user.dir"));
         // Get Property Values
-        loadPropertyValues prop = new loadPropertyValues();
+        LoadPropertyValues prop = new LoadPropertyValues();
         Properties p=prop.loadProperty();
 
         //System.out.println("Device id from properties file " + p.getProperty("deviceName"));
@@ -51,14 +49,14 @@ public class BasicTests {
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
         //removeEventsLogFile.removeEventsFileLog(); create events file
-        pushLogFileToDevice logpush=new pushLogFileToDevice();
+        PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.lists.BasicPlaybackListActivity") {
-            driver.startActivity("com.ooyala.sample.BasicPlaybackSampleApp","com.ooyala.sample.lists.BasicPlaybackListActivity");
+            driver.startActivity("com.ooyala.sample.basicplaybacksampleapp","com.ooyala.sample.lists.BasicPlaybackListActivity");
         }
 
         // Get Property Values
-        loadPropertyValues prop1 = new loadPropertyValues();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1=prop1.loadProperty();
 
         System.out.println(" Screen Mode "+ p1.getProperty("ScreenMode"));
@@ -87,7 +85,7 @@ public class BasicTests {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //screenshotDevice.screenshot(driver);
-        removeEventsLogFile.removeEventsFileLog();
+        RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
     }

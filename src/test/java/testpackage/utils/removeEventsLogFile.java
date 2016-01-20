@@ -5,7 +5,7 @@ package testpackage.utils;
  */
 // TOD0 : Check if file exists, only then , remove/delete the file , Check the return value
 
-public class removeEventsLogFile {
+public class RemoveEventsLogFile {
 
     public static void removeEventsFileLog()
     {
