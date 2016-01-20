@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 /**
  * Created by bsondur on 11/24/15.
  */
-public class parseEventsFile {
+public class ParseEventsFile {
 
     public static boolean parseeventfile(String comp ){
 

@@ -12,7 +12,7 @@ import java.net.URL;
 /**
  * Created by bsondur on 12/1/15.
  */
-public class setUpAndroidDriver {
+public class SetUpAndroidDriver {
 
     AndroidDriver driver;
 

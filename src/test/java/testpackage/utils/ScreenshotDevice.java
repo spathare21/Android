@@ -13,7 +13,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import io.appium.java_client.AppiumDriver;
 
-public class screenshotDevice {
+public class ScreenshotDevice {
 
     // Taking Device ScreenShot
     // function goes to TestUtils package ??

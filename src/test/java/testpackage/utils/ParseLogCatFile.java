@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Created by bsondur on 11/18/15.
  */
-public class parseLogCatFile {
+public class ParseLogCatFile {
 
 
 

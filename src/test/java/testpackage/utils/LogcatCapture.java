@@ -17,7 +17,7 @@ import org.openqa.selenium.logging.LogEntry;
 
 import io.appium.java_client.AppiumDriver;
 
-public class logcatCapture {
+public class LogcatCapture {
 
 
     public static void captureLog(AppiumDriver driver, String testName) throws Exception {

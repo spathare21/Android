@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.util.Date;
 
 
-public class adblogcat {
+public class Adblogcat {
 
     public static void captureLogcatEvents() throws IOException, InterruptedException{
 
