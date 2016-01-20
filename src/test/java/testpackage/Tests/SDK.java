@@ -6,9 +6,11 @@ import org.testng.annotations.*;
 import testpackage.utils.AppiumServer;
 import testpackage.utils.RemoveEventsLogFile;
 import testpackage.utils.PushLogFileToDevice;
-import testpackage.utils.setUpAndroidDriver;
+import testpackage.utils.SetUpAndroidDriver;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.util.Properties;
 
@@ -38,7 +40,7 @@ public class SDK{
         synchronized(server){
             try{
                 System.out.println("Waiting for server to start...");
-                server.wait(50000);
+                server.wait(100000);
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
@@ -50,7 +52,7 @@ public class SDK{
     @BeforeTest
     public void beforeTest() throws IOException {
         System.out.printf("property" + propertyReader);
-        setUpAndroidDriver androiddriver =  new setUpAndroidDriver();
+        SetUpAndroidDriver androiddriver =  new SetUpAndroidDriver();
 
         driver = androiddriver.setUpandReturnAndroidDriver(propertyReader.getProperty("udid"), propertyReader.getProperty("appDir"), propertyReader.getProperty("appValue"), propertyReader.getProperty("platformName"), propertyReader.getProperty("platformVersion"), propertyReader.getProperty("appPackage"), propertyReader.getProperty("appActivity"), portNumber);
     }
@@ -82,9 +84,38 @@ public class SDK{
     @AfterSuite
     public void afterSuite(){
         System.out.printf("In After Class");
+        System.out.println();
         try {
-            Process kill = Runtime.getRuntime().exec("kill `lsof -i tcp:" +  portNumber + " | sed -n 2p | awk '{ print $2 }'`");
+            Process findID = Runtime.getRuntime().exec("lsof -i tcp:" +  portNumber + " | sed -n 2p | awk '{ print $2 }'");
+            findID.waitFor();
+            BufferedReader read = new BufferedReader(new InputStreamReader(findID.getErrorStream()));
+            String pID = "";
+            String getline = "";
+
+            while ((getline = read.readLine()) != null){
+            //    if (findID.exitValue() == 0)
+                pID = getline ;
+            }
+            System.out.println("Process Id" + pID);
+            Process kill = Runtime.getRuntime().exec("kill" + "3405");
+            kill.waitFor();
+            System.out.println("exit value" + kill.exitValue());
+           // Thread.sleep(10000);
+            BufferedReader r = new BufferedReader(new InputStreamReader(kill.getErrorStream()));
+            String line = "";
+            String allLine = "";
+            int i=1;
+            try {
+                while((line=r.readLine()) != null){
+                    allLine=allLine+""+line+"\n";
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(allLine);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

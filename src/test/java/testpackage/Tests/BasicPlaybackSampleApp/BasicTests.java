@@ -4,7 +4,6 @@ package testpackage.tests.basicplaybacksampleapp;
  */
 
 import org.junit.Assert;
-import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
@@ -39,7 +38,7 @@ public class BasicTests {
         //System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
         //System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
 
-        setUpAndroidDriver setUpdriver = new setUpAndroidDriver();
+        SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("deviceName"),p.getProperty("appDir"),p.getProperty("app"),p.getProperty("platformName"),p.getProperty("OSVERSION"),p.getProperty("appPackage"),p.getProperty("appActivity"));
         Thread.sleep(2000);
     }
@@ -84,7 +83,7 @@ public class BasicTests {
     public void afterMethod() throws InterruptedException, IOException {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
-        //screenshotDevice.screenshot(driver);
+        //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
@@ -122,7 +121,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             // Click on the web area so that player screen shows up
@@ -160,7 +159,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -196,7 +195,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             // Click on the web area so that player screen shows up
@@ -234,7 +233,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -267,7 +266,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             // Click on the web area so that player screen shows up
@@ -304,7 +303,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -339,7 +338,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             // Click on the web area so that player screen shows up
@@ -394,7 +393,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -429,7 +428,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Ad Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Thread sleep time is equivalent to the length of the AD
@@ -454,7 +453,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -489,7 +488,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
@@ -513,7 +512,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -548,7 +547,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Thread sleep time is equivalent to the length of the video
@@ -571,7 +570,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -604,7 +603,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -614,7 +613,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -648,7 +647,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Ad Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Thread sleep time is equivalent to the length of the AD
@@ -673,7 +672,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -707,7 +706,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
@@ -731,7 +730,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -766,7 +765,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Thread sleep time is equivalent to the length of the video
@@ -789,7 +788,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
@@ -825,7 +824,7 @@ public class BasicTests {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Ad Started Verification
-            eventVerification ev = new eventVerification();
+            EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             Thread.sleep(2000);
@@ -858,7 +857,7 @@ public class BasicTests {
         {
             System.out.println(" Exception "+e);
             e.printStackTrace();
-            screenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver);
         }
     }
 
