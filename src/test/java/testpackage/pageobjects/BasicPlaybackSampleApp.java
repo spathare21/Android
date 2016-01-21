@@ -1,4 +1,4 @@
-package testpackage.BasicPlaybackSampleApp.pageObjects;
+package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Assert;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by bsondur on 11/30/15.
  */
-public class pageObjectsBasicPlayback {
+public class BasicPlaybackSampleApp {
 
 
         /*
