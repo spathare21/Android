@@ -23,7 +23,7 @@ public class BasicTests extends SDK{
     public BasicTests() throws IOException {
         System.out.printf("In Basic Tests");
         LoadPropertyValues config = new LoadPropertyValues();
-        propFileName = "./src/test/resources/basicplaybacksampleapp.properties";
+        propFileName = "./src/test/resources/config/basicplaybacksampleapp.properties";
         //propFileName = "./src/test/resources/basicplaybacksampleapp.properties";
         propertyReader =  config.loadProperty(propFileName);
     }

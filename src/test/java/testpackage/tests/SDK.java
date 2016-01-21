@@ -22,7 +22,7 @@ public class SDK{
     protected Properties propertyReader;
     protected AndroidDriver driver;
     protected String propFileName;
-    private static int portNumber = getFreePort();
+    private static int portNumber = 4723;
 
 
     public SDK() throws IOException {
