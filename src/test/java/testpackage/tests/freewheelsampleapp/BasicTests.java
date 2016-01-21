@@ -14,7 +14,7 @@ public class BasicTests extends SDK{
             System.out.printf("In Basic Tests");
             LoadPropertyValues config = new LoadPropertyValues();
             propFileName = "./src/test/resources/config/freewheelSampleApp.properties";
-            //propFileName = "./src/test/resources/config.properties";
+            //propFileName = "./src/test/resources/basicplaybacksampleapp.properties";
             propertyReader =  config.loadProperty(propFileName);
         }
 

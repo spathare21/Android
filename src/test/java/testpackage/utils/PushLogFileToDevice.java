@@ -9,8 +9,7 @@ public class PushLogFileToDevice {
 
         try
         {
-
-            String[] command ={"/bin/sh", "-c","adb push log.file /sdcard/"};
+              String[] command ={"/bin/sh", "-c","adb push log.file /sdcard/"};
             Runtime run = Runtime.getRuntime();
             Process pr = run.exec(command);
 
