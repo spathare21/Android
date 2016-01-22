@@ -10,10 +10,9 @@ public class RemoveEventsLogFile {
     public static void removeEventsFileLog()
     {
         try{
-
-            String[] command={"/bin/sh","-c" ,"adb shell rm /sdcard/log.file"};
+            String[] final_command = CommandLine.command("adb shell rm /sdcard/log.file");
             Runtime run=Runtime.getRuntime();
-            Process pr = run.exec(command);
+            Process pr = run.exec(final_command);
 
         }
         catch(Exception e)

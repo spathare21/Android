@@ -11,10 +11,9 @@ public class ParseEventsFile {
     public static boolean parseeventfile(String comp ){
 
         try{
-
-            String[] command ={"/bin/sh", "-c","adb shell cat /sdcard/log.file"};
+            String[] final_command = CommandLine.command("adb shell cat /sdcard/log.file");
             Runtime run = Runtime.getRuntime();
-            Process pr = run.exec(command);
+            Process pr = run.exec(final_command);
 
             String line = "";
             BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
