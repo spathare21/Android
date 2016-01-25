@@ -1,32 +1,97 @@
-package testpackage.tests.basicplaybacksampleapp;
-/**
+package testpackage.tests.basicplaybacksampleapp; /**
  * Created by bsondur on 11/16/15.
  */
 
 import org.junit.Assert;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.BasicPlaybackSampleApp;
-import testpackage.tests.SDK;
-import testpackage.utils.*;
+import testpackage.utils.EventVerification;
 import testpackage.utils.RemoveEventsLogFile;
 import testpackage.utils.PushLogFileToDevice;
+import testpackage.utils.ScreenshotDevice;
+import testpackage.utils.SetUpAndroidDriver;
 import testpackage.utils.LoadPropertyValues;
 import java.util.Properties;
 import java.io.IOException;
 
 
-public class BasicTests extends SDK{
+public class BasicTests {
 
+    private static AndroidDriver driver;
 
-    public BasicTests() throws IOException {
-        System.out.printf("In Basic Tests");
-        LoadPropertyValues config = new LoadPropertyValues();
-        propFileName = "./src/test/resources/config/basicplaybacksampleapp.properties";
-        //propFileName = "./src/test/resources/basicplaybacksampleapp.properties";
-        propertyReader =  config.loadProperty(propFileName);
+    @BeforeTest
+    public void beforeTest() throws Exception {
+        System.out.println("BeforeTest \n");
+
+        System.out.println(System.getProperty("user.dir"));
+        // Get Property Values
+        LoadPropertyValues prop = new LoadPropertyValues();
+        Properties p=prop.loadProperty();
+
+        //System.out.println("Device id from properties file " + p.getProperty("deviceName"));
+        //System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        //System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
+        //System.out.println("APK name is "+ p.getProperty("app"));
+        //System.out.println("Platform under Test is "+ p.getProperty("platformName"));
+        //System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        //System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
+        //System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+
+        SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
+        driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("deviceName"),p.getProperty("appDir"),p.getProperty("app"),p.getProperty("platformName"),p.getProperty("OSVERSION"),p.getProperty("appPackage"),p.getProperty("appActivity"));
+        Thread.sleep(2000);
     }
+
+    @BeforeMethod
+    //public void beforeTest() throws Exception{
+    public void beforeMethod() throws Exception {
+        System.out.println("beforeMethod \n");
+        //removeEventsLogFile.removeEventsFileLog(); create events file
+        PushLogFileToDevice logpush=new PushLogFileToDevice();
+        logpush.pushLogFile();
+        if(driver.currentActivity()!= "com.ooyala.sample.lists.BasicPlaybackListActivity") {
+            driver.startActivity("com.ooyala.sample.BasicPlaybackSampleApp","com.ooyala.sample.lists.BasicPlaybackListActivity");
+        }
+
+        // Get Property Values
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1=prop1.loadProperty();
+
+        System.out.println(" Screen Mode "+ p1.getProperty("ScreenMode"));
+
+        //if(p1.getProperty("ScreenMode") != "P"){
+        //    System.out.println("Inside landscape Mode ");
+        //    driver.rotate(ScreenOrientation.LANDSCAPE);
+        //}
+
+        //driver.rotate(ScreenOrientation.LANDSCAPE);
+        //driver.rotate(ScreenOrientation.LANDSCAPE);
+
+    }
+
+    @AfterTest
+    public void afterTest() throws InterruptedException, IOException {
+        System.out.println("AfterTest \n");
+        driver.closeApp();
+        driver.quit();
+
+    }
+
+    @AfterMethod
+    //public void afterTest() throws InterruptedException, IOException {
+    public void afterMethod() throws InterruptedException, IOException {
+        // Waiting for all the events from sdk to come in .
+        System.out.println("AfterMethod \n");
+        //ScreenshotDevice.screenshot(driver);
+        RemoveEventsLogFile.removeEventsFileLog();
+        Thread.sleep(10000);
+
+    }
+
+
 
     //TODO : create unique file names for snapshots taken .
     @org.testng.annotations.Test
