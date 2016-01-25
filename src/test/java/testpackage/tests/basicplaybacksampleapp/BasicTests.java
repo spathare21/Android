@@ -41,7 +41,7 @@ public class BasicTests {
         //System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
-        driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("deviceName"),p.getProperty("appDir"),p.getProperty("app"),p.getProperty("platformName"),p.getProperty("OSVERSION"),p.getProperty("appPackage"),p.getProperty("appActivity"));
+        driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
         Thread.sleep(2000);
     }
 

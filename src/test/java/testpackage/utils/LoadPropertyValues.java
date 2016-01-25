@@ -19,7 +19,7 @@ public class LoadPropertyValues {
         //String propFileName = "./resources/config.properties";
         //String propFileName = "./resources/config.properties";
         //src/main/resources
-        String propFileName = "./src/test/resources/config.properties";
+        String propFileName = "./src/test/resources/config/basicplaybacksampleapp.properties";
 
         //InputStream inputstream = getClass().getClassLoader().getResourceAsStream(propFileName);
         InputStream inputstream = new FileInputStream(propFileName);
