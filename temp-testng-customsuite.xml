@@ -3,7 +3,7 @@
 <suite name="Default Suite">
   <test name="AppiumTest">
     <classes>
-      <class name="testpackage.Tests.BasicPlaybackSampleApp.BasicTests"/>
+      <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
     </classes>
   </test> <!-- AppiumTest -->
 </suite> <!-- Default Suite -->
