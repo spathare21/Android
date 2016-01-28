@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import testpackage.tests.basicplaybacksampleapp.BasicTests;
 
 import java.util.List;
 
@@ -92,4 +93,48 @@ public class BasicPlaybackSampleApp {
             return radioButtons.get(index).isEnabled();
         }
 
-}
+    public void gotoFullScreen(AndroidDriver driver)
+    {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        //  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//android.widget.ProgressBar[@index=1]")));
+        driver.findElement(By.xpath("//android.widget.ImageButton[@index=2]")).click();
+
+    }
+
+    public void gotoNormalScreen(AndroidDriver driver)
+    {
+       WebElement layout =  driver.findElement(By.xpath("//android.widget.LinearLayout[@index=0]"));
+       List<WebElement>  normalscreen =   layout.findElements(By.className("android.widget.ImageButton"));
+       normalscreen.get(1).click();
+    }
+
+    public void play(AndroidDriver driver)
+    {
+        WebElement  layout =   driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
+        List<WebElement>  play =   layout.findElements(By.className("android.widget.ImageButton"));
+        play.get(1).click();
+
+    }
+
+    public void clickLearnMore(AndroidDriver driver)
+    {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='Learn More']")));
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Learn More']")).click();
+
+
+    }
+
+    }
+       /* public void pause(AndroidDriver driver)
+        {
+            WebElement  layout =   driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
+            List<WebElement>  play =   layout.findElements(By.className("android.widget.ImageButton"));
+            System.out.println(play);
+            System.out.println("Clicking play button");
+            play.get(1).click();
+
+        }*/
+
+
+
