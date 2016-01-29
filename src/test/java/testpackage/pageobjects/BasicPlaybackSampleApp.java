@@ -96,22 +96,26 @@ public class BasicPlaybackSampleApp {
     public void gotoFullScreen(AndroidDriver driver)
     {
         WebDriverWait wait = new WebDriverWait(driver,30);
-        //  wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//android.widget.ProgressBar[@index=1]")));
         driver.findElement(By.xpath("//android.widget.ImageButton[@index=2]")).click();
 
     }
 
     public void gotoNormalScreen(AndroidDriver driver)
     {
-       WebElement layout =  driver.findElement(By.xpath("//android.widget.LinearLayout[@index=0]"));
-       List<WebElement>  normalscreen =   layout.findElements(By.className("android.widget.ImageButton"));
-       normalscreen.get(1).click();
+       WebElement frameLayout =  driver.findElement(By.id("content"));
+       // System.out.println("layout" +frameLayout);
+       List<WebElement>  layout =   frameLayout.findElements(By.className("android.widget.LinearLayout"));
+        WebElement normalScreen =  layout.get(0).findElement(By.className("android.widget.ImageButton"));
+        normalScreen.click();
+
+
     }
 
     public void play(AndroidDriver driver)
     {
         WebElement  layout =   driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
         List<WebElement>  play =   layout.findElements(By.className("android.widget.ImageButton"));
+
         play.get(1).click();
 
     }
