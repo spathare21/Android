@@ -7,8 +7,17 @@ import java.io.InputStreamReader;
  * Created by bsondur on 11/24/15.
  */
 public class ParseEventsFile {
+    
 
-    public static boolean parseeventfile(String comp ){
+    public int latestCount(String line){
+        int count1;
+        String[] tokens = line.split(":");
+        String trimToken = tokens[3].trim();
+        count1=Integer.parseInt(trimToken);
+        return count1;
+    }
+
+    public int parseeventfile(String comp, int count ){
 
         try{
             String[] final_command = CommandLine.command("adb shell cat /sdcard/log.file");
@@ -24,8 +33,12 @@ public class ParseEventsFile {
                 //System.out.println(line);
                 if(line.contains(comp))
                 {
-                    System.out.println("Event Recieved From SDK AND Sample App :- "+line);
-                    return true;
+                  if (latestCount(line)>count) {
+                        System.out.println("Event Recieved From SDK AND Sample App :- " + line);
+                        count=latestCount(line);
+                        return count;
+                    }
+                    
                 }
                 line = buf.readLine();
 
@@ -38,7 +51,7 @@ public class ParseEventsFile {
             e.printStackTrace();
         }
 
-        return false;
+        return -1;
     }
 
 }
