@@ -220,11 +220,6 @@ public class DeepTests {
             // Ad completed verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
-            //video started verification
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-
-
             Thread.sleep(11000);
 
             // video completed event verification
@@ -386,8 +381,6 @@ public class DeepTests {
             // AD completed event  verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
-            // event verification of video is start playing
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(11000);
 
             // video completed event verification
