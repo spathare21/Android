@@ -423,7 +423,7 @@ public class DeepTests {
             //verifing Ad started playing event
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-           // Thread sleep time is equivalent to the completetion of the Ad
+            //Thread sleep time is equivalent to the completetion of the Ad
             Thread.sleep(3000);
 
             // Ad completed verifing event
@@ -435,9 +435,9 @@ public class DeepTests {
             // Removing Event file
             RemoveEventsLogFile.removeEventsFileLog();
             System.out.println("Removed file");
-            Thread.sleep(11000);
+            Thread.sleep(8000);
 
-           // Again pushing log file in SD card
+            // Again pushing log file in SD card
             PushLogFileToDevice logpush = new PushLogFileToDevice();
             logpush.pushLogFile();
 
@@ -448,7 +448,6 @@ public class DeepTests {
 
             // pausing
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -461,7 +460,7 @@ public class DeepTests {
             // navigating back to SDK
             driver.navigate().back();
 
-            Thread.sleep(20000);
+            Thread.sleep(15000);
 
             // Playing asset in normal screen
             po.playInNormalScreen(driver);
@@ -469,16 +468,11 @@ public class DeepTests {
             // Ad start playing verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-                Thread.sleep(2000);
+            Thread.sleep(3000);
 
 
             // Ad completed verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
-            //video started verification
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-
 
             Thread.sleep(11000);
 
