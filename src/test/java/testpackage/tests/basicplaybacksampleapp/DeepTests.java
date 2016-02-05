@@ -97,7 +97,7 @@ public class DeepTests {
 
 
 
-
+/*
         @org.testng.annotations.Test
 
         public void AspectRatioTest() throws Exception {
@@ -187,7 +187,8 @@ public class DeepTests {
                 po.playInNormalScreen(driver);
 
                 //verifing event for play
-                ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+                ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
                Thread.sleep(10000);
 
@@ -197,9 +198,14 @@ public class DeepTests {
 
                 po.getBackFromRecentApp(driver);
 
+                Thread.sleep(10000);
+
+                po.homeKey(driver);
+
+
                 Thread.sleep(40000);
 
-              //  po.playInNormalScreen(driver);
+                //po.playInNormalScreen(driver);
 
                 // verifing for video completed played
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
@@ -298,7 +304,7 @@ public class DeepTests {
                 po.playInNormalScreen(driver);
 
                 // verifing event fot video play
-                ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+                ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
                 Thread.sleep(10000);
 
@@ -395,7 +401,7 @@ public class DeepTests {
                 ev.verifyEvent("stateChanged - state: SUSPENDED", " Playing Video moved Normal screen ", 30000);
 
                 po.playInNormalScreen(driver);
-                ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+                ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
                 Thread.sleep(10000);
 
@@ -417,6 +423,7 @@ public class DeepTests {
                 ScreenshotDevice.screenshot(driver);
             }
         }
+
 
         @org.testng.annotations.Test
         public void multiAdCombination() throws Exception {
@@ -454,7 +461,7 @@ public class DeepTests {
 
                 // Ad play starting event
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-                Thread.sleep(2000);
+                Thread.sleep(1000);
 
                 // Tap coordinates to pause
                 String dimensions = driver.manage().window().getSize().toString();
@@ -469,6 +476,16 @@ public class DeepTests {
                 // Ad pause verifying
                 ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
 
+                Thread.sleep(2000);
+
+                // After pausing clicking on recent app button and getting sample app back
+                po.getBackFromRecentApp(driver);
+
+                Thread.sleep(5000);
+
+                po.powerKeyClick(driver);
+
+                Thread.sleep(10000);
 
                 // click on learn more button
                 po.clickLearnMore(driver);
@@ -496,16 +513,16 @@ public class DeepTests {
                 ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
                 // Video playing started event verification
-                ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+                ev.verifyEvent("playStarted", "Video Started to Play", 30000);
 
-                // Removing Event file
-                RemoveEventsLogFile.removeEventsFileLog();
-                System.out.println("Removed file");
-                Thread.sleep(8000);
+                Thread.sleep(2000);
 
-                // Again pushing log file in SD card
-                PushLogFileToDevice logpush = new PushLogFileToDevice();
-                logpush.pushLogFile();
+                po.powerKeyClick(driver);
+
+                Thread.sleep(4000);
+
+                po.getBackFromRecentApp(driver);
+
 
                 // Ad playing strat event verification
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -514,6 +531,8 @@ public class DeepTests {
 
                 // pausing
                 driver.tap(1, 35, (ydimensionsInt - 25), 0);
+
+                Thread.sleep(2000);
 
                 // clicking on learn more button
                 po.clickLearnMore(driver);
@@ -532,7 +551,7 @@ public class DeepTests {
                 po.playInNormalScreen(driver);
 
                 // Ad start playing verification
-                ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+                ev.verifyEvent("stateChanged - state: PLAYING", " Ad Started to Play ", 30000);
 
                 Thread.sleep(3000);
 
@@ -540,7 +559,11 @@ public class DeepTests {
                 // Ad completed verification
                 ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
-                Thread.sleep(11000);
+                Thread.sleep(2000);
+
+                ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+
+                Thread.sleep(9000);
 
                 // video completed event verification
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
@@ -628,7 +651,7 @@ public class DeepTests {
 
 
                 po.playInNormalScreen(driver);
-                ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+                ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
                 Thread.sleep(10000);
 
@@ -690,9 +713,16 @@ public class DeepTests {
             int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
             Thread.sleep(2000);
 
+            // After pausing clicking on recent app button and getting sample app back
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(5000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(10000);
 
             po.clickLearnMore(driver);
             ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 30000);
@@ -715,9 +745,16 @@ public class DeepTests {
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
             // video playing started again event verification
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
-            Thread.sleep(11000);
+            Thread.sleep(1000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(6000);
+
+            po.getBackFromRecentApp(driver);
+
 
             // video completed event verificaiton
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
@@ -773,9 +810,20 @@ public class DeepTests {
             String ydimensionstrimmed = ydimensions.trim();
             int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
 
-            // clicking on learn more
+            Thread.sleep(2000);
+
+            // After pausing clicking on recent app button and getting sample app back
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(5000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(10000);
+
+         // clicking on learn more
             po.clickLearnMore(driver);
 
             // verifing event for learn more
@@ -799,8 +847,15 @@ public class DeepTests {
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
             // event verification of video is start playing
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(11000);
+           ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+
+            Thread.sleep(1000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(6000);
+
+            po.getBackFromRecentApp(driver);
 
             // video completed event verification
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
@@ -841,15 +896,20 @@ public class DeepTests {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(11000);
 
+           po.powerKeyClick(driver);
+
+            Thread.sleep(4000);
+
+            po.getBackFromRecentApp(driver);
+            Thread.sleep(4000);
 
             // event verification for ad started
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(2000);
+            Thread.sleep(1500);
 
 
             String dimensions = driver.manage().window().getSize().toString();
@@ -866,8 +926,16 @@ public class DeepTests {
             // event verification for pause
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
 
+            // After pausing clicking on recent app button and getting sample app back
+            po.getBackFromRecentApp(driver);
 
-            // Clicking on learn more button
+            Thread.sleep(5000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(10000);
+
+           // Clicking on learn more button
             po.clickLearnMore(driver);
 
             // event verification for learn more
@@ -894,6 +962,7 @@ public class DeepTests {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
 
+
         } catch (Exception e) {
             System.out.println(" Exception " + e);
             e.printStackTrace();
@@ -902,6 +971,393 @@ public class DeepTests {
 
 
     }
+
+
+
+    @org.testng.annotations.Test
+    public void VASTAdPreRollTest() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST Ad Pre-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(2000);
+
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+
+            Thread.sleep(2000);
+
+            String dimensions = driver.manage().window().getSize().toString();
+            //System.out.println(" Dimensions are "+dimensions);
+            String[] dimensionsarray=dimensions.split(",");
+            int length = dimensionsarray[1].length();
+            String ydimensions=dimensionsarray[1].substring(0,length-1);
+            String ydimensionstrimmed=ydimensions.trim();
+            int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+
+            driver.tap(1, 35 , (ydimensionsInt-25), 0);
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
+
+            Thread.sleep(2000);
+
+            // After pausing clicking on recent app button and getting sample app back
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(5000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(10000);
+
+
+            po.clickLearnMore(driver);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",30000);
+            Thread.sleep(2000);
+
+            driver.navigate().back();
+            Thread.sleep(20000);
+
+            po.playInNormalScreen(driver);
+
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+
+            Thread.sleep(3000);
+
+
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            Thread.sleep(1000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(4000);
+
+            po.getBackFromRecentApp(driver);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+        }
+        catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
+    @org.testng.annotations.Test
+
+    public void VASTAdMidroll() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "VAST Ad Mid-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", "Video Started to Play", 30000);
+
+            Thread.sleep(11000);
+
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+
+            Thread.sleep(1000);
+
+            // Tap coordinates to pause
+            String dimensions = driver.manage().window().getSize().toString();
+            //System.out.println(" Dimensions are "+dimensions);
+            String[] dimensionsarray = dimensions.split(",");
+            int length = dimensionsarray[1].length();
+            String ydimensions = dimensionsarray[1].substring(0, length - 1);
+            String ydimensionstrimmed = ydimensions.trim();
+            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+
+            driver.tap(1, 35, (ydimensionsInt - 25), 0);
+
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing ad Was Paused ", 30000);
+
+            Thread.sleep(2000);
+
+            // After pausing clicking on recent app button and getting sample app back
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(5000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(10000);
+
+            po.clickLearnMore(driver);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",30000);
+            Thread.sleep(2000);
+
+            driver.navigate().back();
+            Thread.sleep(20000);
+
+
+            po.playInNormalScreen(driver);
+
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+
+            Thread.sleep(5000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+            Thread.sleep(1000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(6000);
+
+            po.getBackFromRecentApp(driver);
+
+
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+
+
+
+    @org.testng.annotations.Test
+    public void VASTAdPostroll() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "VAST Ad Post-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", "Video Started to Play", 30000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(2000);
+
+            po.getBackFromRecentApp(driver);
+            Thread.sleep(2000);
+
+
+
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+            Thread.sleep(2000);
+
+            // Tap coordinates to pause
+            String dimensions = driver.manage().window().getSize().toString();
+            //System.out.println(" Dimensions are "+dimensions);
+            String[] dimensionsarray = dimensions.split(",");
+            int length = dimensionsarray[1].length();
+            String ydimensions = dimensionsarray[1].substring(0, length - 1);
+            String ydimensionstrimmed = ydimensions.trim();
+            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            driver.tap(1, 35, (ydimensionsInt - 25), 0);
+
+            // event verification for pause
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
+
+            Thread.sleep(1000);
+            // After pausing clicking on recent app button and getting sample app back
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(5000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(10000);
+            //clicking on learn more
+            po.clickLearnMore(driver);
+            Thread.sleep(2000);
+
+            // verifing event for learn more
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",30000);
+
+            //  navigating back to SDK
+            driver.navigate().back();
+            Thread.sleep(20000);
+
+            //playing again in normal screen
+            po.playInNormalScreen(driver);
+
+            //verifing event for Ad start playing
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+            Thread.sleep(3000);
+
+
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 20000);
+
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+*/
+
+    @org.testng.annotations.Test
+    public void VOD() throws Exception {
+
+        try {
+
+
+            // Creating an Object of BasicPlaybackSampleApp class
+            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "VOD with CCs");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", "Video Started to Play", 30000);
+            // Click on the web area so that player screen shows up
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
+            viewarea.click();
+
+            // Tap coordinates to pause
+            String dimensions = driver.manage().window().getSize().toString();
+            //System.out.println(" Dimensions are "+dimensions);
+            String[] dimensionsarray = dimensions.split(",");
+            int length = dimensionsarray[1].length();
+            String ydimensions = dimensionsarray[1].substring(0, length - 1);
+            String ydimensionstrimmed = ydimensions.trim();
+            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            driver.tap(1, 35, (ydimensionsInt - 25), 0);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
+            Thread.sleep(2000);
+
+            // After pausing clicking on recent app button and getting sample app back
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(5000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(10000);
+
+            po.getXYSeekBarAndSeek(driver, 155, 50);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+
+            po.playInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+
+            Thread.sleep(10000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(15000);
+
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(30000);
+
+
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+
+
 
 }
 
