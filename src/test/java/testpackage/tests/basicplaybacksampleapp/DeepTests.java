@@ -97,8 +97,8 @@ public class DeepTests {
 
 
 
-/*
-        @org.testng.annotations.Test
+
+       /* @org.testng.annotations.Test
 
         public void AspectRatioTest() throws Exception {
 
@@ -215,7 +215,7 @@ public class DeepTests {
                 e.printStackTrace();
                 ScreenshotDevice.screenshot(driver);
             }
-        }
+        }*/
 
     //TODO : create unique file names for snapshots taken .
 
@@ -425,7 +425,7 @@ public class DeepTests {
         }
 
 
-        @org.testng.annotations.Test
+        /*@org.testng.annotations.Test
         public void multiAdCombination() throws Exception {
 
             try {
@@ -577,7 +577,7 @@ public class DeepTests {
                 ScreenshotDevice.screenshot(driver);
             }
 
-        }
+        }*/
 
 
         @org.testng.annotations.Test
@@ -869,7 +869,7 @@ public class DeepTests {
 
     }
 
-    @org.testng.annotations.Test
+    /*@org.testng.annotations.Test
     public void OoyalaAdPostroll() throws Exception {
 
         try {
@@ -970,7 +970,7 @@ public class DeepTests {
         }
 
 
-    }
+    }*/
 
 
 
@@ -1174,7 +1174,7 @@ public class DeepTests {
 
 
 
-    @org.testng.annotations.Test
+    /*@org.testng.annotations.Test
     public void VASTAdPostroll() throws Exception {
 
         try {
