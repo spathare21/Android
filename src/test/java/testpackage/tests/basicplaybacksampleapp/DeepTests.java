@@ -96,8 +96,8 @@ public class DeepTests {
     //TODO : create unique file names for snapshots taken .
 
 
-
 /*
+
         @org.testng.annotations.Test
 
         public void AspectRatioTest() throws Exception {
@@ -150,21 +150,27 @@ public class DeepTests {
                 // After pausing clicking on recent app button and getting sample app back
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(5000);
+                Thread.sleep(2000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(10000);
+                Thread.sleep(2000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
 
                 // move to full screen
                 po.gotoFullScreen(driver);
 
-                Thread.sleep(10000);
+                Thread.sleep(2000);
                 // event verification for full screen
                 ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
 
-                Thread.sleep(20000);
+                Thread.sleep(2000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
                 // going back again in normal screen
                 po.gotoNormalScreen(driver);
@@ -172,7 +178,10 @@ public class DeepTests {
                 Thread.sleep(2000);
                 // event verification for normal screen
                 ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 30000);
-                Thread.sleep(10000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(3000);
 
                 // seeking backward
                 po.getXYSeekBarAndSeek(driver, 155, 50);
@@ -180,7 +189,7 @@ public class DeepTests {
                 // verifing seek event
                 ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 30000);
 
-                Thread.sleep(5000);
+                Thread.sleep(10000);
 
 
                 // playing video in normal screen
@@ -194,21 +203,17 @@ public class DeepTests {
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(15000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+                Thread.sleep(5000);
 
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(10000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
-                po.homeKey(driver);
-
-
-                Thread.sleep(40000);
-
-                //po.playInNormalScreen(driver);
 
                 // verifing for video completed played
-                ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
             } catch (Exception e) {
                 System.out.println(" Exception " + e);
@@ -271,34 +276,48 @@ public class DeepTests {
                 // After pausing clicking on recent app button and getting sample app back
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(5000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+                Thread.sleep(3000);
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(10000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+                Thread.sleep(3000);
 
 
 
                 // MOVING to full screen
                 po.gotoFullScreen(driver);
-                Thread.sleep(10000);
+
+                Thread.sleep(1000);
 
                 // verifing event for full screen
                 ev.verifyEvent("stateChanged - state: SUSPENDED", " Playing Video moved fullscreen ", 30000);
-                Thread.sleep(10000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+                Thread.sleep(2000);
 
                 // moving back to normal screen
                 po.gotoNormalScreen(driver);
 
                 // verifing event for back in normal screen
                 ev.verifyEvent("stateChanged - state: SUSPENDED","Playing video moved normalscreen",3000);
-                Thread.sleep(10000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+                Thread.sleep(2000);
 
                 //seeking backward scrubber bar
                 po.getXYSeekBarAndSeek(driver, 155, 50);
 
                 // verifing event for seek
                 ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+                Thread.sleep(10000);
+
 
                 // playing asset in normal screen
                 po.playInNormalScreen(driver);
@@ -310,11 +329,16 @@ public class DeepTests {
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(15000);
+                Thread.sleep(2000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(5000);
 
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(30000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
 
                 // verifing event for video completion
 
@@ -382,37 +406,60 @@ public class DeepTests {
                 // After pausing clicking on recent app button and getting sample app back
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(5000);
+                 ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+                 Thread.sleep(2000);
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(10000);
+                 ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
 
                 po.gotoFullScreen(driver);
-                Thread.sleep(10000);
+
+
+                Thread.sleep(2000);
 
                 ev.verifyEvent("stateChanged - state: SUSPENDED", " Playing Video moved fullscreen ", 30000);
-                Thread.sleep(10000);
+
+                Thread.sleep(1000);
+
+                 ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+
+                Thread.sleep(2000);
+
+                po.gotoNormalScreen(driver);
+                ev.verifyEvent("stateChanged - state: SUSPENDED", " Playing Video moved Normal screen ", 30000);
+
+                Thread.sleep(2000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+
 
                 po.getXYSeekBarAndSeek(driver, 155, 50);
                 ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 
-                po.gotoNormalScreen(driver);
-                ev.verifyEvent("stateChanged - state: SUSPENDED", " Playing Video moved Normal screen ", 30000);
+                Thread.sleep(10000);
+
 
                 po.playInNormalScreen(driver);
                 ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
                 Thread.sleep(10000);
 
+
                 po.powerKeyClick(driver);
 
-                Thread.sleep(15000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(5000);
 
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(30000);
-
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
 
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
@@ -481,56 +528,73 @@ public class DeepTests {
                 // After pausing clicking on recent app button and getting sample app back
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(5000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(10000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
 
                 // click on learn more button
                 po.clickLearnMore(driver);
 
                 //verifing event
-                ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 30000);
+                ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 40000);
 
                 Thread.sleep(2000);
 
                 // coming back to SDK
                 driver.navigate().back();
 
-                Thread.sleep(5000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+
+                Thread.sleep(10000);
 
                 // Playing the video in normal screen
                 po.playInNormalScreen(driver);
 
                 //verifing Ad started playing event
-                ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
                 //Thread sleep time is equivalent to the completetion of the Ad
                 Thread.sleep(3000);
 
                 // Ad completed verifing event
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+
+                Thread.sleep(1000);
+
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
 
                 // Video playing started event verification
-                ev.verifyEvent("playStarted", "Video Started to Play", 30000);
-
-                Thread.sleep(2000);
+                ev.verifyEvent("playStarted", "Video Started to Play", 40000);
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(4000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
 
                 po.getBackFromRecentApp(driver);
 
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
 
                 // Ad playing strat event verification
-                ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
-                Thread.sleep(3000);
+                Thread.sleep(2000);
 
                 // pausing
                 driver.tap(1, 35, (ydimensionsInt - 25), 0);
+
+                ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
 
                 Thread.sleep(2000);
 
@@ -545,7 +609,9 @@ public class DeepTests {
                 // navigating back to SDK
                 driver.navigate().back();
 
-                Thread.sleep(15000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(10000);
 
                 // Playing asset in normal screen
                 po.playInNormalScreen(driver);
@@ -563,7 +629,6 @@ public class DeepTests {
 
                 ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
-                Thread.sleep(9000);
 
                 // video completed event verification
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
@@ -578,7 +643,6 @@ public class DeepTests {
             }
 
         }
-
 
         @org.testng.annotations.Test
         public void VastAdWrapper() throws Exception {
@@ -629,35 +693,52 @@ public class DeepTests {
                 // After pausing clicking on recent app button and getting sample app back
                 po.getBackFromRecentApp(driver);
 
-                Thread.sleep(15000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(15000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
 
                 // move to full screen
                 po.gotoFullScreen(driver);
 
-                ev.verifyEvent("stateChanged - state: SUSPENDED","Player moved in full screen",30000);
-                Thread.sleep(15000);
+                ev.verifyEvent("stateChanged - state: SUSPENDED","Player moved in full screen",40000);
+
+                Thread.sleep(1000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
+
+                po.gotoNormalScreen(driver);
+
+                ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 30000);
+
+                Thread.sleep(1000);
+
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(2000);
 
                 po.getXYSeekBarAndSeek(driver, 155, 50);
                 ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 30000);
-                Thread.sleep(20000);
 
-                po.gotoNormalScreen(driver);
-                ev.verifyEvent("stateChanged - state: SUSPENDED","Player moved in normal screen",30000);
                 Thread.sleep(10000);
-
 
                 po.playInNormalScreen(driver);
                 ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
-                Thread.sleep(10000);
+                Thread.sleep(5000);
 
                 po.powerKeyClick(driver);
 
-                Thread.sleep(10000);
+                ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+                Thread.sleep(5000);
 
                 po.getBackFromRecentApp(driver);
 
@@ -718,40 +799,49 @@ public class DeepTests {
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
 
             po.clickLearnMore(driver);
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 30000);
+
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 40000);
 
             Thread.sleep(2000);
 
             // navigating back to SDK
             driver.navigate().back();
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
 
             // playing asset in normal screen
             po.playInNormalScreen(driver);
 
             // AD playing started event verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
             Thread.sleep(3000);
 
             // ad completed event verificaiton
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
 
             // video playing started again event verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
 
             Thread.sleep(1000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(6000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -817,11 +907,15 @@ public class DeepTests {
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
 
          // clicking on learn more
             po.clickLearnMore(driver);
@@ -834,7 +928,9 @@ public class DeepTests {
             // nagivating back to SDK
             driver.navigate().back();
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(10000);
 
             // playing asset in normal screen
             po.playInNormalScreen(driver);
@@ -853,7 +949,9 @@ public class DeepTests {
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(6000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(3000);
 
             po.getBackFromRecentApp(driver);
 
@@ -868,6 +966,8 @@ public class DeepTests {
 
 
     }
+*/
+
 
     @org.testng.annotations.Test
     public void OoyalaAdPostroll() throws Exception {
@@ -900,12 +1000,17 @@ public class DeepTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-           po.powerKeyClick(driver);
+             po.powerKeyClick(driver);
 
-            Thread.sleep(4000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
-            Thread.sleep(4000);
+
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+
 
             // event verification for ad started
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -929,11 +1034,15 @@ public class DeepTests {
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(2000);
 
            // Clicking on learn more button
             po.clickLearnMore(driver);
@@ -945,6 +1054,8 @@ public class DeepTests {
 
             //Navigating back to SDK
             driver.navigate().back();
+
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
             Thread.sleep(5000);
 
@@ -972,7 +1083,7 @@ public class DeepTests {
 
     }
 
-
+/*
 
     @org.testng.annotations.Test
     public void VASTAdPreRollTest() throws Exception {
@@ -1026,11 +1137,15 @@ public class DeepTests {
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(2000);
 
 
             po.clickLearnMore(driver);
@@ -1038,7 +1153,10 @@ public class DeepTests {
             Thread.sleep(2000);
 
             driver.navigate().back();
-            Thread.sleep(20000);
+
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(4000);
 
             po.playInNormalScreen(driver);
 
@@ -1057,7 +1175,9 @@ public class DeepTests {
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(4000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(5000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1130,33 +1250,43 @@ public class DeepTests {
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(2000);
 
             po.clickLearnMore(driver);
             ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",30000);
             Thread.sleep(2000);
 
             driver.navigate().back();
-            Thread.sleep(20000);
+
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(10000);
 
 
             po.playInNormalScreen(driver);
 
             ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
-            Thread.sleep(5000);
+
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
-            Thread.sleep(1000);
+
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(6000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(3000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1206,14 +1336,19 @@ public class DeepTests {
 
             po.powerKeyClick(driver);
 
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
             Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
+
             Thread.sleep(2000);
 
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
 
-            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
             Thread.sleep(2000);
 
             // Tap coordinates to pause
@@ -1227,40 +1362,46 @@ public class DeepTests {
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
 
             // event verification for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 40000);
 
             Thread.sleep(1000);
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+
+            Thread.sleep(2000);
             //clicking on learn more
             po.clickLearnMore(driver);
             Thread.sleep(2000);
 
             // verifing event for learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",30000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",40000);
 
             //  navigating back to SDK
             driver.navigate().back();
-            Thread.sleep(20000);
+
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+            Thread.sleep(10000);
 
             //playing again in normal screen
             po.playInNormalScreen(driver);
 
             //verifing event for Ad start playing
-            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
             Thread.sleep(3000);
 
 
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
 
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 20000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
 
 
@@ -1270,7 +1411,7 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
 
     @org.testng.annotations.Test
     public void VOD() throws Exception {
@@ -1323,28 +1464,35 @@ public class DeepTests {
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(3000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(5000);
 
             po.getXYSeekBarAndSeek(driver, 155, 50);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+            Thread.sleep(10000);
 
 
             po.playInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
 
-            Thread.sleep(10000);
+            Thread.sleep(5000);
 
             po.powerKeyClick(driver);
 
-            Thread.sleep(15000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            Thread.sleep(5000);
 
             po.getBackFromRecentApp(driver);
 
-            Thread.sleep(30000);
 
 
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
@@ -1356,8 +1504,7 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
-
+*/
 
 }
 
