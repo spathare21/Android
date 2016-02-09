@@ -96,7 +96,7 @@ public class DeepTests {
     //TODO : create unique file names for snapshots taken .
 
 
-/*
+
 
         @org.testng.annotations.Test
 
@@ -966,7 +966,7 @@ public class DeepTests {
 
 
     }
-*/
+
 
 
     @org.testng.annotations.Test
@@ -1083,7 +1083,7 @@ public class DeepTests {
 
     }
 
-/*
+
 
     @org.testng.annotations.Test
     public void VASTAdPreRollTest() throws Exception {
@@ -1347,7 +1347,6 @@ public class DeepTests {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
 
-
             ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
             Thread.sleep(2000);
 
@@ -1504,7 +1503,6 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
 
 }
 
