@@ -41,6 +41,7 @@ public class LoadPropertyValues {
 
         String result = "" ;
         Properties prop = new Properties();
+        propFileName="./src/test/resources/config/"+propFileName;
         InputStream inputstream = new FileInputStream(propFileName);
 
         if(inputstream != null) {
