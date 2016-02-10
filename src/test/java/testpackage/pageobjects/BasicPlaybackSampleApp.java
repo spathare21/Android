@@ -139,27 +139,28 @@ public class BasicPlaybackSampleApp {
     }
 
 
-    public void getBackFromRecent (AndroidDriver driver)
-    {
-        HashMap swipeObject = new HashMap();
-        swipeObject.put("keycode", 82);
-        ((JavascriptExecutor ) driver).executeScript("mobile: keyevent", swipeObject);
+    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException {
 
+
+        driver.sendKeyEvent(187);   //key 187 is used to go on recent app
+        System.out.println("key sent");
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        System.out.println("back to SDK");
     }
-  /*
 
 
 
-        public void pause(AndroidDriver driver)
-        {
-            WebElement  layout =   driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
-            List<WebElement>  play =   layout.findElements(By.className("android.widget.ImageButton"));
-            System.out.println(play);
-            System.out.println("Clicking play button");
-            play.get(1).click();
+    public void powerKeyClick (AndroidDriver driver) throws InterruptedException {
 
-        }
-
-*/
+        driver.sendKeyEvent(26);            // key 26 is used to lock the screen
+        System.out.println("key sent");
+        System.out.println("screen lock");
+        Thread.sleep(5000);
+        driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
+        System.out.println("key sent");
+        System.out.println("screen unlock");
+        Thread.sleep(2000);
+    }
 
 }
