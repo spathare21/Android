@@ -1,5 +1,8 @@
 package testpackage.utils;
 
+import org.junit.Assert;
+import org.junit.Assert.*;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -31,9 +34,15 @@ public class ParseEventsFile {
 
             while(line != null){
                 //System.out.println(line);
+                if(line.contains("state: ERROR"))
+                {
+                    System.out.println("App crashed");
+                    System.exit(0);
+                }
                 if(line.contains(comp))
                 {
                   if (latestCount(line)>count) {
+
                         System.out.println("Event Recieved From SDK AND Sample App :- " + line);
                         count=latestCount(line);
                         return count;
