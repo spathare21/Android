@@ -123,5 +123,14 @@ public class FreewheelSampleApp {
         System.out.println(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
     }
+
+    public void verifyOverlay (AndroidDriver driver)
+    {
+          WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
+        if (element.isDisplayed())
+        {
+            System.out.println("overlay displayed");
+        }
+    }
     }
 
