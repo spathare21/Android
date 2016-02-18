@@ -5,7 +5,7 @@
     <classes>
      <!-- <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>-->
      <!-- <class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>-->
-        <class name="testpackage.tests.freewheelsampleapp.BasicTests"/>
+        <!--class name="testpackage.tests.freewheelsampleapp.BasicTests"/-->
         <class name="testpackage.tests.freewheelsampleapp.DeepTests"/>
     </classes>
   </test> <!-- AppiumTest -->
