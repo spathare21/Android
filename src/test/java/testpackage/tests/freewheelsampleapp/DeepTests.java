@@ -214,7 +214,7 @@ public class DeepTests {
     }
 
     @org.testng.annotations.Test
-    public void FWPreroll_learnmore () throws Exception {
+    public void FWPreroll_learnmore() throws Exception {
         try {
             // Creating an Object of FreeWheelSampleApp class
             FreewheelSampleApp po = new FreewheelSampleApp();
@@ -253,7 +253,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 40000);
 
 
             Thread.sleep(5000);
@@ -261,15 +261,15 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 40000);
 
             Thread.sleep(1000);
 
             // verifing that ad has been played completely
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 50000);
 
             Thread.sleep(15000);
 
@@ -277,16 +277,16 @@ public class DeepTests {
 
             Thread.sleep(2000);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             po.powerKeyClick(driver);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(2000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted - state: LOADING", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -295,7 +295,7 @@ public class DeepTests {
         }
 
 
- }
+    }
 
     @org.testng.annotations.Test
     public void FreeWheelMidRoll() throws Exception {
@@ -350,15 +350,15 @@ public class DeepTests {
             po.adPause(driver);
 
             // verfing ad pause evnet
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
 
-          //clicking on recent app button and getting back to SDK
+            //clicking on recent app button and getting back to SDK
             po.getBackFromRecentApp(driver);
 
             Thread.sleep(2000);
 
-             //verifing that get back to SDK
+            //verifing that get back to SDK
             ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
 
             // turning off the screen and turning on also
@@ -412,7 +412,7 @@ public class DeepTests {
             // again starting play
             po.videoPlay(driver);
 
-            ev.verifyEvent("stateChanged - state: PLAYING","video start playing again",30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "video start playing again", 30000);
 
             //verifing video completed event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
@@ -490,7 +490,7 @@ public class DeepTests {
             Thread.sleep(5000);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -513,7 +513,7 @@ public class DeepTests {
     }
 
     @org.testng.annotations.Test
-    public void FreeWheelPostRoll() throws Exception{
+    public void FreeWheelPostRoll() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -586,7 +586,7 @@ public class DeepTests {
             po.videoPlay(driver);
 
             // verifing that video start to play
-            ev.verifyEvent("stateChanged - state: PLAYING","video start playing again",30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "video start playing again", 30000);
 
             Thread.sleep(5000);
 
@@ -603,7 +603,7 @@ public class DeepTests {
             Thread.sleep(2000);
             po.adPause(driver);
 
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(5000);
 
@@ -638,18 +638,15 @@ public class DeepTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
         }
-
-            catch(Exception e)
-            {
-                System.out.println(" Exception "+e);
-                e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
-            }
-        }
+    }
 
     @org.testng.annotations.Test
-    public void FWPostroll_learnmore () throws Exception{
+    public void FWPostroll_learnmore() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -712,7 +709,7 @@ public class DeepTests {
             Thread.sleep(5000);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -729,18 +726,15 @@ public class DeepTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
-        }
-
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FreeWheelOverlay() throws Exception{
+    public void FreeWheelOverlay() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -796,223 +790,219 @@ public class DeepTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FreeWheelPreMidPostRoll() throws Exception{
+    public void FreeWheelPreMidPostRoll() throws Exception {
 
-    try {
-        // Creating an Object of FreeWheelSampleApp class
-        FreewheelSampleApp po = new FreewheelSampleApp();
-        // wait till home screen of basicPlayBackApp is opened
-        po.waitForAppHomeScreen(driver);
+        try {
+            // Creating an Object of FreeWheelSampleApp class
+            FreewheelSampleApp po = new FreewheelSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
 
 
-        // Assert if current activity is indeed equal to the activity name of app home screen
-        po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-        // Wrire to console activity name of home screen app
-        System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-        //Pause the running of test for a brief time .
-        Thread.sleep(3000);
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
 
-        // Select one of the video HLS,MP4 etc .
-        po.clickBasedOnText(driver, "Freewheel PreMidPost");
-        Thread.sleep(2000);
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Freewheel PreMidPost");
+            Thread.sleep(2000);
 
-        //verify if player was loaded
-        po.waitForPresence(driver, "className", "android.view.View");
-        // Assert if current activity is indeed equal to the activity name of the video player
-        po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-        // Print to console output current player activity
-        System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-        //Play Started Verification
-        EventVerification ev = new EventVerification();
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
 
-        ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-       Thread.sleep(2000);
+            Thread.sleep(2000);
 
-       // Click on the web area so that player screen shows up
-       WebElement viewarea = driver.findElementByClassName("android.view.View");
-        viewarea.click();
+            // Click on the web area so that player screen shows up
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
+            viewarea.click();
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        //pausing ad
-        po.adPause(driver);
+            //pausing ad
+            po.adPause(driver);
 
-        //verifing event for pause
-        ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            //verifing event for pause
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        po.getBackFromRecentApp(driver);
+            po.getBackFromRecentApp(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
 
-        po.powerKeyClick(driver);
+            po.powerKeyClick(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
 
-        // Click on the web area so that player screen shows up
+            // Click on the web area so that player screen shows up
 
-        viewarea.click();
+            viewarea.click();
 
-        po.adPlay(driver);
+            po.adPlay(driver);
 
-        Thread.sleep(4000);
+            Thread.sleep(4000);
 
-        ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
 
-        //Wait for video to start and verify the playStarted event .
-        ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-        Thread.sleep(5000);
+            Thread.sleep(5000);
 
-        // Tap coordinates to pause
-        String dimensions = driver.manage().window().getSize().toString();
-        //System.out.println(" Dimensions are "+dimensions);
-        String[] dimensionsarray = dimensions.split(",");
-        int length = dimensionsarray[1].length();
-        String ydimensions = dimensionsarray[1].substring(0, length - 1);
-        String ydimensionstrimmed = ydimensions.trim();
-        int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
-        viewarea.click();
-        driver.tap(1, 35, (ydimensionsInt - 25), 0);
+            // Tap coordinates to pause
+            String dimensions = driver.manage().window().getSize().toString();
+            //System.out.println(" Dimensions are "+dimensions);
+            String[] dimensionsarray = dimensions.split(",");
+            int length = dimensionsarray[1].length();
+            String ydimensions = dimensionsarray[1].substring(0, length - 1);
+            String ydimensionstrimmed = ydimensions.trim();
+            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            viewarea.click();
+            driver.tap(1, 35, (ydimensionsInt - 25), 0);
 
-        //verifing pause event
-        ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            //verifing pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
 
-        Thread.sleep(5000);
+            Thread.sleep(5000);
 
-        po.getBackFromRecentApp(driver);
+            po.getBackFromRecentApp(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
-        // click on power button
-        po.powerKeyClick(driver);
+            // click on power button
+            po.powerKeyClick(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        // again starting play
-        po.videoPlay(driver);
+            // again starting play
+            po.videoPlay(driver);
 
-        ev.verifyEvent("stateChanged - state: PLAYING","video start playing again",30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "video start playing again", 30000);
 
-        Thread.sleep(5000);
+            Thread.sleep(5000);
 
 
-        //Wait for Ad to start and verify the adStarted event .
+            //Wait for Ad to start and verify the adStarted event .
 
-        ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-       // Click on the web area so that player screen shows up
-          viewarea.click();
+            // Click on the web area so that player screen shows up
+            viewarea.click();
 
-         Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        //pausing ad
-        po.adPause(driver);
+            //pausing ad
+            po.adPause(driver);
 
-        //verifing event for pause
-        ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            //verifing event for pause
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        po.getBackFromRecentApp(driver);
+            po.getBackFromRecentApp(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
 
-        po.powerKeyClick(driver);
+            po.powerKeyClick(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
 
-        // Click on the web area so that player screen shows up
+            // Click on the web area so that player screen shows up
 
-        viewarea.click();
+            viewarea.click();
 
-        po.adPlay(driver);
+            po.adPlay(driver);
 
-        Thread.sleep(4000);
+            Thread.sleep(4000);
 
-        //Wait for Ad to complete and verify the adCompleted event .
-        ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            //Wait for Ad to complete and verify the adCompleted event .
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
-        ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-       Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        viewarea.click();
+            viewarea.click();
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        //pausing ad
-        po.adPause(driver);
+            //pausing ad
+            po.adPause(driver);
 
-        //verifing event for pause
-        ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            //verifing event for pause
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
 
-        po.getBackFromRecentApp(driver);
+            po.getBackFromRecentApp(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
 
-        po.powerKeyClick(driver);
+            po.powerKeyClick(driver);
 
-        Thread.sleep(2000);
+            Thread.sleep(2000);
 
-        ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
 
-        // Click on the web area so that player screen shows up
+            // Click on the web area so that player screen shows up
 
-        viewarea.click();
+            viewarea.click();
 
-        po.adPlay(driver);
+            po.adPlay(driver);
 
-        Thread.sleep(4000);
+            Thread.sleep(4000);
 
-        ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
-        //Wait for video to finish and verify the playCompleted event .
-        ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
     }
-    catch(Exception e)
-    {
-        System.out.println(" Exception "+e);
-        e.printStackTrace();
-        ScreenshotDevice.screenshot(driver);
-    }
-}
 
-     @org.testng.annotations.Test
-     public void FWPreMidPost_learnmore() throws Exception{
+    @org.testng.annotations.Test
+    public void FWPreMidPost_learnmore() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -1049,20 +1039,20 @@ public class DeepTests {
             Thread.sleep(3000);
 
             // clicking on learn more button
-              po.clickLearnMore(driver);
+            po.clickLearnMore(driver);
 
-              // verifing event that we have clicked on learn more
-              ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            // verifing event that we have clicked on learn more
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
-             Thread.sleep(5000);
-              // getting back to SDK
-              driver.navigate().back();
+            Thread.sleep(5000);
+            // getting back to SDK
+            driver.navigate().back();
 
-             // verifing event that get back to SDK and ad start playing again
-               ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            // verifing event that get back to SDK and ad start playing again
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
-               Thread.sleep(1000);
+            Thread.sleep(1000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -1088,62 +1078,60 @@ public class DeepTests {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-              Thread.sleep(3000);
+            Thread.sleep(3000);
 
             // clicking on learn more button
-              po.clickLearnMore(driver);
+            po.clickLearnMore(driver);
 
-              // verifing event that we have clicked on learn more
-              ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            // verifing event that we have clicked on learn more
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
-             Thread.sleep(5000);
-              // getting back to SDK
-              driver.navigate().back();
+            Thread.sleep(5000);
+            // getting back to SDK
+            driver.navigate().back();
 
-             // verifing event that get back to SDK and ad start playing again
-               ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            // verifing event that get back to SDK and ad start playing again
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
-               Thread.sleep(1000);
+            Thread.sleep(1000);
 
             //Wait for Ad to complete and verify the adCompleted event .
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-             Thread.sleep(3000);
+            Thread.sleep(3000);
 
             // clicking on learn more button
-              po.clickLearnMore(driver);
+            po.clickLearnMore(driver);
 
-              // verifing event that we have clicked on learn more
-              ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            // verifing event that we have clicked on learn more
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
-             Thread.sleep(5000);
-              // getting back to SDK
-              driver.navigate().back();
+            Thread.sleep(5000);
+            // getting back to SDK
+            driver.navigate().back();
 
-             // verifing event that get back to SDK and ad start playing again
-               ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            // verifing event that get back to SDK and ad start playing again
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
-               Thread.sleep(1000);
+            Thread.sleep(1000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FreeWheelApplicationConfigured() throws Exception{
+    public void FreeWheelApplicationConfigured() throws Exception {
         try {
             // Creating an Object of FreeWheelSampleApp class
             FreewheelSampleApp po = new FreewheelSampleApp();
@@ -1188,7 +1176,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1250,7 +1238,7 @@ public class DeepTests {
             // again starting play
             po.videoPlay(driver);
 
-            ev.verifyEvent("stateChanged - state: PLAYING","video start playing again",30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "video start playing again", 30000);
 
             Thread.sleep(2000);
 
@@ -1269,7 +1257,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1308,7 +1296,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1338,17 +1326,15 @@ public class DeepTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FreeWheelApplicationConfigured_learnmore() throws Exception{
+    public void FreeWheelApplicationConfigured_learnmore() throws Exception {
         try {
             // Creating an Object of FreeWheelSampleApp class
             FreewheelSampleApp po = new FreewheelSampleApp();
@@ -1387,7 +1373,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -1395,7 +1381,7 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -1428,7 +1414,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -1436,7 +1422,7 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
 
             //Wait for Ad to complete and verify the adCompleted event .
@@ -1450,7 +1436,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -1458,24 +1444,22 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FreeWheelMultiMidRoll() throws Exception{
+    public void FreeWheelMultiMidRoll() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -1522,7 +1506,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1560,7 +1544,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1617,24 +1601,22 @@ public class DeepTests {
             // again starting play
             po.videoPlay(driver);
 
-            ev.verifyEvent("stateChanged - state: PLAYING","video start playing again",30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "video start playing again", 30000);
 
             Thread.sleep(2000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FWMultiMidRoll_leanrmore() throws Exception{
+    public void FWMultiMidRoll_leanrmore() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -1678,7 +1660,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -1686,7 +1668,7 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -1705,7 +1687,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -1713,7 +1695,7 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -1739,17 +1721,15 @@ public class DeepTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FreeWheelPreMidPostRollOverlay() throws Exception{
+    public void FreeWheelPreMidPostRollOverlay() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -1795,7 +1775,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1856,7 +1836,7 @@ public class DeepTests {
             // again starting play
             po.videoPlay(driver);
 
-            ev.verifyEvent("stateChanged - state: PLAYING","video start playing again",30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "video start playing again", 30000);
 
 
             //Wait for Ad to start and verify the adStarted event .
@@ -1872,7 +1852,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1912,7 +1892,7 @@ public class DeepTests {
             po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED","Ad paused",3000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
             Thread.sleep(2000);
 
@@ -1941,17 +1921,15 @@ public class DeepTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
     }
 
     @org.testng.annotations.Test
-    public void FWPreMidPostRollOverlay_learnmore() throws Exception{
+    public void FWPreMidPostRollOverlay_learnmore() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -1992,7 +1970,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -2000,7 +1978,7 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -2040,7 +2018,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -2048,7 +2026,7 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -2064,7 +2042,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Clicked on learn more", 30000);
 
 
             Thread.sleep(5000);
@@ -2072,7 +2050,7 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -2082,10 +2060,8 @@ public class DeepTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
