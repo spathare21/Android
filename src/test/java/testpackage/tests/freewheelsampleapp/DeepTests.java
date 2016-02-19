@@ -80,14 +80,14 @@ public class DeepTests {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
-        // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
-        //ScreenshotDevice.screenshot(driver);
-        RemoveEventsLogFile.removeEventsFileLog();
-        Thread.sleep(10000);
-
-    }
+//    public void afterMethod() throws InterruptedException, IOException {
+//        // Waiting for all the events from sdk to come in .
+//        System.out.println("AfterMethod \n");
+//        //ScreenshotDevice.screenshot(driver);
+//        RemoveEventsLogFile.removeEventsFileLog();
+//        Thread.sleep(10000);
+//
+//    }
 /*
     @org.testng.annotations.Test
     public void FreeWheelPreRoll() throws Exception {
