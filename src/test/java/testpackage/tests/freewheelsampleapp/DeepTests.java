@@ -88,7 +88,7 @@ public class DeepTests {
         Thread.sleep(10000);
 
     }
-
+/*
     @org.testng.annotations.Test
     public void FreeWheelPreRoll() throws Exception {
 
@@ -212,7 +212,7 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+*/
     @org.testng.annotations.Test
     public void FWPreroll_learnmore () throws Exception {
         try {
@@ -296,7 +296,7 @@ public class DeepTests {
 
 
  }
-
+/*
     @org.testng.annotations.Test
     public void FreeWheelMidRoll() throws Exception {
 
