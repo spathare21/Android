@@ -253,7 +253,7 @@ public class DeepTests {
             po.clickLearnMore(driver);
 
             // verifing event that we have clicked on learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",30000 );
+            ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on learn more",40000 );
 
 
             Thread.sleep(5000);
@@ -261,15 +261,15 @@ public class DeepTests {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again",40000);
 
             Thread.sleep(1000);
 
             // verifing that ad has been played completely
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 50000);
 
             Thread.sleep(15000);
 
@@ -277,16 +277,16 @@ public class DeepTests {
 
             Thread.sleep(2000);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             po.powerKeyClick(driver);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(2000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted - state: LOADING", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
