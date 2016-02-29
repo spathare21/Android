@@ -1,11 +1,11 @@
 package testpackage.tests.freewheelsampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.utils.*;
 
@@ -19,7 +19,7 @@ public class DeepTests3 {
 
     private static AndroidDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public void beforeTest() throws Exception {
         System.out.println("BeforeTest \n");
 
@@ -68,7 +68,7 @@ public class DeepTests3 {
 
     }
 
-    @AfterTest
+    @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
         driver.closeApp();
@@ -532,8 +532,8 @@ public class DeepTests3 {
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            Thread.sleep(4200);
+//            WebDriverWait wait = new WebDriverWait(driver,30);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//")))
 
             // Click on the web area so that player screen shows up
             WebElement viewarea = driver.findElementByClassName("android.view.View");
@@ -581,7 +581,7 @@ public class DeepTests3 {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(5000);
+
 
             // Click on the web area so that player screen shows up
             po.clickOnViewarea(driver);
@@ -623,7 +623,6 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(4200);
 
             // Click on the web area so that player screen shows up
 
@@ -719,7 +718,7 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(4000);
+
             // clicking on learn more button
             po.clickLearnMore(driver);
 
@@ -850,7 +849,7 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(6000);
+
 
             //clicking on view area for click threw
             po.clickOnViewarea(driver);
@@ -890,7 +889,7 @@ public class DeepTests3 {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(4000);
+
 
             po.clickOnViewarea(driver);
             ev.verifyEvent("stateChanged - state: SUSPENDED","click on screen and click through",3000);
@@ -925,7 +924,7 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(5000);
+
 
             po.clickOnViewarea(driver);
             ev.verifyEvent("stateChanged - state: SUSPENDED","click on screen and click through",3000);

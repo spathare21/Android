@@ -91,7 +91,7 @@ public class BasicTestsSkinPlayback {
 
     }
 
-    /*
+
     @org.testng.annotations.Test
     public void SkinPlaybackAspectRatio() throws Exception{
         int[] locPlayButon;
@@ -379,7 +379,7 @@ public class BasicTestsSkinPlayback {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
     @org.testng.annotations.Test
     public void SkinPlaybackVODwithCCTest() throws Exception{
@@ -456,10 +456,10 @@ public class BasicTestsSkinPlayback {
 
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
-            /*
+
             po.SeekOoyalaSkin(driver,0,200);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            Thread.sleep(3000);*/
+            Thread.sleep(3000);
 
             // Tap coordinates again to play
             driver.tap(1,locPlayButon[0],locPlayButon[1],2);

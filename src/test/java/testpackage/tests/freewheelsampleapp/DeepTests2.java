@@ -2,10 +2,7 @@ package testpackage.tests.freewheelsampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.utils.*;
 
@@ -19,9 +16,9 @@ public class DeepTests2 {
 
     private static AndroidDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public void beforeTest() throws Exception {
-        System.out.println("BeforeTest \n");
+        System.out.println("BeforeTest in DeepTests2\n");
 
         System.out.println(System.getProperty("user.dir"));
         // Get Property Values
@@ -68,9 +65,10 @@ public class DeepTests2 {
 
     }
 
-    @AfterTest
+    @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
+        System.out.println(" In After class  \n");
         driver.closeApp();
         driver.quit();
 
@@ -82,7 +80,8 @@ public class DeepTests2 {
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
-        Thread.sleep(10000);
+
+        Thread.sleep(5000);
 
     }
 
@@ -289,7 +288,7 @@ public class DeepTests2 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+/*
     @org.testng.annotations.Test
     public void FWPreMidPost_learnmore() throws Exception {
 
@@ -1014,4 +1013,5 @@ public class DeepTests2 {
             ScreenshotDevice.screenshot(driver);
         }
     }
+    */
 }

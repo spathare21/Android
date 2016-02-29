@@ -133,11 +133,14 @@ public class FreewheelSampleApp {
 
     public void clickOnViewarea(AndroidDriver driver)
     {
+        WebDriverWait wait = new WebDriverWait(driver,30);
         String viewxpath = "//android.widget.TextView[@text='Learn More']/parent::android.widget.RelativeLayout/following-sibling::android.view.View";
-        WebElement web = driver.findElement(By.xpath(viewxpath));
+        WebElement web = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewxpath)));
+       // WebElement web = driver.findElement(By.xpath(viewxpath));
 
        // List<WebElement> view =  driver.findElements(By.className("android.view.View"));
         //System.out.println(">>>>>>>>>" +view);
+
         web.click();
     }
 
