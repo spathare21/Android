@@ -19,7 +19,7 @@ public class BasicTests{
 
     private static AndroidDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public void beforeTest() throws Exception {
         System.out.println("BeforeTest \n");
 
@@ -68,7 +68,7 @@ public class BasicTests{
 
     }
 
-    @AfterTest
+    @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
         driver.closeApp();
