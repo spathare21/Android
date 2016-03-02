@@ -86,7 +86,7 @@ public class DeepTests3 {
 
     }
 
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void FreeWheelOverlay() throws Exception {
 
         try {
@@ -151,7 +151,7 @@ public class DeepTests3 {
         }
     }
 
-/*
+*/
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_On() throws Exception{
 
@@ -196,9 +196,10 @@ public class DeepTests3 {
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-//            WebDriverWait wait = new WebDriverWait(driver,30);
-//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//")))
-
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
             // Click on the web area so that player screen shows up
             WebElement viewarea = driver.findElementByClassName("android.view.View");
 
@@ -245,9 +246,9 @@ public class DeepTests3 {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-
-
-            // Click on the web area so that player screen shows up
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
             po.clickOnViewarea(driver);
             // viewarea.click();
 
@@ -287,9 +288,9 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-
-            // Click on the web area so that player screen shows up
-
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
             po.clickOnViewarea(driver);
 
             Thread.sleep(800);
@@ -384,7 +385,6 @@ public class DeepTests3 {
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -632,5 +632,5 @@ public class DeepTests3 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     }
