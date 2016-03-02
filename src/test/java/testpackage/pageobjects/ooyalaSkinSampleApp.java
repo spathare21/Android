@@ -47,7 +47,8 @@ public class ooyalaSkinSampleApp {
 
     public void SeekOoyalaSkin(AndroidDriver driver,int widthOffSet1, int widthOffSet2){
 
-        List<WebElement> viewGroups = driver.findElements(By.xpath("//android.view.ViewGroup"));
+        //List<WebElement> viewGroups = driver.findElements(By.xpath("//android.view.ViewGroup"));
+        List<WebElement> viewGroups = driver.findElements(By.xpath("//android.view.View"));
         System.out.println("Loc of Seek Bar Cue Point - X "+ viewGroups.get(7).getLocation().getX());
         System.out.println("Loc of Seek Bar Cue Point - Y "+ viewGroups.get(7).getLocation().getY());
 
