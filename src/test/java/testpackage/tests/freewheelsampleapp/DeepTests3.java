@@ -151,7 +151,7 @@ public class DeepTests3 {
         }
     }
 
-
+/*
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_On() throws Exception{
 
@@ -469,7 +469,7 @@ public class DeepTests3 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_adControlsOff_leanmore() throws Exception{
         try {
