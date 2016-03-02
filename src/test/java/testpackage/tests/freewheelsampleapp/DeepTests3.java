@@ -85,7 +85,7 @@ public class DeepTests3 {
         Thread.sleep(10000);
 
     }
-/*
+
     @org.testng.annotations.Test
     public void FreeWheelOverlay() throws Exception {
 
@@ -469,7 +469,7 @@ public class DeepTests3 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+/*
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_adControlsOff_leanmore() throws Exception{
         try {
@@ -632,5 +632,5 @@ public class DeepTests3 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
     }
