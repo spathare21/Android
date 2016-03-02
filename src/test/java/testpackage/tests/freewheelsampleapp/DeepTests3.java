@@ -86,7 +86,7 @@ public class DeepTests3 {
 
     }
 
-   /* @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelOverlay() throws Exception {
 
         try {
@@ -151,7 +151,7 @@ public class DeepTests3 {
         }
     }
 
-*/
+
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_On() throws Exception{
 
@@ -470,7 +470,7 @@ public class DeepTests3 {
         }
     }
 
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_adControlsOff_leanmore() throws Exception{
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -632,5 +632,5 @@ public class DeepTests3 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
     }
