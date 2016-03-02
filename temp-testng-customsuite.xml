@@ -12,7 +12,7 @@
              <class name="testpackage.tests.freewheelsampleapp.DeepTests4"/>
              <!--class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/--> 
            <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
-	    <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
+	   <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
         </classes>
     </test> <!-- AppiumTest -->
 </suite> <!-- Default Suite -->
