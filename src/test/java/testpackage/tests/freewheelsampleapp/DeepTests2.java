@@ -1,7 +1,10 @@
 package testpackage.tests.freewheelsampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.utils.*;
@@ -118,7 +121,10 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(5000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // Click on the web area so that player screen shows up
             WebElement viewarea = driver.findElementByClassName("android.view.View");
@@ -201,7 +207,10 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(5000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // Click on the web area so that player screen shows up
             viewarea.click();
@@ -241,8 +250,10 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(5000);
 
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
             viewarea.click();
 
             Thread.sleep(1000);
@@ -288,7 +299,7 @@ public class DeepTests2 {
         }
     }
 
-        @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelApplicationConfigured() throws Exception {
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -321,9 +332,10 @@ public class DeepTests2 {
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            Thread.sleep(5000);
-
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
             // Click on the web area so that player screen shows up
             WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
@@ -403,7 +415,9 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(5000);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // Click on the web area so that player screen shows up
             viewarea.click();
@@ -442,7 +456,10 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(5000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             viewarea.click();
 
@@ -527,7 +544,10 @@ public class DeepTests2 {
 
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-            Thread.sleep(5000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // Click on the web area so that player screen shows up
             WebElement viewarea = driver.findElementByClassName("android.view.View");
@@ -566,7 +586,10 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(5000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             viewarea.click();
 
@@ -637,6 +660,213 @@ public class DeepTests2 {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void FreeWheelPreMidPostRollOverlay() throws Exception {
+
+        try {
+            // Creating an Object of FreeWheelSampleApp class
+            FreewheelSampleApp po = new FreewheelSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Freewheel PreMidPost Overlay");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+
+            System.out.println("FW PreMidPost overlay");
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
+            // Click on the web area so that player screen shows up
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
+            viewarea.click();
+
+            Thread.sleep(1000);
+
+            //pausing ad
+            po.adPause(driver);
+
+            //verifing event for pause
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+
+            Thread.sleep(2000);
+
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+
+            // Click on the web area so that player screen shows up
+            viewarea.click();
+
+            po.adPlay(driver);
+
+            Thread.sleep(4000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            Thread.sleep(5000);
+
+            // Tap coordinates to pause
+            String dimensions = driver.manage().window().getSize().toString();
+            //System.out.println(" Dimensions are "+dimensions);
+            String[] dimensionsarray = dimensions.split(",");
+            int length = dimensionsarray[1].length();
+            String ydimensions = dimensionsarray[1].substring(0, length - 1);
+            String ydimensionstrimmed = ydimensions.trim();
+            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            viewarea.click();
+            driver.tap(1, 35, (ydimensionsInt - 25), 0);
+
+            //verifing pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
+            Thread.sleep(10000);
+
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            // click on power button
+            po.powerKeyClick(driver);
+
+            Thread.sleep(2000);
+
+            // again starting play
+            po.videoPlay(driver);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "video start playing again", 30000);
+
+
+            //Wait for Ad to start and verify the adStarted event .
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
+            viewarea.click();
+
+            Thread.sleep(1000);
+
+            //pausing ad
+            po.adPause(driver);
+
+            //verifing event for pause
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+
+            Thread.sleep(2000);
+
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+
+            // Click on the web area so that player screen shows up
+
+            viewarea.click();
+
+            po.adPlay(driver);
+
+            Thread.sleep(4000);
+
+
+            //Wait for Ad to complete and verify the adCompleted event .
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
+
+            viewarea.click();
+
+            Thread.sleep(1000);
+
+            //pausing ad
+            po.adPause(driver);
+
+            //verifing event for pause
+            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+
+            Thread.sleep(2000);
+
+            po.getBackFromRecentApp(driver);
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+
+            po.powerKeyClick(driver);
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+
+            // Click on the web area so that player screen shows up
+
+            viewarea.click();
+
+            po.adPlay(driver);
+
+            Thread.sleep(4000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
