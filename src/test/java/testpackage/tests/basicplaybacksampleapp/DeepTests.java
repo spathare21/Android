@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeTest;
 import testpackage.pageobjects.BasicPlaybackSampleApp;
 import testpackage.utils.*;
 import testpackage.utils.*;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.sql.Driver;
@@ -24,7 +25,7 @@ public class DeepTests {
 
     private static AndroidDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public void beforeTest() throws Exception {
         System.out.println("BeforeTest \n");
 
@@ -74,7 +75,7 @@ public class DeepTests {
 
     }
 
-    @AfterTest
+    @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
         driver.closeApp();
