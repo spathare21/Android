@@ -419,7 +419,7 @@ public class BasicTests {
 
             // Select one of the video HLS,MP4 etc .
             //po.clickBasedOnText(driver, "VAST Ad Pre-roll");
-            po.clickBasedOnTextScrollTo(driver, "VAST Ad Pre-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Pre-roll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -479,7 +479,7 @@ public class BasicTests {
 
             // Select one of the video HLS,MP4 etc .
             //po.clickBasedOnText(driver, "VAST Ad Mid-roll");
-            po.clickBasedOnTextScrollTo(driver, "VAST Ad Mid-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Mid-roll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -538,7 +538,7 @@ public class BasicTests {
 
             // Select one of the video HLS,MP4 etc .
             //po.clickBasedOnText(driver, "VAST Ad Post-roll");
-            po.clickBasedOnTextScrollTo(driver, "VAST Ad Post-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Post-roll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -594,7 +594,7 @@ public class BasicTests {
             Thread.sleep(3000);
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST Ad Wrapper");
+            po.clickBasedOnText(driver, "VAST2 Ad Wrapper");
             Thread.sleep(2000);
 
             //verify if player was loaded
