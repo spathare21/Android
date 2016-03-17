@@ -13,6 +13,7 @@ public class RemoveEventsLogFile {
             String[] final_command = CommandLine.command("adb shell rm /sdcard/log.file");
             Runtime run=Runtime.getRuntime();
             Process pr = run.exec(final_command);
+            System.out.println("log file was removed");
 
         }
         catch(Exception e)

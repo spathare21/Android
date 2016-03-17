@@ -14,6 +14,7 @@ public class PushLogFileToDevice {
             String[] final_command = CommandLine.command(command);
             Runtime run = Runtime.getRuntime();
             Process pr = run.exec(final_command);
+            System.out.println("log file was pused to device");
     }
 
 
