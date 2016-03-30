@@ -2,6 +2,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 
 import com.sun.jna.platform.unix.X11;
 import io.appium.java_client.android.AndroidDriver;
+import org.omg.IOP.TAG_JAVA_CODEBASE;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
@@ -164,8 +165,8 @@ public class FWBasicDeepTests1 {
            // Thread.sleep(2000);
             //driver.tap(1,0,652,2);
             //driver.tap(1,view,1);
-            System.out.println("moving to pause method");
-            po.pauseVideo(driver);
+           // System.out.println("moving to pause method");
+
 
            // po.moreButton(driver);
            // po.clickOnCloseButton(driver);
@@ -176,13 +177,64 @@ public class FWBasicDeepTests1 {
 
             po.replayVideo(driver);
 
+
+
             //wait for video to replay and verifing the playing event
             ev.verifyEvent("stateChanged - state: PLAYING","video replaying",70000);
+            Thread.sleep(5000);
+
+            po.pauseVideo(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Video get paused ", 70000);
+
+            po.moreButton(driver);
+
+            po.shareAsset(driver);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " clicked on share button ", 70000);
+            Thread.sleep(1000);
+
+            po.shareOnGmail(driver);
+            ev.verifyEvent("bufferChanged - state: READY", " Asset shared via Gmail successfully. ", 70000);
+
+            po.clickOnCC(driver);
+
+            Thread.sleep(2000);
+
+            po.enableCC(driver);
+
+            Thread.sleep(1000);
+            po.clickOnCloseButton(driver);
+
+            Thread.sleep(2000);
+            po.clickOnCloseButton(driver);
+
+            System.out.println("on main video screen");
+
+            driver.tap(1,0,652,2);
+
+           po.playVideo(driver);
+            Thread.sleep(1000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING","video playing again",70000);
+
+
+
+            Thread.sleep(1000);
+//            po.clickOnCC(driver);
+//            Thread.sleep(1000);
+//            po.enableCC(driver);
+
+
+
+
+
+            Thread.sleep(1000);
+
+
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
-             po.moreButton(driver);
+
 
 
         }
