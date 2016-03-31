@@ -34,11 +34,11 @@ public class ParseEventsFile {
 
             while(line != null){
                 //System.out.println(line);
-                if(line.contains("state: ERROR"))
-                {
-                    System.out.println("App crashed");
-                    System.exit(0);
-                }
+//                if(line.contains("state: ERROR"))
+//                {
+//                    System.out.println("App crashed");
+//                    System.exit(0);
+//                }
                 if(line.contains(comp))
                 {
                   if (latestCount(line)>count) {

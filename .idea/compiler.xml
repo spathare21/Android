@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="testMavenProj" />
       </profile>
+      <profile default="false" name="Annotation profile for testpackage.Tests.BasicPlaybackSampleApp" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="testpackage.Tests.BasicPlaybackSampleApp" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="testMavenProj" target="1.5" />
+      <module name="testpackage.Tests.BasicPlaybackSampleApp" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

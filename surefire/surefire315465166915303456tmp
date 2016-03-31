@@ -1,0 +1,6 @@
+#surefire
+#Tue Mar 29 18:46:52 IST 2016
+user.dir=d\:\\JanAndroidSDKCut\\appiumProj\\Appium-Android
+suiteXmlFile=temp-testng-customsuite.xml
+localRepository=C\:\\Users\\Sachin\\.m2\\repository
+basedir=d\:\\JanAndroidSDKCut\\appiumProj\\Appium-Android
