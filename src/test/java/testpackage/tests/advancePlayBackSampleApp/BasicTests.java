@@ -166,11 +166,17 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            //Play Started Verification
+            //1st video Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
+            //2nd video start playing in queue
+            ev.verifyEvent(" playStarted - state: READY", "2nd video start playing in queue",60000);
+
+            // video completed event verification.
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            Thread.sleep(50000);
+
         } catch (Exception e) {
             System.out.println(" Exception " + e);
             e.printStackTrace();
@@ -406,6 +412,323 @@ public class BasicTests {
 
     }
 
+    @org.testng.annotations.Test
+    public void insertAtRunTime_VastAd() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Insert Ad at Runtime");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            System.out.println("after wait for presence");
+
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+
+            Thread.sleep(2000);
+
+
+
+            //clicking on InsertVastAD option
+            po.clickOnVastAd(driver);
+           // ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on VAST Ad button",10000);
+
+
+            po.playVideo(driver);
+            // verifing Ad play event.
+
+            ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
+
+            ev.verifyEvent("adCompleted","Vast Ad completed to play",30000);
+
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video start playing again",60000);
+
+
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
+    @org.testng.annotations.Test
+    public void insertAtRunTime_OoyalaAd() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Insert Ad at Runtime");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            System.out.println("after wait for presence");
+
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+
+            Thread.sleep(2000);
+
+
+
+            //clicking on InsertVastAD option
+            po.clickOnOoyalaAd(driver);
+            // ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on VAST Ad button",10000);
+
+
+            po.playVideo(driver);
+            // verifing Ad play event.
+
+            ev.verifyEvent("stateChanged - state: PLAYING", " Ooyala  Ad Started to Play ", 30000);
+
+            ev.verifyEvent("adCompleted","Ooyala Ad completed to play",30000);
+
+
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video start playing again",60000);
+
+
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
+    @org.testng.annotations.Test
+
+    public void changeVideoProgramatically_P1() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Change Video Programatically");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            System.out.println("after wait for presence");
+
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+
+            Thread.sleep(2000);
+
+            po.clickOnP1(driver);
+
+            // verifing that next video started to play
+            ev.verifyEvent("playStarted - state: READY", "video play start again", 50000);
+
+            //Next video play completed.
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 100000);
+
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+    @org.testng.annotations.Test
+
+    public void changeVideoProgramatically_P2() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Change Video Programatically");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            System.out.println("after wait for presence");
+
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+
+            Thread.sleep(2000);
+
+            po.clickOnP2(driver);
+
+            // verifing that next video started to play
+            ev.verifyEvent("playStarted - state: READY", "video play start again", 50000);
+
+            //Next video play completed.
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 100000);
+
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
+    @org.testng.annotations.Test
+
+    public void customPluginSample_Adverfication() throws Exception {
+
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Custom Plugin Sample");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            System.out.println("after wait for presence");
+
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PluginPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //verifing Ad, Ad event
+            ev.verifyEvent("stateChanged - state: PLAYING","Preroll Ad is playing",20000);
+
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted - state: SUSPENDED","Preroll Ad play completed",30000);
+
+            // video playing start event verification
+            ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
+
+            // Midroll Ad start event verification
+            ev.verifyEvent("stateChanged - state: PLAYING","Midroll Ad is playing",60000);
+
+            // Midrill Ad completed Verification
+            ev.verifyEvent("adCompleted - state: SUSPENDED","Midroll Ad play completed",80000);
+
+            // Post Ad start event verification
+            ev.verifyEvent("stateChanged - state: PLAYING","Postroll Ad is playing",80000);
+
+            // Post  Ad completed Verification
+            ev.verifyEvent("adCompleted - state: SUSPENDED","Postroll Ad play completed",90000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
 
 
 }
