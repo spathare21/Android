@@ -446,31 +446,19 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            Thread.sleep(5000);
+
+            //clicking on InsertVastAD option , inserting VAST Ad
+            po.clickOnVastAd(driver);
+
+            // Verifying if VAST Ad started
+            ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
+            // Verifying if VAST Ad completed
+            ev.verifyEvent("adCompleted","Vast Ad completed to play",30000);
+            // Veirfying if video completed
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
             Thread.sleep(2000);
-
-
-
-            //clicking on InsertVastAD option
-            po.clickOnVastAd(driver);
-           // ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on VAST Ad button",10000);
-
-
-            po.playVideo(driver);
-            // verifing Ad play event.
-
-            ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
-
-            ev.verifyEvent("adCompleted","Vast Ad completed to play",30000);
-
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Video start playing again",60000);
-
-
-
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
-
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -515,30 +503,19 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            Thread.sleep(5000);
+
+            //clicking on InsertOoyalaAD option , inserting Ooyala Ad
+            po.clickOnOoyalaAd(driver);
+
+            // Verifying if Ooyala Ad started
+            ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 30000);
+            // Verifying if Ooyala Ad completed
+            ev.verifyEvent("adCompleted","Ooyala Ad completed to play",30000);
+            // Veirfying if video completed
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
             Thread.sleep(2000);
-
-
-
-            //clicking on InsertVastAD option
-            po.clickOnOoyalaAd(driver);
-            // ev.verifyEvent("stateChanged - state: SUSPENDED","Clicked on VAST Ad button",10000);
-
-
-            po.playVideo(driver);
-            // verifing Ad play event.
-
-            ev.verifyEvent("stateChanged - state: PLAYING", " Ooyala  Ad Started to Play ", 30000);
-
-            ev.verifyEvent("adCompleted","Ooyala Ad completed to play",30000);
-
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Video start playing again",60000);
-
-
-
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
 
         } catch (Exception e) {
@@ -583,20 +560,17 @@ public class BasicTests {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playStarted", " Main Video Started to Play ", 30000);
 
             Thread.sleep(2000);
 
             po.clickOnP1(driver);
 
             // verifing that next video started to play
-            ev.verifyEvent("playStarted - state: READY", "video play start again", 50000);
+            ev.verifyEvent("playStarted", "Inserted video1 started to play", 50000);
 
             //Next video play completed.
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 100000);
-
+            ev.verifyEvent("playCompleted", "Inserted video1 ended play", 50000);
 
 
         } catch (Exception e) {
@@ -640,21 +614,17 @@ public class BasicTests {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playStarted", " Main Video Started to Play ", 30000);
 
             Thread.sleep(2000);
 
             po.clickOnP2(driver);
 
             // verifing that next video started to play
-            ev.verifyEvent("playStarted - state: READY", "video play start again", 50000);
+            ev.verifyEvent("playStarted", "Inserted video2 started to play", 50000);
 
             //Next video play completed.
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 100000);
-
-
+            ev.verifyEvent("playCompleted", "Inserted video2 ended play", 50000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -700,27 +670,27 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
 
             //verifing Ad, Ad event
-            ev.verifyEvent("stateChanged - state: PLAYING","Preroll Ad is playing",20000);
+            ev.verifyEvent("adStarted","Preroll Ad is playing",20000);
 
             // Ad completed event verification
-            ev.verifyEvent("adCompleted - state: SUSPENDED","Preroll Ad play completed",30000);
+            ev.verifyEvent("adCompleted","Preroll Ad play completed",30000);
 
             // video playing start event verification
             ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
 
             // Midroll Ad start event verification
-            ev.verifyEvent("stateChanged - state: PLAYING","Midroll Ad is playing",60000);
+            ev.verifyEvent("adStarted","Midroll Ad is playing",60000);
 
             // Midrill Ad completed Verification
-            ev.verifyEvent("adCompleted - state: SUSPENDED","Midroll Ad play completed",80000);
+            ev.verifyEvent("adCompleted","Midroll Ad play completed",80000);
 
             // Post Ad start event verification
-            ev.verifyEvent("stateChanged - state: PLAYING","Postroll Ad is playing",80000);
+            ev.verifyEvent("adStarted","Postroll Ad is playing",80000);
 
             // Post  Ad completed Verification
-            ev.verifyEvent("adCompleted - state: SUSPENDED","Postroll Ad play completed",90000);
+            ev.verifyEvent("adCompleted","Postroll Ad play completed",90000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
