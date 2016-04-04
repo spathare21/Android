@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/testMavenProj.iml" filepath="$PROJECT_DIR$/testMavenProj.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testpackage.Tests.BasicPlaybackSampleApp.iml" filepath="$PROJECT_DIR$/testpackage.Tests.BasicPlaybackSampleApp.iml" />
     </modules>
   </component>
 </project>

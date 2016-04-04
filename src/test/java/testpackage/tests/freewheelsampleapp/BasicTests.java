@@ -522,6 +522,9 @@ public class BasicTests{
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
+
+
+
         }
         catch(Exception e)
         {
