@@ -3,16 +3,17 @@
 <suite name="Default Suite" >
     <test name="AppiumTest">
         <classes>
-             <!--class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/-->
-            <!--class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/-->
-            <!--class name="testpackage.tests.freewheelsampleapp.BasicTests"/-->
-            <!--class name="testpackage.tests.freewheelsampleapp.DeepTests"/-->
-            <!--class name="testpackage.tests.freewheelsampleapp.DeepTests2"/-->
-            <!--class name="testpackage.tests.freewheelsampleapp.DeepTests3"/-->
-
-            <!--class name="testpackage.tests.freewheelsampleapp.DeepTests4"/-->
-            <!--class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/-->
-            <!--class name="testpackage.tests.ooyalaSkinSampleApp.FWBasicDeepTests1"/-->
+             <!--<class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>-->
+            <!--<class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.BasicTests"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>-->
+            <!-- <class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>-->
+            <!-- <class name="testpackage.tests.freewheelsampleapp.DeepTests4"/>
+             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
+             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
+	     <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/> 
+            <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
             <class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>
 
         </classes>
