@@ -91,12 +91,12 @@ public class BasicTests {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
-       // RemoveEventsLogFile.removeEventsFileLog();
+        RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
     }
 
-    @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void IMAAdRulePreroll() throws Exception{
 
         try {
@@ -150,7 +150,7 @@ public class BasicTests {
     }
 
 
-    @org.testng.annotations.Test
+    // @org.testng.annotations.Test
     public void IMAAdRuleMidroll() throws Exception{
 
         try {
@@ -185,7 +185,7 @@ public class BasicTests {
 
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-          //  Thread.sleep(11000);
+            //  Thread.sleep(11000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
@@ -208,10 +208,122 @@ public class BasicTests {
     }
 
 
+    //   @org.testng.annotations.Test
+    public void IMAAdRulePostroll() throws Exception{
+
+        try {
+            // Creating an Object of IMA class
+            IMASampleApp po = new IMASampleApp();
+            // wait till home screen of IMASampleApp is opened
+            po.waitForAppHomeScreen(driver);
 
 
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Ad-Rules Postroll");
+            Thread.sleep(2000);
 
 
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
+            Thread.sleep(2000);
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMAPoddedPreroll() throws Exception{
+
+        try {
+            // Creating an Object of IMA class
+            IMASampleApp po = new IMASampleApp();
+            // wait till home screen of IMASampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Podded Preroll");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+
+            ev.verifyEvent("playStarted", " Video Started Play ", 100000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 500000);
+            Thread.sleep(2000);
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
 
 }
