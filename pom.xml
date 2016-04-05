@@ -80,8 +80,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                   <!-- <source>1.5</source>
-                    <target>1.5</target> -->
+                    <!-- <source>1.5</source>
+                     <target>1.5</target> -->
                 </configuration>
             </plugin>
             <plugin>
@@ -92,10 +92,10 @@
                 <configuration>
                     <!-- This is to skip tests during normal maven execution
                     (e.g. mvn package) and run them in integration-test -->
-                    <!-- testng xml suite file to be used for test execution
+                    <!-- testng xml suite file to be used for test execution -->
                     <suiteXmlFiles>
                         <suitexmlfile>${suiteXmlFile}</suitexmlfile>
-                    </suiteXmlFiles>  -->
+                    </suiteXmlFiles>
                     <reportsDirectory>${project.basedir}/target</reportsDirectory>
                     <!--   <testFailureIgnore>true</testFailureIgnore>-->
                 </configuration>
@@ -113,9 +113,6 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 
 
 
