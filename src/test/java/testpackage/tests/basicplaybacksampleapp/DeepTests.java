@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeTest;
 import testpackage.pageobjects.BasicPlaybackSampleApp;
 import testpackage.utils.*;
 import testpackage.utils.*;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.sql.Driver;
@@ -24,7 +25,7 @@ public class DeepTests {
 
     private static AndroidDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public void beforeTest() throws Exception {
         System.out.println("BeforeTest \n");
 
@@ -74,7 +75,7 @@ public class DeepTests {
 
     }
 
-    @AfterTest
+    @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
         driver.closeApp();
@@ -662,7 +663,7 @@ public class DeepTests {
                 Thread.sleep(3000);
 
                 // Select one of the video HLS,MP4 etc .
-                po.clickBasedOnText(driver, "VAST Ad Wrapper");
+                po.clickBasedOnText(driver, "VAST2 Ad Wrapper");
                 Thread.sleep(2000);
 
                 //verify if player was loaded
@@ -1103,7 +1104,7 @@ public class DeepTests {
             Thread.sleep(3000);
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnTextScrollTo(driver, "VAST Ad Pre-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Pre-roll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -1213,7 +1214,7 @@ public class DeepTests {
             Thread.sleep(3000);
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST Ad Mid-roll");
+            po.clickBasedOnText(driver, "VAST2 Ad Mid-roll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -1322,7 +1323,7 @@ public class DeepTests {
             Thread.sleep(3000);
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST Ad Post-roll");
+            po.clickBasedOnText(driver, "VAST2 Ad Post-roll");
             Thread.sleep(2000);
 
             //verify if player was loaded

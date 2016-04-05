@@ -19,7 +19,7 @@ public class BasicTests{
 
     private static AndroidDriver driver;
 
-    @BeforeTest
+    @BeforeClass
     public void beforeTest() throws Exception {
         System.out.println("BeforeTest \n");
 
@@ -68,7 +68,7 @@ public class BasicTests{
 
     }
 
-    @AfterTest
+    @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
         driver.closeApp();
@@ -521,6 +521,9 @@ public class BasicTests{
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
+
+
+
 
         }
         catch(Exception e)
