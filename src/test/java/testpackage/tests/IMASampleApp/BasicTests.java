@@ -172,7 +172,6 @@ public class BasicTests {
             po.clickBasedOnText(driver, "IMA Ad-Rules Midroll");
             Thread.sleep(2000);
 
-
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
@@ -185,15 +184,9 @@ public class BasicTests {
 
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //  Thread.sleep(11000);
-
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            //Thread.sleep(5000);
-
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
-            //Wait for video to start and verify the playStarted event .
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
@@ -297,25 +290,18 @@ public class BasicTests {
             //Wait for video to start and verify the playStarted event .
 
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-            // Thread.sleep(5000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 12000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 12000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-            // Thread.sleep(5000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 12000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 12000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-            // Thread.sleep(5000);
-
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
-
-            ev.verifyEvent("playStarted", " Video Started Play ", 100000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 12000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 500000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
             Thread.sleep(2000);
         }
         catch(Exception e)
