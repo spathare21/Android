@@ -3,7 +3,7 @@ package testpackage.utils;
 /**
  * Created by dulari on 3/16/16.
  */
-
+/*
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -75,4 +75,4 @@ private static URI jiraServerUri = URI.create("http://jira.corp.ooyala.com");
             }
         }
 
-}
+}*/
