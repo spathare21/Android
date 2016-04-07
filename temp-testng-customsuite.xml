@@ -15,8 +15,8 @@
              <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
 	     <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
-            <class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>
-            <!--<class name="testpackage.tests.IMASampleApp.BasicTests"/>-->
+            <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
+            <class name="testpackage.tests.IMASampleApp.BasicTests"/>
         </classes>
     </test> <!-- AppiumTest -->
 </suite> <!-- Default Suite -->
