@@ -14,7 +14,7 @@ import testpackage.utils.PushLogFileToDevice;
 import testpackage.utils.ScreenshotDevice;
 import testpackage.utils.SetUpAndroidDriver;
 import testpackage.utils.LoadPropertyValues;
-import testpackage.utils.JIRAUtils;
+//import testpackage.utils.JIRAUtils;
 
 
 import java.util.Properties;
