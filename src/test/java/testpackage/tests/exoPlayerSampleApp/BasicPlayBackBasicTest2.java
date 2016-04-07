@@ -84,7 +84,7 @@ public class BasicPlayBackBasicTest2 {
 
     }
 
-/*
+
     @org.testng.annotations.Test
     public void Multi_Ad() throws Exception{
         try {
@@ -177,7 +177,7 @@ public class BasicPlayBackBasicTest2 {
         }
 
     }
-*/
+
     @org.testng.annotations.Test
     public void VAST_3Podded() throws Exception{
         try {
@@ -207,9 +207,6 @@ public class BasicPlayBackBasicTest2 {
                 Thread.sleep(2000);
 
             }
-
-
-
 
             //po.waitForPresenceOfText(driver,"VAST 3.0 2 Podded Ad");
             // Assert if current activity is indeed equal to the activity name of app home screen
@@ -264,5 +261,478 @@ public class BasicPlayBackBasicTest2 {
         }
 
     }
+
+    @org.testng.annotations.Test
+    public void VAST_AdWithIcon() throws Exception{
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            exoPlayerSampleApp po = new exoPlayerSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+
+            po.clickBasedOnText(driver, "Basic Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            //po.waitForPresenceOfText(driver,"VAST 3.0 2 Podded Ad");
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad With Icon");
+            Thread.sleep(5000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver,"h");
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 55000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+    @org.testng.annotations.Test
+    public void VAST_Podded_Preroll_skippable() throws Exception{
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            exoPlayerSampleApp po = new exoPlayerSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+
+            po.clickBasedOnText(driver, "Basic Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            //po.waitForPresenceOfText(driver,"VAST 3.0 2 Podded Ad");
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Podded Preroll with Skippable Ad");
+            Thread.sleep(5000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver,"h");
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 55000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+    @org.testng.annotations.Test
+    public void VAST_Skippable_Ad() throws Exception{
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            exoPlayerSampleApp po = new exoPlayerSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+
+            po.clickBasedOnText(driver, "Basic Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            //po.waitForPresenceOfText(driver,"VAST 3.0 2 Podded Ad");
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad");
+            Thread.sleep(5000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver,"h");
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+
+
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+    @org.testng.annotations.Test
+    public void VAST_Skippable_Ad_Long() throws Exception{
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            exoPlayerSampleApp po = new exoPlayerSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+
+            po.clickBasedOnText(driver, "Basic Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            //po.waitForPresenceOfText(driver,"VAST 3.0 2 Podded Ad");
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad Long");
+            Thread.sleep(5000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver,"h");
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+    @org.testng.annotations.Test
+    public void VAST_AD_Wrapper() throws Exception{
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            exoPlayerSampleApp po = new exoPlayerSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+
+            po.clickBasedOnText(driver, "Basic Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            //po.waitForPresenceOfText(driver,"VAST 3.0 2 Podded Ad");
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad Wrapper");
+            Thread.sleep(5000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver,"h");
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+    @org.testng.annotations.Test
+    public void VAMP_AD_PreMidPost() throws Exception{
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            exoPlayerSampleApp po = new exoPlayerSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+
+            po.clickBasedOnText(driver, "Basic Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            //po.waitForPresenceOfText(driver,"VAST 3.0 2 Podded Ad");
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VMAP PreMidPost Single");
+            Thread.sleep(5000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver,"h");
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
 
 }

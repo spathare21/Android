@@ -74,4 +74,9 @@ public class exoPlayerSampleApp {
     {
         driver.findElement(By.className("android.view.View")).click();
     }
+
+    public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) {
+
+        driver.scrollTo(clickText).click();
+    }
 }
