@@ -83,7 +83,7 @@ public class BasicPlayBackBasicTests {
         Thread.sleep(10000);
 
     }
-/*
+
     @org.testng.annotations.Test
       public void AspectRatio() throws Exception{
         try {
@@ -191,7 +191,7 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"MP4 Video");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
@@ -199,7 +199,7 @@ public class BasicPlayBackBasicTests {
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "MP4 Video");
+            po.clickBasedOnTextScrollTo(driver, "MP4 Video");
             Thread.sleep(2000);
 
 
@@ -268,14 +268,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"HLS Video");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "HLS Video");
+            po.clickBasedOnTextScrollTo(driver, "HLS Video");
             Thread.sleep(2000);
 
 
@@ -344,14 +344,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"Ooyala Encrypted HLS");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Ooyala Encrypted HLS");
+            po.clickBasedOnTextScrollTo(driver, "Ooyala Encrypted HLS");
             Thread.sleep(2000);
 
 
@@ -417,14 +417,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"VOD with CCs");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VOD with CCs");
+            po.clickBasedOnTextScrollTo(driver, "VOD with CCs");
             Thread.sleep(2000);
 
 
@@ -490,14 +490,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"VAST2 Ad Pre-roll");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Pre-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Pre-roll");
             Thread.sleep(2000);
 
 
@@ -569,14 +569,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"VAST2 Ad Mid-roll");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Mid-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Mid-roll");
             Thread.sleep(2000);
 
 
@@ -619,6 +619,7 @@ public class BasicPlayBackBasicTests {
 
     }
 
+    //TODO Fails because of https://jira.corp.ooyala.com/browse/PBA-3730
     @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
@@ -649,14 +650,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"VAST2 Ad Post-roll");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Post-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Post-roll");
             Thread.sleep(2000);
 
 
@@ -728,14 +729,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"VAST2 Ad Wrapper");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Wrapper");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Wrapper");
             Thread.sleep(2000);
 
 
@@ -752,14 +753,20 @@ public class BasicPlayBackBasicTests {
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
-            //Ad Started Verification
+            //Events Verification
             EventVerification ev = new EventVerification();
+
+            //Ad Started Verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 49000);
 
         }
         catch(Exception e)
@@ -770,7 +777,7 @@ public class BasicPlayBackBasicTests {
         }
 
     }
-
+   //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void ooyalaAd_Preroll() throws Exception{
         try {
@@ -801,14 +808,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"Ooyala Ad Pre-roll");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Ooyala Ad Pre-roll");
+            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Pre-roll");
             Thread.sleep(2000);
 
 
@@ -849,7 +856,7 @@ public class BasicPlayBackBasicTests {
 
     }
 
-
+    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void ooyalaAd_Midroll() throws Exception{
         try {
@@ -880,14 +887,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"Ooyala Ad Mid-roll");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Ooyala Ad Mid-roll");
+            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Mid-roll");
             Thread.sleep(2000);
 
 
@@ -928,7 +935,8 @@ public class BasicPlayBackBasicTests {
         }
 
     }
-*/
+
+    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void ooyalaAd_Postroll() throws Exception{
         try {
@@ -959,14 +967,14 @@ public class BasicPlayBackBasicTests {
 
             }
 
-            po.waitForPresenceOfText(driver,"Ooyala Ad Post-roll");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Ooyala Ad Post-roll");
+            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Post-roll");
             Thread.sleep(2000);
 
 
@@ -987,16 +995,16 @@ public class BasicPlayBackBasicTests {
             EventVerification ev = new EventVerification();
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 41000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
         }
         catch(Exception e)

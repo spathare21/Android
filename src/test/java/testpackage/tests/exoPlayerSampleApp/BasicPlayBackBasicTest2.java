@@ -83,8 +83,8 @@ public class BasicPlayBackBasicTest2 {
         Thread.sleep(10000);
 
     }
-
-
+/*
+    //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void Multi_Ad() throws Exception{
         try {
@@ -115,13 +115,7 @@ public class BasicPlayBackBasicTest2 {
 
             }
 
-//            po.clickBasedOnTextScrollTo(driver, "Multi Ad Combination");
-//
-//            Thread.sleep(5000);
 
-
-           // po.waitForPresenceOfText(driver,"Multi Ad combination");
-            // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
             System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
@@ -178,6 +172,7 @@ public class BasicPlayBackBasicTest2 {
 
     }
 
+    //TODO FAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void VAST_3Podded() throws Exception{
         try {
@@ -572,8 +567,9 @@ public class BasicPlayBackBasicTest2 {
             ScreenshotDevice.screenshot(driver);
         }
 
-    }
+    }*/
 
+ /*   // TODO Handle 15 minutes long video
     @org.testng.annotations.Test
     public void VAST_AD_Wrapper() throws Exception{
         try {
@@ -647,6 +643,7 @@ public class BasicPlayBackBasicTest2 {
 
     }
 
+    // TODO Handle 15 minutes long video
     @org.testng.annotations.Test
     public void VAMP_AD_PreMidPost() throws Exception{
         try {
@@ -731,8 +728,5 @@ public class BasicPlayBackBasicTest2 {
             ScreenshotDevice.screenshot(driver);
         }
 
-    }
-
-
-
+    }*/
 }

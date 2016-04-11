@@ -53,6 +53,8 @@ public class exoPlayerSampleApp {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.name(waitString)));
     }
 
+
+
     public void verifyOverlay (AndroidDriver driver)
     {
         WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
