@@ -18,7 +18,8 @@
             <!--class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>-->
-            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
+            <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
+            <class name="testpackage.tests.optionsSampleApp.BasicTests"/>
         </classes>
     </test> <!-- AppiumTest -->
 </suite> <!-- Default Suite -->
