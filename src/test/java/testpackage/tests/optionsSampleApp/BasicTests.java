@@ -90,7 +90,7 @@ public class BasicTests {
         Thread.sleep(10000);
 
     }
-/*
+
     @org.testng.annotations.Test
     public void CuePointsAndAdsControlOptions() throws Exception {
 
@@ -775,7 +775,7 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void timeout_Options() throws Exception {
 
