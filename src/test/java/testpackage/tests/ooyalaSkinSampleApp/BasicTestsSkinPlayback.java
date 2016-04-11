@@ -356,7 +356,7 @@ public class BasicTestsSkinPlayback {
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
 
-            //po.SeekOoyalaSkin(driver,0,200);
+            po.SeekOoyalaSkin(driver,0,200);
             //ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
             //Thread.sleep(3000);
 

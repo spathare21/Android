@@ -1,7 +1,6 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.apache.xpath.operations.And;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,14 +10,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 /**
- * Created by Sachin on 4/5/2016.
+ * Created by Sachin on 4/11/2016.
  */
-public class exoPlayerSampleApp {
+public class optionsSampleApp {
+
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.
-                xpath("//android.widget.TextView[@text='Basic Playback']")));
+                xpath("//android.widget.TextView[@text='CuePoints and AdsControl Options']")));
 
     }
 
@@ -38,6 +38,7 @@ public class exoPlayerSampleApp {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         if (typeOf == "className") {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.className(waitString)));
+
         }
 
     }
@@ -52,33 +53,45 @@ public class exoPlayerSampleApp {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.name(waitString)));
     }
+    public void clickImagebuttons(AndroidDriver driver, int index) {
 
-
-
-    public void verifyOverlay (AndroidDriver driver)
-    {
-        WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
-        if (element.isDisplayed())
-        {
-            System.out.println("overlay displayed");
-        }
+        List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
+        imageButtons.get(index).click();
     }
 
-    public void skipAd (AndroidDriver driver) throws InterruptedException {
-        System.out.println("in skip ad");
-        Thread.sleep(7000);
-       WebElement element =  (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.Button[@index='0']")));
-               element.click();
-    // driver.tap(1,585,1524,2);
+    public void clickOnViewarea(AndroidDriver driver)
+    {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String viewxpath = "//android.widget.TextView[@text='Learn More']/parent::android.widget.RelativeLayout/following-sibling::android.view.View";
+        WebElement web = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewxpath)));
+        // WebElement web = driver.findElement(By.xpath(viewxpath));
+
+        // List<WebElement> view =  driver.findElements(By.className("android.view.View"));
+        //System.out.println(">>>>>>>>>" +view);
+
+        web.click();
+    }
+
+    public void cuepointOff (AndroidDriver driver)
+    {
+        driver.findElement(By.id("com.ooyala.sample.OptionsSampleApp:id/toggleButton1")).click();
+        System.out.println("cue point off");
+    }
+
+    public void adControlOff    (AndroidDriver driver)
+    {
+        driver.findElement(By.id("com.ooyala.sample.OptionsSampleApp:id/toggleButton2")).click();
+        System.out.println("Ad controls off");
     }
 
     public void adPause (AndroidDriver driver)
     {
-        driver.findElement(By.className("android.view.View")).click();
+        driver.findElement(By.id("android:id/pause")).click();
     }
 
-    public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) {
-
-        driver.scrollTo(clickText).click();
+    public void adPlay (AndroidDriver driver)
+    {
+        driver.findElement(By.id("android:id/pause")).click();
     }
+
 }
