@@ -9,7 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import testpackage.pageobjects.FreewheelSampleApp;
+
 import testpackage.pageobjects.optionsSampleApp;
 import testpackage.utils.*;
 
@@ -95,7 +95,7 @@ public class BasicTests {
     public void CuePointsAndAdsControlOptions() throws Exception {
 
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -166,7 +166,7 @@ public class BasicTests {
     public void preload_PromoImage_options() throws Exception {
 
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -237,7 +237,7 @@ public class BasicTests {
     public void preload_promo_IntialTime() throws Exception {
 
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -293,7 +293,7 @@ public class BasicTests {
     public void server_side_TvRating() throws Exception {
 
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -338,7 +338,7 @@ public class BasicTests {
     public void tv_rating_config() throws Exception {
 
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -394,7 +394,7 @@ public class BasicTests {
     public void present_video_view_sharing_options() throws Exception {
 
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -439,7 +439,7 @@ public class BasicTests {
     public void CuePointsAndAdsControlOptions_On() throws Exception{
 
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -448,7 +448,7 @@ public class BasicTests {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("optionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -586,7 +586,7 @@ public class BasicTests {
     @org.testng.annotations.Test
     public void CuePointsAndAdsControlOptions_cuePointOff() throws Exception{
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -595,7 +595,7 @@ public class BasicTests {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("optionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -669,11 +669,11 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void CuePointsAndAdsControlOptions_adControlsOff() throws Exception{
         try {
-            // Creating an Object of FreeWheelSampleApp class
+            // Creating an Object of optionsSampleApp class
             optionsSampleApp po = new optionsSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
@@ -682,7 +682,7 @@ public class BasicTests {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("optionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -774,6 +774,77 @@ public class BasicTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
+    }
+*/
+    @org.testng.annotations.Test
+    public void timeout_Options() throws Exception {
+
+        try {
+            // Creating an Object of optionsSampleApp class
+            optionsSampleApp po = new optionsSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Timeout Options");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.TimeoutOptionsPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Click on Video create button
+            po.clickButtons(driver, 0);
+
+            // Wait for the video to be generated
+            po.waitForPresenceOfText(driver, "00:00");
+
+            // Click on video play icon after video has been generated .
+            po.clickImagebuttons(driver, 0);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            //Wait for Ad to start and verify the adStarted event .
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+
+            //Wait for Ad to complete and verify the adCompleted event .
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+
+        } catch (Exception e) {
+            System.out.println(" Exception " + e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
     }
 
 
