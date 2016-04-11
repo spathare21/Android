@@ -8,7 +8,6 @@
     <artifactId>testpackage.Tests.BasicPlaybackSampleApp</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <packaging>jar</packaging>
 
     <name>selenium-tests</name>
@@ -25,6 +24,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -56,8 +56,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                   <!-- <source>1.5</source>
-                    <target>1.5</target> -->
+                    <!-- <source>1.5</source>
+                     <target>1.5</target> -->
                 </configuration>
             </plugin>
             <plugin>
@@ -89,9 +89,6 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 
 
 
