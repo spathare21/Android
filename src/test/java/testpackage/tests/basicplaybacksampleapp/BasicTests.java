@@ -309,7 +309,6 @@ public class BasicTests {
         }
     }
 
-
     @org.testng.annotations.Test
     public void VODwithCCTest() throws Exception{
 
@@ -399,7 +398,6 @@ public class BasicTests {
         }
     }
 
-
     @org.testng.annotations.Test
     public void VASTAdPreRollTest() throws Exception{
 
@@ -459,7 +457,6 @@ public class BasicTests {
         }
     }
 
-
     @org.testng.annotations.Test
     public void VASTADMidRollTest() throws Exception{
 
@@ -509,64 +506,6 @@ public class BasicTests {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-        }
-        catch(Exception e)
-        {
-            System.out.println(" Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
-        }
-    }
-
-
-    @org.testng.annotations.Test
-    public void VASTADPostRollTest() throws Exception{
-
-        try {
-            // Creating an Object of BasicPlaybackSampleApp class
-            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            //po.clickBasedOnText(driver, "VAST Ad Post-roll");
-            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Post-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            //Play Started
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(11000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            Thread.sleep(5000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
-
         }
         catch(Exception e)
         {
@@ -736,7 +675,6 @@ public class BasicTests {
         }
     }
 
-
     @org.testng.annotations.Test
     public void OoyalaADPostRollTest() throws Exception{
 
@@ -773,9 +711,6 @@ public class BasicTests {
             //Thread sleep time is equivalent to the length of the video
             Thread.sleep(11000);
 
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
@@ -783,6 +718,11 @@ public class BasicTests {
 
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+
 
 
         }
@@ -794,7 +734,64 @@ public class BasicTests {
         }
     }
 
+    @org.testng.annotations.Test
+    public void VASTADPostRollTest() throws Exception{
 
+        try {
+            // Creating an Object of BasicPlaybackSampleApp class
+            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            // Select one of the video HLS,MP4 etc .
+            //po.clickBasedOnText(driver, "VAST Ad Post-roll");
+            po.clickBasedOnTextScrollTo(driver, "VAST2 Ad Post-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            //Play Started
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the video
+            Thread.sleep(11000);
+
+            //Ad Started Verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
 
     @org.testng.annotations.Test
     public void MultiAdCombinationTest() throws Exception{
@@ -862,8 +859,6 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
-
 
 
 }
