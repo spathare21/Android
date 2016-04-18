@@ -151,7 +151,6 @@ public class DeepTests3 {
         }
     }
 
-
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_On() throws Exception{
 
@@ -386,6 +385,11 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
+
             // clicking on learn more button
             po.clickLearnMore(driver);
 
@@ -398,9 +402,9 @@ public class DeepTests3 {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
-
+            System.out.println("Back to SDK");
 
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
@@ -415,7 +419,10 @@ public class DeepTests3 {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(5000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
             // clicking on learn more button
             po.clickLearnMore(driver);
 
@@ -428,9 +435,9 @@ public class DeepTests3 {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
-
+            System.out.println("Back to SDK");
 
             //Wait for Ad to complete and verify the adCompleted event .
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
@@ -438,7 +445,10 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(4000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -451,8 +461,10 @@ public class DeepTests3 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
+
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+            //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
@@ -470,7 +482,8 @@ public class DeepTests3 {
         }
     }
 
-   /* @org.testng.annotations.Test
+/*
+  @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_adControlsOff_leanmore() throws Exception{
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -517,7 +530,10 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             //clicking on view area for click threw
             po.clickOnViewarea(driver);
@@ -527,8 +543,9 @@ public class DeepTests3 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+          //  ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -566,8 +583,10 @@ public class DeepTests3 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
+
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+            //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(5000);
             // clicking on learn more button
@@ -600,8 +619,10 @@ public class DeepTests3 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
+
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+            //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -631,6 +652,7 @@ public class DeepTests3 {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
-*/
+    }*/
+
+
     }

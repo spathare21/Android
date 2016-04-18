@@ -5,8 +5,11 @@ package testpackage.tests.freewheelsampleapp;
  */
 import org.apache.xpath.SourceTree;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.FreewheelSampleApp;
@@ -125,7 +128,10 @@ public class DeepTests {
                 EventVerification ev = new EventVerification();
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-                Thread.sleep(4000);
+                WebDriverWait wait = new WebDriverWait(driver,30);
+                wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+                System.out.println("learn more displayed");
+                Thread.sleep(1000);
 
                 // Click on the web area so that player screen shows up
                 WebElement viewarea = driver.findElementByClassName("android.view.View");
@@ -254,9 +260,11 @@ public class DeepTests {
                 // wait fot ad to start ad verify adStarted event.
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
+                WebDriverWait wait = new WebDriverWait(driver,30);
+                wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+                System.out.println("learn more displayed");
 
-                Thread.sleep(4000);
-
+                Thread.sleep(1000);
                 // clicking on player for show up the scrubber bar
                 WebElement viewarea = driver.findElementByClassName("android.view.View");
                 viewarea.click();
@@ -426,10 +434,10 @@ public class DeepTests {
 
                 //Wait for Ad to start and verify the adStarted event .
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
-
-                Thread.sleep(4000);
-
-
+                WebDriverWait wait = new WebDriverWait(driver,30);
+                wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+                System.out.println("learn more displayed");
+                Thread.sleep(1000);
                 viewarea.click();
                 System.out.println("clicked on view area");
 
