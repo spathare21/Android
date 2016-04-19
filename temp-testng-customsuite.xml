@@ -12,9 +12,9 @@
             <class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>
              <class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>
              <class name="testpackage.tests.freewheelsampleapp.DeepTests4"/>-->
-             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
+             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
              <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
-	        <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
+	        <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
             <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>-->
