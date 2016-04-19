@@ -72,6 +72,10 @@ public class IMABasicTests {
         System.out.println("AfterTest \n");
         driver.closeApp();
         driver.quit();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
 
     }
 

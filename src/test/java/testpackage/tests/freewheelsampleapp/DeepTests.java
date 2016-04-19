@@ -13,12 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.FreewheelSampleApp;
-import testpackage.utils.EventVerification;
-import testpackage.utils.RemoveEventsLogFile;
-import testpackage.utils.PushLogFileToDevice;
-import testpackage.utils.ScreenshotDevice;
-import testpackage.utils.SetUpAndroidDriver;
-import testpackage.utils.LoadPropertyValues;
+import testpackage.utils.*;
+
 import java.util.Properties;
 import java.io.IOException;
 
@@ -80,6 +76,10 @@ public class DeepTests {
         System.out.println("AfterTest \n");
         driver.closeApp();
         driver.quit();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
 
     }
 
