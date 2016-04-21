@@ -122,7 +122,10 @@ public class DeepTests2 {
             Thread.sleep(3000);
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
+
+            //Removing Learn More feature for now
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -167,6 +170,7 @@ public class DeepTests2 {
             // AD playing started event verification
 //            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 //            Thread.sleep(3000);
+            */
 
             // ad completed event verificaiton
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
@@ -230,7 +234,8 @@ public class DeepTests2 {
             Thread.sleep(11000);
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(2000);
-
+            //Commenting out learn more button feature for now
+            /*
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
             String[] dimensionsarray = dimensions.split(",");
@@ -276,7 +281,7 @@ public class DeepTests2 {
 
             // verifing event for ad playing started
 //            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-//            Thread.sleep(3000);
+//            Thread.sleep(3000);*/
 
             // AD completed event  verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -353,7 +358,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(1500);
 
-
+            /*
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
             String[] dimensionsarray = dimensions.split(",");
@@ -401,7 +406,7 @@ public class DeepTests2 {
 
             // Ad started again event verification
 //            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-//            Thread.sleep(3000);
+//            Thread.sleep(3000);*/
 
             // AD completed event verificatio
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -453,7 +458,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
             Thread.sleep(2000);
-
+            /*
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
             String[] dimensionsarray=dimensions.split(",");
@@ -497,7 +502,7 @@ public class DeepTests2 {
 
             // ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
 
 
@@ -564,7 +569,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
             Thread.sleep(1000);
-
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -606,7 +611,7 @@ public class DeepTests2 {
 
             po.playInNormalScreen(driver);
 
-            //ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+            //ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);*/
 
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -680,7 +685,7 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
             Thread.sleep(2000);
-
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -725,7 +730,7 @@ public class DeepTests2 {
 
             //verifing event for Ad start playing
             //ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
 
 
@@ -779,7 +784,7 @@ public class DeepTests2 {
             // Ad play starting event
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(1000);
-
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -831,7 +836,7 @@ public class DeepTests2 {
             // ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Thread sleep time is equivalent to the completetion of the Ad
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
             // Ad completed verifing event
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
@@ -857,7 +862,7 @@ public class DeepTests2 {
 
             // Ad playing strat event verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-
+            /*
             Thread.sleep(2000);
 
             // pausing
@@ -889,7 +894,7 @@ public class DeepTests2 {
             // Ad start playing verification
             // ev.verifyEvent("stateChanged - state: PLAYING", " Ad Started to Play ", 30000);
 
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
 
             // Ad completed verification
