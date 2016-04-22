@@ -8,12 +8,7 @@ import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.pageobjects.IMASampleApp;
-import testpackage.utils.EventVerification;
-import testpackage.utils.RemoveEventsLogFile;
-import testpackage.utils.PushLogFileToDevice;
-import testpackage.utils.ScreenshotDevice;
-import testpackage.utils.SetUpAndroidDriver;
-import testpackage.utils.LoadPropertyValues;
+import testpackage.utils.*;
 //import testpackage.utils.JIRAUtils;
 
 
@@ -28,6 +23,8 @@ public class BasicTests {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
 
 
         System.out.println("BeforeTest \n");

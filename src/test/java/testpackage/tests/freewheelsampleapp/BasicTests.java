@@ -16,7 +16,11 @@ public class BasicTests{
     private static AndroidDriver driver;
 
     @BeforeClass
+
+
     public void beforeTest() throws Exception {
+
+
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));

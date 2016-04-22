@@ -22,6 +22,9 @@ public class BasicTestsGoogleIMAIntegration {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
