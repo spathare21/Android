@@ -21,6 +21,8 @@ public class DeepTests2 {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
         System.out.println("BeforeTest in DeepTests\n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -73,6 +75,10 @@ public class DeepTests2 {
         System.out.println("AfterTest \n");
         driver.closeApp();
         driver.quit();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
 
     }
 
@@ -121,44 +127,44 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            WebDriverWait wait = new WebDriverWait(driver,30);
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-
-            viewarea.click();
-
-            po.adPlay(driver);
-
-            Thread.sleep(4000);
+//            WebDriverWait wait = new WebDriverWait(driver,30);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//
+//            // Click on the web area so that player screen shows up
+//            WebElement viewarea = driver.findElementByClassName("android.view.View");
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
+//
+//            Thread.sleep(4000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -176,6 +182,7 @@ public class DeepTests2 {
             String ydimensions = dimensionsarray[1].substring(0, length - 1);
             String ydimensionstrimmed = ydimensions.trim();
             int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
 
@@ -207,85 +214,85 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//
+//            // Click on the web area so that player screen shows up
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
+//
+//            Thread.sleep(4000);
+//
+//            //Wait for Ad to complete and verify the adCompleted event .
+              ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-
-            // Click on the web area so that player screen shows up
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
+//
+               ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
 
             //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
 
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-
-            viewarea.click();
-
-            po.adPlay(driver);
-
-            Thread.sleep(4000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-
-            viewarea.click();
-
-            po.adPlay(driver);
-
-            Thread.sleep(4000);
+//            Thread.sleep(2000);
+//
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
+//
+//            Thread.sleep(4000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -332,41 +339,41 @@ public class DeepTests2 {
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            WebDriverWait wait = new WebDriverWait(driver,30);
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-            viewarea.click();
-
-            po.adPlay(driver);
+//            WebDriverWait wait = new WebDriverWait(driver,30);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//            // Click on the web area so that player screen shows up
+//            WebElement viewarea = driver.findElementByClassName("android.view.View");
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//            viewarea.click();
+//
+//            po.adPlay(driver);
 
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -385,6 +392,7 @@ public class DeepTests2 {
             String ydimensions = dimensionsarray[1].substring(0, length - 1);
             String ydimensionstrimmed = ydimensions.trim();
             int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
 
@@ -415,40 +423,40 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-
-            // Click on the web area so that player screen shows up
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-
-            viewarea.click();
-
-            po.adPlay(driver);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//
+//            // Click on the web area so that player screen shows up
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
 
 
             //Wait for Ad to complete and verify the adCompleted event .
@@ -457,42 +465,42 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-
-            viewarea.click();
-
-            po.adPlay(driver);
-
-            Thread.sleep(4000);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
+//
+//            Thread.sleep(4000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -544,41 +552,41 @@ public class DeepTests2 {
 
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-            WebDriverWait wait = new WebDriverWait(driver,30);
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-
-            viewarea.click();
-
-            po.adPlay(driver);
+//            WebDriverWait wait = new WebDriverWait(driver,30);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//
+//            // Click on the web area so that player screen shows up
+//            WebElement viewarea = driver.findElementByClassName("android.view.View");
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
 
 
             //Wait for Ad to complete and verify the adCompleted event .
@@ -587,38 +595,38 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-            viewarea.click();
-
-            po.adPlay(driver);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//            WebElement viewarea = driver.findElementByClassName("android.view.View");
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//            viewarea.click();
+//
+//            po.adPlay(driver);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -632,6 +640,7 @@ public class DeepTests2 {
             String ydimensions = dimensionsarray[1].substring(0, length - 1);
             String ydimensionstrimmed = ydimensions.trim();
             int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
 
@@ -704,42 +713,42 @@ public class DeepTests2 {
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            WebDriverWait wait = new WebDriverWait(driver,30);
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-            viewarea.click();
-
-            po.adPlay(driver);
-
-            Thread.sleep(4000);
+//            WebDriverWait wait = new WebDriverWait(driver,30);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//            // Click on the web area so that player screen shows up
+//            WebElement viewarea = driver.findElementByClassName("android.view.View");
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//            viewarea.click();
+//
+//            po.adPlay(driver);
+//
+//            Thread.sleep(4000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -757,6 +766,7 @@ public class DeepTests2 {
             String ydimensions = dimensionsarray[1].substring(0, length - 1);
             String ydimensionstrimmed = ydimensions.trim();
             int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             driver.tap(1, 35, (ydimensionsInt - 25), 0);
 
@@ -786,40 +796,40 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-
-            viewarea.click();
-
-            po.adPlay(driver);
-
-            Thread.sleep(4000);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
+//
+//            Thread.sleep(4000);
 
 
             //Wait for Ad to complete and verify the adCompleted event .
@@ -827,41 +837,41 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
-            Thread.sleep(1000);
-
-            viewarea.click();
-
-            Thread.sleep(1000);
-
-            //pausing ad
-            po.adPause(driver);
-
-            //verifing event for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            po.powerKeyClick(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
-
-            // Click on the web area so that player screen shows up
-
-            viewarea.click();
-
-            po.adPlay(driver);
-
-            Thread.sleep(4000);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+//            System.out.println("learn more displayed");
+//            Thread.sleep(1000);
+//
+//            viewarea.click();
+//
+//            Thread.sleep(1000);
+//
+//            //pausing ad
+//            po.adPause(driver);
+//
+//            //verifing event for pause
+//            ev.verifyEvent("stateChanged - state: PAUSED", "Ad paused", 3000);
+//
+//            Thread.sleep(2000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            po.powerKeyClick(driver);
+//
+//            Thread.sleep(2000);
+//
+//            ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 30000);
+//
+//            // Click on the web area so that player screen shows up
+//
+//            viewarea.click();
+//
+//            po.adPlay(driver);
+//
+//            Thread.sleep(4000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 

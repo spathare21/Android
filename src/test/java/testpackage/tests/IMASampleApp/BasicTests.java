@@ -8,12 +8,7 @@ import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.pageobjects.IMASampleApp;
-import testpackage.utils.EventVerification;
-import testpackage.utils.RemoveEventsLogFile;
-import testpackage.utils.PushLogFileToDevice;
-import testpackage.utils.ScreenshotDevice;
-import testpackage.utils.SetUpAndroidDriver;
-import testpackage.utils.LoadPropertyValues;
+import testpackage.utils.*;
 //import testpackage.utils.JIRAUtils;
 
 
@@ -28,6 +23,8 @@ public class BasicTests {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
 
 
         System.out.println("BeforeTest \n");
@@ -94,7 +91,7 @@ public class BasicTests {
         Thread.sleep(10000);
 
     }
-
+/*
     @org.testng.annotations.Test
     public void IMAAdRulePreroll() throws Exception{
 
@@ -252,7 +249,7 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
     @org.testng.annotations.Test
     public void IMAPoddedPreroll() throws Exception{
 
@@ -366,9 +363,6 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
-
-
 
    @org.testng.annotations.Test
     public void IMAPoddedPostroll() throws Exception{

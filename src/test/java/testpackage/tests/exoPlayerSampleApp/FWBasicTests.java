@@ -19,7 +19,11 @@ public class FWBasicTests {
         private static AndroidDriver driver;
 
         @BeforeClass
+
         public void beforeTest() throws Exception {
+
+            // closing all recent app from background.
+            CloserecentApps.closeApps();
             System.out.println("BeforeTest \n");
 
             System.out.println(System.getProperty("user.dir"));
@@ -71,6 +75,10 @@ public class FWBasicTests {
             System.out.println("AfterTest \n");
             driver.closeApp();
             driver.quit();
+            LoadPropertyValues prop1 = new LoadPropertyValues();
+            Properties p1 = prop1.loadProperty();
+            String prop = p1.getProperty("appPackage");
+            Appuninstall.uninstall(prop);
 
         }
 

@@ -1,6 +1,9 @@
 package testpackage.tests.freewheelsampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -20,6 +23,9 @@ public class DeepTests4 {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
+
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -72,6 +78,10 @@ public class DeepTests4 {
         System.out.println("AfterTest \n");
         driver.closeApp();
         driver.quit();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
 
     }
 
@@ -84,7 +94,7 @@ public class DeepTests4 {
         Thread.sleep(10000);
 
     }
-
+/*
     @org.testng.annotations.Test
     public void FWPreroll_learnmore() throws Exception {
         try {
@@ -120,6 +130,9 @@ public class DeepTests4 {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
             Thread.sleep(1000);
 
 
@@ -135,7 +148,7 @@ public class DeepTests4 {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 40000);
+            System.out.println("Back to SDK");
 
             Thread.sleep(1000);
 
@@ -229,7 +242,10 @@ public class DeepTests4 {
             // verifing that ad has been started or not
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(2000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             //clicking on learn more
             po.clickLearnMore(driver);
@@ -314,7 +330,10 @@ public class DeepTests4 {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(2000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
 
             //clicking on learn more
@@ -383,7 +402,10 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(3000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -396,8 +418,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(1000);
 
@@ -425,7 +448,10 @@ public class DeepTests4 {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(3000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -438,8 +464,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(1000);
 
@@ -448,7 +475,10 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(3000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -460,8 +490,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+            //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(1000);
 
@@ -516,8 +547,11 @@ public class DeepTests4 {
 
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-            Thread.sleep(3000);
 
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -530,8 +564,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -541,7 +576,10 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(3000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
 
             // clicking on learn more button
@@ -555,8 +593,10 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
+
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+          //  ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -623,9 +663,10 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(2000);
-
-
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
             // clicking on learn more button
             po.clickLearnMore(driver);
 
@@ -637,8 +678,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -671,6 +713,9 @@ public class DeepTests4 {
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
             Thread.sleep(1000);
 
 
@@ -685,8 +730,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+            //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -695,6 +741,9 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
             Thread.sleep(1000);
 
 
@@ -709,8 +758,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             Thread.sleep(4000);
 
@@ -762,7 +812,10 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(3000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -775,8 +828,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -802,8 +856,10 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
-            Thread.sleep(3000);
 
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -816,8 +872,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.println("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+           // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
 
             //Wait for Ad to complete and verify the adCompleted event .
@@ -825,7 +882,10 @@ public class DeepTests4 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(3000);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
+            System.out.println("learn more displayed");
+            Thread.sleep(1000);
 
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -838,8 +898,9 @@ public class DeepTests4 {
             // getting back to SDK
             driver.navigate().back();
 
+            System.out.printf("Back To SDK");
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+            //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -852,7 +913,7 @@ public class DeepTests4 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
 
 
 }
