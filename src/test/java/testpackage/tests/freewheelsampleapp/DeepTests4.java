@@ -94,7 +94,7 @@ public class DeepTests4 {
         Thread.sleep(10000);
 
     }
-
+/*
     @org.testng.annotations.Test
     public void FWPreroll_learnmore() throws Exception {
         try {
@@ -913,7 +913,7 @@ public class DeepTests4 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
 
 
 }

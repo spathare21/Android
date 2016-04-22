@@ -101,7 +101,7 @@ public class FreewheelSampleApp {
         System.out.println("key sent");
         System.out.println("screen lock");
         Thread.sleep(5000);
-        driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
+        //driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
         System.out.println("key sent");
         System.out.println("screen unlock");
         String command = "adb shell am start -n io.appium.unlock/.Unlock";
@@ -110,10 +110,10 @@ public class FreewheelSampleApp {
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
         System.out.println("showing screen unlock");
-        //driver.navigate().back();
+        driver.navigate().back();
         System.out.println("Back to Sample App screen ");
         Thread.sleep(2000);
-        Thread.sleep(2000);
+
     }
 
     public void videoPlay (AndroidDriver driver)
