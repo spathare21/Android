@@ -8,7 +8,7 @@ import java.io.IOException;
 public class CloserecentApps {
 
     public static void closeApps() throws IOException, InterruptedException {
-        System.out.println("in Clsing all recent apps");
+        System.out.println("in Closing all recent apps");
         final String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
         String[] APP_SWITCHER = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();

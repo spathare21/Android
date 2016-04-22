@@ -141,12 +141,14 @@ public class BasicPlaybackSampleApp {
     }
 
 
-    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException {
+    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
 
-
-        driver.sendKeyEvent(187);   //key 187 is used to go on recent app
-        System.out.println("key sent");
-        Thread.sleep(2000);
+        String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
         System.out.println("back to SDK");
     }
@@ -166,7 +168,7 @@ public class BasicPlaybackSampleApp {
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
         System.out.println("showing screen unlock");
-        driver.navigate().back();
+        //driver.navigate().back();
         System.out.println("Back to Sample App screen ");
         Thread.sleep(2000);
     }
