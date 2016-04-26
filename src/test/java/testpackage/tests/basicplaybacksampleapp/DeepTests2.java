@@ -19,6 +19,9 @@ public class DeepTests2 {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
+
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -72,6 +75,10 @@ public class DeepTests2 {
         System.out.println("AfterTest \n");
         driver.closeApp();
         driver.quit();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
 
     }
 
@@ -87,7 +94,7 @@ public class DeepTests2 {
     }
 
     //TODO : create unique file names for snapshots taken .
-
+/*
     @org.testng.annotations.Test
     public void OoyalaAdPreroll() throws Exception {
 
@@ -118,7 +125,10 @@ public class DeepTests2 {
             Thread.sleep(3000);
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
+
+            //Removing Learn More feature for now
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -163,7 +173,8 @@ public class DeepTests2 {
             // AD playing started event verification
 //            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 //            Thread.sleep(3000);
-
+            */
+/*
             // ad completed event verificaiton
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
 
@@ -192,115 +203,116 @@ public class DeepTests2 {
 
 
     }
-
-    @org.testng.annotations.Test
-    public void OoyalaAdMidroll() throws Exception {
-
-        try {
-            // Creating an Object of BasicPlaybackSampleApp class
-            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Mid-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(3000);
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(11000);
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(2000);
-
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray = dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions = dimensionsarray[1].substring(0, length - 1);
-            String ydimensionstrimmed = ydimensions.trim();
-            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
-
-            Thread.sleep(2000);
-
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            // clicking on learn more
-            po.clickLearnMore(driver);
-
-            // verifing event for learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 30000);
-
-            Thread.sleep(2000);
-
-            // nagivating back to SDK
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(10000);
-
-            // playing asset in normal screen
-            po.playInNormalScreen(driver);
-
-            // verifing event for ad playing started
-//            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+*/
+//    @org.testng.annotations.Test
+//    public void OoyalaAdMidroll() throws Exception {
+//
+//        try {
+//            // Creating an Object of BasicPlaybackSampleApp class
+//            BasicPlaybackSampleApp po = new BasicPlaybackSampleApp();
+//            // wait till home screen of basicPlayBackApp is opened
+//            po.waitForAppHomeScreen(driver);
+//
+//            // Assert if current activity is indeed equal to the activity name of app home screen
+//            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
+//            // Wrire to console activity name of home screen app
+//            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+//
+//            //Pause the running of test for a brief time .
 //            Thread.sleep(3000);
-
-            // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
-            // event verification of video is start playing
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
-
-            Thread.sleep(1000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(3000);
-
-            po.getBackFromRecentApp(driver);
-
-            // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
-
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
-        }
-
-
-    }
+//
+//            // Select one of the video HLS,MP4 etc .
+//            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Mid-roll");
+//            Thread.sleep(2000);
+//
+//            //verify if player was loaded
+//            po.waitForPresence(driver, "className", "android.view.View");
+//            // Assert if current activity is indeed equal to the activity name of the video player
+//            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
+//            // Print to console output current player activity
+//            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+//            Thread.sleep(3000);
+//            EventVerification ev = new EventVerification();
+//            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+//            Thread.sleep(11000);
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+//            Thread.sleep(2000);
+//            //Commenting out learn more button feature for now
+//            /*
+//            String dimensions = driver.manage().window().getSize().toString();
+//            //System.out.println(" Dimensions are "+dimensions);
+//            String[] dimensionsarray = dimensions.split(",");
+//            int length = dimensionsarray[1].length();
+//            String ydimensions = dimensionsarray[1].substring(0, length - 1);
+//            String ydimensionstrimmed = ydimensions.trim();
+//            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+//            driver.tap(1, 35, (ydimensionsInt - 25), 0);
+//            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
+//
+//            Thread.sleep(2000);
+//
+//            // After pausing clicking on recent app button and getting sample app back
+//            po.getBackFromRecentApp(driver);
+//
+//            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+//
+//            Thread.sleep(2000);
+//
+//            po.powerKeyClick(driver);
+//
+//            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+//
+//            Thread.sleep(2000);
+//
+//            // clicking on learn more
+//            po.clickLearnMore(driver);
+//
+//            // verifing event for learn more
+//            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 30000);
+//
+//            Thread.sleep(2000);
+//
+//            // nagivating back to SDK
+//            driver.navigate().back();
+//
+//            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+//
+//            Thread.sleep(10000);
+//
+//            // playing asset in normal screen
+//            po.playInNormalScreen(driver);
+//
+//            // verifing event for ad playing started
+////            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+////            Thread.sleep(3000);*/
+//
+//            // AD completed event  verification
+//            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+//
+//            // event verification of video is start playing
+//            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+//
+//            Thread.sleep(1000);
+//
+//            po.powerKeyClick(driver);
+//
+//            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+//
+//            Thread.sleep(3000);
+//
+//            po.getBackFromRecentApp(driver);
+//
+//            // video completed event verification
+//            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+//
+//        } catch (Exception e) {
+//            System.out.println(" Exception " + e);
+//            e.printStackTrace();
+//            ScreenshotDevice.screenshot(driver);
+//        }
+//
+//
+//    }
 
     @org.testng.annotations.Test
     public void OoyalaAdPostroll() throws Exception {
@@ -349,7 +361,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(1500);
 
-
+            /*
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
             String[] dimensionsarray = dimensions.split(",");
@@ -397,7 +409,7 @@ public class DeepTests2 {
 
             // Ad started again event verification
 //            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-//            Thread.sleep(3000);
+//            Thread.sleep(3000);*/
 
             // AD completed event verificatio
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -449,7 +461,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
             Thread.sleep(2000);
-
+            /*
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
             String[] dimensionsarray=dimensions.split(",");
@@ -493,7 +505,7 @@ public class DeepTests2 {
 
             // ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
 
 
@@ -560,7 +572,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
             Thread.sleep(1000);
-
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -602,7 +614,7 @@ public class DeepTests2 {
 
             po.playInNormalScreen(driver);
 
-            //ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
+            //ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);*/
 
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -676,7 +688,7 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
             Thread.sleep(2000);
-
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -721,7 +733,7 @@ public class DeepTests2 {
 
             //verifing event for Ad start playing
             //ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
 
 
@@ -775,7 +787,7 @@ public class DeepTests2 {
             // Ad play starting event
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(1000);
-
+            /*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -827,7 +839,7 @@ public class DeepTests2 {
             // ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Thread sleep time is equivalent to the completetion of the Ad
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
             // Ad completed verifing event
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
@@ -853,7 +865,7 @@ public class DeepTests2 {
 
             // Ad playing strat event verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-
+            /*
             Thread.sleep(2000);
 
             // pausing
@@ -885,7 +897,7 @@ public class DeepTests2 {
             // Ad start playing verification
             // ev.verifyEvent("stateChanged - state: PLAYING", " Ad Started to Play ", 30000);
 
-            Thread.sleep(3000);
+            Thread.sleep(3000);*/
 
 
             // Ad completed verification

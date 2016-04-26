@@ -10,7 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import testpackage.tests.basicplaybacksampleapp.BasicTests;
+import testpackage.utils.CommandLine;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -139,27 +141,35 @@ public class BasicPlaybackSampleApp {
     }
 
 
-    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException {
+    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
 
-
-        driver.sendKeyEvent(187);   //key 187 is used to go on recent app
-        System.out.println("key sent");
-        Thread.sleep(2000);
+        String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
         System.out.println("back to SDK");
     }
 
 
 
-    public void powerKeyClick (AndroidDriver driver) throws InterruptedException {
+    public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
 
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
         System.out.println("key sent");
         System.out.println("screen lock");
         Thread.sleep(5000);
-        driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
-        System.out.println("key sent");
-        System.out.println("screen unlock");
+        //driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
+        String command = "adb shell am start -n io.appium.unlock/.Unlock";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing screen unlock");
+        driver.navigate().back();
+        System.out.println("Back to Sample App screen ");
         Thread.sleep(2000);
     }
 

@@ -8,6 +8,7 @@ import io.appium.java_client.android.AndroidDriver;
 import org.junit.Assert;
 import org.omg.PortableInterceptor.AdapterNameHelper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -123,14 +124,6 @@ public class IMASampleApp {
         driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
     }
 
-    public void verifyOverlay (AndroidDriver driver)
-    {
-        WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
-        if (element.isDisplayed())
-        {
-            System.out.println("overlay displayed");
-        }
-    }
 
     public void clickOnViewarea(AndroidDriver driver)
     {
@@ -145,15 +138,15 @@ public class IMASampleApp {
         web.click();
     }
 
-    public void cuepointOff (AndroidDriver driver)
+    public  void click_LearnMore(AndroidDriver driver)
     {
-        driver.findElement(By.id("com.ooyala.sample.FreewheelSampleApp:id/toggleButton1")).click();
-        System.out.println("cue point off");
+        String l_xpath = "//android.view.View[@index='0']/parend::android.webkit.WebView[@index='0']";
+        WebElement ele = driver.findElement(By.xpath(l_xpath));
+        ele.click();
     }
 
-    public void adControlOff    (AndroidDriver driver)
-    {
-        driver.findElement(By.id("com.ooyala.sample.FreewheelSampleApp:id/toggleButton2")).click();
-        System.out.println("Ad controls off");
-    }
+//   // public void ad_Play(AndroidDriver driver)
+//    {
+//        driver.findE
+//    }
 }

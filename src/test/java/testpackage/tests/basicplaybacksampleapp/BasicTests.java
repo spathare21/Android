@@ -8,12 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.BasicPlaybackSampleApp;
-import testpackage.utils.EventVerification;
-import testpackage.utils.RemoveEventsLogFile;
-import testpackage.utils.PushLogFileToDevice;
-import testpackage.utils.ScreenshotDevice;
-import testpackage.utils.SetUpAndroidDriver;
-import testpackage.utils.LoadPropertyValues;
+import testpackage.utils.*;
+
 import java.util.Properties;
 import java.io.IOException;
 
@@ -24,6 +20,10 @@ public class BasicTests {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
+
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -77,6 +77,11 @@ public class BasicTests {
         System.out.println("AfterTest \n");
         driver.closeApp();
         driver.quit();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
+
 
     }
 

@@ -23,6 +23,9 @@ public class DeepTests4 {
 
     @BeforeClass
     public void beforeTest() throws Exception {
+        // closing all recent app from background.
+        CloserecentApps.closeApps();
+
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -75,6 +78,10 @@ public class DeepTests4 {
         System.out.println("AfterTest \n");
         driver.closeApp();
         driver.quit();
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
 
     }
 
@@ -87,7 +94,7 @@ public class DeepTests4 {
         Thread.sleep(10000);
 
     }
-
+/*
     @org.testng.annotations.Test
     public void FWPreroll_learnmore() throws Exception {
         try {
@@ -906,7 +913,7 @@ public class DeepTests4 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
 
 
 }
