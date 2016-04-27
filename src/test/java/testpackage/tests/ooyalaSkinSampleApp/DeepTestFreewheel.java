@@ -76,7 +76,9 @@ public class DeepTestFreewheel {
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
         driver.closeApp();
+        Thread.sleep(5000);
         driver.quit();
+
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1 = prop1.loadProperty();
         String prop = p1.getProperty("appPackage");
@@ -170,6 +172,21 @@ public class DeepTestFreewheel {
 
             Thread.sleep(5000);
 
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(5000);
+            viewarea.click();
+            Thread.sleep(1000);
+
+
             // clicking on more button
             po.moreButton(driver);
 
@@ -221,6 +238,17 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);

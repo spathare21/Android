@@ -303,7 +303,7 @@ public class ooyalaSkinSampleApp {
         String[] final_command = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         System.out.println("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
         System.out.println("back to SDK");
