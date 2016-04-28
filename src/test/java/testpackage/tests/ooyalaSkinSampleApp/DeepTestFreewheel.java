@@ -24,7 +24,7 @@ public class DeepTestFreewheel {
     public void beforeTest() throws Exception {
 
         // closing all recent app from background.
-       // CloserecentApps.closeApps();
+        //CloserecentApps.closeApps();
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -79,10 +79,10 @@ public class DeepTestFreewheel {
         Thread.sleep(5000);
         driver.quit();
 
-//        LoadPropertyValues prop1 = new LoadPropertyValues();
-//        Properties p1 = prop1.loadProperty();
-//        String prop = p1.getProperty("appPackage");
-//        Appuninstall.uninstall(prop);
+        LoadPropertyValues prop1 = new LoadPropertyValues();
+        Properties p1 = prop1.loadProperty();
+        String prop = p1.getProperty("appPackage");
+        Appuninstall.uninstall(prop);
 
     }
 
@@ -95,6 +95,8 @@ public class DeepTestFreewheel {
         Thread.sleep(10000);
 
     }
+
+
 
     @org.testng.annotations.Test
     public void FreeWheelIntegrationPreRoll() throws Exception{
@@ -1113,6 +1115,74 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
+
+  /*  @org.testng.annotations.Test
+    public void FreeWheelIntegrationOverlay() throws Exception{
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Freewheel Integration");
+            Thread.sleep(2000);
+
+            // Assert if current activity is Freewheel list activity
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Freewheel Overlay");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver,"h");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            Thread.sleep(5000);
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
+            viewarea.click();
+            Thread.sleep(1000);
+            //viewarea.click();
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
+
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }*/
 
 
 }
