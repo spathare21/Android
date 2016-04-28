@@ -328,5 +328,18 @@ public class ooyalaSkinSampleApp {
         System.out.println("Back to Sample App screen ");
         Thread.sleep(2000);
     }
+
+    public void overlay (AndroidDriver driver)
+    {
+        System.out.println("in overlay method");
+        WebElement ele = driver.findElement(By.xpath("//android.view.View[@content-desc='1?s=g002&n=380912%3B380912&t=1461829324669617003&f=&r=380912&adid=6772707&reid=3129141&arid=0&auid=&cn=defaultClick&et=c&_cc=&tpos=0&sr=0&cr=']"));
+        if (ele.isDisplayed())
+        {
+            System.out.println("overlay displayed");
+
+        }
+        else
+            System.out.println("not diplayed failed ");
+    }
 }
 
