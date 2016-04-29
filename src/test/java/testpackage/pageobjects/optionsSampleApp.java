@@ -6,7 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import testpackage.utils.CommandLine;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -94,4 +96,49 @@ public class optionsSampleApp {
         driver.findElement(By.id("android:id/pause")).click();
     }
 
+    public void powerKeyClick (AndroidDriver driver) throws InterruptedException, IOException {
+
+        driver.sendKeyEvent(26);            // key 26 is used to lock the screen
+        System.out.println("key sent");
+        System.out.println("screen lock");
+        Thread.sleep(5000);
+        //driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
+        String command = "adb shell am start -n io.appium.unlock/.Unlock";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing screen unlock");
+        driver.navigate().back();
+        System.out.println("Back to Sample App screen ");
+        Thread.sleep(2000);
+    }
+
+    public void getXYSeekBarAndSeek(AndroidDriver driver, int widthOffSet1, int widthOffSet2) {
+        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
+
+        int seekBarFieldWidth = seekBarField.getLocation().getX();
+        int seekBarFieldHeigth = seekBarField.getLocation().getY();
+        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
+    }
+
+    public void videoPlay (AndroidDriver driver)
+    {
+        driver.findElement(By.xpath("//android.widget.ImageButton[@index ='0']")).click();
+    }
+
+    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
+
+        String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing recent app screen");
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        System.out.println("back to SDK");
+    }
 }
