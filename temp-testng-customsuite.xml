@@ -29,10 +29,11 @@
             <!--<class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
+
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
+            <class name="testpackage.tests.optionsSampleApp.DeepTests"/>
 
-            <class name="testpackage.tests.IMASampleApp.DeepTests"/>
-
+            <!--<class name="testpackage.tests.IMASampleApp.DeepTests"/>-->
            <!-- <class name="testpackage.tests.IMASampleApp.BasicTests"/> -->
 
         </classes>

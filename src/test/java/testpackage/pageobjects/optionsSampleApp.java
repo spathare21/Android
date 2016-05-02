@@ -55,10 +55,53 @@ public class optionsSampleApp {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.name(waitString)));
     }
+
     public void clickImagebuttons(AndroidDriver driver, int index) {
 
         List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
         imageButtons.get(index).click();
+    }
+
+    public void clickAlignBottom (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Align Bottom"));
+        driver.findElement(By.name("Align Bottom")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("Align Top")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="Align Top"){
+            System.out.println("Align Top Button Found");
+        }
+    }
+
+    public void clickAlignRight (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Align Right"));
+        driver.findElement(By.name("Align Right")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("Align Left")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="Align Left"){
+            System.out.println("Align Left Button Found");
+        }
+    }
+
+    public void clickAlignTop (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Align Top"));
+        driver.findElement(By.name("Align Top")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("Align Bottom")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="Align Bottom"){
+            System.out.println("Align Left Button Found");
+        }
     }
 
     public void clickOnViewarea(AndroidDriver driver)
