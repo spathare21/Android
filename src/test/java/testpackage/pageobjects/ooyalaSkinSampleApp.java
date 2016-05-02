@@ -15,6 +15,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import testpackage.utils.CommandLine;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -209,33 +210,14 @@ public class ooyalaSkinSampleApp {
         System.out.println("replay.x value is "+replay.getX());
         System.out.println("replay.x value is "+replay.getY());
 
-       //  public void checkelement(int timeout 300) {
-         //WebElement web = driver.findElementByXPath("//android.widget.TextView[@text='g']");
-        //long time = 1000
-        int i = 0;
-        while (i < 10) {
-            try
-            {
-                driver.tap(1,0,652,2);
-                Thread.sleep(1000);
-                System.out.println("in try block");
-              // WebElement web = driver.findElementByXPath("//android.widget.TextView");
-                //driver.tap(1,450,867,1);
-               //System.out.println("element displayed : " + web.getLocation());
-              // web.click();
+
                driver.tap(1,replay.getX(),replay.getY(),2);
                 System.out.println("clicked pause");
-                break;
-              //  System.out.println("element displayed" + foo);
+
 
             }
-            catch (Exception e){
-             System.out.println("Waiting for element");
-             i++;
-            }
-        }
 
-    }
+
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
         System.out.println("in more method");
@@ -294,14 +276,70 @@ public class ooyalaSkinSampleApp {
     public void shareOnGmail (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         driver.findElementByXPath("//android.widget.TextView[@text='Gmail']").click();
+        Thread.sleep(1000);
         driver.findElementById("com.google.android.gm:id/to").sendKeys("shivam.gupta@vertisinfotech.com");
+        Thread.sleep(2000);
         driver.findElementById("com.google.android.gm:id/send").click();
+
 
     }
 
     public void playVideo (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         driver.tap(1,450,867,2);
+    }
+
+    public void seek_video (AndroidDriver driver)
+
+    {
+      WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
+        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>"+element);
+
+    }
+
+    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
+
+        String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing recent app screen");
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        System.out.println("back to SDK");
+    }
+
+
+
+    public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
+
+        driver.sendKeyEvent(26);            // key 26 is used to lock the screen
+        System.out.println("key sent");
+        System.out.println("screen lock");
+        Thread.sleep(5000);
+        driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
+        String command = "adb shell input keyevent KEYCODE_WAKEUP";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing screen unlock");
+        System.out.println("Back to Sample App screen ");
+        Thread.sleep(2000);
+    }
+
+
+    public void overlay (AndroidDriver driver)
+    {
+        System.out.println("in overlay method");
+        WebElement ele = driver.findElement(By.xpath("//android.view.View[@content-desc='1?s=g002&n=380912%3B380912&t=1461829324669617003&f=&r=380912&adid=6772707&reid=3129141&arid=0&auid=&cn=defaultClick&et=c&_cc=&tpos=0&sr=0&cr=']"));
+        if (ele.isDisplayed())
+        {
+            System.out.println("overlay displayed");
+
+        }
+        else
+            System.out.println("not diplayed failed ");
     }
 }
 
