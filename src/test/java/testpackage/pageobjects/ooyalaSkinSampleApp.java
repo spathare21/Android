@@ -329,6 +329,14 @@ public class ooyalaSkinSampleApp {
     }
 
 
+    public void screentap(AndroidDriver driver) throws InterruptedException {
+        System.out.println("in screen tapped method");
+        Thread.sleep(1000);
+        driver.tap(1,replay.getX(),replay.getY(),2);
+        System.out.println("out of the screen tapped method");
+    }
+
+
     public void overlay (AndroidDriver driver)
     {
         System.out.println("in overlay method");
@@ -340,6 +348,20 @@ public class ooyalaSkinSampleApp {
         }
         else
             System.out.println("not diplayed failed ");
+    }
+
+    public void discoverUpNext (AndroidDriver driver)
+    {
+       //System.out.println("Discovery up next banner displayed");
+        List<WebElement> list = driver.findElementsByXPath("//android.widget.FrameLayout[@resource-id='com.ooyala.sample.SkinCompleteSampleApp:id/ooyalaSkin']");
+        List<WebElement> list1 = list.get(0).findElements(By.className("android.view.View"));
+        if (list1.get(2).isDisplayed())
+        {
+            System.out.println("Discovery is displayed");
+
+        }
+        else
+            System.out.println("not displayed failed ");
     }
 }
 

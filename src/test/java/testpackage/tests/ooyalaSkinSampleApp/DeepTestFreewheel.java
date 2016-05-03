@@ -163,10 +163,7 @@ public class DeepTestFreewheel {
 
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -186,6 +183,8 @@ public class DeepTestFreewheel {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -330,10 +329,7 @@ public class DeepTestFreewheel {
 
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -353,13 +349,14 @@ public class DeepTestFreewheel {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
-
             // clicking on more button
             po.moreButton(driver);
-
 
             Thread.sleep(2000);
 
@@ -490,17 +487,12 @@ public class DeepTestFreewheel {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            po.screentap(driver);
             Thread.sleep(1000);
-
             po.pauseVideo(driver);
+
             // verifing video get paused
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
@@ -517,6 +509,9 @@ public class DeepTestFreewheel {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -666,14 +661,9 @@ public class DeepTestFreewheel {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -693,13 +683,14 @@ public class DeepTestFreewheel {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
-
             // clicking on more button
             po.moreButton(driver);
-
 
             Thread.sleep(2000);
 
@@ -835,14 +826,9 @@ public class DeepTestFreewheel {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -862,6 +848,9 @@ public class DeepTestFreewheel {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1010,16 +999,11 @@ public class DeepTestFreewheel {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            //Clicking on screen for pause
+            po.screentap(driver);
             Thread.sleep(1000);
-
             po.pauseVideo(driver);
             // verifing video get paused
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -1037,6 +1021,9 @@ public class DeepTestFreewheel {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1116,7 +1103,7 @@ public class DeepTestFreewheel {
         }
     }
 
-  /*  @org.testng.annotations.Test
+  @org.testng.annotations.Test
     public void FreeWheelIntegrationOverlay() throws Exception{
 
         try {
@@ -1182,7 +1169,7 @@ public class DeepTestFreewheel {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
 
 }
