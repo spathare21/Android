@@ -177,10 +177,8 @@ public class DeepTestIMA {
 
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -200,6 +198,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -353,14 +354,10 @@ public class DeepTestIMA {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -380,14 +377,14 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
-
             // clicking on more button
             po.moreButton(driver);
-
-
             Thread.sleep(2000);
 
             // clicking on Share button
@@ -528,14 +525,10 @@ public class DeepTestIMA {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -555,6 +548,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -711,14 +707,10 @@ public class DeepTestIMA {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -738,6 +730,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -900,16 +895,14 @@ public class DeepTestIMA {
 
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
 
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
-
             po.pauseVideo(driver);
-            // verifing video get paused
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
+            // verifing video get paused
+           ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
             Thread.sleep(5000);
 
             po.getBackFromRecentApp(driver);
@@ -923,6 +916,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1083,10 +1079,8 @@ public class DeepTestIMA {
 
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -1106,6 +1100,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1324,14 +1321,10 @@ public class DeepTestIMA {
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -1351,6 +1344,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1702,10 +1698,8 @@ public class DeepTestIMA {
 
             Thread.sleep(1000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            //Tapping on screen to pause the Video
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -1725,6 +1719,8 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
