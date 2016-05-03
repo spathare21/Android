@@ -1,6 +1,7 @@
 package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -152,8 +153,105 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
             po.replayVideo(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
-            Thread.sleep(30000);
+
+            Thread.sleep(1000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
+            viewarea.click();
+
+            Thread.sleep(1000);
+
+            po.pauseVideo(driver);
+            // verifing video get paused
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(5000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(5000);
+            viewarea.click();
+            Thread.sleep(1000);
+
+
+            // clicking on more button
+            po.moreButton(driver);
+
+
+            Thread.sleep(2000);
+
+            // clicking on Share button
+            po.shareAsset(driver);
+
+            System.out.println("clicked on share button");
+
+            Thread.sleep(2000);
+
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Sharing the asset ", 70000);
+
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            System.out.println("clicking on discovery");
+            po.clickOnDiscovery(driver);
+
+            Thread.sleep(2000);
+
+            po.clickOnCloseButton(driver);
+
+            Thread.sleep(2000);
+
+            System.out.println("clicking on CC");
+            po.clickOnCC(driver);
+
+            Thread.sleep(2000);
+
+
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+
+            po.clickOnCloseButton(driver);
+
+
+            Thread.sleep(5000);
+            viewarea.click();
+            Thread.sleep(1000);
+//            po.seek_video(driver);
+
+//            Thread.sleep(5000);
+
+
+            po.playVideo(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+
+
 
         }
         catch(Exception e)
