@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import testpackage.utils.CommandLine;
+import testpackage.utils.EventVerification;
 
 import java.io.IOException;
 import java.util.List;
@@ -62,6 +63,8 @@ public class optionsSampleApp {
         imageButtons.get(index).click();
     }
 
+
+
     public void clickAlignBottom (AndroidDriver driver) throws InterruptedException, IOException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         driver.findElements(By.name("Align Bottom"));
@@ -101,6 +104,48 @@ public class optionsSampleApp {
 
         if(alignTopString=="Align Bottom"){
             System.out.println("Align Left Button Found");
+        }
+    }
+
+    public void clickOnPreloadOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Preload On"));
+        driver.findElement(By.name("Preload On")).click();
+        Thread.sleep(2000);
+
+        String preloadOnString =  driver.findElement(By.name("Preload Off")).getText();
+        System.out.println(preloadOnString);
+
+        if(preloadOnString=="Preload Off"){
+            System.out.println("Preload Off Button Found");
+        }
+    }
+
+    public void clickOnPromoImgOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Show PromoImage On"));
+        driver.findElement(By.name("Show PromoImage On")).click();
+        Thread.sleep(2000);
+
+        String promoImageonString =  driver.findElement(By.name("Show PromoImage Off")).getText();
+        System.out.println(promoImageonString);
+
+        if(promoImageonString=="Show PromoImage Off"){
+            System.out.println("Show PromoImage Off Button Found");
+        }
+    }
+
+    public void clickOnPreloadOff (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Preload Off"));
+        driver.findElement(By.name("Preload Off")).click();
+        Thread.sleep(2000);
+
+        String preloadOffString =  driver.findElement(By.name("Preload On")).getText();
+        System.out.println(preloadOffString);
+
+        if(preloadOffString=="Preload On"){
+            System.out.println("Preload On Button Found");
         }
     }
 
