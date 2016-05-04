@@ -122,10 +122,9 @@ public class exoPlayerSampleApp {
 
         Thread.sleep(2000);
 
-        System.out.println("clicking on screen");
-
-        driver.tap(1, 0, 75, 2);
-        System.out.println("tapped");
+        System.out.println("Clicking on back button to close share options");
+        driver.navigate().back();
+        System.out.println("Clicked");
 
         Thread.sleep(2000);
         // Discovery button lcoation
@@ -161,11 +160,28 @@ public class exoPlayerSampleApp {
         System.out.println("more option closed");
 
         Thread.sleep(2000);
+
         // volume button location
-        WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='b']");
-        volume_button = volume.getLocation();
-        System.out.printf("volume button's X  cordinates" + volume_button.getX());
-        System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+        boolean isElement1Present = true;
+
+        try{
+            WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='b']");
+            volume_button = volume.getLocation();
+            System.out.printf("volume button's X  cordinates" + volume_button.getX());
+            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            Thread.sleep(1000);
+
+        }catch (org.openqa.selenium.NoSuchElementException e){
+            isElement1Present = false;
+        }
+
+        if(isElement1Present == false) {
+            WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='p']");
+            volume_button = volume.getLocation();
+            System.out.printf("volume button's X  cordinates" + volume_button.getX());
+            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            Thread.sleep(1000);
+        }
 
         Thread.sleep(1000);
 
