@@ -135,10 +135,11 @@ public class ooyalaSkinSampleApp {
 
         Thread.sleep(2000);
 
-        System.out.println("clicking on screen");
+        System.out.println("clicking on back button");
 
-        driver.tap(1,0,75,2);
-        System.out.println("tapped");
+    //    driver.tap(1,0,75,2);
+        driver.navigate().back();
+        System.out.println("Going back to option screen");
 
         Thread.sleep(2000);
         // Discovery button lcoation
@@ -174,13 +175,28 @@ public class ooyalaSkinSampleApp {
         System.out.println("more option closed");
 
         Thread.sleep(2000);
-        // volume button location
-        WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='b']");
-        volume_button = volume.getLocation();
-        System.out.printf("volume button's X  cordinates" +volume_button.getX());
-        System.out.printf(" volume button's y  cordinates" + volume_button.getY());
 
-        Thread.sleep(1000);
+        // volume button location
+        boolean isElement1Present = true;
+
+        try{
+            WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='b']");
+            volume_button = volume.getLocation();
+            System.out.printf("volume button's X  cordinates" + volume_button.getX());
+            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            Thread.sleep(1000);
+
+        }catch (org.openqa.selenium.NoSuchElementException e){
+            isElement1Present = false;
+        }
+
+        if(isElement1Present == false) {
+            WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='p']");
+            volume_button = volume.getLocation();
+            System.out.printf("volume button's X  cordinates" + volume_button.getX());
+            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            Thread.sleep(1000);
+        }
 
         System.out.println("printed all the locations");
 
@@ -214,9 +230,7 @@ public class ooyalaSkinSampleApp {
                driver.tap(1,replay.getX(),replay.getY(),2);
                 System.out.println("clicked pause");
 
-
             }
-
 
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
