@@ -157,6 +157,19 @@ public class advancePlayBackSampleApp {
         System.out.println("Play button clicked");
     }
 
+    public void pauseVideoFullScreen(AndroidDriver driver) throws InterruptedException{
+        Thread.sleep(2000);
+        System.out.println("Pausing the Video in Full Screen");
+        //Pausing Video
+        String dimensions = driver.manage().window().getSize().toString();
+        String[] dimensionsarray=dimensions.split(",");
+        int length = dimensionsarray[1].length();
+        String ydimensions=dimensionsarray[1].substring(0,length-1);
+        String ydimensionstrimmed=ydimensions.trim();
+        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+        driver.tap(1, 530 , (ydimensionsInt-120), 2);
+    }
+
     public void pauseSmallPlayer (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         System.out.println("Pausing the Video");
