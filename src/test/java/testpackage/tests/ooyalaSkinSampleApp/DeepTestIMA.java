@@ -174,12 +174,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -361,11 +362,11 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -539,10 +540,11 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -731,9 +733,10 @@ public class DeepTestIMA {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
 
+            Thread.sleep(2000);
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -921,12 +924,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
 
             // Tapping on screen to pause
@@ -1112,12 +1116,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -1365,10 +1370,10 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
+            Thread.sleep(2000);
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -1552,10 +1557,11 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 20000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 10000);
-            Thread.sleep(500);
+            Thread.sleep(1000);
 
             //Tapping on screen to pause the Video
             po.screentap(driver);
@@ -1753,12 +1759,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Tapping on screen to pause the Video
             po.screentap(driver);

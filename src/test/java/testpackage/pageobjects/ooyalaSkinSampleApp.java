@@ -320,20 +320,20 @@ public class ooyalaSkinSampleApp {
 
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
 
-        /*String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
+        String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
         String[] final_command = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
         System.out.println("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
-        System.out.println("back to SDK");*/
+        System.out.println("back to SDK");
 
-        driver.sendKeyEvent(187);   //key 187 is used to go on recent app
+        /*driver.sendKeyEvent(187);   //key 187 is used to go on recent app
         System.out.println("key sent");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
-        System.out.println("back to SDK");
+        System.out.println("back to SDK");*/
     }
 
 

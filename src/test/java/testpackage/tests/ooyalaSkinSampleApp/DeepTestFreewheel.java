@@ -145,8 +145,6 @@ public class DeepTestFreewheel {
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
-
-
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -160,14 +158,12 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
-
             Thread.sleep(2000);
 
             po.replayVideo(driver);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
 
             Thread.sleep(5000);
 
@@ -195,7 +191,6 @@ public class DeepTestFreewheel {
             WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
-
 
             // clicking on more button
             po.moreButton(driver);
@@ -240,12 +235,8 @@ public class DeepTestFreewheel {
 
             Thread.sleep(5000);
             po.screentap(driver);
-           // viewarea.click();
+
             Thread.sleep(1000);
-//            po.seek_video(driver);
-
-//            Thread.sleep(5000);
-
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
@@ -263,9 +254,6 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
-
-
-
         }
         catch(Exception e)
         {
@@ -274,7 +262,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void FreeWheelIntegrationMidRoll() throws Exception{
 
@@ -339,8 +327,7 @@ public class DeepTestFreewheel {
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
-
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -410,12 +397,8 @@ public class DeepTestFreewheel {
 
             Thread.sleep(5000);
             po.screentap(driver);
-         //   viewarea.click();
+
             Thread.sleep(1000);
-//            po.seek_video(driver);
-
-//            Thread.sleep(5000);
-
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
@@ -503,9 +486,11 @@ public class DeepTestFreewheel {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
+            Thread.sleep(2000);
+
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -681,10 +666,11 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -849,10 +835,11 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -1027,10 +1014,11 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             //Clicking on screen for pause
             po.screentap(driver);
@@ -1207,6 +1195,5 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
 
 }
