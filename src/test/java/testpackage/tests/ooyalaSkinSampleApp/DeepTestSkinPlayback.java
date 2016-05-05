@@ -98,7 +98,7 @@ public class DeepTestSkinPlayback {
 
     }
 
-   /* @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void AspectRatioTest() throws Exception{
         int[] locationPlayButton;
         try {
@@ -193,7 +193,8 @@ public class DeepTestSkinPlayback {
             //Sharing on Gmail
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+           // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             //Clicking on Discovery
@@ -227,15 +228,33 @@ public class DeepTestSkinPlayback {
 
             // Play state verification
             ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 30000);
+            Thread.sleep(35000);
 
+
+            //     Extra Work //
+            WebElement viewArea1 = driver.findElementByClassName("android.view.View");
+            viewArea1.click();
+            Thread.sleep(2000);
+            driver.tap(1,locationPlayButton[0],locationPlayButton[1],10);
+
+            Thread.sleep(2000);
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
+            //    end  //
+            System.out.println("Looking for Discovery");
             po.discoverUpNext(driver);
             Thread.sleep(2000);
+
+
+
 
             po.clickBasedOnText(driver, "e");
             Thread.sleep(2000);
 
-*//*
-            // To Do: Full screen
+
+            /*// To Do: Full screen
             // Click on full screen button
             po.clickBasedOnText(driver, "i");
             Thread.sleep(2000);
@@ -258,8 +277,8 @@ public class DeepTestSkinPlayback {
             //Up Next Discovery
             po.discoverUpNext(driver);
             Thread.sleep(2000);
+*/
 
-*//*
 
         }
         catch(Exception e)
@@ -268,9 +287,9 @@ public class DeepTestSkinPlayback {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void SkinPlaybackMP4Video() throws Exception{
         int[] locationPlayButton;
         try {
@@ -407,6 +426,6 @@ public class DeepTestSkinPlayback {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
 }

@@ -223,11 +223,11 @@ public class ooyalaSkinSampleApp {
     public  void pauseVideo(AndroidDriver driver) throws InterruptedException {
         System.out.println("moved to pause method");
 
-        System.out.println("replay.x value is "+replay.getX());
-        System.out.println("replay.x value is "+replay.getY());
+        System.out.println("replay.x value is " + replay.getX());
+        System.out.println("replay.x value is " + replay.getY());
 
 
-               driver.tap(1,replay.getX(),replay.getY(),2);
+               driver.tap(1, replay.getX(), replay.getY(), 2);
                 System.out.println("clicked pause");
 
             }
@@ -243,7 +243,7 @@ public class ooyalaSkinSampleApp {
         Thread.sleep(2000);
         System.out.printf("more button's X  cordinates" +more.getX());
         System.out.printf("more button's y  cordinates" +more.getY());
-        driver.tap(1,more.getX(),more.getY()+54,2);
+        driver.tap(1, more.getX(), more.getY() + 54, 2);
 
     }
 
@@ -251,7 +251,7 @@ public class ooyalaSkinSampleApp {
 
          //driver.findElement(By.xpath("//android.widget.TextView[@text='e']")).click();
         Thread.sleep(2000);
-        driver.tap(1,close_button.getX(),close_button.getY()+54,2);
+        driver.tap(1, close_button.getX(), close_button.getY() + 54, 2);
    }
 
     public void shareAsset (AndroidDriver driver) throws InterruptedException {
@@ -307,7 +307,7 @@ public class ooyalaSkinSampleApp {
 
     {
       WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
-        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>"+element);
+        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>" + element);
 
     }
 
@@ -346,7 +346,7 @@ public class ooyalaSkinSampleApp {
     public void screentap(AndroidDriver driver) throws InterruptedException {
         System.out.println("in screen tapped method");
         Thread.sleep(1000);
-        driver.tap(1,replay.getX(),replay.getY(),2);
+        driver.tap(1, replay.getX(), replay.getY(), 2);
         System.out.println("out of the screen tapped method");
     }
 
@@ -364,7 +364,7 @@ public class ooyalaSkinSampleApp {
             System.out.println("not diplayed failed ");
     }
 
-    public void discoverUpNext (AndroidDriver driver)
+   /* public void discoverUpNext (AndroidDriver driver)
     {
        //System.out.println("Discovery up next banner displayed");
         List<WebElement> list = driver.findElementsByXPath("//android.widget.FrameLayout[@resource-id='com.ooyala.sample.SkinCompleteSampleApp:id/ooyalaSkin']");
@@ -376,6 +376,19 @@ public class ooyalaSkinSampleApp {
         }
         else
             System.out.println("not displayed failed ");
+    }*/
+    public void discoverUpNext (AndroidDriver driver)
+    {
+        System.out.println("Wil look for element now.");
+        WebElement e = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.ImageView[1]"));
+        if (e.isDisplayed())
+        {
+            System.out.println("Discovery pop up found");
+        }
+        else
+        {
+            System.out.println("Not found pop up");
+        }
     }
 }
 
