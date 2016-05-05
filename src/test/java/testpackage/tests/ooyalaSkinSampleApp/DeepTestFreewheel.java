@@ -161,11 +161,15 @@ public class DeepTestFreewheel {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
+            Thread.sleep(2000);
+
             po.replayVideo(driver);
+            Thread.sleep(1000);
+
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -270,7 +274,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+/*
     @org.testng.annotations.Test
     public void FreeWheelIntegrationMidRoll() throws Exception{
 
@@ -1203,6 +1207,6 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
 
 }
