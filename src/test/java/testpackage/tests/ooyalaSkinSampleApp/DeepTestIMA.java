@@ -146,6 +146,10 @@ public class DeepTestIMA {
 
             locPlayButon = po.locationTextOnScreen(driver, "h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver, "h");
 
@@ -330,6 +334,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -506,6 +514,10 @@ public class DeepTestIMA {
             po.waitForPresenceOfText(driver,"h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -684,6 +696,10 @@ public class DeepTestIMA {
             po.waitForPresenceOfText(driver,"h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -869,6 +885,10 @@ public class DeepTestIMA {
             po.waitForPresenceOfText(driver,"h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -1060,6 +1080,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -1250,6 +1274,10 @@ public class DeepTestIMA {
             po.waitForPresenceOfText(driver,"h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -1493,6 +1521,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -1672,6 +1704,10 @@ public class DeepTestIMA {
             po.waitForPresenceOfText(driver, "h");
 
             locPlayButon = po.locationTextOnScreen(driver, "h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver, "h");

@@ -28,7 +28,7 @@ import java.util.Properties;
 
 public class ooyalaSkinSampleApp {
 
-    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button ;
+    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button,play ;
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -226,7 +226,6 @@ public class ooyalaSkinSampleApp {
         System.out.println("replay.x value is "+replay.getX());
         System.out.println("replay.x value is "+replay.getY());
 
-
                driver.tap(1,replay.getX(),replay.getY(),2);
                 System.out.println("clicked pause");
 
@@ -294,28 +293,28 @@ public class ooyalaSkinSampleApp {
         driver.findElementById("com.google.android.gm:id/to").sendKeys("shivam.gupta@vertisinfotech.com");
         Thread.sleep(2000);
         driver.findElementById("com.google.android.gm:id/send").click();
-
-
     }
 
     public void playVideo (AndroidDriver driver) throws InterruptedException {
         System.out.println("Clicking on Play button");
         Thread.sleep(2000);
        // driver.tap(1,450,867,2);
-        String dimensions = driver.manage().window().getSize().toString();
+        /*String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray=dimensions.split(",");
         int length = dimensionsarray[1].length();
         String ydimensions = dimensionsarray[1].substring(0,length-1);
         String ydimensionstrimmed=ydimensions.trim();
         int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-        driver.tap(1, 500 , (ydimensionsInt-821), 2);
+        driver.tap(1, 500 , (ydimensionsInt-821), 2);*/
+        driver.tap(1, play.getX(), play.getY(), 2);
+        System.out.println("Clicked on Play button");
     }
 
     public void seek_video (AndroidDriver driver)
 
     {
       WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
-        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>"+element);
+        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>" + element);
 
     }
 
@@ -354,7 +353,7 @@ public class ooyalaSkinSampleApp {
     public void screentap(AndroidDriver driver) throws InterruptedException {
         System.out.println("in screen tapped method");
         Thread.sleep(1000);
-        driver.tap(1,replay.getX(),replay.getY(),2);
+        driver.tap(1, replay.getX(), replay.getY(), 2);
         System.out.println("out of the screen tapped method");
     }
 
@@ -384,6 +383,17 @@ public class ooyalaSkinSampleApp {
         }
         else
             System.out.println("not displayed failed ");
+    }
+
+    public void getPlay (AndroidDriver driver){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String path  = "//android.widget.TextView[@text='h']";
+
+        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        play= ele.getLocation();
+        System.out.println("play.x value is "+play.getX());
+        System.out.println("play.y value is "+play.getY());
+
     }
 }
 

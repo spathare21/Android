@@ -138,6 +138,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -306,6 +310,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -468,6 +476,10 @@ public class DeepTestFreewheel {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -635,6 +647,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -740,7 +756,6 @@ public class DeepTestFreewheel {
 
 //            Thread.sleep(5000);
 
-
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
@@ -796,7 +811,6 @@ public class DeepTestFreewheel {
             po.clickBasedOnText(driver, "Freewheel Multi Midroll");
             Thread.sleep(2000);
 
-
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
@@ -805,6 +819,10 @@ public class DeepTestFreewheel {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -974,6 +992,10 @@ public class DeepTestFreewheel {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -1147,6 +1169,10 @@ public class DeepTestFreewheel {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
