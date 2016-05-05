@@ -250,13 +250,13 @@ public class ooyalaSkinSampleApp {
 
          //driver.findElement(By.xpath("//android.widget.TextView[@text='e']")).click();
         Thread.sleep(2000);
-        driver.tap(1,close_button.getX(),close_button.getY()+54,2);
+        driver.tap(1, close_button.getX(), close_button.getY() + 54, 2);
    }
 
     public void shareAsset (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
        // driver.findElementByXPath("//android.widget.TextView[@text='o']");
-        driver.tap(1,share_asset.getX(),share_asset.getY(),2);
+        driver.tap(1, share_asset.getX(), share_asset.getY(), 2);
 
     }
 
@@ -269,7 +269,7 @@ public class ooyalaSkinSampleApp {
     public void clickOnCC (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         //driver.findElementByXPath("//android.widget.TextView[@text='k']");
-        driver.tap(1,cc_button.getX(),cc_button.getY(),1);
+        driver.tap(1, cc_button.getX(), cc_button.getY(), 1);
     }
 
     public void volumeButton (AndroidDriver driver)
@@ -320,12 +320,18 @@ public class ooyalaSkinSampleApp {
 
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
 
-        String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
+        /*String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
         String[] final_command = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
         System.out.println("showing recent app screen");
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        System.out.println("back to SDK");*/
+
+        driver.sendKeyEvent(187);   //key 187 is used to go on recent app
+        System.out.println("key sent");
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
         System.out.println("back to SDK");
     }
@@ -391,8 +397,8 @@ public class ooyalaSkinSampleApp {
 
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         play= ele.getLocation();
-        System.out.println("play.x value is "+play.getX());
-        System.out.println("play.y value is "+play.getY());
+        System.out.println("play.x value is " + play.getX());
+        System.out.println("play.y value is " + play.getY());
 
     }
 }
