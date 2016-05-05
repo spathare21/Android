@@ -264,7 +264,7 @@ public class ooyalaSkinSampleApp {
     public void clickOnDiscovery(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         //driver.findElementByXPath("//android.widget.TextView[@text='l']");
-        driver.tap(1,discovery_button.getX(),discovery_button.getY(),2);
+        driver.tap(1, discovery_button.getX(), discovery_button.getY(), 2);
     }
 
     public void clickOnCC (AndroidDriver driver) throws InterruptedException {
@@ -299,8 +299,16 @@ public class ooyalaSkinSampleApp {
     }
 
     public void playVideo (AndroidDriver driver) throws InterruptedException {
+        System.out.println("Clicking on Play button");
         Thread.sleep(2000);
-        driver.tap(1,450,867,2);
+       // driver.tap(1,450,867,2);
+        String dimensions = driver.manage().window().getSize().toString();
+        String[] dimensionsarray=dimensions.split(",");
+        int length = dimensionsarray[1].length();
+        String ydimensions = dimensionsarray[1].substring(0,length-1);
+        String ydimensionstrimmed=ydimensions.trim();
+        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+        driver.tap(1, 500 , (ydimensionsInt-821), 2);
     }
 
     public void seek_video (AndroidDriver driver)

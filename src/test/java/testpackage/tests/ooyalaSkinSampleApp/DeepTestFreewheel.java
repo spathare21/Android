@@ -231,7 +231,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -396,7 +397,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+         //   viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -558,7 +560,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -730,7 +733,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -897,7 +901,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+          //  viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1070,7 +1075,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+            //  viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1154,7 +1160,8 @@ public class DeepTestFreewheel {
             Thread.sleep(5000);
             //clicking on view area
             WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
             //viewarea.click();
 

@@ -249,7 +249,8 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -602,7 +603,8 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+          // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -787,7 +789,8 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -975,7 +978,8 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+            // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -1161,7 +1165,8 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1407,7 +1412,8 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -1584,7 +1590,8 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1787,7 +1794,8 @@ public class DeepTestIMA {
 
             Thread.sleep(5000);
             System.out.println("Clicking on view area to play");
-            viewarea.click();
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
