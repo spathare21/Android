@@ -239,14 +239,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -413,14 +415,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -590,10 +594,14 @@ public class DeepTestIMA {
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
-
+            Thread.sleep(2000);
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -769,14 +777,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -955,14 +965,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1139,14 +1151,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
@@ -1383,14 +1397,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1558,13 +1574,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
@@ -1760,17 +1779,19 @@ public class DeepTestIMA {
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
-
+            Thread.sleep(2000);
+            System.out.println("Closed option menu");
 
             Thread.sleep(5000);
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
 //            Thread.sleep(5000);
-
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
