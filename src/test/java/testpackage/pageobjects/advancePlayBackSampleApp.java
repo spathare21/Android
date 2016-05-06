@@ -190,11 +190,18 @@ public class advancePlayBackSampleApp {
         String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray=dimensions.split(",");
         int length = dimensionsarray[1].length();
-        String ydimensions=dimensionsarray[1].substring(0, length - 1);
+        int length1 = dimensionsarray[0].length();
+        String ydimensions=dimensionsarray[1].substring(0,length-1);
+        String xdimentions=dimensionsarray[0].substring(1,length1);
         String ydimensionstrimmed=ydimensions.trim();
+        String xdimentiontrimmed=xdimentions.trim();
+        int xdimensionsInt= Integer.parseInt(xdimentiontrimmed);
         int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-        System.out.println("Ydimention is:"+ydimensionstrimmed);
-        driver.tap(1, 535, (ydimensionsInt-60), 2);
+        int buttonxdimentions = xdimensionsInt-545;
+        int buttonydimentions = ydimensionsInt-60;
+        System.out.println("Playbutton X Axis:"+buttonxdimentions);
+        System.out.println("Playbutton X Axis:"+buttonydimentions);
+        driver.tap(1, buttonxdimentions,buttonydimentions, 2);
     }
     public void customControlPauseButton(AndroidDriver driver) throws InterruptedException{
         Thread.sleep(2000);
@@ -203,11 +210,18 @@ public class advancePlayBackSampleApp {
         String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray=dimensions.split(",");
         int length = dimensionsarray[1].length();
+        int length1 = dimensionsarray[0].length();
         String ydimensions=dimensionsarray[1].substring(0,length-1);
+        String xdimentions=dimensionsarray[0].substring(1,length1);
         String ydimensionstrimmed=ydimensions.trim();
+        String xdimentiontrimmed=xdimentions.trim();
+        int xdimensionsInt= Integer.parseInt(xdimentiontrimmed);
         int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-        System.out.println("Ydimention is:"+ydimensionstrimmed);
-        driver.tap(1, 535 , (ydimensionsInt-60), 2);
+        int buttonxdimentions = xdimensionsInt-545;
+        int buttonydimentions = ydimensionsInt-60;
+        System.out.println("Playbutton X Axis:"+buttonxdimentions);
+        System.out.println("Playbutton X Axis:"+buttonydimentions);
+        driver.tap(1, buttonxdimentions,buttonydimentions, 2);
     }
 
     public void overlay(AndroidDriver driver) throws InterruptedException{
