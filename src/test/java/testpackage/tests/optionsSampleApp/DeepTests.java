@@ -109,6 +109,8 @@ public class DeepTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            // CuePoints On + AdControls On Test case.
+
             //Click on Video create button
             po.clickButtons(driver, 0);
 
@@ -128,10 +130,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            Thread.sleep(5000);
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
 
             //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
@@ -142,6 +157,172 @@ public class DeepTests {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+            Thread.sleep(2000);
+
+            // CuePoints Off + AdControls On Test case.
+            // Click on CurPoints On
+
+            po.clickOnCuePointsOn(driver);
+
+            //Click on Video create button
+            po.clickButtons(driver, 0);
+
+            // Wait for the video to be generated
+            po.waitForPresenceOfText(driver, "00:00");
+
+            // Click on video play icon after video has been generated .
+            po.clickImagebuttons(driver, 0);
+
+            //Play Started Verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
+            //Wait for Ad to start and verify the adStarted event .
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            //Wait for Ad to complete and verify the adCompleted event .
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+            Thread.sleep(2000);
+
+            // CuePoints Off + AdControls Off Test case.
+            // Click on CurPoints On
+
+            po.clickOnAdsControlsOn(driver);
+
+            //Click on Video create button
+            po.clickButtons(driver, 0);
+
+            // Wait for the video to be generated
+            po.waitForPresenceOfText(driver, "00:00");
+
+            // Click on video play icon after video has been generated .
+            po.clickImagebuttons(driver, 0);
+
+            //Play Started Verification
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
+            //Wait for Ad to start and verify the adStarted event .
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            //Wait for Ad to complete and verify the adCompleted event .
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+            Thread.sleep(2000);
+
+            // CuePoints On + AdControls Off Test case.
+            // Click on CurPoints On
+
+            po.clickOnCuePointsOff(driver);
+
+            //Click on Video create button
+            po.clickButtons(driver, 0);
+
+            // Wait for the video to be generated
+            po.waitForPresenceOfText(driver, "00:00");
+
+            // Click on video play icon after video has been generated .
+            po.clickImagebuttons(driver, 0);
+
+            //Play Started Verification
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
+            //Wait for Ad to start and verify the adStarted event .
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            //Wait for Ad to complete and verify the adCompleted event .
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+            Thread.sleep(2000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -208,6 +389,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
 //            po.getBackFromRecentApp(driver);
 //
 //            Thread.sleep(5000);
@@ -271,6 +469,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
 //            po.getBackFromRecentApp(driver);
 //
 //            Thread.sleep(2000);
@@ -331,6 +546,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
@@ -379,6 +611,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
@@ -403,7 +652,6 @@ public class DeepTests {
         }
 
     }
-
 
     @org.testng.annotations.Test
     public void Preload_and_Promo_Options_With_Initial_Time() throws Exception {
@@ -453,6 +701,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
@@ -477,6 +742,23 @@ public class DeepTests {
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
+
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -503,6 +785,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
@@ -527,6 +826,23 @@ public class DeepTests {
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
+
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -681,6 +997,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
@@ -705,6 +1038,23 @@ public class DeepTests {
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
@@ -733,6 +1083,23 @@ public class DeepTests {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
+
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
@@ -759,6 +1126,23 @@ public class DeepTests {
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            // Pause and Play Video
+            Thread.sleep(2000);
+
+            po.pauseSmallPlayer(driver);
+
+            //Wait for pause to video and verify the video is paused.
+            ev.verifyEvent("PAUSED", "Video paused", 50000);
+
+            Thread.sleep(2000);
+
+            po.clickImagebuttons(driver, 0);
+
+            //Wait for play the video and verify the video starts playing again.
+            ev.verifyEvent("PLAYING", "Video Started", 50000);
+
+            Thread.sleep(2000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
@@ -860,7 +1244,6 @@ public class DeepTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-
     }
 
     @AfterMethod

@@ -63,7 +63,60 @@ public class optionsSampleApp {
         imageButtons.get(index).click();
     }
 
+    public void pauseSmallPlayer (AndroidDriver driver) throws InterruptedException {
+        Thread.sleep(2000);
+        System.out.println("Pausing the Video");
+        //Pausing Video
+        String dimensions = driver.manage().window().getSize().toString();
+        String[] dimensionsarray=dimensions.split(",");
+        int length = dimensionsarray[1].length();
+        String ydimensions=dimensionsarray[1].substring(0,length-1);
+        String ydimensionstrimmed=ydimensions.trim();
+        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+        driver.tap(1, 90 , (ydimensionsInt-718), 2);
+    }
 
+    public void clickOnCuePointsOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("CuePoints On"));
+        driver.findElement(By.name("CuePoints On")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("CuePoints Off")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="CuePoints Off"){
+            System.out.println("CuePoints Off Button Found");
+        }
+    }
+
+    public void clickOnAdsControlsOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("AdsControls On"));
+        driver.findElement(By.name("AdsControls On")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("AdsControls Off")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="AdControls Off"){
+            System.out.println("AdsControls Off Button Found");
+        }
+    }
+
+    public void clickOnCuePointsOff (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("CuePoints Off"));
+        driver.findElement(By.name("CuePoints Off")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("CuePoints On")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="CuePoints On"){
+            System.out.println("CuePoints On Button Found");
+        }
+    }
 
     public void clickAlignBottom (AndroidDriver driver) throws InterruptedException, IOException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
