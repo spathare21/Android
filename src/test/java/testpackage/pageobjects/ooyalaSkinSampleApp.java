@@ -380,7 +380,8 @@ public class ooyalaSkinSampleApp {
     public void discoverUpNext (AndroidDriver driver)
     {
         System.out.println("Wil look for element now.");
-        WebElement e = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.ImageView[1]"));
+        WebElement e = driver.findElement(By.name("e"));
+       // WebElement e = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.ImageView[1]"));
         if (e.isDisplayed())
         {
             System.out.println("Discovery pop up found");
@@ -390,5 +391,14 @@ public class ooyalaSkinSampleApp {
             System.out.println("Not found pop up");
         }
     }
+    public void discoverElement (AndroidDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String path  = "//android.widget.TextView[@text='Discovery']";
+        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        System.out.println("Discovery displayed");
+        //ele.click();
+    }
+
+
 }
 

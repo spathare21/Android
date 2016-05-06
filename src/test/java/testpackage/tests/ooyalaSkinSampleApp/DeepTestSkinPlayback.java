@@ -152,8 +152,12 @@ public class DeepTestSkinPlayback {
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             // Click on the web area so that player screen shows up
-            WebElement viewArea = driver.findElementByClassName("android.view.View");
+           /* WebElement viewArea = driver.findElementByClassName("android.view.View");
             viewArea.click();
+            Thread.sleep(2000);*/
+            // Tap coordinates to Pause
+            Thread.sleep(5000);
+            driver.tap(1,locationPlayButton[0],locationPlayButton[1],2);
             Thread.sleep(2000);
 
             // Tap coordinates to Pause
@@ -178,7 +182,7 @@ public class DeepTestSkinPlayback {
 
             Thread.sleep(5000);
 
-            viewArea.click();
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
 
             //Click on option button
@@ -219,7 +223,7 @@ public class DeepTestSkinPlayback {
             po.clickBasedOnText(driver, "e");
             Thread.sleep(2000);
 
-            viewArea.click();
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
 
             // Tap coordinates again to play
@@ -228,31 +232,52 @@ public class DeepTestSkinPlayback {
 
             // Play state verification
             ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 30000);
-            Thread.sleep(35000);
+            Thread.sleep(50000);
 
 
             //     Extra Work //
-            WebElement viewArea1 = driver.findElementByClassName("android.view.View");
-            viewArea1.click();
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
-            driver.tap(1,locationPlayButton[0],locationPlayButton[1],10);
-
+            driver.tap(1,locationPlayButton[0],locationPlayButton[1],2);
             Thread.sleep(2000);
 
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("PAUSED", " Playing Video Was Paused ", 30000);
 
             //    end  //
             System.out.println("Looking for Discovery");
             po.discoverUpNext(driver);
             Thread.sleep(2000);
 
-
-
-
+            //Clicking on close button
             po.clickBasedOnText(driver, "e");
             Thread.sleep(2000);
 
+            driver.tap(1,locationPlayButton[0],locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1,locationPlayButton[0],locationPlayButton[1],2);
+            Thread.sleep(2000);
+
+            // Play state verification
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 30000);
+            Thread.sleep(2000);
+
+
+            //Clicking on close button
+            po.discoverElement(driver);  //Wait till it found
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            // Restarting video//
+
+            po.clickBasedOnText(driver, "c");
+            //Thread.sleep(5000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
             /*// To Do: Full screen
             // Click on full screen button
