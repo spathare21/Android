@@ -92,7 +92,7 @@ public class DeepTests {
 
     }
 
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void playWithIntitialTime() throws Exception {
 
         try
@@ -126,7 +126,7 @@ public class DeepTests {
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(2000);
+            Thread.sleep(1500);
 
             //Pause the Video
             po.pauseVideo(driver);
@@ -253,7 +253,7 @@ public class DeepTests {
             //1st video Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             //Pause the Video
             po.pauseVideo(driver);
@@ -301,8 +301,17 @@ public class DeepTests {
             po.playVideoFullScreen(driver);
             Thread.sleep(2000);
 
+            //Verify Playing video
+            ev.verifyEvent("PLAYING", "Video is played in full screen", 30000);
+            Thread.sleep(1000);
+
             //Pausing Video in Full screen
             po.pauseVideoFullScreen(driver);
+            Thread.sleep(2000);
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Second Video Was Paused ", 30000);
+            // Pause the running of the test for a brief amount of time
             Thread.sleep(2000);
 
             //Switching video to normal screen
@@ -378,8 +387,17 @@ public class DeepTests {
             po.playVideoFullScreen(driver);
             Thread.sleep(2000);
 
+            //Verify Playing video
+            ev.verifyEvent("PLAYING", "Video is played in full screen", 30000);
+            Thread.sleep(1000);
+
             //Pausing Video in Full screen
             po.pauseVideoFullScreen(driver);
+            Thread.sleep(2000);
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Second Video Was Paused ", 30000);
+            // Pause the running of the test for a brief amount of time
             Thread.sleep(2000);
 
             //Switching video to normal screen
@@ -497,8 +515,17 @@ public class DeepTests {
             po.playVideoFullScreen(driver);
             Thread.sleep(2000);
 
-            //Pausing Video in normal screen
+            //Verify Playing video
+            ev.verifyEvent("PLAYING", "Video is played in full screen", 30000);
+            Thread.sleep(1000);
+
+            //Pausing Video in Full screen
             po.pauseVideoFullScreen(driver);
+            Thread.sleep(2000);
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Second Video Was Paused ", 30000);
+            // Pause the running of the test for a brief amount of time
             Thread.sleep(2000);
 
             //Switching video to normal screen
@@ -626,8 +653,17 @@ public class DeepTests {
             po.playVideoFullScreen(driver);
             Thread.sleep(2000);
 
-            //Pausing Video in normal screen
+            //Verify Playing video
+            ev.verifyEvent("PLAYING", "Video is played in full screen", 30000);
+            Thread.sleep(1000);
+
+            //Pausing Video in Full screen
             po.pauseVideoFullScreen(driver);
+            Thread.sleep(2000);
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Second Video Was Paused ", 30000);
+            // Pause the running of the test for a brief amount of time
             Thread.sleep(2000);
 
             //Switching video to normal screen
@@ -758,8 +794,17 @@ public class DeepTests {
             po.playVideoFullScreen(driver);
             Thread.sleep(2000);
 
+            //Verify Playing video
+            ev.verifyEvent("PLAYING", "Video is played in full screen", 30000);
+            Thread.sleep(1000);
+
             //Pausing Video in Full screen
             po.pauseVideoFullScreen(driver);
+            Thread.sleep(2000);
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Second Video Was Paused ", 30000);
+            // Pause the running of the test for a brief amount of time
             Thread.sleep(2000);
 
             //Switching video to normal screen
@@ -797,7 +842,7 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-  
+
     @org.testng.annotations.Test
     public void customControls() throws Exception {
 
@@ -832,6 +877,31 @@ public class DeepTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
+            //Pausing Video
+            po.customControlPauseButton(driver);
+            Thread.sleep(2000);
+
+            //Verifing Pausing event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            Thread.sleep(2000);
+
+            po.customControlPlayButton(driver);
+            Thread.sleep(2000);
+
+            //Verifying Play event
+            ev.verifyEvent("PLAYING","Video is resumed", 30000);
+            Thread.sleep(2000);
+
+            //Going to resent App
+            po.getBackFromRecentApp(driver);
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
+            // Clicking on Power button to lock screen
+            po.powerKeyClick(driver);
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
@@ -841,7 +911,7 @@ public class DeepTests {
         }
 
     }
-
+*/
     @org.testng.annotations.Test
     public void customOverlay() throws Exception {
 
@@ -875,6 +945,10 @@ public class DeepTests {
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(1000);
+
+            po.overlay(driver);
+            Thread.sleep(1000);
 
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 

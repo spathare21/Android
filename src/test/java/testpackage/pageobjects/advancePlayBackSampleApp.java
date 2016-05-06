@@ -182,6 +182,42 @@ public class advancePlayBackSampleApp {
         int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
         driver.tap(1, 45 , (ydimensionsInt-370), 2);
     }
+
+    public void customControlPlayButton (AndroidDriver driver) throws InterruptedException{
+        Thread.sleep(2000);
+        System.out.println("Playing Paused Video");
+        //Play Video
+        String dimensions = driver.manage().window().getSize().toString();
+        String[] dimensionsarray=dimensions.split(",");
+        int length = dimensionsarray[1].length();
+        String ydimensions=dimensionsarray[1].substring(0, length - 1);
+        String ydimensionstrimmed=ydimensions.trim();
+        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+        System.out.println("Ydimention is:"+ydimensionstrimmed);
+        driver.tap(1, 535, (ydimensionsInt-60), 2);
+    }
+    public void customControlPauseButton(AndroidDriver driver) throws InterruptedException{
+        Thread.sleep(2000);
+        System.out.println("Clicking on Pause Video");
+        //Pausing Video
+        String dimensions = driver.manage().window().getSize().toString();
+        String[] dimensionsarray=dimensions.split(",");
+        int length = dimensionsarray[1].length();
+        String ydimensions=dimensionsarray[1].substring(0,length-1);
+        String ydimensionstrimmed=ydimensions.trim();
+        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+        System.out.println("Ydimention is:"+ydimensionstrimmed);
+        driver.tap(1, 535 , (ydimensionsInt-60), 2);
+    }
+
+    public void overlay(AndroidDriver driver) throws InterruptedException{
+        Thread.sleep(1000);
+        System.out.println("Check Overlay Present or not");
+        WebElement overlay1 = driver.findElement(By.xpath("//android.widget.TextView[@text='This is an overlay']"));
+        Assert.assertEquals(true, overlay1.isDisplayed());
+        System.out.println("Overlay  diplayed");
+    }
+
 }
 
 
