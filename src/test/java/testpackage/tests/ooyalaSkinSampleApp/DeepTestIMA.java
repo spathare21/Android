@@ -146,6 +146,10 @@ public class DeepTestIMA {
 
             locPlayButon = po.locationTextOnScreen(driver, "h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver, "h");
 
@@ -170,12 +174,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -239,15 +244,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -327,6 +335,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -350,11 +362,11 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -413,14 +425,16 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -502,6 +516,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -522,10 +540,11 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -590,11 +609,16 @@ public class DeepTestIMA {
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
-
+            Thread.sleep(2000);
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+          // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -675,6 +699,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -705,9 +733,10 @@ public class DeepTestIMA {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
 
+            Thread.sleep(2000);
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -769,15 +798,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -857,6 +889,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -888,12 +924,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
 
             // Tapping on screen to pause
@@ -955,15 +992,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -1044,6 +1084,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -1072,12 +1116,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -1139,15 +1184,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1232,6 +1280,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -1318,10 +1370,10 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
+            Thread.sleep(2000);
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Tapping on screen to pause
             po.screentap(driver);
@@ -1383,15 +1435,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
@@ -1471,6 +1526,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -1498,10 +1557,11 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 20000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 10000);
-            Thread.sleep(500);
+            Thread.sleep(1000);
 
             //Tapping on screen to pause the Video
             po.screentap(driver);
@@ -1558,14 +1618,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1647,6 +1711,10 @@ public class DeepTestIMA {
 
             locPlayButon = po.locationTextOnScreen(driver, "h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver, "h");
 
@@ -1691,12 +1759,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Tapping on screen to pause the Video
             po.screentap(driver);
@@ -1760,17 +1829,20 @@ public class DeepTestIMA {
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
-
+            Thread.sleep(2000);
+            System.out.println("Closed option menu");
 
             Thread.sleep(5000);
-            viewarea.click();
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
 //            Thread.sleep(5000);
-
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
