@@ -33,7 +33,6 @@ public class advancePlayBackSampleApp {
 
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
         clickTextField.click();
-
     }
 
     public void waitForPresence(AndroidDriver driver, String typeOf, String waitString) {
@@ -86,18 +85,17 @@ public class advancePlayBackSampleApp {
 
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
 
-        driver.sendKeyEvent(26);            // key 26 is used to lock the screen
+        driver.sendKeyEvent(26); // key 26 is used to lock the screen
         System.out.println("key sent");
         System.out.println("screen lock");
         Thread.sleep(5000);
-        //driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
-        String command = "adb shell am start -n io.appium.unlock/.Unlock";
+        driver.sendKeyEvent(82); // key 82 is used to unlock the screen
+        String command = "adb shell input keyevent KEYCODE_WAKEUP";
         String[] final_command = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
         System.out.println("showing screen unlock");
-        driver.navigate().back();
         System.out.println("Back to Sample App screen ");
         Thread.sleep(2000);
     }
@@ -158,7 +156,7 @@ public class advancePlayBackSampleApp {
     }
 
     public void pauseVideoFullScreen(AndroidDriver driver) throws InterruptedException{
-        Thread.sleep(2000);
+      //  Thread.sleep(2000);
         System.out.println("Pausing the Video in Full Screen");
         //Pausing Video
         String dimensions = driver.manage().window().getSize().toString();
@@ -167,11 +165,11 @@ public class advancePlayBackSampleApp {
         String ydimensions=dimensionsarray[1].substring(0,length-1);
         String ydimensionstrimmed=ydimensions.trim();
         int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-        driver.tap(1, 530 , (ydimensionsInt-120), 2);
+        driver.tap(1, 600 , (ydimensionsInt-100), 2);
     }
 
     public void pauseSmallPlayer (AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(2000);
+       // Thread.sleep(2000);
         System.out.println("Pausing the Video");
         //Pausing Video
         String dimensions = driver.manage().window().getSize().toString();
@@ -180,7 +178,8 @@ public class advancePlayBackSampleApp {
         String ydimensions=dimensionsarray[1].substring(0,length-1);
         String ydimensionstrimmed=ydimensions.trim();
         int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-        driver.tap(1, 45 , (ydimensionsInt-370), 2);
+        driver.tap(1, 35 , (ydimensionsInt-265), 2);
+
     }
 
     public void customControlPlayButton (AndroidDriver driver) throws InterruptedException{
@@ -230,6 +229,11 @@ public class advancePlayBackSampleApp {
         WebElement overlay1 = driver.findElement(By.xpath("//android.widget.TextView[@text='This is an overlay']"));
         Assert.assertEquals(true, overlay1.isDisplayed());
         System.out.println("Overlay  diplayed");
+    }
+
+    public void clickBasedOnIndex(AndroidDriver driver, String clickIndex) {
+        WebElement clickIndexField = driver.findElement(By.xpath("//android.widget.ListView/android.widget.TextView[@index='" + clickIndex + "']"));
+        clickIndexField.click();
     }
 
 }
