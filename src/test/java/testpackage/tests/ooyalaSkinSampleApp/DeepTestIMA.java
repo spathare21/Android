@@ -227,7 +227,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -282,7 +282,7 @@ public class DeepTestIMA {
         }
     }
 
-
+/*
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesMidroll() throws Exception{
         int[] locPlayButon;
@@ -408,7 +408,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -589,7 +589,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -781,7 +781,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -975,7 +975,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1167,7 +1167,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1418,7 +1418,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1601,7 +1601,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1809,7 +1809,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1867,5 +1867,5 @@ public class DeepTestIMA {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 }
