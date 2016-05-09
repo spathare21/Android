@@ -84,7 +84,7 @@ public class ooyalaSkinSampleApp {
     public void waitForPresenceOfText(AndroidDriver driver,String waitString) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         String xpath = "//android.widget.TextView[@text='"+ waitString +"']";
-        //System.out.println("xpath is " +xpath);
+          //System.out.println("xpath is " +xpath);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
