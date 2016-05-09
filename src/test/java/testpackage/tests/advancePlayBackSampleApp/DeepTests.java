@@ -141,17 +141,17 @@ public class DeepTests {
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
             //Switching Video to full screen
             po.clickFullScreen(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             // event verification for full screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
@@ -160,12 +160,12 @@ public class DeepTests {
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(1000);
 
@@ -183,21 +183,21 @@ public class DeepTests {
 
             //Switching video to normal screen
             po.clickNormalScreen(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             // event verification for normal screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // Resuming the playback
             po.playVideo(driver);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             //Verifing Video Resume
             ev.verifyEvent("stateChanged - state: PLAYING", "Video is resumed", 30000);
-            Thread.sleep(2000);
+            Thread.sleep(5000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
@@ -208,7 +208,7 @@ public class DeepTests {
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
             Thread.sleep(2000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
             Thread.sleep(1000);
 
             //ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",60000);
@@ -261,6 +261,7 @@ public class DeepTests {
             //1st video Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
             Thread.sleep(1000);
 
             //Pause the Video
@@ -280,7 +281,6 @@ public class DeepTests {
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
-            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(1000);
 
@@ -290,7 +290,7 @@ public class DeepTests {
 
             // event verification for full screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
-            Thread.sleep(1000);
+
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(1000);
 
@@ -343,7 +343,7 @@ public class DeepTests {
 
             //Verifing Video Resume
             ev.verifyEvent("stateChanged - state: PLAYING", "Video is resumed", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
@@ -422,30 +422,30 @@ public class DeepTests {
 
             //Switching video to normal screen
             po.clickNormalScreen(driver);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             // event verification for normal screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen for 2nd video", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready to play 2nd Video", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // Resuming the playback
             po.playVideo(driver);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Verifing Video Resume
             ev.verifyEvent("stateChanged - state: PLAYING", "2nd Video is resumed", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready to play 2nd Video", 30000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready to play 2nd Video", 30000);
 
             // video completed event verification.
@@ -509,13 +509,13 @@ public class DeepTests {
             po.getBackFromRecentApp(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Switching Video to full screen
             po.clickFullScreen(driver);
@@ -525,19 +525,19 @@ public class DeepTests {
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Playing Video in Full screen
             //po.playVideoFullScreen(driver);
@@ -564,31 +564,31 @@ public class DeepTests {
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // Resuming the playback
             po.playVideo(driver);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Verifing Video Resume
             ev.verifyEvent("stateChanged - state: PLAYING", "Video is resumed", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             //Clicking on Vast Ad button to insert vast Ad
             po.clickOnVastAd(driver);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Verifying Ad started event
             ev.verifyEvent("adStarted", "Vast Ad is started", 30000);
@@ -596,7 +596,7 @@ public class DeepTests {
 
             //Verifying ad completed event
             ev.verifyEvent("adCompleted", "Vast Ad is Completed", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
@@ -656,15 +656,13 @@ public class DeepTests {
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
-            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
-            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Switching Video to full screen
             po.clickFullScreen(driver);
@@ -674,19 +672,18 @@ public class DeepTests {
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
-            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Playing Video in Full screen
            // po.playVideoFullScreen(driver);
@@ -707,37 +704,37 @@ public class DeepTests {
 
             //Switching video to normal screen
             po.clickNormalScreen(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             // event verification for normal screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // Resuming the playback
             po.playVideo(driver);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             //Verifing Video Resume
             ev.verifyEvent("stateChanged - state: PLAYING", "Video is resumed", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Clicking on Play Video 1
             po.clickOnP1(driver);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Verifing Video 1 Play
             ev.verifyEvent("stateChanged - state: PLAYING", "Played video 1", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Clicking on Video 2
             po.clickOnP2(driver);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Verifing Video 2 Play
             ev.verifyEvent("stateChanged - state: PLAYING", "Played video 2", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
@@ -792,7 +789,7 @@ public class DeepTests {
             Thread.sleep(1000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Pause the Video
             po.pauseVideo(driver);
@@ -805,37 +802,35 @@ public class DeepTests {
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
-            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
-            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Switching Video to full screen
             po.clickFullScreen(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             // event verification for full screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             // Clicking on Power button to lock screen
             po.powerKeyClick(driver);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //Playing Video in Full screen
            // po.playVideoFullScreen(driver);
@@ -856,13 +851,13 @@ public class DeepTests {
 
             //Switching video to normal screen
             po.clickNormalScreen(driver);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             // event verification for normal screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 30000);
             Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // Resuming the playback
             po.playVideo(driver);
@@ -870,7 +865,7 @@ public class DeepTests {
 
             //Verifing Video Resume
             ev.verifyEvent("stateChanged - state: PLAYING", "Video is resumed", 30000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             // After pausing clicking on recent app button and getting sample app back
             po.getBackFromRecentApp(driver);
