@@ -428,7 +428,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void FreeWheelIntegrationPostRoll() throws Exception{
 
@@ -1134,7 +1134,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
   @org.testng.annotations.Test
     public void FreeWheelIntegrationOverlay() throws Exception{
 
