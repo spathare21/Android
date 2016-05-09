@@ -261,6 +261,8 @@ public class DeepTestIMA {
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
+            Thread.sleep(2000);
+
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
@@ -282,7 +284,7 @@ public class DeepTestIMA {
         }
     }
 
-/*
+
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesMidroll() throws Exception{
         int[] locPlayButon;
@@ -440,6 +442,8 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -623,6 +627,8 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -814,6 +820,8 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1008,6 +1016,8 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1204,6 +1214,8 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1452,6 +1464,8 @@ public class DeepTestIMA {
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
+            Thread.sleep(2000);
+
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
@@ -1637,6 +1651,8 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1846,6 +1862,7 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1867,5 +1884,5 @@ public class DeepTestIMA {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 }
