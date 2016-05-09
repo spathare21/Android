@@ -241,17 +241,17 @@ public class DeepTestFreewheel {
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 80000);
 
             po.powerKeyClick(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 80000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -405,17 +405,17 @@ public class DeepTestFreewheel {
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 80000);
 
             po.powerKeyClick(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 90000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -428,7 +428,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+/*
     @org.testng.annotations.Test
     public void FreeWheelIntegrationPostRoll() throws Exception{
 
@@ -1134,7 +1134,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
   @org.testng.annotations.Test
     public void FreeWheelIntegrationOverlay() throws Exception{
 
@@ -1187,13 +1187,6 @@ public class DeepTestFreewheel {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            Thread.sleep(5000);
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            po.screentap(driver);
-           // viewarea.click();
-            Thread.sleep(1000);
-            //viewarea.click();
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
