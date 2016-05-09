@@ -209,7 +209,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -240,6 +240,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -371,7 +373,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -402,6 +404,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -536,7 +540,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -571,6 +575,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -714,7 +720,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -748,6 +754,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -885,7 +893,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -920,6 +928,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1064,7 +1074,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1098,6 +1108,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
