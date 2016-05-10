@@ -55,7 +55,8 @@ public class exoPlayerSampleApp {
 
     public void waitForPresenceOfText(AndroidDriver driver, String waitString) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.name(waitString)));
+        String xpath = "//android.widget.TextView[@text='" + waitString + "']";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
 
@@ -301,6 +302,7 @@ public class exoPlayerSampleApp {
     }
 
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
+
 
         String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
         String[] final_command = CommandLine.command(command);
