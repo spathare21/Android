@@ -236,6 +236,23 @@ public class advancePlayBackSampleApp {
         clickIndexField.click();
     }
 
+    public void screenTap(AndroidDriver driver) throws InterruptedException {
+        boolean isElement1Present = true;
+        try{
+            WebElement scrubberBar = driver.findElementByXPath("//android.widget.SeekBar");
+            Thread.sleep(1000);
+            System.out.println("The scrubber bar is displaying");
+
+        }catch (org.openqa.selenium.NoSuchElementException e){
+            isElement1Present = false;
+        }
+
+        if(isElement1Present == false) {
+            WebElement screentap = driver.findElementByXPath("//android.view.View");
+            screentap.click();
+            System.out.println("Scrubber bar is displaying after click");
+        }
+    }
 }
 
 

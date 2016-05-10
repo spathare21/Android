@@ -130,6 +130,9 @@ public class DeepTests {
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(1000);
 
+            //Tapping on screen if pause botton not present
+            po.screenTap(driver);
+
             //Pause the Video
             po.pauseVideo(driver);
             Thread.sleep(2000);
@@ -261,8 +264,10 @@ public class DeepTests {
             //1st video Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
             Thread.sleep(1000);
+
+            //Tapping on screen if pause botton not present
+            po.screenTap(driver);
 
             //Pause the Video
             po.pauseVideo(driver);
@@ -359,6 +364,9 @@ public class DeepTests {
 
             //2nd video start playing in queue
             ev.verifyEvent(" playStarted - state: READY", "2nd video start playing in queue", 60000);
+
+            //Tapping on screen if pause botton not present
+            po.screenTap(driver);
 
             //Pause the Video
             po.pauseVideo(driver);
@@ -495,6 +503,9 @@ public class DeepTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(2000);
+
+            //Tapping on screen if pause botton not present
+            po.screenTap(driver);
 
             //Pausing the video
             po.pauseSmallPlayer(driver);
@@ -645,6 +656,9 @@ public class DeepTests {
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(1000);
 
+            //Tapping on screen if pause botton not present
+            po.screenTap(driver);
+
             //Pausing the video
             po.pauseSmallPlayer(driver);
             Thread.sleep(2000);
@@ -790,6 +804,9 @@ public class DeepTests {
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(2000);
+
+            //Tapping on screen if pause botton not present
+            po.screenTap(driver);
 
             //Pause the Video
             po.pauseVideo(driver);
@@ -1008,7 +1025,7 @@ public class DeepTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
   /*  @org.testng.annotations.Test
     public void unbundled() throws Exception {
