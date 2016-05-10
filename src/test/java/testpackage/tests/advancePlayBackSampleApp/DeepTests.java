@@ -1025,7 +1025,7 @@ public class DeepTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
   /*  @org.testng.annotations.Test
     public void unbundled() throws Exception {
