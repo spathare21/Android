@@ -24,9 +24,15 @@
              <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
 	        <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
+
            <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestIMA"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestFreewheel"/>-->
             <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestSkinPlayback"/>
+
+           <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestIMA"/>
+            <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestFreewheel"/>
+            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestSkinPlayback"/>-->
+
             <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->

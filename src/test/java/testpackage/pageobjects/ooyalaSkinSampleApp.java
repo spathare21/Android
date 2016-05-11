@@ -28,7 +28,7 @@ import java.util.Properties;
 
 public class ooyalaSkinSampleApp {
 
-    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button ;
+    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button,play ;
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -83,7 +83,9 @@ public class ooyalaSkinSampleApp {
 
     public void waitForPresenceOfText(AndroidDriver driver,String waitString) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.name(waitString)));
+        String xpath = "//android.widget.TextView[@text='"+ waitString +"']";
+          //System.out.println("xpath is " +xpath);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
     public void getXYSeekBarAndSeek(AndroidDriver driver, int widthOffSet1, int widthOffSet2) {
@@ -226,8 +228,12 @@ public class ooyalaSkinSampleApp {
         System.out.println("replay.x value is " + replay.getX());
         System.out.println("replay.x value is " + replay.getY());
 
+<<<<<<< HEAD
 
                driver.tap(1, replay.getX(), replay.getY(), 2);
+=======
+               driver.tap(1,replay.getX(),replay.getY(),2);
+>>>>>>> ad52d750236f1bfa3c94e08976cbb6b0f69f6630
                 System.out.println("clicked pause");
 
             }
@@ -257,20 +263,20 @@ public class ooyalaSkinSampleApp {
     public void shareAsset (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
        // driver.findElementByXPath("//android.widget.TextView[@text='o']");
-        driver.tap(1,share_asset.getX(),share_asset.getY(),2);
+        driver.tap(1, share_asset.getX(), share_asset.getY(), 2);
 
     }
 
     public void clickOnDiscovery(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         //driver.findElementByXPath("//android.widget.TextView[@text='l']");
-        driver.tap(1,discovery_button.getX(),discovery_button.getY(),2);
+        driver.tap(1, discovery_button.getX(), discovery_button.getY(), 2);
     }
 
     public void clickOnCC (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         //driver.findElementByXPath("//android.widget.TextView[@text='k']");
-        driver.tap(1,cc_button.getX(),cc_button.getY(),1);
+        driver.tap(1, cc_button.getX(), cc_button.getY(), 1);
     }
 
     public void volumeButton (AndroidDriver driver)
@@ -294,13 +300,21 @@ public class ooyalaSkinSampleApp {
         driver.findElementById("com.google.android.gm:id/to").sendKeys("shivam.gupta@vertisinfotech.com");
         Thread.sleep(2000);
         driver.findElementById("com.google.android.gm:id/send").click();
-
-
     }
 
     public void playVideo (AndroidDriver driver) throws InterruptedException {
+        System.out.println("Clicking on Play button");
         Thread.sleep(2000);
-        driver.tap(1,450,867,2);
+       // driver.tap(1,450,867,2);
+        /*String dimensions = driver.manage().window().getSize().toString();
+        String[] dimensionsarray=dimensions.split(",");
+        int length = dimensionsarray[1].length();
+        String ydimensions = dimensionsarray[1].substring(0,length-1);
+        String ydimensionstrimmed=ydimensions.trim();
+        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+        driver.tap(1, 500 , (ydimensionsInt-821), 2);*/
+        driver.tap(1, play.getX(), play.getY(), 2);
+        System.out.println("Clicked on Play button");
     }
 
     public void seek_video (AndroidDriver driver)
@@ -321,6 +335,12 @@ public class ooyalaSkinSampleApp {
         System.out.println("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
         System.out.println("back to SDK");
+
+        /*driver.sendKeyEvent(187);   //key 187 is used to go on recent app
+        System.out.println("key sent");
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        System.out.println("back to SDK");*/
     }
 
 
@@ -391,6 +411,7 @@ public class ooyalaSkinSampleApp {
             System.out.println("Not found pop up");
         }
     }
+<<<<<<< HEAD
     public void discoverElement (AndroidDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='Discovery']";
@@ -400,5 +421,18 @@ public class ooyalaSkinSampleApp {
     }
 
 
+=======
+
+    public void getPlay (AndroidDriver driver){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String path  = "//android.widget.TextView[@text='h']";
+
+        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        play= ele.getLocation();
+        System.out.println("play.x value is " + play.getX());
+        System.out.println("play.y value is " + play.getY());
+
+    }
+>>>>>>> ad52d750236f1bfa3c94e08976cbb6b0f69f6630
 }
 

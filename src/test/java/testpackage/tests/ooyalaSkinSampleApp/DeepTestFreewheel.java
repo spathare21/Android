@@ -138,10 +138,12 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
-
-
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -156,12 +158,14 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
+            Thread.sleep(1000);
+
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
-
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -188,7 +192,6 @@ public class DeepTestFreewheel {
             viewarea.click();
             Thread.sleep(1000);
 
-
             // clicking on more button
             po.moreButton(driver);
 
@@ -206,7 +209,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -231,32 +234,28 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+
             Thread.sleep(1000);
-//            po.seek_video(driver);
-
-//            Thread.sleep(5000);
-
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
+            Thread.sleep(3000);
+
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 80000);
 
             po.powerKeyClick(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 80000);
 
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
-
-
-
         }
         catch(Exception e)
         {
@@ -305,6 +304,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -326,8 +329,7 @@ public class DeepTestFreewheel {
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
-
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -371,7 +373,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -396,25 +398,24 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+
             Thread.sleep(1000);
-//            po.seek_video(driver);
-
-//            Thread.sleep(5000);
-
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
+            Thread.sleep(3000);
+
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 80000);
 
             po.powerKeyClick(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 90000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -467,6 +468,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -485,9 +490,11 @@ public class DeepTestFreewheel {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
+            Thread.sleep(2000);
+
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -533,7 +540,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -558,7 +565,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -567,6 +575,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -632,6 +642,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -658,10 +672,11 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -705,7 +720,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -730,15 +745,17 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
 //            Thread.sleep(5000);
 
-
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -792,7 +809,6 @@ public class DeepTestFreewheel {
             po.clickBasedOnText(driver, "Freewheel Multi Midroll");
             Thread.sleep(2000);
 
-
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
@@ -801,6 +817,10 @@ public class DeepTestFreewheel {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -823,10 +843,11 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.screentap(driver);
             Thread.sleep(1000);
@@ -872,7 +893,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -897,7 +918,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+          //  viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -906,6 +928,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -970,6 +994,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -996,10 +1024,11 @@ public class DeepTestFreewheel {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             //Clicking on screen for pause
             po.screentap(driver);
@@ -1045,7 +1074,7 @@ public class DeepTestFreewheel {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1070,7 +1099,8 @@ public class DeepTestFreewheel {
 
 
             Thread.sleep(5000);
-            viewarea.click();
+            po.screentap(driver);
+            //  viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1078,6 +1108,8 @@ public class DeepTestFreewheel {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1142,6 +1174,10 @@ public class DeepTestFreewheel {
 
             po.waitForPresenceOfText(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -1151,12 +1187,6 @@ public class DeepTestFreewheel {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            Thread.sleep(5000);
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-            Thread.sleep(1000);
-            //viewarea.click();
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -1170,6 +1200,5 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
 
 }
