@@ -2284,7 +2284,7 @@ public class DeepTestSkinPlayback {
 
             //Wait for video to start and verify the playStarted event .
             Thread.sleep(5000);
-            ev.verifyEvent("playStarted", " Video Started Play ", 2000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 20000);
 
 
             // Tap to pause the video //
