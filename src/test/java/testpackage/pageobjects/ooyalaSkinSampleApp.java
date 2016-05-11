@@ -379,7 +379,7 @@ public class ooyalaSkinSampleApp {
     }*/
     public void discoverUpNext (AndroidDriver driver)
     {
-        System.out.println("Wil look for element now.");
+        System.out.println("Wil look for cancel element now.");
         WebElement e = driver.findElement(By.name("e"));
        // WebElement e = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.ImageView[1]"));
         if (e.isDisplayed())
