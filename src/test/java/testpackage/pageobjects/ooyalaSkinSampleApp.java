@@ -228,12 +228,13 @@ public class ooyalaSkinSampleApp {
         System.out.println("replay.x value is " + replay.getX());
         System.out.println("replay.x value is " + replay.getY());
 
-<<<<<<< HEAD
+
 
                driver.tap(1, replay.getX(), replay.getY(), 2);
-=======
+
+
                driver.tap(1,replay.getX(),replay.getY(),2);
->>>>>>> ad52d750236f1bfa3c94e08976cbb6b0f69f6630
+
                 System.out.println("clicked pause");
 
             }
@@ -411,7 +412,7 @@ public class ooyalaSkinSampleApp {
             System.out.println("Not found pop up");
         }
     }
-<<<<<<< HEAD
+
     public void discoverElement (AndroidDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='Discovery']";
@@ -421,7 +422,7 @@ public class ooyalaSkinSampleApp {
     }
 
 
-=======
+
 
     public void getPlay (AndroidDriver driver){
         WebDriverWait wait = new WebDriverWait(driver,30);
@@ -433,6 +434,6 @@ public class ooyalaSkinSampleApp {
         System.out.println("play.y value is " + play.getY());
 
     }
->>>>>>> ad52d750236f1bfa3c94e08976cbb6b0f69f6630
+
 }
 
