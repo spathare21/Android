@@ -94,7 +94,7 @@ public class BasicTests {
     }
 
     //TODO : create unique file names for snapshots taken .
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void playWithIntitialTime() throws Exception {
 
         try
@@ -641,7 +641,7 @@ public class BasicTests {
 
     }
 
-
+*/
     @org.testng.annotations.Test
 
     public void customPluginSample_Adverfication() throws Exception {
