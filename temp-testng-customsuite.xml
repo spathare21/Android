@@ -21,8 +21,8 @@
             <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
 
 
-             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
-	        <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
+             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
+	        <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
            <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestIMA"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestFreewheel"/>
