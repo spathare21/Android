@@ -97,7 +97,7 @@ public class DeepTestFreewheel {
     }
 
 
-/*
+
     @org.testng.annotations.Test
     public void FreeWheelIntegrationPreRoll() throws Exception{
 
@@ -779,7 +779,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void FreeWheelIntegrationMultiMidroll() throws Exception{
 
@@ -954,7 +954,7 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void FreeWheelIntegrationPreMidPostRollOverlay() throws Exception{
 
@@ -1200,5 +1200,5 @@ public class DeepTestFreewheel {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
 }

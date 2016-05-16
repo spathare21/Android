@@ -92,7 +92,7 @@ public class BasicTestsSkinPlayback {
         Thread.sleep(10000);
 
     }
-/*
+
 
     @org.testng.annotations.Test
     public void SkinPlaybackAspectRatio() throws Exception{
@@ -283,7 +283,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void SkinPlaybackHLSVideo() throws Exception{
         int[] locPlayButon;
@@ -377,7 +377,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void SkinPlaybackVODwithCCTest() throws Exception{
         int[] locPlayButon;
@@ -670,7 +670,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void SkinPlaybackVASTADPostRollTest() throws Exception{
         int[] locPlayButon;
@@ -750,7 +750,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void SkinPlaybackVASTAdWrapperTest() throws Exception{
         int[] locPlayButon;
@@ -987,7 +987,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void SkinPlaybackOoyalaADPostRollTest() throws Exception{
         int[] locPlayButon;
@@ -1067,7 +1067,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void SkinPlaybackMultiAdCombinationTest() throws Exception{
         int[] locPlayButon;
@@ -1157,5 +1157,5 @@ public class BasicTestsSkinPlayback {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 }
