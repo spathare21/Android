@@ -113,12 +113,16 @@ public class DeepTests {
 
             //Click on Video create button
             po.clickButtons(driver, 0);
+            System.out.println("Creating Video to Play");
 
             // Wait for the video to be generated
             po.waitForPresenceOfText(driver, "00:00");
+            Thread.sleep(2000);
+            System.out.println("Initial Time is 00:00");
 
             // Click on video play icon after video has been generated .
             po.clickImagebuttons(driver, 0);
+            Thread.sleep(2000);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -331,8 +335,8 @@ public class DeepTests {
         }
 
     }
-
-        @org.testng.annotations.Test
+/*
+    @org.testng.annotations.Test
     public void Preload_and_PromoImage_Options() throws Exception {
 
         try {
@@ -1245,7 +1249,7 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
     @AfterMethod
     //public void afterTest() throws InterruptedException, IOException {
     public void afterMethod() throws InterruptedException, IOException {
