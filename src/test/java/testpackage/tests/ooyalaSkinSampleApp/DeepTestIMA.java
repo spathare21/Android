@@ -1563,12 +1563,12 @@ public class DeepTestIMA {
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(11000);
+            Thread.sleep(12000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
 
-            Thread.sleep(11000);
+            Thread.sleep(1000);
 
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 30000);
@@ -1656,7 +1656,7 @@ public class DeepTestIMA {
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             po.getBackFromRecentApp(driver);
 
