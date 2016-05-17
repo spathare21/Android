@@ -92,7 +92,7 @@ public class IMABasicTests {
         Thread.sleep(10000);
 
     }
-/*
+
     @org.testng.annotations.Test
     public void IMAAdRulesPreroll() throws Exception{
         int[] locPlayButon;
@@ -539,7 +539,7 @@ public class IMABasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void IMAAdRulesPoddedMidroll() throws Exception{
         int[] locPlayButon;
