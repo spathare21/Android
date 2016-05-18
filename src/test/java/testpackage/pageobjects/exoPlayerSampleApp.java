@@ -318,7 +318,7 @@ public class exoPlayerSampleApp {
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
         System.out.println("key sent");
         System.out.println("screen lock");
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
         String command = "adb shell input keyevent KEYCODE_WAKEUP";
         String[] final_command = CommandLine.command(command);
