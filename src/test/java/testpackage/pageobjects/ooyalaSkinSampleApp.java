@@ -28,7 +28,7 @@ import java.util.Properties;
 
 public class ooyalaSkinSampleApp {
 
-    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button ;
+    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button,play ;
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -48,7 +48,7 @@ public class ooyalaSkinSampleApp {
         loc[0]=clickTextField.getLocation().getX();
         loc[1]=clickTextField.getLocation().getY();
         System.out.println(" X coordinate of the Text "+clickTextField.getLocation().getX());
-        System.out.println(" Y coordinate of the Text"+clickTextField.getLocation().getY());
+        System.out.println(" Y coordinate of the Text" + clickTextField.getLocation().getY());
         return loc;
     }
 
@@ -207,17 +207,15 @@ public class ooyalaSkinSampleApp {
     public  void pauseVideo(AndroidDriver driver) throws InterruptedException {
         System.out.println("moved to pause method");
 
-        System.out.println("replay.x value is "+replay.getX());
-        System.out.println("replay.x value is "+replay.getY());
+        System.out.println("replay.x value is " + replay.getX());
+        System.out.println("replay.x value is " + replay.getY());
 
 
-               driver.tap(1,replay.getX(),replay.getY(),2);
+               driver.tap(1, replay.getX(), replay.getY(), 2);
                 System.out.println("clicked pause");
 
 
             }
-
-
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
         System.out.println("in more method");
@@ -228,7 +226,7 @@ public class ooyalaSkinSampleApp {
        // button.click();
         Thread.sleep(2000);
         System.out.printf("more button's X  cordinates" +more.getX());
-        System.out.printf("more button's y  cordinates" +more.getY());
+        System.out.printf("more button's y  cordinates" + more.getY());
         driver.tap(1,more.getX(),more.getY()+54,2);
 
     }
@@ -256,7 +254,7 @@ public class ooyalaSkinSampleApp {
     public void clickOnCC (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         //driver.findElementByXPath("//android.widget.TextView[@text='k']");
-        driver.tap(1,cc_button.getX(),cc_button.getY(),1);
+        driver.tap(1, cc_button.getX(), cc_button.getY(), 1);
     }
 
     public void volumeButton (AndroidDriver driver)
@@ -269,7 +267,7 @@ public class ooyalaSkinSampleApp {
         Thread.sleep(2000);
         System.out.println("in enable CC method");
         driver.findElementByXPath("//android.widget.Switch[@index='4']");
-        driver.tap(1,enablecc_button.getX(),enablecc_button.getY(),2);
+        driver.tap(1, enablecc_button.getX(), enablecc_button.getY(), 2);
 
     }
 
@@ -286,11 +284,10 @@ public class ooyalaSkinSampleApp {
 
     public void playVideo (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
-        driver.tap(1,450,867,2);
+        driver.tap(1, 450, 867, 2);
     }
 
     public void seek_video (AndroidDriver driver)
-
     {
       WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
         System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>"+element);
@@ -309,8 +306,6 @@ public class ooyalaSkinSampleApp {
         System.out.println("back to SDK");
     }
 
-
-
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
 
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
@@ -328,14 +323,12 @@ public class ooyalaSkinSampleApp {
         Thread.sleep(2000);
     }
 
-
     public void screentap(AndroidDriver driver) throws InterruptedException {
         System.out.println("in screen tapped method");
         Thread.sleep(1000);
         driver.tap(1,replay.getX(),replay.getY(),2);
         System.out.println("out of the screen tapped method");
     }
-
 
     public void overlay (AndroidDriver driver)
     {
@@ -362,6 +355,17 @@ public class ooyalaSkinSampleApp {
         }
         else
             System.out.println("not displayed failed ");
+    }
+
+    public void getPlay (AndroidDriver driver){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String path  = "//android.widget.TextView[@text='h']";
+
+        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        play= ele.getLocation();
+        System.out.println("play.x value is " + play.getX());
+        System.out.println("play.y value is " + play.getY());
+
     }
 }
 

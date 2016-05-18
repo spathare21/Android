@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Sachin on 4/5/2016.
  */
 public class exoPlayerSampleApp {
-    Point replay, more, close_button, share_asset, discovery_button, cc_button, volume_button, enablecc_button;
+    Point replay, more, close_button, share_asset, discovery_button, cc_button, volume_button, enablecc_button,play;
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -58,7 +58,6 @@ public class exoPlayerSampleApp {
         String xpath = "//android.widget.TextView[@text='" + waitString + "']";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
-
 
     public void verifyOverlay(AndroidDriver driver) {
         WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
@@ -314,8 +313,6 @@ public class exoPlayerSampleApp {
         System.out.println("back to SDK");
     }
 
-
-
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
 
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
@@ -333,14 +330,12 @@ public class exoPlayerSampleApp {
         Thread.sleep(2000);
     }
 
-
     public void screentap(AndroidDriver driver) throws InterruptedException {
         System.out.println("in screen tapped method");
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         driver.tap(1,replay.getX(),replay.getY(),2);
         System.out.println("out of the screen tapped method");
     }
-
 
     public void overlay (AndroidDriver driver)
     {
@@ -367,5 +362,16 @@ public class exoPlayerSampleApp {
         }
         else
             System.out.println("not displayed failed ");
+    }
+
+    public void getPlay (AndroidDriver driver){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String path  = "//android.widget.TextView[@text='h']";
+
+        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        play= ele.getLocation();
+        System.out.println("play.x value is " + play.getX());
+        System.out.println("play.y value is " + play.getY());
+
     }
 }
