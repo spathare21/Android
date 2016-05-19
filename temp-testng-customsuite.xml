@@ -5,8 +5,8 @@
         <classes>
 
 
-            <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
-            <class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>
+           <!-- <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
+            <class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>-->
             <!--<class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>-->
             <!--<class name="testpackage.tests.freewheelsampleapp.BasicTests"/>-->
 
@@ -33,7 +33,7 @@
 
             <class name="testpackage.tests.IMASampleApp.DeepTests"/>
 
-            <class name="testpackage.tests.IMASampleApp.BasicTests"/>
+            <!--<class name="testpackage.tests.IMASampleApp.BasicTests"/>-->
 
         </classes>
     </test> <!-- AppiumTest -->
