@@ -7,16 +7,16 @@
 
             <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
             <class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>
-            <class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>
-            <class name="testpackage.tests.freewheelsampleapp.BasicTests"/>
+            <!--<class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.BasicTests"/>-->
 
-            <class name="testpackage.tests.freewheelsampleapp.DeepTests"/>
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests"/>-->
 
              <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
 
-            <class name="testpackage.tests.freewheelsampleapp.DeepTests"/>
-            <class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>
-             <class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>-->
+             <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>-->
              <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests4"/>-->
             <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
 
@@ -31,9 +31,9 @@
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
 
-            <!--<class name="testpackage.tests.IMASampleApp.DeepTests"/>-->
+            <class name="testpackage.tests.IMASampleApp.DeepTests"/>
 
-           <!-- <class name="testpackage.tests.IMASampleApp.BasicTests"/> -->
+            <class name="testpackage.tests.IMASampleApp.BasicTests"/>
 
         </classes>
     </test> <!-- AppiumTest -->

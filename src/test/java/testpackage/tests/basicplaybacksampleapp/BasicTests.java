@@ -244,7 +244,7 @@ public class BasicTests {
         }
     }
 
-    @org.testng.annotations.Test
+/*    @org.testng.annotations.Test
     public void MP4VideoTest() throws Exception{
 
         try {
@@ -460,7 +460,7 @@ public class BasicTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void VASTADMidRollTest() throws Exception{
@@ -520,7 +520,7 @@ public class BasicTests {
         }
     }
 
-    @org.testng.annotations.Test
+ /*   @org.testng.annotations.Test
     public void VASTAdWrapperTest() throws Exception{
 
         try {
@@ -796,7 +796,7 @@ public class BasicTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void MultiAdCombinationTest() throws Exception{

@@ -313,7 +313,7 @@ public class DeepTests2 {
 //
 //
 //    }
-
+/*
     @org.testng.annotations.Test
     public void OoyalaAdPostroll() throws Exception {
 
@@ -361,7 +361,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(1500);
 
-            /*
+            *//*
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
             String[] dimensionsarray = dimensions.split(",");
@@ -409,7 +409,7 @@ public class DeepTests2 {
 
             // Ad started again event verification
 //            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-//            Thread.sleep(3000);*/
+//            Thread.sleep(3000);*//*
 
             // AD completed event verificatio
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -461,7 +461,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
             Thread.sleep(2000);
-            /*
+            *//*
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
             String[] dimensionsarray=dimensions.split(",");
@@ -505,7 +505,7 @@ public class DeepTests2 {
 
             // ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
-            Thread.sleep(3000);*/
+            Thread.sleep(3000);*//*
 
 
 
@@ -572,7 +572,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
 
             Thread.sleep(1000);
-            /*
+            *//*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -614,7 +614,7 @@ public class DeepTests2 {
 
             po.playInNormalScreen(driver);
 
-            //ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);*/
+            //ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);*//*
 
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
@@ -688,7 +688,7 @@ public class DeepTests2 {
 
             ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
             Thread.sleep(2000);
-            /*
+            *//*
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
             //System.out.println(" Dimensions are "+dimensions);
@@ -733,7 +733,7 @@ public class DeepTests2 {
 
             //verifing event for Ad start playing
             //ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
-            Thread.sleep(3000);*/
+            Thread.sleep(3000);*//*
 
 
 
@@ -748,7 +748,7 @@ public class DeepTests2 {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void multiAdCombination() throws Exception {
