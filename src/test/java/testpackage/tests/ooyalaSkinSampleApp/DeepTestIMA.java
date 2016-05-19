@@ -93,7 +93,7 @@ public class DeepTestIMA {
     }
 
 
-    @org.testng.annotations.Test
+/*    @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesPreroll() throws Exception {
         int[] locPlayButon;
 
@@ -848,7 +848,7 @@ public class DeepTestIMA {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedMidroll() throws Exception{
@@ -1678,7 +1678,7 @@ public class DeepTestIMA {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+/*
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPreMidPostSkippable() throws Exception {
         int[] locPlayButon;
@@ -1888,5 +1888,5 @@ public class DeepTestIMA {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 }
