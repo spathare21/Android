@@ -341,7 +341,7 @@ public class DeepTests3 {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_cuePointOff_leanmore() throws Exception{
         try {
@@ -486,7 +486,7 @@ public class DeepTests3 {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
 /*
   @org.testng.annotations.Test

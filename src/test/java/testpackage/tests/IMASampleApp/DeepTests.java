@@ -94,7 +94,7 @@ public class DeepTests {
 
     }
 
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void IMAAdRulePreroll() throws Exception{
 
         try {
@@ -746,7 +746,7 @@ public class DeepTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void IMAPoddedPreMidPostroll() throws Exception{
@@ -916,7 +916,7 @@ public class DeepTests {
         }
     }
 
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void IMASkippable() throws Exception{
 
         try {
@@ -1024,7 +1024,7 @@ public class DeepTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void IMAApplication_Configured() throws Exception{
@@ -1133,7 +1133,7 @@ public class DeepTests {
         }
     }
 
-    @org.testng.annotations.Test
+   /* @org.testng.annotations.Test
     public void IMA_PreMidPost_skippable() throws Exception{
 
         try {
@@ -1256,7 +1256,7 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+*/
    /* @org.testng.annotations.Test
     public void IMASkippable_skip() throws Exception{
 
