@@ -63,6 +63,7 @@ public class exoPlayerSampleApp {
         WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
         if (element.isDisplayed()) {
             System.out.println("overlay displayed");
+            Assert.assertEquals(true, element.isDisplayed());
         }
     }
 

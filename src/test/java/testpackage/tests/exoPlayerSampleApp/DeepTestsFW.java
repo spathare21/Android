@@ -92,7 +92,7 @@ public class DeepTestsFW {
 
     }
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void FreeWheelIntegrationPreRoll() throws Exception{
 
         try {
@@ -1033,10 +1033,10 @@ public class DeepTestsFW {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Freewheel PreMidPost");
+            po.clickBasedOnText(driver, "Freewheel PreMidPost Overlay");
             Thread.sleep(2000);
 
-            System.out.println("<<<<<<<<<<<<<clicked on based text>>>>>>>>>>>>>");
+            System.out.println("<<<<<<<<<<<<<clicked on PreMidPost Overlay>>>>>>>>>>>>>");
 
 
             //verify if player was loaded

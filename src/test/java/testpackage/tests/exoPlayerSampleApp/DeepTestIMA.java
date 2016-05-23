@@ -987,9 +987,13 @@ public class DeepTestIMA {
                 Thread.sleep(5000);
 
                 //clicking on view area
-                WebElement viewarea = driver.findElementByClassName("android.view.View");
-                viewarea.click();
-                Thread.sleep(1500);
+                // WebElement viewarea = driver.findElementByClassName("android.view.View");
+                //viewarea.click();
+                //Thread.sleep(1500);
+
+                //Tapping on screen
+                po.screentap(driver);
+                Thread.sleep(1000);
 
                 // clicking on more button
                 po.moreButton(driver);
@@ -1065,7 +1069,7 @@ public class DeepTestIMA {
             }
         }
 
-        @org.testng.annotations.Test
+       @org.testng.annotations.Test
         public void IMAAdRulesPoddedMidroll() throws Exception{
             int[] locPlayButon;
 
@@ -1456,7 +1460,7 @@ public class DeepTestIMA {
             }
         }
 
-        @org.testng.annotations.Test
+      @org.testng.annotations.Test
         public void IMAAdRulesPoddedPreMidPost() throws Exception{
             int[] locPlayButon;
 
