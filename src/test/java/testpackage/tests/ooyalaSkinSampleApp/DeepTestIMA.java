@@ -92,8 +92,7 @@ public class DeepTestIMA {
 
     }
 
-
-/*    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesPreroll() throws Exception {
         int[] locPlayButon;
 
@@ -283,7 +282,6 @@ public class DeepTestIMA {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
 
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesMidroll() throws Exception{
@@ -848,9 +846,9 @@ public class DeepTestIMA {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
-/*    @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedMidroll() throws Exception{
         int[] locPlayButon;
 
@@ -1045,7 +1043,6 @@ public class DeepTestIMA {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
 
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedPostroll() throws Exception{
@@ -1245,7 +1242,7 @@ public class DeepTestIMA {
         }
     }
 
-  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedPreMidPostroll() throws Exception{
         int[] locPlayButon;
 
@@ -1492,7 +1489,8 @@ public class DeepTestIMA {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
+
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMASkippable() throws Exception{
         int[] locPlayButon;
@@ -1542,7 +1540,7 @@ public class DeepTestIMA {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresenceOfText(driver,"h");
+            po.waitForPresenceOfText(driver, "h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
@@ -1659,18 +1657,6 @@ public class DeepTestIMA {
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
-            Thread.sleep(1500);
-
-            po.getBackFromRecentApp(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
-
-            po.powerKeyClick(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
-
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
@@ -1681,7 +1667,7 @@ public class DeepTestIMA {
             ScreenshotDevice.screenshot(driver);
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPreMidPostSkippable() throws Exception {
         int[] locPlayButon;
@@ -1722,6 +1708,8 @@ public class DeepTestIMA {
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
             Thread.sleep(2000);
+
+            System.out.println("<<<<<<<<<<<<<<<<Clicked on IMA Pre, Mid and Post Skippable>>>>>>>>>>>>>>>>>");
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
@@ -1891,5 +1879,5 @@ public class DeepTestIMA {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 }
