@@ -97,7 +97,6 @@ public class DeepTestFreewheel {
     }
 
 
-
     @org.testng.annotations.Test
     public void FreeWheelIntegrationPreRoll() throws Exception{
 
@@ -1135,7 +1134,7 @@ public class DeepTestFreewheel {
         }
     }
 
-  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelIntegrationOverlay() throws Exception{
 
         try {

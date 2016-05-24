@@ -92,8 +92,7 @@ public class DeepTestIMA {
 
     }
 
-
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesPreroll() throws Exception {
         int[] locPlayButon;
 
@@ -283,7 +282,6 @@ public class DeepTestIMA {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
 
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesMidroll() throws Exception{
@@ -1046,7 +1044,6 @@ public class DeepTestIMA {
         }
     }
 
-
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedPostroll() throws Exception{
         int[] locPlayButon;
@@ -1245,7 +1242,7 @@ public class DeepTestIMA {
         }
     }
 
-  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedPreMidPostroll() throws Exception{
         int[] locPlayButon;
 
@@ -1534,6 +1531,8 @@ public class DeepTestIMA {
             po.clickBasedOnText(driver, "IMA Skippable");
             Thread.sleep(2000);
 
+            System.out.println("<<<<<<<<<<<<<<<<Clicked on IMA Skippable>>>>>>>>>>>>>>>>>");
+
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
@@ -1541,7 +1540,7 @@ public class DeepTestIMA {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresenceOfText(driver,"h");
+            po.waitForPresenceOfText(driver, "h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
@@ -1557,25 +1556,25 @@ public class DeepTestIMA {
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Pre - Ad Started to Play ", 30000);
 
-            Thread.sleep(11000);
+            Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 35000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 36000);
 
             //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(11000);
+            Thread.sleep(10000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 45000);
 
-            Thread.sleep(11000);
+            Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 50000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 20000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 51000);
             Thread.sleep(2000);
 
             po.replayVideo(driver);
@@ -1589,12 +1588,13 @@ public class DeepTestIMA {
             po.pauseVideo(driver);
             // verifing video get paused
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 3000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            Thread.sleep(1000);
 
             po.powerKeyClick(driver);
 
@@ -1657,18 +1657,6 @@ public class DeepTestIMA {
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
-
-            po.powerKeyClick(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
-
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
@@ -1720,6 +1708,8 @@ public class DeepTestIMA {
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
             Thread.sleep(2000);
+
+            System.out.println("<<<<<<<<<<<<<<<<Clicked on IMA Pre, Mid and Post Skippable>>>>>>>>>>>>>>>>>");
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
