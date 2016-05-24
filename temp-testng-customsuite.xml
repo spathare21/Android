@@ -25,7 +25,7 @@
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestSkinPlayback"/>-->
 
             <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
-            <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
+            <!--<class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->
 
             <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>-->
@@ -35,6 +35,7 @@
             <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTestIMA"/>-->
 
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepBasicPlayback"/>
 
             <!--<class name="testpackage.tests.IMASampleApp.DeepTests"/>-->
             <!-- <class name="testpackage.tests.IMASampleApp.BasicTests"/> -->

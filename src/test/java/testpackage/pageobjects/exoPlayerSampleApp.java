@@ -213,14 +213,11 @@ public class exoPlayerSampleApp {
 
         System.out.println("replay.x value is "+replay.getX());
         System.out.println("replay.x value is "+replay.getY());
-
-
         driver.tap(1,replay.getX(),replay.getY(),2);
         System.out.println("clicked pause");
 
 
     }
-
 
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
@@ -351,28 +348,60 @@ public class exoPlayerSampleApp {
             System.out.println("not diplayed failed ");
     }
 
-    public void discoverUpNext (AndroidDriver driver)
-    {
+    public void discoverUpNext (AndroidDriver driver) throws InterruptedException {
         //System.out.println("Discovery up next banner displayed");
-        List<WebElement> list = driver.findElementsByXPath("//android.widget.FrameLayout[@resource-id='com.ooyala.sample.SkinCompleteSampleApp:id/ooyalaSkin']");
-        List<WebElement> list1 = list.get(0).findElements(By.className("android.view.View"));
-        if (list1.get(2).isDisplayed())
+       //  List<WebElement> list = driver.findElementsByXPath("//android.widget.FrameLayout[@resource-id='com.ooyala.sample.SkinCompleteSampleApp:id/ooyalaSkin']");
+       // List<WebElement> list1 = list.get(0).findElements(By.className("android.view.View"));
+        WebDriverWait wait = new WebDriverWait(driver,80);
+        String  path = "//android.widget.ImageView";
+        WebElement ele =  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        Assert.assertEquals(true, ele.isDisplayed());
+        if (ele.isDisplayed())
         {
             System.out.println("Discovery is displayed");
+            Thread.sleep(1000);
+            WebElement discoveryclose = driver.findElement(By.xpath("//android.widget.TextView[@text='e']"));
+            discoveryclose.click();
+            System.out.println("Discovery is closed");
 
         }
         else
             System.out.println("not displayed failed ");
     }
 
-    public void getPlay (AndroidDriver driver){
+    public void getPlay (AndroidDriver driver) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='h']";
-
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         play= ele.getLocation();
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
+        Thread.sleep(1000);
+        driver.tap(1, play.getX(),play.getY(),0);
+    }
 
+    public void screentapping(AndroidDriver driver) throws InterruptedException{
+        System.out.println("Tapping using Play coordinates");
+        Thread.sleep(1000);
+        driver.tap(1,play.getX(),play.getY(),0);
+        System.out.println("Tapped on screen");
+    }
+
+    public void pausingVideo(AndroidDriver driver) throws InterruptedException{
+        System.out.println("Pausing Video using play coordinate");
+        Thread.sleep(1000);
+        driver.tap(1,play.getX(),play.getY(),0);
+        System.out.println("Paused Video using play coordinates");
+    }
+
+    public void discoveryTray(AndroidDriver driver) throws InterruptedException{
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String path = "//android.widget.TextView[@text='Discovery']";
+        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        System.out.println("Discovery tray displayed");
+        Assert.assertEquals(true, ele.isDisplayed());
+        WebElement discoveryclose = driver.findElement(By.xpath("//android.widget.TextView[@text='e']"));
+        discoveryclose.click();
+        System.out.println("Discovery tray closed");
     }
 }
