@@ -35,6 +35,8 @@
             <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTestIMA"/>-->
 
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepTests2BasicPlayback"/>
+
             <class name="testpackage.tests.exoPlayerSampleApp.DeepBasicPlayback"/>
 
             <!--<class name="testpackage.tests.IMASampleApp.DeepTests"/>-->

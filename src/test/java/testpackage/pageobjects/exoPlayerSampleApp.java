@@ -377,20 +377,20 @@ public class exoPlayerSampleApp {
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
         Thread.sleep(1000);
-        driver.tap(1, play.getX(),play.getY(),0);
+        driver.tap(1, play.getX(),play.getY(),2);
     }
 
     public void screentapping(AndroidDriver driver) throws InterruptedException{
         System.out.println("Tapping using Play coordinates");
         Thread.sleep(1000);
-        driver.tap(1,play.getX(),play.getY(),0);
+        driver.tap(1,play.getX(),play.getY(),2);
         System.out.println("Tapped on screen");
     }
 
     public void pausingVideo(AndroidDriver driver) throws InterruptedException{
         System.out.println("Pausing Video using play coordinate");
         Thread.sleep(1000);
-        driver.tap(1,play.getX(),play.getY(),0);
+        driver.tap(1,play.getX(),play.getY(),2);
         System.out.println("Paused Video using play coordinates");
     }
 

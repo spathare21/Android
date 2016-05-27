@@ -683,7 +683,7 @@ public class DeepBasicPlayback {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: PLAYING", "Now player is ready", 60000);
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             po.powerKeyClick(driver);
             // verifing event that player has been get ready
@@ -1138,15 +1138,15 @@ public class DeepBasicPlayback {
 
     }
 
-    // can't automate becasue size of video is too long.
-    //@org.testng.annotations.Test
+    // TODO can't automate becasue size of video is too long.
+    @org.testng.annotations.Test
     public void Clear_HLS_High_Profile() throws Exception
     {
 
     }
 
-    // can't automate becasue size of video is too long.
-    //@org.testng.annotations.Test
+    // TODO can't automate becasue size of video is too long.
+    @org.testng.annotations.Test
     public void Clear_HLS_Main_Profile() throws Exception
     {
 

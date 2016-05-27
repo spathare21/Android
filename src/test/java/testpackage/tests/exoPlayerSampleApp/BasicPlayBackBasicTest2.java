@@ -634,6 +634,8 @@ public class BasicPlayBackBasicTest2 {
             //Ad Started Verification
             EventVerification ev = new EventVerification();
 
+
+
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
 
