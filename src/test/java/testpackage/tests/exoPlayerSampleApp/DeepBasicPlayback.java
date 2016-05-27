@@ -258,7 +258,7 @@ public class DeepBasicPlayback {
 
             // tapping on screen for get the scrubber bar and play/pause button
             po.screentap(driver);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
 
             // playing the video

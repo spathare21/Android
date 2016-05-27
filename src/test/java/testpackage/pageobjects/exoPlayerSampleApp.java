@@ -287,7 +287,7 @@ public class exoPlayerSampleApp {
 
     public void playVideo (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
-        driver.tap(1,450,867,2);
+        driver.tap(1,play.getX(),play.getY(),2);
     }
 
     public void seek_video (AndroidDriver driver)
