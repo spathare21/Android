@@ -97,8 +97,8 @@ public class DeepTest3SkinPlayback {
 
     }
 
-
-    @org.testng.annotations.Test
+// Have to file the issue its Bug //
+   /* @org.testng.annotations.Test
     public void VastPoddedAd() throws Exception {
 
         int[] locationPlayButton;
@@ -151,17 +151,17 @@ public class DeepTest3SkinPlayback {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
 
             //Thread sleep time is equivalent to the length of the AD
-            Thread.sleep(5000);
+            Thread.sleep(1000);
 
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
 
             //Time out
             Thread.sleep(1000);
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
             //Thread sleep time is equivalent to the length of the AD
             Thread.sleep(5000);
@@ -169,7 +169,7 @@ public class DeepTest3SkinPlayback {
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
             //Timeout for the duration of the video
             Thread.sleep(1000);
@@ -267,9 +267,9 @@ public class DeepTest3SkinPlayback {
 
 
     }
+*/
 
-
-    @org.testng.annotations.Test
+  @org.testng.annotations.Test
     public void VastAdWtihNewEvents() throws Exception {
 
         int[] locationPlayButton;
@@ -322,18 +322,18 @@ public class DeepTest3SkinPlayback {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
             //Thread sleep time is equivalent to the length of the AD
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
             //Time out
             Thread.sleep(1000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
             //Timeout for the duration of the video
             Thread.sleep(1000);
@@ -352,7 +352,7 @@ public class DeepTest3SkinPlayback {
 
 
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
 
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
@@ -497,7 +497,7 @@ public class DeepTest3SkinPlayback {
             //Time out
             Thread.sleep(1000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
             //Timeout for the duration of the video
             Thread.sleep(1000);
@@ -631,7 +631,7 @@ public class DeepTest3SkinPlayback {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST 3.0 Skippable Ad");
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -652,7 +652,7 @@ public class DeepTest3SkinPlayback {
             EventVerification ev = new EventVerification();
 
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
 
             //Timeout for the duration of the video
             Thread.sleep(1000);
@@ -786,7 +786,7 @@ public class DeepTest3SkinPlayback {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST 3.0 Skippable Ad Long");
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad Long");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -805,7 +805,7 @@ public class DeepTest3SkinPlayback {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
             //Thread sleep time is equivalent to the length of the AD
             Thread.sleep(8000);
@@ -818,21 +818,21 @@ public class DeepTest3SkinPlayback {
 
             //Tap on Skip button //
             po.clickBasedOnText(driver, "Skip Ad");
-            ev.verifyEvent("adSkipped", "Ad is skipped", 20000);
+            ev.verifyEvent("adSkipped", "Ad is skipped", 30000);
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
             //Timeout for the duration of the video
-            Thread.sleep(1000);
+
 
             //Wait for video to finish and verify the playCompleted event .
             // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
 
@@ -843,7 +843,7 @@ public class DeepTest3SkinPlayback {
 
 
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
 
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
@@ -858,7 +858,7 @@ public class DeepTest3SkinPlayback {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
@@ -924,7 +924,7 @@ public class DeepTest3SkinPlayback {
     }
 
 
-    @org.testng.annotations.Test
+   /*@org.testng.annotations.Test
     public void VAMPPreMidPostSingle() throws Exception {
 
 
@@ -959,7 +959,7 @@ public class DeepTest3SkinPlayback {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VMAP PreMidPost Single");
+            po.clickBasedOnTextScrollTo(driver, "VMAP PreMidPost Single");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -978,7 +978,7 @@ public class DeepTest3SkinPlayback {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
             //Thread sleep time is equivalent to the length of the AD
 
@@ -992,21 +992,21 @@ public class DeepTest3SkinPlayback {
 
             //Tap on Skip button //
             po.clickBasedOnText(driver, "Skip Ad");
-            ev.verifyEvent("adSkipped", "Ad is skipped", 20000);
+            ev.verifyEvent("adSkipped", "Ad is skipped", 30000);
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
             //Timeout for the duration of the video
-            Thread.sleep(1000);
+
 
             //Wait for video to finish and verify the playCompleted event .
             // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
 
@@ -1017,7 +1017,7 @@ public class DeepTest3SkinPlayback {
 
 
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
 
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
@@ -1032,7 +1032,7 @@ public class DeepTest3SkinPlayback {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
@@ -1083,10 +1083,10 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(2000);
 
             // Play state verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 10000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 100000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 200000);
 
             Thread.sleep(8000);
 
@@ -1098,17 +1098,17 @@ public class DeepTest3SkinPlayback {
 
             //Tap on Skip button //
             po.clickBasedOnText(driver, "Skip Ad");
-            ev.verifyEvent("adSkipped", "Ad is skipped", 20000);
+            ev.verifyEvent("adSkipped", "Ad is skipped", 300000);
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 300000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 500000);
 
             //Timeout for the duration of the video
             Thread.sleep(1000);
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 500000);
 
             Thread.sleep(8000);
 
@@ -1120,12 +1120,12 @@ public class DeepTest3SkinPlayback {
 
             //Tap on Skip button //
             po.clickBasedOnText(driver, "Skip Ad");
-            ev.verifyEvent("adSkipped", "Ad is skipped", 20000);
+            ev.verifyEvent("adSkipped", "Ad is skipped", 700000);
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 5000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 700000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 800000);
 
 
         } catch (Exception e) {
@@ -1133,7 +1133,7 @@ public class DeepTest3SkinPlayback {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 }
 
 

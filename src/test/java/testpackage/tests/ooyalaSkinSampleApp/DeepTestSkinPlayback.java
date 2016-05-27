@@ -935,8 +935,8 @@ public class DeepTestSkinPlayback {
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
+         //   driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+         //   Thread.sleep(1000);
 
 
 

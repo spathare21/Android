@@ -421,7 +421,10 @@ public class ooyalaSkinSampleApp {
         //ele.click();
     }
 
+    public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) {
 
+        driver.scrollTo(clickText).click();
+    }
 
 
     public void getPlay (AndroidDriver driver){
