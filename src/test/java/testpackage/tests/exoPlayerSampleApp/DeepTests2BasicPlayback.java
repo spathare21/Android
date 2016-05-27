@@ -92,7 +92,7 @@ public class DeepTests2BasicPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VAST2_Preroll() throws Exception{
         try {
 
@@ -300,7 +300,7 @@ public class DeepTests2BasicPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VAST2_Midroll() throws Exception{
         try {
 
@@ -509,7 +509,7 @@ public class DeepTests2BasicPlayback {
     }
 
     //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3730
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
 
@@ -719,7 +719,7 @@ public class DeepTests2BasicPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VAST2_AdWrapper() throws Exception{
         try {
 
@@ -928,7 +928,7 @@ public class DeepTests2BasicPlayback {
     }
 
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void Ooyala_Preroll() throws Exception{
         try {
 
@@ -1136,7 +1136,7 @@ public class DeepTests2BasicPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void Ooyala_Midroll() throws Exception{
         try {
 
