@@ -28,7 +28,7 @@
            <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestIMA"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestFreewheel"/>-->
             <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestSkinPlayback"/>
-            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTests2SkinPlayback"/>-->
+            <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTest2SkinPlayback"/>
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTest3SkinPlayback"/>-->
 
 

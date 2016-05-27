@@ -100,7 +100,7 @@ public class DeepTest2SkinPlayback {
 
 
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void VastAdPreroll () throws Exception{
 
         int[] locationPlayButton;
@@ -153,7 +153,7 @@ public class DeepTest2SkinPlayback {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
             //Thread sleep time is equivalent to the length of the AD
             Thread.sleep(5000);
@@ -165,7 +165,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(1000);
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Timeout for the duration of the video
             Thread.sleep(1000);
@@ -185,7 +185,7 @@ public class DeepTest2SkinPlayback {
 
 
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
 
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
@@ -318,7 +318,7 @@ public class DeepTest2SkinPlayback {
 
            //Play Started Verification
            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 1000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
 
             //Thread sleep time is equivalent to the length of the half of the video
            // Thread.sleep(1000);
@@ -331,9 +331,6 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(1000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
-
-            //  Tap again //
-
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
@@ -358,7 +355,7 @@ public class DeepTest2SkinPlayback {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
@@ -409,7 +406,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             Thread.sleep(2000);
 
@@ -650,7 +647,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(1000);
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Timeout for the duration of the video
             Thread.sleep(1000);
@@ -818,7 +815,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(1000);
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Timeout for the duration of the video
 
@@ -920,7 +917,7 @@ public class DeepTest2SkinPlayback {
     }
 
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void OoyalaAdMidroll () throws  Exception{
 
         int[] locationPlayButton;
@@ -973,7 +970,7 @@ public class DeepTest2SkinPlayback {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 1000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             // Thread.sleep(1000);
@@ -983,15 +980,19 @@ public class DeepTest2SkinPlayback {
             //Wait for video to finish and verify the playCompleted event .
             // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
 
-            Thread.sleep(1000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-            //  Tap again //
-
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //  Tap again //
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
 
 
 
@@ -1013,7 +1014,7 @@ public class DeepTest2SkinPlayback {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
@@ -1310,7 +1311,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(1000);
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             Thread.sleep(1000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
@@ -1339,7 +1340,7 @@ public class DeepTest2SkinPlayback {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
@@ -1390,7 +1391,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             // Play state verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 100000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 50000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
