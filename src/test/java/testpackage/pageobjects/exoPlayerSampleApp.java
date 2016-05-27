@@ -69,10 +69,9 @@ public class exoPlayerSampleApp {
 
     public void skipAd(AndroidDriver driver) throws InterruptedException {
         System.out.println("in skip ad");
-        Thread.sleep(7000);
-        WebElement element = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.Button[@index='0']")));
-        element.click();
-        // driver.tap(1,585,1524,2);
+
+        driver.findElementByXPath("//android.widget.TextView[@name='Skip Ad']").click();
+                // driver.tap(1,585,1524,2);
     }
 
     public void adPause(AndroidDriver driver) {
