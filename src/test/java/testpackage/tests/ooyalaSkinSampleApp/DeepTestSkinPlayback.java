@@ -158,9 +158,6 @@ public class DeepTestSkinPlayback {
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
-            Thread.sleep(1000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
 
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
@@ -180,8 +177,6 @@ public class DeepTestSkinPlayback {
 
             Thread.sleep(2000);
 
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
 
@@ -341,7 +336,7 @@ public class DeepTestSkinPlayback {
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             //Click on the web area so that player screen shows up
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
 
@@ -367,12 +362,11 @@ public class DeepTestSkinPlayback {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
+
 
             //Click on option button
             po.clickBasedOnText(driver, "f");
@@ -552,10 +546,8 @@ public class DeepTestSkinPlayback {
 
           //  Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(52000);
+            Thread.sleep(2000);
 
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
 
@@ -734,14 +726,13 @@ public class DeepTestSkinPlayback {
             po.powerKeyClick(driver);
             //ev.verifyEvent("READY" , "Now player is ready", 30000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 3000);
             Thread.sleep(2000);
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
+
 
             //Click on option button
             po.clickBasedOnText(driver, "f");
@@ -792,7 +783,7 @@ public class DeepTestSkinPlayback {
 
             // Verify the video resume event //
             ev.verifyEvent("PLAYING ", "Video is resume", 30000);
-            Thread.sleep(50000);
+           // Thread.sleep(50000);
 
            // Now again tap to pause the video //
            /* driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
@@ -988,7 +979,7 @@ public class DeepTestSkinPlayback {
             Thread.sleep(2000);
 
             // Verify the video resume event //
-            ev.verifyEvent("PLAYING ", "Video is resume", 2000);
+            ev.verifyEvent("PLAYING ", "Video is resume", 30000);
             //Thread.sleep(50000);
 
             // Now again tap to pause the video //
@@ -1033,7 +1024,7 @@ public class DeepTestSkinPlayback {
             // Verify for Replay Event //
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);*/
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
 
         } catch (Exception e) {
