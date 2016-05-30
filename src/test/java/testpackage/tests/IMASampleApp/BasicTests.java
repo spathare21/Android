@@ -91,7 +91,7 @@ public class BasicTests {
         Thread.sleep(10000);
 
     }
-/*
+
     @org.testng.annotations.Test
     public void IMAAdRulePreroll() throws Exception{
 
@@ -249,7 +249,7 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void IMAPoddedPreroll() throws Exception{
 

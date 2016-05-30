@@ -965,6 +965,7 @@ public class BasicTestsGoogleIMAIntegration {
             ScreenshotDevice.screenshot(driver);
         }
     }
+/*
 
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAApplicationConfigured() throws Exception{
@@ -1050,5 +1051,6 @@ public class BasicTestsGoogleIMAIntegration {
             ScreenshotDevice.screenshot(driver);
         }
     }
+*/
 
 }
