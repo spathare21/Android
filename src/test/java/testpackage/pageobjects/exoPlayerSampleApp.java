@@ -50,7 +50,9 @@ public class exoPlayerSampleApp {
 
     public void waitForPresenceOfText(AndroidDriver driver,String waitString) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
+
         String xpath = "//android.widget.TextView[@text='" + waitString + "']";
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 

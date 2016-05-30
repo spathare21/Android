@@ -7,11 +7,14 @@
 
 
             <!--<class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>-->
+
             <class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>
             <class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>
 
            <!-- <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
             <class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>-->
+          <!--<class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>-->
+
             <!--<class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>-->
 
             <!--<class name="testpackage.tests.freewheelsampleapp.BasicTests"/>-->
@@ -35,6 +38,7 @@
             <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
 
+
             <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
 	        <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
@@ -43,6 +47,16 @@
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
+
+             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
+	        <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
+            <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
+            <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
+            <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
+
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
 
             <class name="testpackage.tests.IMASampleApp.DeepTests"/>

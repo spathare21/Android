@@ -85,6 +85,7 @@ public class ooyalaSkinSampleApp {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         String xpath = "//android.widget.TextView[@text='" + waitString + "']";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+
     }
 
     public void getXYSeekBarAndSeek(AndroidDriver driver, int widthOffSet1, int widthOffSet2) {
