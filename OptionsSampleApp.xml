@@ -6,7 +6,8 @@
 
 
 
-            <class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>
+
+            <class name="testpackage.tests.optionsSampleApp.BasicTests"/>
 
 
         </classes>

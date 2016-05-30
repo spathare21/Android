@@ -6,8 +6,8 @@
 
 
 
-<!--<class name="testpackage.tests.IMASampleApp.BasicTests"/>-->
-<class name="testpackage.tests.IMASampleApp.DeepTests"/>
+            <class name="testpackage.tests.IMASampleApp.BasicTests"/>
+            <class name="testpackage.tests.IMASampleApp.DeepTests"/>
 
 
         </classes>
