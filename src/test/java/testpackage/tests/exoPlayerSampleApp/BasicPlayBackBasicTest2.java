@@ -90,7 +90,7 @@ public class BasicPlayBackBasicTest2 {
         Thread.sleep(10000);
 
     }
-/*
+
     //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void Multi_Ad() throws Exception{
@@ -574,9 +574,9 @@ public class BasicPlayBackBasicTest2 {
             ScreenshotDevice.screenshot(driver);
         }
 
-    }*/
+    }
 
- /*   // TODO Handle 15 minutes long video
+    // TODO Handle 15 minutes long video
     @org.testng.annotations.Test
     public void VAST_AD_Wrapper() throws Exception{
         try {
@@ -735,5 +735,5 @@ public class BasicPlayBackBasicTest2 {
             ScreenshotDevice.screenshot(driver);
         }
 
-    }*/
+    }
 }

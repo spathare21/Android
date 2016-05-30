@@ -488,7 +488,7 @@ public class DeepTests3 {
         }
     }
 
-/*
+
   @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_adControlsOff_leanmore() throws Exception{
         try {
@@ -536,7 +536,7 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            WebDriverWait wait = new WebDriverWait(driver,30);
+            /*WebDriverWait wait = new WebDriverWait(driver,30);
             wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
             System.out.println("learn more displayed");
             Thread.sleep(1000);
@@ -566,7 +566,7 @@ public class DeepTests3 {
 
             // verifing event that get back to SDK and ad start playing again
             ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
-
+*/
 
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
@@ -582,7 +582,7 @@ public class DeepTests3 {
 
 
 
-            po.clickOnViewarea(driver);
+           /* po.clickOnViewarea(driver);
             ev.verifyEvent("stateChanged - state: SUSPENDED","click on screen and click through",3000);
 
             Thread.sleep(5000);
@@ -607,7 +607,7 @@ public class DeepTests3 {
             driver.navigate().back();
 
             // verifing event that get back to SDK and ad start playing again
-            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+            ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);*/
 
 
 
@@ -618,7 +618,7 @@ public class DeepTests3 {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            po.clickOnViewarea(driver);
+            /*po.clickOnViewarea(driver);
             ev.verifyEvent("stateChanged - state: SUSPENDED","click on screen and click through",3000);
 
             Thread.sleep(5000);
@@ -643,9 +643,9 @@ public class DeepTests3 {
 
             // verifing event that get back to SDK and ad start playing again
             ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
+*/
 
-
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -658,7 +658,7 @@ public class DeepTests3 {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
 
     }
