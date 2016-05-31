@@ -92,6 +92,7 @@ public class DeepTestIMA {
 
         }
 
+
         @org.testng.annotations.Test
         public void IMAAdRulesPreroll() throws Exception{
             int[] locPlayButon;
@@ -152,7 +153,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+               // po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -339,7 +340,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+              // po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -531,7 +532,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+              //  po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -661,6 +662,7 @@ public class DeepTestIMA {
             }
         }
 
+
         @org.testng.annotations.Test
         public void IMASkippable() throws Exception{
             int[] locPlayButon;
@@ -720,7 +722,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+             //   po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -920,7 +922,7 @@ public class DeepTestIMA {
                 Thread.sleep(2000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+               // po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -1128,7 +1130,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+               // po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -1325,7 +1327,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+              //  po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -1519,7 +1521,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+               // po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();
@@ -1747,7 +1749,7 @@ public class DeepTestIMA {
                 Thread.sleep(1000);
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver,"h");
+               // po.clickBasedOnText(driver,"h");
 
                 //Ad Started Verification
                 EventVerification ev = new EventVerification();

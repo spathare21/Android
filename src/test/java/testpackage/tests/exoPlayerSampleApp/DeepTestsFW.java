@@ -136,7 +136,7 @@ public class DeepTestsFW {
             Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+          //  po.clickBasedOnText(driver,"h");
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -303,7 +303,7 @@ public class DeepTestsFW {
             Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+           // po.clickBasedOnText(driver, "h");
 
 
             //Play Started Verification
@@ -470,7 +470,7 @@ public class DeepTestsFW {
             Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+           // po.clickBasedOnText(driver, "h");
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -638,7 +638,7 @@ public class DeepTestsFW {
             Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+           // po.clickBasedOnText(driver, "h");
 
 
             //Play Started Verification
@@ -816,7 +816,7 @@ public class DeepTestsFW {
             Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+           // po.clickBasedOnText(driver, "h");
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -883,7 +883,7 @@ public class DeepTestsFW {
             Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+           // po.clickBasedOnText(driver, "h");
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -1056,7 +1056,7 @@ public class DeepTestsFW {
             Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+          //  po.clickBasedOnText(driver, "h");
 
 
             //Play Started Verification

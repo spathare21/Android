@@ -92,7 +92,7 @@ public class DeepTests2BasicPlayback {
 
     }
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void VAST2_Preroll() throws Exception{
         try {
 
@@ -365,10 +365,12 @@ public class DeepTests2BasicPlayback {
             Thread.sleep(10000);
 
             //Ad Started
-            ev.verifyEvent("adStarted", " Ad has been started ", 20000);
+            ev.verifyEvent("adStarted", " Ad has been started ", 30000);
 
             //Adcompleted Verficatrion
-            ev.verifyEvent("adCompleted","Ad has been completed",30000 );
+            ev.verifyEvent("adCompleted","Ad has been completed",50000 );
+
+            Thread.sleep(2000);
 
             po.screentapping(driver);
             Thread.sleep(1000);
@@ -509,7 +511,7 @@ public class DeepTests2BasicPlayback {
     }
 
     //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3730
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
 
@@ -1136,7 +1138,7 @@ public class DeepTests2BasicPlayback {
 
     }
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void Ooyala_Midroll() throws Exception{
         try {
 
@@ -1206,7 +1208,7 @@ public class DeepTests2BasicPlayback {
             //Adcompleted Verficatrion
             ev.verifyEvent("adCompleted","Ad has been completed",20000 );
 
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             po.screentapping(driver);
             Thread.sleep(1000);

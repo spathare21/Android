@@ -93,7 +93,7 @@ public class DeepTests3BasicPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void MultiAd() throws Exception{
         try {
 
@@ -145,7 +145,7 @@ public class DeepTests3BasicPlayback {
 
             //Get coordinates and click on play button.
             po.getPlay(driver);
-            Thread.sleep(1000);
+            Thread.sleep(8000);
 
             //Clicking on Play button in Ooyala Skin
             //po.clickBasedOnText(driver,"h");
@@ -168,7 +168,7 @@ public class DeepTests3BasicPlayback {
             ev.verifyEvent("adCompleted","Ad has been completed",40000 );
             //Timeout for the duration of the video
 
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
 
             po.screentapping(driver);
@@ -310,7 +310,8 @@ public class DeepTests3BasicPlayback {
     }
 
    //TODO AdCompleted Event not getting fired PBA-3704
-    //@org.testng.annotations.Test
+
+    @org.testng.annotations.Test
     public void VAST_3_Podded() throws Exception{
         try {
 
@@ -527,7 +528,7 @@ public class DeepTests3BasicPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VAST_AD_With_NewEvents() throws Exception{
         try {
 
@@ -738,7 +739,7 @@ public class DeepTests3BasicPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VAST_AD_With_Icon() throws Exception{
         try {
 

@@ -1138,7 +1138,7 @@ public class DeepBasicPlayback {
 
     }
 
-    // TODO can't automate becasue size of video is too long.
+/*    // TODO can't automate becasue size of video is too long.
     @org.testng.annotations.Test
     public void Clear_HLS_High_Profile() throws Exception
     {
@@ -1150,5 +1150,5 @@ public class DeepBasicPlayback {
     public void Clear_HLS_Main_Profile() throws Exception
     {
 
-    }
+    }*/
 }
