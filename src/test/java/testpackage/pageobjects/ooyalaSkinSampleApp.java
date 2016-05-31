@@ -205,20 +205,20 @@ public class ooyalaSkinSampleApp {
         //ele.click();
     }
 
-    public void pauseVideo(AndroidDriver driver) throws InterruptedException {
-        System.out.println("replay.x value is " + replay.getX());
-        System.out.println("replay.x value is " + replay.getY());
 
 
-        driver.tap(1, replay.getX(), replay.getY(), 2);
+    public  void pauseVideo(AndroidDriver driver) throws InterruptedException {
+        System.out.println("moved to pause method");
+
+        System.out.println("replay.x value is "+replay.getX());
+        System.out.println("replay.x value is "+replay.getY());
+
+
+        driver.tap(1,replay.getX(),replay.getY(),2);
         System.out.println("clicked pause");
 
 
     }
-
-
-
-
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
         System.out.println("in more method");
