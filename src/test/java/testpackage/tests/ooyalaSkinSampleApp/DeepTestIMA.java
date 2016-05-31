@@ -92,8 +92,7 @@ public class DeepTestIMA {
 
     }
 
-
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesPreroll() throws Exception {
         int[] locPlayButon;
 
@@ -146,6 +145,10 @@ public class DeepTestIMA {
 
             locPlayButon = po.locationTextOnScreen(driver, "h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver, "h");
 
@@ -170,17 +173,16 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -200,6 +202,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -221,7 +226,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -238,19 +243,24 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -272,7 +282,6 @@ public class DeepTestIMA {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
 
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesMidroll() throws Exception{
@@ -326,6 +335,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -349,18 +362,14 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
+            Thread.sleep(4000);
 
-
-            Thread.sleep(1000);
-
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -380,14 +389,14 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
-
             // clicking on more button
             po.moreButton(driver);
-
-
             Thread.sleep(2000);
 
             // clicking on Share button
@@ -399,7 +408,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -416,19 +425,23 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
+
+            System.out.println("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -505,6 +518,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -525,17 +542,15 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
+            Thread.sleep(5000);
 
-            Thread.sleep(1000);
-
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -549,12 +564,17 @@ public class DeepTestIMA {
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
+            Thread.sleep(2000);
+
             po.powerKeyClick(driver);
 
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -574,7 +594,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -594,20 +614,29 @@ public class DeepTestIMA {
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
-
+            Thread.sleep(2000);
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+          // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
 
+            Thread.sleep(2000);
+
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+
+            Thread.sleep(1000);
 
             po.powerKeyClick(driver);
 
@@ -679,6 +708,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -709,16 +742,13 @@ public class DeepTestIMA {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
 
+            Thread.sleep(2000);
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
+            Thread.sleep(4000);
 
-
-            Thread.sleep(1000);
-
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -738,6 +768,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -757,7 +790,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -774,19 +807,24 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -862,6 +900,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -893,23 +935,22 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
+            Thread.sleep(4000);
+
+
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
-
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(1000);
-
             po.pauseVideo(driver);
-            // verifing video get paused
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
+            // verifing video get paused
+           ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
             Thread.sleep(5000);
 
             po.getBackFromRecentApp(driver);
@@ -923,6 +964,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -942,7 +986,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -959,19 +1003,24 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -994,7 +1043,6 @@ public class DeepTestIMA {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
 
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedPostroll() throws Exception{
@@ -1048,6 +1096,10 @@ public class DeepTestIMA {
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
+
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
@@ -1076,17 +1128,16 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -1106,6 +1157,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1125,7 +1179,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1142,15 +1196,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1159,6 +1216,8 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1183,7 +1242,7 @@ public class DeepTestIMA {
         }
     }
 
-  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedPreMidPostroll() throws Exception{
         int[] locPlayButon;
 
@@ -1234,6 +1293,10 @@ public class DeepTestIMA {
             po.waitForPresenceOfText(driver,"h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -1321,17 +1384,13 @@ public class DeepTestIMA {
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
+            Thread.sleep(2000);
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
+            Thread.sleep(4000);
 
-
-            Thread.sleep(1000);
-
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            // Tapping on screen to pause
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
@@ -1351,6 +1410,9 @@ public class DeepTestIMA {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
 
             Thread.sleep(5000);
+
+            //clicking on view area
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1370,7 +1432,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1387,19 +1449,24 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
@@ -1464,6 +1531,8 @@ public class DeepTestIMA {
             po.clickBasedOnText(driver, "IMA Skippable");
             Thread.sleep(2000);
 
+            System.out.println("<<<<<<<<<<<<<<<<Clicked on IMA Skippable>>>>>>>>>>>>>>>>>");
+
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
@@ -1471,9 +1540,13 @@ public class DeepTestIMA {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresenceOfText(driver,"h");
+            po.waitForPresenceOfText(driver, "h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
@@ -1483,29 +1556,30 @@ public class DeepTestIMA {
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Pre - Ad Started to Play ", 30000);
 
-            Thread.sleep(11000);
+            Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 35000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 36000);
 
             //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(11000);
+            Thread.sleep(10000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 45000);
 
-            Thread.sleep(11000);
+            Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 50000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 20000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 51000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 10000);
-            Thread.sleep(500);
+            Thread.sleep(1000);
 
             //Tapping on screen to pause the Video
             po.screentap(driver);
@@ -1514,12 +1588,13 @@ public class DeepTestIMA {
             po.pauseVideo(driver);
             // verifing video get paused
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 3000);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            Thread.sleep(1000);
 
             po.powerKeyClick(driver);
 
@@ -1545,7 +1620,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1562,14 +1637,18 @@ public class DeepTestIMA {
 
             Thread.sleep(2000);
 
+            po.clickOnCloseButton(driver);
+            Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-
-            po.clickOnCloseButton(driver);
-
+            System.out.println("Closed option menu");
             Thread.sleep(5000);
-            viewarea.click();
+
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+           // viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
@@ -1577,16 +1656,6 @@ public class DeepTestIMA {
 
             po.playVideo(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
-
-            po.getBackFromRecentApp(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
-
-            po.powerKeyClick(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
@@ -1640,6 +1709,8 @@ public class DeepTestIMA {
             po.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
             Thread.sleep(2000);
 
+            System.out.println("<<<<<<<<<<<<<<<<Clicked on IMA Pre, Mid and Post Skippable>>>>>>>>>>>>>>>>>");
+
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
@@ -1650,6 +1721,10 @@ public class DeepTestIMA {
             po.waitForPresenceOfText(driver, "h");
 
             locPlayButon = po.locationTextOnScreen(driver, "h");
+
+            //Getting Play button coordinates
+            po.getPlay(driver);
+            Thread.sleep(1000);
 
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver, "h");
@@ -1677,54 +1752,55 @@ public class DeepTestIMA {
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
 
-            Thread.sleep(11000);
+
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Completed to Play ", 40000);
 
             //Thread sleep time is equivalent to the length of the video
             Thread.sleep(35000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 50000);
 
             Thread.sleep(11000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 75000);
+            Thread.sleep(2000);
 
             po.replayVideo(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 80000);
 
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
-            //clicking on view area
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            //Tapping on screen to pause the Video
+            po.screentap(driver);
             Thread.sleep(1000);
 
             po.pauseVideo(driver);
             // verifing video get paused
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 90000);
 
             Thread.sleep(5000);
 
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 90000);
 
             po.powerKeyClick(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 90000);
 
             Thread.sleep(5000);
+
+            WebElement viewarea = driver.findElementByClassName("android.view.View");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -1744,7 +1820,7 @@ public class DeepTestIMA {
 
             po.shareOnGmail(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("bufferChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 90000);
             Thread.sleep(2000);
 
             System.out.println("clicking on discovery");
@@ -1764,30 +1840,34 @@ public class DeepTestIMA {
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
+            System.out.println("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
-
+            Thread.sleep(2000);
+            System.out.println("Closed option menu");
 
             Thread.sleep(5000);
-            viewarea.click();
+            System.out.println("Clicking on view area to play");
+            po.screentap(driver);
+            //viewarea.click();
             Thread.sleep(1000);
 //            po.seek_video(driver);
 
 //            Thread.sleep(5000);
 
-
             po.playVideo(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 70000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video start ", 90000);
+            Thread.sleep(2000);
 
             po.getBackFromRecentApp(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 90000);
 
             po.powerKeyClick(driver);
 
             // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 60000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 90000);
 
 
             //Wait for video to finish and verify the playCompleted event .

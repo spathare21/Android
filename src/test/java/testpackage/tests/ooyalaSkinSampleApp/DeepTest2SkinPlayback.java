@@ -1,7 +1,9 @@
 package testpackage.tests.ooyalaSkinSampleApp;
 
 /**
- * Created by Sameer on 4/29/2016.
+ * Created by Shivam on 26/05/16.
+ *
+ *
  */
 
 import io.appium.java_client.android.AndroidDriver;
@@ -15,7 +17,7 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DeepTestSkinPlayback {
+public class DeepTest2SkinPlayback {
 
     private static AndroidDriver driver;
 
@@ -96,9 +98,13 @@ public class DeepTestSkinPlayback {
     }
 
 
-    @org.testng.annotations.Test
-    public void AspectRatioTest() throws Exception {
+
+
+   @org.testng.annotations.Test
+    public void VastAdPreroll () throws Exception{
+
         int[] locationPlayButton;
+
         try {
 
             // Creating an Object of SkinSampleApp class
@@ -128,7 +134,7 @@ public class DeepTestSkinPlayback {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "4:3 Aspect Ratio");
+            po.clickBasedOnText(driver, "VAST2 Ad Pre-roll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -147,10 +153,27 @@ public class DeepTestSkinPlayback {
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
-            // Click on the web area so that player screen shows up
-            Thread.sleep(2000);
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //Timeout for the duration of the video
+            Thread.sleep(1000);
+
+            //Wait for video to finish and verify the playCompleted event .
+           // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+            Thread.sleep(1000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(1000);
 
@@ -158,6 +181,1148 @@ public class DeepTestSkinPlayback {
 
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
+
+
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
+
+            // Pause the running of the test for a brief amount of time
+            Thread.sleep(3000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(5000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //Click on option button
+            po.clickBasedOnText(driver, "f");
+            Thread.sleep(2000);
+
+            //Click on Discovery button
+            po.clickBasedOnText(driver, "o");
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
+
+            //Sharing on Gmail
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+            // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            //Clicking on Discovery
+            System.out.println("clicking on discovery");
+            po.clickBasedOnText(driver, "l");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Clicking CC button
+            System.out.println("clicking on CC");
+            po.clickBasedOnText(driver, "k");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Closing option pannel
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Play state verification
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 100000);
+            // Thread.sleep(60000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+
+   @org.testng.annotations.Test
+    public void VastAdMidroll () throws Exception{
+
+        int[] locationPlayButton;
+
+       try {
+
+           // Creating an Object of SkinSampleApp class
+           ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+           // wait till home screen of basicPlayBackApp is opened
+           po.waitForAppHomeScreen(driver);
+
+           // Assert if current activity is indeed equal to the activity name of app home screen
+           po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+           // Wrire to console activity name of home screen app
+           System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+           //Pause the running of test for a brief time .
+           Thread.sleep(3000);
+
+           po.clickBasedOnText(driver, "Skin Playback");
+           Thread.sleep(2000);
+
+           System.out.println(" Print current activity name" + driver.currentActivity());
+           if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
+               //Navigate back to Skin playback activity
+               driver.navigate().back();
+               Thread.sleep(2000);
+           }
+
+           // Assert if current activity is Skin Playback list activity
+           po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+
+           // Select one of the video HLS,MP4 etc .
+           po.clickBasedOnText(driver, "VAST2 Ad Mid-roll");
+           Thread.sleep(2000);
+
+           //verify if player was loaded
+           po.waitForPresence(driver, "className", "android.view.View");
+           // Assert if current activity is indeed equal to the activity name of the video player
+           po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+           // Print to console output current player activity
+           System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+           po.waitForPresenceOfText(driver, "h");
+
+           locationPlayButton = po.locationTextOnScreen(driver, "h");
+
+           //Clicking on Play button in Ooyala Skin
+           po.clickBasedOnText(driver, "h");
+
+           //Play Started Verification
+           EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
+
+            //Thread sleep time is equivalent to the length of the half of the video
+           // Thread.sleep(1000);
+
+            //Thread.sleep(1000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+            Thread.sleep(1000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
+
+
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
+            // Pause the running of the test for a brief amount of time
+            Thread.sleep(3000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //Click on option button
+            po.clickBasedOnText(driver, "f");
+            Thread.sleep(2000);
+
+            //Click on Discovery button
+            po.clickBasedOnText(driver, "o");
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
+
+            //Sharing on Gmail
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+            // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            //Clicking on Discovery
+            System.out.println("clicking on discovery");
+            po.clickBasedOnText(driver, "l");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Clicking CC button
+            System.out.println("clicking on CC");
+            po.clickBasedOnText(driver, "k");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Closing option pannel
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //Ad Started Verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+            Thread.sleep(2000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the half of the video
+            Thread.sleep(1000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void VastAdPostroll () throws Exception{
+
+        int[] locationPlayButton;
+
+        try {
+
+            // Creating an Object of SkinSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name" + driver.currentActivity());
+            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+            }
+
+            // Assert if current activity is Skin Playback list activity
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "VAST2 Ad Post-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver, "h");
+
+            locationPlayButton = po.locationTextOnScreen(driver, "h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver, "h");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the video
+
+
+            Thread.sleep(1000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //  Tap again //
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+
+            // Pause the running of the test for a brief amount of time
+            Thread.sleep(3000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(5000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //Click on option button
+            po.clickBasedOnText(driver, "f");
+            Thread.sleep(2000);
+
+            //Click on Discovery button
+            po.clickBasedOnText(driver, "o");
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
+
+            //Sharing on Gmail
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+            // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            //Clicking on Discovery
+            System.out.println("clicking on discovery");
+            po.clickBasedOnText(driver, "l");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Clicking CC button
+            System.out.println("clicking on CC");
+            po.clickBasedOnText(driver, "k");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Closing option pannel
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //Ad Started Verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+    }
+
+
+    @org.testng.annotations.Test
+    public void VastAdWrapper () throws Exception{
+
+        int[] locationPlayButton;
+
+        try {
+
+            // Creating an Object of SkinSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name" + driver.currentActivity());
+            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+            }
+
+            // Assert if current activity is Skin Playback list activity
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "VAST2 Ad Wrapper");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver, "h");
+
+            locationPlayButton = po.locationTextOnScreen(driver, "h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver, "h");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //Timeout for the duration of the video
+            Thread.sleep(1000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+            Thread.sleep(1000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //  Tap again //
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
+            // Pause the running of the test for a brief amount of time
+            Thread.sleep(3000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(5000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //Click on option button
+            po.clickBasedOnText(driver, "f");
+            Thread.sleep(2000);
+
+            //Click on Discovery button
+            po.clickBasedOnText(driver, "o");
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
+
+            //Sharing on Gmail
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+            // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            //Clicking on Discovery
+            System.out.println("clicking on discovery");
+            po.clickBasedOnText(driver, "l");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Clicking CC button
+            System.out.println("clicking on CC");
+            po.clickBasedOnText(driver, "k");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Closing option pannel
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Play state verification
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 100000);
+            // Thread.sleep(60000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
+    @org.testng.annotations.Test
+    public void OoyalaAdPreroll () throws  Exception{
+
+
+        int[] locationPlayButton;
+
+        try {
+
+            // Creating an Object of SkinSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name" + driver.currentActivity());
+            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+            }
+
+            // Assert if current activity is Skin Playback list activity
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Ooyala Ad Pre-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver, "h");
+
+            locationPlayButton = po.locationTextOnScreen(driver, "h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver, "h");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //Timeout for the duration of the video
+
+
+            //Wait for video to finish and verify the playCompleted event .
+            // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+            Thread.sleep(1000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //  Tap again //
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
+            // Pause the running of the test for a brief amount of time
+            Thread.sleep(3000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(5000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //Click on option button
+            po.clickBasedOnText(driver, "f");
+            Thread.sleep(2000);
+
+            //Click on Discovery button
+            po.clickBasedOnText(driver, "o");
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
+
+            //Sharing on Gmail
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+            // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            //Clicking on Discovery
+            System.out.println("clicking on discovery");
+            po.clickBasedOnText(driver, "l");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Clicking CC button
+            System.out.println("clicking on CC");
+            po.clickBasedOnText(driver, "k");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Closing option pannel
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Play state verification
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 100000);
+            // Thread.sleep(60000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
+   @org.testng.annotations.Test
+    public void OoyalaAdMidroll () throws  Exception{
+
+        int[] locationPlayButton;
+
+        try {
+
+            // Creating an Object of SkinSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name" + driver.currentActivity());
+            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+            }
+
+            // Assert if current activity is Skin Playback list activity
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Ooyala Ad Mid-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver, "h");
+
+            locationPlayButton = po.locationTextOnScreen(driver, "h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver, "h");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
+
+            //Thread sleep time is equivalent to the length of the half of the video
+            // Thread.sleep(1000);
+
+            //Thread.sleep(1000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            // ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //  Tap again //
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
+
+
+
+
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+
+            // Pause the running of the test for a brief amount of time
+            Thread.sleep(3000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //Click on option button
+            po.clickBasedOnText(driver, "f");
+            Thread.sleep(2000);
+
+            //Click on Discovery button
+            po.clickBasedOnText(driver, "o");
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
+
+            //Sharing on Gmail
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+            // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            //Clicking on Discovery
+            System.out.println("clicking on discovery");
+            po.clickBasedOnText(driver, "l");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Clicking CC button
+            System.out.println("clicking on CC");
+            po.clickBasedOnText(driver, "k");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Closing option pannel
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //Ad Started Verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            Thread.sleep(2000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the half of the video
+            Thread.sleep(1000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+
+
+    }
+
+
+    @org.testng.annotations.Test
+    public void OoyalaAdPostroll () throws Exception{
+
+        int[] locationPlayButton;
+
+        try {
+
+            // Creating an Object of SkinSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name" + driver.currentActivity());
+            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+            }
+
+            // Assert if current activity is Skin Playback list activity
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Ooyala Ad Post-roll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver, "h");
+
+            locationPlayButton = po.locationTextOnScreen(driver, "h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver, "h");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the video
+
+
+            Thread.sleep(1000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //  Tap again //
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
+
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+
+            // Pause the running of the test for a brief amount of time
+            Thread.sleep(3000);
+
+            po.getBackFromRecentApp(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            po.powerKeyClick(driver);
+
+            // verifing event that player has been get ready
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+
+            Thread.sleep(5000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //Click on option button
+            po.clickBasedOnText(driver, "f");
+            Thread.sleep(2000);
+
+            //Click on Discovery button
+            po.clickBasedOnText(driver, "o");
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
+
+            //Sharing on Gmail
+            po.shareOnGmail(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
+            // ev.verifyEvent("stateChanged - state: READY", " Mail sent, Back to SDK ", 70000);
+            Thread.sleep(2000);
+
+            //Clicking on Discovery
+            System.out.println("clicking on discovery");
+            po.clickBasedOnText(driver, "l");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Clicking CC button
+            System.out.println("clicking on CC");
+            po.clickBasedOnText(driver, "k");
+            Thread.sleep(2000);
+
+            //Clicking on close button
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            //Closing option pannel
+            po.clickBasedOnText(driver, "e");
+            Thread.sleep(2000);
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            // Tap coordinates again to play
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+            //Ad Started Verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver);
+        }
+
+    }
+
+
+    @org.testng.annotations.Test
+    public void MultiAdCombination () throws  Exception{
+
+        int[] locationPlayButton;
+
+        try {
+
+            // Creating an Object of SkinSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name" + driver.currentActivity());
+            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+            }
+
+            // Assert if current activity is Skin Playback list activity
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Multi Ad combination");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver, "h");
+
+            locationPlayButton = po.locationTextOnScreen(driver, "h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.clickBasedOnText(driver, "h");
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            Thread.sleep(1000);
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(1000);
+
+            //  Tap again //
+
+            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
+            Thread.sleep(2000);
+
+
 
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
@@ -226,818 +1391,51 @@ public class DeepTestSkinPlayback {
             Thread.sleep(2000);
 
             // Play state verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 100000);
-           // Thread.sleep(60000);
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 50000);
 
-            //     Extra Work //
-            /*driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Pause state verification
-            ev.verifyEvent("PAUSED", " Playing Video Was Paused ", 30000);
-
-            //    end  //
-            System.out.println("Looking for Discovery");
-            po.discoverUpNext(driver);
-            Thread.sleep(2000);
-
-            //Clicking on close button
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Tap coordinates again to play
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Play state verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 30000);
-            Thread.sleep(2000);
-
-
-            //Clicking on close button
-            *//*po.discoverElement(driver);  //Wait till it found
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Restarting video//
-
-            po.clickBasedOnText(driver, "c");
-            //Thread.sleep(5000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-            //Wait for video to finish and verify the playCompleted event .
-           // ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);*/
-
-
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
-        }
-    }
-
-    @org.testng.annotations.Test
-    public void SkinPlaybackMP4Video() throws Exception {
-        int[] locationPlayButton;
-        try {
-
-            // Creating an Object of SkinSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            System.out.println(" Print current activity name" + driver.currentActivity());
-            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
-
-            // Assert if current activity is Skin Playback list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "MP4 Video");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver, "h");
-
-            locationPlayButton = po.locationTextOnScreen(driver, "h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //Click on the web area so that player screen shows up
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            //  Tap again //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-
-            // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
-
-            // Pause the running of the test for a brief amount of time
-            Thread.sleep(3000);
-
-            po.getBackFromRecentApp(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
-
-            po.powerKeyClick(driver);
-
-            // verifing event that player has been get ready
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
-
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-
-            //Click on option button
-            po.clickBasedOnText(driver, "f");
-            Thread.sleep(2000);
-
-            //Click on Share button
-            po.clickBasedOnText(driver, "o");
-            Thread.sleep(2000);
-            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
-
-            //Sharing on Gmail
-            po.shareOnGmail(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("READY", " Mail sent, Back to SDK ", 70000);
-            Thread.sleep(2000);
-
-            //Clicking on Discovery
-            System.out.println("clicking on discovery");
-            po.clickBasedOnText(driver, "l");
-            Thread.sleep(2000);
-
-            //Clicking on close button
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            //Clicking CC button
-            System.out.println("clicking on CC");
-            po.clickBasedOnText(driver, "k");
-            Thread.sleep(2000);
-
-            //Clicking on close button
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            //Closing option pannel
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-            // Tap coordinates again to play
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Play state verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 30000);
-
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
-
-            /* Thread.sleep(30000);
-            //  Same Logic As Above //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Pause state verification
-            ev.verifyEvent("PAUSED", " Playing Video Was Paused ", 30000);
-
-            //    end  //
-            System.out.println("Looking for Discovery");
-            po.discoverUpNext(driver);
-            Thread.sleep(2000);
-
-            //Clicking on close button
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Tap coordinates again to play
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Play state verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 30000);
-            Thread.sleep(2000);
-
-
-            //Clicking on close button
-            po.discoverElement(driver);  //Wait till it found
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Restarting video//
-
-            po.clickBasedOnText(driver, "c");
-            //Thread.sleep(5000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
-
-*/
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
-        }
-    }
-
-  @org.testng.annotations.Test
-    public void SkinPlaybackHLSVideo() throws Exception {
-        int[] locationPlayButton;
-        try {
-
-            // Creating an Object of SkinSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            System.out.println(" Print current activity name" + driver.currentActivity());
-            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
-
-            // Assert if current activity is Skin Playback list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "HLS Video");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver, "h");
-
-            locationPlayButton = po.locationTextOnScreen(driver, "h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            // Tap to pause the video //
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-            //  Tap again //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-
-            // Verify the pause event //
-            ev.verifyEvent("PAUSED", " Video is paused ", 30000);
-
-            // Get from Recent app //
-            po.getBackFromRecentApp(driver);
-
-            // Verify player ready event //
-            ev.verifyEvent("READY", "Now player is ready ", 30000);
-            po.powerKeyClick(driver);
-            //ev.verifyEvent("READY" , "Now player is ready", 30000);
-
-          //  Thread.sleep(2000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-            //Click on option button
-            po.clickBasedOnText(driver, "f");
-            Thread.sleep(2000);
-
-            //Click on Share button
-            po.clickBasedOnText(driver, "o");
-            Thread.sleep(2000);
-            ev.verifyEvent("stateChanged - state: SUSPENDED", " Share asset ", 70000);
-
-            //Sharing on Gmail
-            po.shareOnGmail(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("READY", " Mail sent, Back to SDK ", 70000);
-            Thread.sleep(2000);
-
-            //Clicking on Discovery
-            System.out.println("clicking on discovery");
-            po.clickBasedOnText(driver, "l");
-            Thread.sleep(2000);
-
-            //Clicking on close button
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            //Clicking CC button
-            System.out.println("clicking on CC");
-            po.clickBasedOnText(driver, "k");
-            Thread.sleep(2000);
-
-            //Clicking on close button
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            //Closing option pannel
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-            // Tap coordinates again to play
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Play state verification
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video resume its playback ", 30000);
-           /* Thread.sleep(50000);
-
-            // Now again tap to pause the video //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-
-            // Verify for Pause Event //
-            ev.verifyEvent("PAUSED", " Video had been paused ", 30000);
-
-            // Verify for Discover Pop Up window //
-            System.out.println("Will now verify for discovery");
-            po.discoverUpNext(driver);
-            Thread.sleep(2000);
-
-            // Click on cancel button of pop up //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Tap to play the video //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-
-            //Verify the play event of video //
-            ev.verifyEvent("PLAYING", "Video resume its playback", 30000);
-
-            // Wait for the discovery window at the end of video //
-            po.discoverElement(driver);  // Wait till discovery elemnt is found //
-            Thread.sleep(1000);
-
-            // Click on Cancel button of Discovery Tray //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Clicking to Restart the video //
-
-            po.clickBasedOnText(driver, "c");
-            //Thread.sleep(5000);
-
-            // Verify for Replay Event //
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);*/
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
-
-
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
-        }
-
-    }
-
-    @org.testng.annotations.Test
-    public void SkinPlaybackVODCCVideo() throws Exception {
-        int[] locationPlayButton;
-        try {
-
-            // Creating an Object of SkinSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            System.out.println(" Print current activity name" + driver.currentActivity());
-            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
-
-            // Assert if current activity is Skin Playback list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VOD with CCs");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver, "h");
-
-            locationPlayButton = po.locationTextOnScreen(driver, "h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            // Tap to pause the video //
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-            //  Tap again //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-
-            // Verify the pause event //
-            ev.verifyEvent("PAUSED", " Video is paused ", 30000);
-
-            // Get from Recent app //
-            po.getBackFromRecentApp(driver);
-
-            // Verify player ready event //
-            ev.verifyEvent("READY", "Now player is ready ", 30000);
-            po.powerKeyClick(driver);
-            //ev.verifyEvent("READY" , "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 3000);
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-
-
-            //Click on option button
-            po.clickBasedOnText(driver, "f");
-            Thread.sleep(2000);
-
-            //Click on Share button
-            po.clickBasedOnText(driver, "o");
-            Thread.sleep(2000);
-            ev.verifyEvent("SUSPENDED", " Share asset ", 30000);
-
-            // Video Sharing Through Gmail //
-            po.shareOnGmail(driver);
-            Thread.sleep(1000);
-
-            // Verify the sent event //
-            ev.verifyEvent("READY", " Mail sent, Back to SDK ", 50000);
-            Thread.sleep(2000);
-
-            // Clicking on Discovery Event //
-            System.out.println(" Clicking on Discovery ");
-            po.clickBasedOnText(driver, "l");
-            Thread.sleep(2000);
-
-            // Clicking on  Cancel button  of discovery tray //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Clicking on CC button //
-            System.out.println("Clicking on CC");
-            po.clickBasedOnText(driver, "k");
-            Thread.sleep(2000);
-
-            // Clicking on Cancel button of CC Window //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            //Clicking on Cancel Button of Option Screen //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Tap on the Screen //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Tap once again to play the video //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Verify the video resume event //
-            ev.verifyEvent("PLAYING ", "Video is resume", 30000);
-           // Thread.sleep(50000);
-
-           // Now again tap to pause the video //
-           /* driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-
-            // Verify for Pause Event //
-            ev.verifyEvent("PAUSED", " Video had been paused ", 30000);
-
-            // Verify for Discover Pop Up window //
-            System.out.println("Will now verify for discovery");
-            po.discoverUpNext(driver);
-            Thread.sleep(2000);
-
-            // Click on cancel button of pop up //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Tap to play the video //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-
-            //Verify the play event of video //
-            ev.verifyEvent("PLAYING", "Video resume its playback", 20000);
-
-            // Wait for the discovery window at the end of video //
-            po.discoverElement(driver);  // Wait till discovery elemnt is found //
-            Thread.sleep(1000);
-
-            // Click on Cancel button of Discovery Tray //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Clicking to Restart the video //
-
-            po.clickBasedOnText(driver, "c");
-            //Thread.sleep(5000);
-
-            // Verify for Replay Event //
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);*/
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
-
-
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
-        }
-
-    }
-
-    @org.testng.annotations.Test
-    public void SkinPlayBackVAST2ADPreroll() throws Exception {
-        int[] locationPlayButton;
-        try {
-
-            // Creating an Object of SkinSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            System.out.println(" Print current activity name" + driver.currentActivity());
-            if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
-
-            // Assert if current activity is Skin Playback list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Pre-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver, "h");
-            locationPlayButton = po.locationTextOnScreen(driver, "h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
-
-            // Verify the ad event  //
-            EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
 
+            //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
 
-            Thread.sleep(5000);
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 2000);
-
-
-            // Tap to pause the video //
-            //Thread.sleep(2000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            //  Tap again //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-
-            // Verify the pause event //
-            ev.verifyEvent("PAUSED", " Video is paused ", 30000);
-
-            // Get from Recent app //
-            po.getBackFromRecentApp(driver);
-
-            // Verify player ready event //
-            ev.verifyEvent("READY", "Now player is ready ", 30000);
-            po.powerKeyClick(driver);
-            //ev.verifyEvent("READY" , "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-            Thread.sleep(2000);
-
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-         //   driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-         //   Thread.sleep(1000);
-
-
-
-             //Click on option button
-            po.clickBasedOnText(driver, "f");
-            Thread.sleep(2000);
-
-            //Click on Share button
-            po.clickBasedOnText(driver, "o");
-            Thread.sleep(2000);
-            ev.verifyEvent("SUSPENDED", " Share asset ", 30000);
-
-            // Video Sharing Through Gmail //
-            po.shareOnGmail(driver);
+            //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(1000);
 
-            // Verify the sent event //
-            ev.verifyEvent("READY", " Mail sent, Back to SDK ", 70000);
-            Thread.sleep(2000);
-
-            // Clicking on Discovery Event //
-            System.out.println(" Clicking on Discovery ");
-            po.clickBasedOnText(driver, "l");
-            Thread.sleep(2000);
-
-            // Clicking on  Cancel button  of discovery tray //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Clicking on CC button //
-            System.out.println("Clicking on CC");
-            po.clickBasedOnText(driver, "k");
-            Thread.sleep(2000);
-
-            // Clicking on Cancel button of CC Window //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            //Clicking on Cancel Button of Option Screen //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Tap on the Screen //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Tap once again to play the video //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(2000);
-
-            // Verify the video resume event //
-            ev.verifyEvent("PLAYING ", "Video is resume", 30000);
-            //Thread.sleep(50000);
-
-            // Now again tap to pause the video //
-           /* driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-
-
-            // Verify for Pause Event //
-            ev.verifyEvent("PAUSED", " Video had been paused ", 30000);
-
-            // Verify for Discover Pop Up window //
-            System.out.println("Will now verify for discovery");
-            po.discoverUpNext(driver);
-            Thread.sleep(2000);
-
-            // Click on cancel button of pop up //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(1000);
-
-            // Tap to play the video //
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-            Thread.sleep(1000);
-            driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
-
-            //Verify the play event of video //
-            ev.verifyEvent("PLAYING", "Video resume its playback", 2000);
-
-            // Wait for the discovery window at the end of video //
-            po.discoverElement(driver);  // Wait till discovery elemnt is found //
-            Thread.sleep(1000);
-
-            // Click on Cancel button of Discovery Tray //
-            po.clickBasedOnText(driver, "e");
-            Thread.sleep(2000);
-
-            // Clicking to Restart the video //
-
-            po.clickBasedOnText(driver, "c");
-            //Thread.sleep(5000);
-
-            // Verify for Replay Event //
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video replay start ", 70000);*/
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
-
-
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+        }
+        catch(Exception e)
+        {
+            System.out.println(" Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
 
 
-    }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
+
+
 
 
 
