@@ -205,8 +205,6 @@ public class ooyalaSkinSampleApp {
         //ele.click();
     }
 
-
-
     public  void pauseVideo(AndroidDriver driver) throws InterruptedException {
         System.out.println("moved to pause method");
 
@@ -221,7 +219,6 @@ public class ooyalaSkinSampleApp {
     }
 
 
-    
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
         System.out.println("in more method");
