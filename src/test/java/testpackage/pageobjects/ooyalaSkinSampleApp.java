@@ -212,9 +212,16 @@ public class ooyalaSkinSampleApp {
 
         System.out.println("replay.x value is "+replay.getX());
         System.out.println("replay.x value is "+replay.getY());
+
+
         driver.tap(1,replay.getX(),replay.getY(),2);
         System.out.println("clicked pause");
+
+
     }
+
+
+    
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
         System.out.println("in more method");
