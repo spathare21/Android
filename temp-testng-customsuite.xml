@@ -21,6 +21,7 @@
 
 
 
+
             <class name="testpackage.tests.freewheelsampleapp.DeepTests"/>
             <class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>
             <class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>
@@ -31,30 +32,24 @@
             <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>-->
             <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>-->
 
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests4"/>-->
+            <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
+            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>-->
 
-             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
-	        <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
-            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
-
-           <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestIMA"/>
-            <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestFreewheel"/>-->
-            <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestSkinPlayback"/>
-            <class name="testpackage.tests.ooyalaSkinSampleApp.DeepTest2SkinPlayback"/>
-            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTest3SkinPlayback"/>-->
-
-
-           <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestIMA"/>-->
-            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestFreewheel"/>-->
-            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.DeepTestSkinPlayback"/>-->
-
-            <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>-->
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>-->
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
+            <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
+	        <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
+            <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
+            &lt;!&ndash;<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>&ndash;&gt;
+            <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
-            <!--<class name="testpackage.tests.IMASampleApp.DeepTests"/>-->
-           <!-- <class name="testpackage.tests.IMASampleApp.BasicTests"/> -->
+
+            <class name="testpackage.tests.IMASampleApp.DeepTests"/>
+
+            <!--<class name="testpackage.tests.IMASampleApp.BasicTests"/>-->
+
 
         </classes>
     </test> <!-- AppiumTest -->
