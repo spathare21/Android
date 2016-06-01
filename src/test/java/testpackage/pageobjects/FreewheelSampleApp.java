@@ -59,7 +59,8 @@ public class FreewheelSampleApp {
 
     public void waitForPresenceOfText(AndroidDriver driver,String waitString) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.name(waitString)));
+        String xpath = "//android.widget.TextView[@text='" + waitString + "']";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
     public void clickImagebuttons(AndroidDriver driver, int index) {
@@ -101,16 +102,13 @@ public class FreewheelSampleApp {
         System.out.println("key sent");
         System.out.println("screen lock");
         Thread.sleep(5000);
-        //driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
-        System.out.println("key sent");
-        System.out.println("screen unlock");
-        String command = "adb shell am start -n io.appium.unlock/.Unlock";
+        driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
+        String command = "adb shell input keyevent KEYCODE_WAKEUP";
         String[] final_command = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
         System.out.println("showing screen unlock");
-        driver.navigate().back();
         System.out.println("Back to Sample App screen ");
         Thread.sleep(2000);
 

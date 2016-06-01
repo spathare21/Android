@@ -92,7 +92,7 @@ public class IMABasicTests {
         Thread.sleep(10000);
 
     }
-/*
+
     @org.testng.annotations.Test
     public void IMAAdRulesPreroll() throws Exception{
         int[] locPlayButon;
@@ -539,7 +539,7 @@ public class IMABasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
     @org.testng.annotations.Test
     public void IMAAdRulesPoddedMidroll() throws Exception{
         int[] locPlayButon;
@@ -692,22 +692,21 @@ public class IMABasicTests {
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
 
-            //Time out
-            Thread.sleep(1000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 55000);
 
 
             Thread.sleep(30000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 65000);
 
         }
         catch(Exception e)

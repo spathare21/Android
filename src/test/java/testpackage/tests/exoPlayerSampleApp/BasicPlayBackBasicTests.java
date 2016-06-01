@@ -69,6 +69,7 @@ public class BasicPlayBackBasicTests {
         //driver.rotate(ScreenOrientation.LANDSCAPE);
 
     }
+
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         System.out.println("AfterTest \n");
@@ -784,6 +785,7 @@ public class BasicPlayBackBasicTests {
         }
 
     }
+
    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void ooyalaAd_Preroll() throws Exception{

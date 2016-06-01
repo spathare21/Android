@@ -61,7 +61,8 @@ public class IMASampleApp {
 
     public void waitForPresenceOfText(AndroidDriver driver,String waitString) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.name(waitString)));
+        String xpath = "//android.widget.TextView[@text='" + waitString + "']";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
     public void clickImagebuttons(AndroidDriver driver, int index) {

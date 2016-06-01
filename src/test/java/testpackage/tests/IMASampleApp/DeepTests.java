@@ -93,8 +93,7 @@ public class DeepTests {
         Thread.sleep(10000);
 
     }
-
-    @org.testng.annotations.Test
+     @org.testng.annotations.Test
     public void IMAAdRulePreroll() throws Exception{
 
         try {
@@ -1133,7 +1132,7 @@ public class DeepTests {
         }
     }
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void IMA_PreMidPost_skippable() throws Exception{
 
         try {
@@ -1257,7 +1256,8 @@ public class DeepTests {
         }
     }
 
-   /* @org.testng.annotations.Test
+
+ @org.testng.annotations.Test
     public void IMASkippable_skip() throws Exception{
 
         try {
@@ -1363,7 +1363,7 @@ public class DeepTests {
         }
     }
 
-*/
+
 
 
 }
