@@ -190,6 +190,7 @@ public class BasicTestsSkinPlayback {
     }
 
 
+/*
     @org.testng.annotations.Test
     public void SkinPlaybackMP4Video() throws Exception{
         int[] locPlayButon;
@@ -283,6 +284,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
+*/
 
     @org.testng.annotations.Test
     public void SkinPlaybackHLSVideo() throws Exception{
@@ -377,7 +379,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver);
         }
     }
-
+/*
     @org.testng.annotations.Test
     public void SkinPlaybackVODwithCCTest() throws Exception{
         int[] locPlayButon;
@@ -1066,7 +1068,7 @@ public class BasicTestsSkinPlayback {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void SkinPlaybackMultiAdCombinationTest() throws Exception{

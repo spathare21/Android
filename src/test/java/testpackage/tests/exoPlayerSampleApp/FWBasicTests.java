@@ -19,7 +19,6 @@ public class FWBasicTests {
         private static AndroidDriver driver;
 
         @BeforeClass
-
         public void beforeTest() throws Exception {
 
             // closing all recent app from background.
@@ -92,7 +91,6 @@ public class FWBasicTests {
 
         }
 
-
         @org.testng.annotations.Test
         public void FreeWheelIntegrationPreRoll() throws Exception{
 
@@ -162,10 +160,8 @@ public class FWBasicTests {
 
         }
 
-
-
-    @org.testng.annotations.Test
-    public void FreeWheelIntegrationMidroll() throws Exception {
+        @org.testng.annotations.Test
+        public void FreeWheelIntegrationMidroll() throws Exception {
 
         try {
             // Creating an Object of FreeWheelSampleApp class
@@ -231,365 +227,368 @@ public class FWBasicTests {
 
     }
 
-    @org.testng.annotations.Test
-    public void FreeWheelIntegrationPostroll() throws Exception {
+        //ToDo: Failing due to PBA-3783
+        @org.testng.annotations.Test
+        public void FreeWheelIntegrationPostroll() throws Exception {
 
-        try {
-            // Creating an Object of FreeWheelSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Freewheel Integration");
-            Thread.sleep(2000);
-
-            // Assert if current activity is Freewheel list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Freewheel Postroll");
-            Thread.sleep(2000);
-
-            System.out.println("clicked on based text");
+            try {
+                // Creating an Object of FreeWheelSampleApp class
+                exoPlayerSampleApp po = new exoPlayerSampleApp();
+                // wait till home screen of basicPlayBackApp is opened
+                po.waitForAppHomeScreen(driver);
 
 
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+                // Assert if current activity is indeed equal to the activity name of app home screen
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+                // Wrire to console activity name of home screen app
+                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresenceOfText(driver, "h");
+                //Pause the running of test for a brief time .
+                Thread.sleep(3000);
 
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+                po.clickBasedOnText(driver, "Freewheel Integration");
+                Thread.sleep(2000);
 
+                // Assert if current activity is Freewheel list activity
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+                // Select one of the video HLS,MP4 etc .
+                po.clickBasedOnText(driver, "Freewheel Postroll");
+                Thread.sleep(2000);
 
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
+                System.out.println("clicked on based text");
 
 
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+                //verify if player was loaded
+                po.waitForPresence(driver, "className", "android.view.View");
+                // Assert if current activity is indeed equal to the activity name of the video player
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+                // Print to console output current player activity
+                System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+                po.waitForPresenceOfText(driver, "h");
+
+                //Clicking on Play button in Ooyala Skin
+                po.clickBasedOnText(driver, "h");
+
+
+                //Play Started Verification
+                EventVerification ev = new EventVerification();
+                //Wait for video to start and verify the playStarted event .
+                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+                //Wait for Ad to start and verify the adStarted event .
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+
+                //Wait for Ad to complete and verify the adCompleted event .
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+
+                //Wait for video to finish and verify the playCompleted event .
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
+
+
+            } catch (Exception e) {
+                System.out.println(" Exception " + e);
+                e.printStackTrace();
+                ScreenshotDevice.screenshot(driver);
+            }
+
         }
 
-    }
+        //ToDo: Failing due to PBA-3783
+        @org.testng.annotations.Test
+        public void FreeWheelIntegrationPreMidPostroll() throws Exception {
 
-    @org.testng.annotations.Test
-    public void FreeWheelIntegrationPreMidPostroll() throws Exception {
-
-        try {
-            // Creating an Object of FreeWheelSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Freewheel Integration");
-            Thread.sleep(2000);
-
-            // Assert if current activity is Freewheel list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Freewheel PreMidPost");
-            Thread.sleep(2000);
-
-            System.out.println("clicked on based text");
+            try {
+                // Creating an Object of FreeWheelSampleApp class
+                exoPlayerSampleApp po = new exoPlayerSampleApp();
+                // wait till home screen of basicPlayBackApp is opened
+                po.waitForAppHomeScreen(driver);
 
 
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+                // Assert if current activity is indeed equal to the activity name of app home screen
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+                // Wrire to console activity name of home screen app
+                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresenceOfText(driver, "h");
+                //Pause the running of test for a brief time .
+                Thread.sleep(3000);
 
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+                po.clickBasedOnText(driver, "Freewheel Integration");
+                Thread.sleep(2000);
 
+                // Assert if current activity is Freewheel list activity
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+                // Select one of the video HLS,MP4 etc .
+                po.clickBasedOnText(driver, "Freewheel PreMidPost");
+                Thread.sleep(2000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+                System.out.println("clicked on based text");
 
 
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+                //verify if player was loaded
+                po.waitForPresence(driver, "className", "android.view.View");
+                // Assert if current activity is indeed equal to the activity name of the video player
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+                // Print to console output current player activity
+                System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+                po.waitForPresenceOfText(driver, "h");
+
+                //Clicking on Play button in Ooyala Skin
+                po.clickBasedOnText(driver, "h");
+
+
+                //Play Started Verification
+                EventVerification ev = new EventVerification();
+                //Wait for video to start and verify the playStarted event .
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+
+                //Wait for video to start and verify the playStarted event .
+                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+                //Wait for Ad to start and verify the adStarted event .
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+
+                //Wait for Ad to complete and verify the adCompleted event .
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+                //Wait for video to finish and verify the playCompleted event .
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+
+            } catch (Exception e) {
+                System.out.println(" Exception " + e);
+                e.printStackTrace();
+                ScreenshotDevice.screenshot(driver);
+            }
+
         }
 
-    }
+        @org.testng.annotations.Test
+        public void FreeWheelIntegrationOverlay() throws Exception {
 
-    @org.testng.annotations.Test
-    public void FreeWheelIntegrationOverlay() throws Exception {
-
-        try {
-            // Creating an Object of FreeWheelSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
+            try {
+                // Creating an Object of FreeWheelSampleApp class
+                exoPlayerSampleApp po = new exoPlayerSampleApp();
+                // wait till home screen of basicPlayBackApp is opened
+                po.waitForAppHomeScreen(driver);
 
 
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                // Assert if current activity is indeed equal to the activity name of app home screen
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+                // Wrire to console activity name of home screen app
+                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+                //Pause the running of test for a brief time .
+                Thread.sleep(3000);
 
-            po.clickBasedOnText(driver, "Freewheel Integration");
-            Thread.sleep(2000);
+                po.clickBasedOnText(driver, "Freewheel Integration");
+                Thread.sleep(2000);
 
-            // Assert if current activity is Freewheel list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+                // Assert if current activity is Freewheel list activity
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Freewheel Overlay");
-            Thread.sleep(2000);
+                // Select one of the video HLS,MP4 etc .
+                po.clickBasedOnText(driver, "Freewheel Overlay");
+                Thread.sleep(2000);
 
-            System.out.println("clicked on based text");
-
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver, "h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+                System.out.println("clicked on based text");
 
 
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
+                //verify if player was loaded
+                po.waitForPresence(driver, "className", "android.view.View");
+                // Assert if current activity is indeed equal to the activity name of the video player
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+                // Print to console output current player activity
+                System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-            Thread.sleep(5000);
+                po.waitForPresenceOfText(driver, "h");
 
-            po.verifyOverlay(driver);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+                //Clicking on Play button in Ooyala Skin
+                po.clickBasedOnText(driver, "h");
 
 
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+                //Play Started Verification
+                EventVerification ev = new EventVerification();
+
+                //Wait for video to start and verify the playStarted event .
+                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+                Thread.sleep(5000);
+
+                po.verifyOverlay(driver);
+
+                //Wait for video to finish and verify the playCompleted event .
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+
+            } catch (Exception e) {
+                System.out.println(" Exception " + e);
+                e.printStackTrace();
+                ScreenshotDevice.screenshot(driver);
+            }
+
         }
 
-    }
+        @org.testng.annotations.Test
+        public void FreeWheelIntegrationMultiMidroll() throws Exception {
 
-    @org.testng.annotations.Test
-    public void FreeWheelIntegrationMultiMidroll() throws Exception {
-
-        try {
-            // Creating an Object of FreeWheelSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
+            try {
+                // Creating an Object of FreeWheelSampleApp class
+                exoPlayerSampleApp po = new exoPlayerSampleApp();
+                // wait till home screen of basicPlayBackApp is opened
+                po.waitForAppHomeScreen(driver);
 
 
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                // Assert if current activity is indeed equal to the activity name of app home screen
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+                // Wrire to console activity name of home screen app
+                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+                //Pause the running of test for a brief time .
+                Thread.sleep(3000);
 
-            po.clickBasedOnText(driver, "Freewheel Integration");
-            Thread.sleep(2000);
+                po.clickBasedOnText(driver, "Freewheel Integration");
+                Thread.sleep(2000);
 
-            // Assert if current activity is Freewheel list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+                // Assert if current activity is Freewheel list activity
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Freewheel Multi Midroll");
-            Thread.sleep(2000);
+                // Select one of the video HLS,MP4 etc .
+                po.clickBasedOnText(driver, "Freewheel Multi Midroll");
+                Thread.sleep(2000);
 
-            System.out.println("clicked on based text");
-
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver, "h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+                System.out.println("clicked on based text");
 
 
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
+                //verify if player was loaded
+                po.waitForPresence(driver, "className", "android.view.View");
+                // Assert if current activity is indeed equal to the activity name of the video player
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+                // Print to console output current player activity
+                System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+                po.waitForPresenceOfText(driver, "h");
 
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
+                //Clicking on Play button in Ooyala Skin
+                po.clickBasedOnText(driver, "h");
 
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+                //Play Started Verification
+                EventVerification ev = new EventVerification();
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                //Wait for video to start and verify the playStarted event .
+                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+                //Wait for Ad to start and verify the adStarted event .
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+                //Wait for Ad to complete and verify the adCompleted event .
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+                //Wait for video to finish and verify the playCompleted event .
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+
+            } catch (Exception e) {
+                System.out.println(" Exception " + e);
+                e.printStackTrace();
+                ScreenshotDevice.screenshot(driver);
+            }
+
         }
 
-    }
+        //ToDo: Failing due to PBA-3783
+        @org.testng.annotations.Test
+        public void FreeWheelIntegrationPreMidPostroll_overlay() throws Exception {
 
-    @org.testng.annotations.Test
-    public void FreeWheelIntegrationPreMidPostroll_overlay() throws Exception {
-
-        try {
-            // Creating an Object of FreeWheelSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Freewheel Integration");
-            Thread.sleep(2000);
-
-            // Assert if current activity is Freewheel list activity
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Freewheel PreMidPost");
-            Thread.sleep(2000);
-
-            System.out.println("clicked on based text");
+            try {
+                // Creating an Object of FreeWheelSampleApp class
+                exoPlayerSampleApp po = new exoPlayerSampleApp();
+                // wait till home screen of basicPlayBackApp is opened
+                po.waitForAppHomeScreen(driver);
 
 
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+                // Assert if current activity is indeed equal to the activity name of app home screen
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+                // Wrire to console activity name of home screen app
+                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresenceOfText(driver, "h");
+                //Pause the running of test for a brief time .
+                Thread.sleep(3000);
 
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
+                po.clickBasedOnText(driver, "Freewheel Integration");
+                Thread.sleep(2000);
 
+                // Assert if current activity is Freewheel list activity
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+                // Select one of the video HLS,MP4 etc .
+                po.clickBasedOnText(driver, "Freewheel PreMidPost");
+                Thread.sleep(2000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-            Thread.sleep(3000);
-
-            po.verifyOverlay(driver);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+                System.out.println("clicked on based text");
 
 
-        } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+                //verify if player was loaded
+                po.waitForPresence(driver, "className", "android.view.View");
+                // Assert if current activity is indeed equal to the activity name of the video player
+                po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+                // Print to console output current player activity
+                System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+                po.waitForPresenceOfText(driver, "h");
+
+                //Clicking on Play button in Ooyala Skin
+                po.clickBasedOnText(driver, "h");
+
+
+                //Play Started Verification
+                EventVerification ev = new EventVerification();
+                //Wait for video to start and verify the playStarted event .
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+
+                //Wait for video to start and verify the playStarted event .
+                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+                Thread.sleep(3000);
+
+                po.verifyOverlay(driver);
+
+                //Wait for Ad to start and verify the adStarted event .
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+
+                //Wait for Ad to complete and verify the adCompleted event .
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+
+                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
+                //Wait for video to finish and verify the playCompleted event .
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+
+
+            } catch (Exception e) {
+                System.out.println(" Exception " + e);
+                e.printStackTrace();
+                ScreenshotDevice.screenshot(driver);
+            }
+
         }
-
-    }
 
 }

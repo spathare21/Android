@@ -520,7 +520,7 @@ public class BasicTests {
         }
     }
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void VASTAdWrapperTest() throws Exception{
 
         try {
