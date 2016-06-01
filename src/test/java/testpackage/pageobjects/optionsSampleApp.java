@@ -6,7 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import testpackage.utils.CommandLine;
+import testpackage.utils.EventVerification;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -54,10 +57,150 @@ public class optionsSampleApp {
         String xpath = "//android.widget.TextView[@text='" + waitString + "']";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
+
     public void clickImagebuttons(AndroidDriver driver, int index) {
 
         List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
         imageButtons.get(index).click();
+    }
+
+    public void pauseSmallPlayer (AndroidDriver driver) throws InterruptedException {
+        Thread.sleep(2000);
+        System.out.println("Pausing the Video");
+        //Pausing Video
+        String dimensions = driver.manage().window().getSize().toString();
+        String[] dimensionsarray=dimensions.split(",");
+        int length = dimensionsarray[1].length();
+        String ydimensions=dimensionsarray[1].substring(0,length-1);
+        String ydimensionstrimmed=ydimensions.trim();
+        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
+        driver.tap(1, 90 , (ydimensionsInt-718), 2);
+    }
+
+    public void clickOnCuePointsOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("CuePoints On"));
+        driver.findElement(By.name("CuePoints On")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("CuePoints Off")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="CuePoints Off"){
+            System.out.println("CuePoints Off Button Found");
+        }
+    }
+
+    public void clickOnAdsControlsOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("AdsControls On"));
+        driver.findElement(By.name("AdsControls On")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("AdsControls Off")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="AdControls Off"){
+            System.out.println("AdsControls Off Button Found");
+        }
+    }
+
+    public void clickOnCuePointsOff (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("CuePoints Off"));
+        driver.findElement(By.name("CuePoints Off")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("CuePoints On")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="CuePoints On"){
+            System.out.println("CuePoints On Button Found");
+        }
+    }
+
+    public void clickAlignBottom (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Align Bottom"));
+        driver.findElement(By.name("Align Bottom")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("Align Top")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="Align Top"){
+            System.out.println("Align Top Button Found");
+        }
+    }
+
+    public void clickAlignRight (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Align Right"));
+        driver.findElement(By.name("Align Right")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("Align Left")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="Align Left"){
+            System.out.println("Align Left Button Found");
+        }
+    }
+
+    public void clickAlignTop (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Align Top"));
+        driver.findElement(By.name("Align Top")).click();
+        Thread.sleep(2000);
+
+        String alignTopString =  driver.findElement(By.name("Align Bottom")).getText();
+        System.out.println(alignTopString);
+
+        if(alignTopString=="Align Bottom"){
+            System.out.println("Align Left Button Found");
+        }
+    }
+
+    public void clickOnPreloadOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Preload On"));
+        driver.findElement(By.name("Preload On")).click();
+        Thread.sleep(2000);
+
+        String preloadOnString =  driver.findElement(By.name("Preload Off")).getText();
+        System.out.println(preloadOnString);
+
+        if(preloadOnString=="Preload Off"){
+            System.out.println("Preload Off Button Found");
+        }
+    }
+
+    public void clickOnPromoImgOn (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Show PromoImage On"));
+        driver.findElement(By.name("Show PromoImage On")).click();
+        Thread.sleep(2000);
+
+        String promoImageonString =  driver.findElement(By.name("Show PromoImage Off")).getText();
+        System.out.println(promoImageonString);
+
+        if(promoImageonString=="Show PromoImage Off"){
+            System.out.println("Show PromoImage Off Button Found");
+        }
+    }
+
+    public void clickOnPreloadOff (AndroidDriver driver) throws InterruptedException, IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.findElements(By.name("Preload Off"));
+        driver.findElement(By.name("Preload Off")).click();
+        Thread.sleep(2000);
+
+        String preloadOffString =  driver.findElement(By.name("Preload On")).getText();
+        System.out.println(preloadOffString);
+
+        if(preloadOffString=="Preload On"){
+            System.out.println("Preload On Button Found");
+        }
     }
 
     public void clickOnViewarea(AndroidDriver driver)
@@ -95,4 +238,49 @@ public class optionsSampleApp {
         driver.findElement(By.id("android:id/pause")).click();
     }
 
+    public void powerKeyClick (AndroidDriver driver) throws InterruptedException, IOException {
+
+        driver.sendKeyEvent(26);            // key 26 is used to lock the screen
+        System.out.println("key sent");
+        System.out.println("screen lock");
+        Thread.sleep(5000);
+        //driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
+        String command = "adb shell am start -n io.appium.unlock/.Unlock";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing screen unlock");
+        driver.navigate().back();
+        System.out.println("Back to Sample App screen ");
+        Thread.sleep(2000);
+    }
+
+    public void getXYSeekBarAndSeek(AndroidDriver driver, int widthOffSet1, int widthOffSet2) {
+        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
+
+        int seekBarFieldWidth = seekBarField.getLocation().getX();
+        int seekBarFieldHeigth = seekBarField.getLocation().getY();
+        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
+    }
+
+    public void videoPlay (AndroidDriver driver)
+    {
+        driver.findElement(By.xpath("//android.widget.ImageButton[@index ='0']")).click();
+    }
+
+    public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
+
+        String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
+        String[] final_command = CommandLine.command(command);
+        Runtime run = Runtime.getRuntime();
+        Process pr = run.exec(final_command);
+        Thread.sleep(3000);
+        System.out.println("showing recent app screen");
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        System.out.println("back to SDK");
+    }
 }

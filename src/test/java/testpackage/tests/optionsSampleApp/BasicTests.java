@@ -417,7 +417,6 @@ public class BasicTests {
             po.clickBasedOnText(driver, "Prevent Video View Sharing Option");
             Thread.sleep(2000);
 
-
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
