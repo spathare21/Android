@@ -178,9 +178,11 @@ public class DeepTests {
 
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-                Thread.sleep(10000);
-
+                Thread.sleep(3000);
+                po.volumeUpClick(driver);
+                Thread.sleep(2000);
+                po.volumeMute(driver);
+                Thread.sleep(3000);
                 // Tap coordinates to pause
                 String dimensions = driver.manage().window().getSize().toString();
                 //System.out.println(" Dimensions are "+dimensions);
@@ -212,7 +214,8 @@ public class DeepTests {
                 po.videoPlay(driver);
 
                 ev.verifyEvent("stateChanged - state: PLAYING","video start playing again",30000);
-
+                Thread.sleep(2000);
+                po.volumeDownClick(driver);
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
@@ -223,7 +226,7 @@ public class DeepTests {
             }
         }
 
-       @org.testng.annotations.Test
+      /* @org.testng.annotations.Test
         public void FreeWheelMidRoll() throws Exception {
 
             try {
@@ -490,5 +493,5 @@ public class DeepTests {
                 ScreenshotDevice.screenshot(driver);
             }
         }
-
+*/
     }

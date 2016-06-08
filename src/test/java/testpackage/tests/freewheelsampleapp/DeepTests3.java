@@ -123,13 +123,14 @@ public class DeepTests3 {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             System.out.println("FW overlay");
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            Thread.sleep(5000);
+           // Thread.sleep(5000);
 
             po.verifyOverlay(driver);
 
@@ -340,7 +341,9 @@ public class DeepTests3 {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
+
     }
+
 
     @org.testng.annotations.Test
     public void FWCuePointsAndAdsControlOptions_cuePointOff_leanmore() throws Exception{
