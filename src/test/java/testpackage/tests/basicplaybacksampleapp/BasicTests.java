@@ -154,7 +154,7 @@ public class BasicTests {
             //Seek and Verify seek event
             po.getXYSeekBarAndSeek(driver,20,120);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
             // Tap coordinates again to play
             driver.tap(1, 35 , (ydimensionsInt-25), 2);
@@ -228,7 +228,7 @@ public class BasicTests {
             //Seek and Verify seek event
             po.getXYSeekBarAndSeek(driver,20,120);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
             // Tap coordinates again to play
             driver.tap(1, 35 , (ydimensionsInt-25), 2);
