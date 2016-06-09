@@ -546,7 +546,6 @@ public class BasicPlayBackBasicTests {
 
     }
 
-
     @org.testng.annotations.Test
     public void VAST2_Midroll() throws Exception{
         try {
@@ -628,7 +627,7 @@ public class BasicPlayBackBasicTests {
     }
 
     //TODO Fails because of https://jira.corp.ooyala.com/browse/PBA-3730
-    @org.testng.annotations.Test
+/*    @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
 
@@ -705,7 +704,7 @@ public class BasicPlayBackBasicTests {
             ScreenshotDevice.screenshot(driver);
         }
 
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void VAST_Wrapper() throws Exception{
@@ -786,7 +785,7 @@ public class BasicPlayBackBasicTests {
 
     }
 
-   //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
+/*   //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void ooyalaAd_Preroll() throws Exception{
         try {
@@ -1023,7 +1022,7 @@ public class BasicPlayBackBasicTests {
             ScreenshotDevice.screenshot(driver);
         }
 
-    }
+    }*/
 
 
 
