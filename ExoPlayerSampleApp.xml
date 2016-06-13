@@ -15,7 +15,7 @@
             <class name="testpackage.tests.exoPlayerSampleApp.DeepBasicPlayback"/>
             <class name="testpackage.tests.exoPlayerSampleApp.DeepTests2BasicPlayback"/>
             <class name="testpackage.tests.exoPlayerSampleApp.DeepTests3BasicPlayback"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.DeepTest4Basicplayback"/>
+            <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTest4Basicplayback"/>-->
 
 
 

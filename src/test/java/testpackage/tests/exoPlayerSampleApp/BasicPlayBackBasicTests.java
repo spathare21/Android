@@ -93,7 +93,7 @@ public class BasicPlayBackBasicTests {
     }
 
     @org.testng.annotations.Test
-      public void AspectRatio() throws Exception{
+    public void AspectRatio() throws Exception{
         try {
 
             // Creating an Object of FreeWheelSampleApp class
