@@ -10,6 +10,12 @@
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepTestIMA"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepTestsFW"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepBasicPlayback"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepTests2BasicPlayback"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepTests3BasicPlayback"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.DeepTest4Basicplayback"/>
 
 
 
