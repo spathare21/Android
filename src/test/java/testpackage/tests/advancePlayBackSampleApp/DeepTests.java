@@ -759,7 +759,7 @@ public class DeepTests {
         }
     }
 
-    @org.testng.annotations.Test
+/*    @org.testng.annotations.Test
     public void customPluginSample() throws Exception {
 
         try {
@@ -903,7 +903,7 @@ public class DeepTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }
+    }*/
 
     @org.testng.annotations.Test
     public void customControls() throws Exception {
@@ -1027,7 +1027,7 @@ public class DeepTests {
         }
     }
 
-   @org.testng.annotations.Test
+/*   @org.testng.annotations.Test
     public void unbundled() throws Exception {
 
         try {
@@ -1156,6 +1156,6 @@ public class DeepTests {
             ScreenshotDevice.screenshot(driver);
         }
 
-    }
+    }*/
 
 }

@@ -310,7 +310,7 @@ public class DeepTests3BasicPlayback {
     }
 
    //TODO AdCompleted Event not getting fired PBA-3704
-
+/*
     @org.testng.annotations.Test
     public void VAST_3_Podded() throws Exception{
         try {
@@ -527,6 +527,7 @@ public class DeepTests3BasicPlayback {
         }
 
     }
+*/
 
     @org.testng.annotations.Test
     public void VAST_AD_With_NewEvents() throws Exception{

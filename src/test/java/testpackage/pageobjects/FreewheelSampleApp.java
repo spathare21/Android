@@ -116,6 +116,7 @@ public class FreewheelSampleApp {
 
     public void videoPlay (AndroidDriver driver)
     {
+       // driver.sendKeyEvent(126);
         driver.findElement(By.xpath("//android.widget.ImageButton[@index ='0']")).click();
     }
 
@@ -130,15 +131,17 @@ public class FreewheelSampleApp {
         driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
     }
 
-    public void verifyOverlay (AndroidDriver driver)
-    {
-          WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
-        if (element.isDisplayed())
+    public void verifyOverlay (AndroidDriver driver) {
+        WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
+       /* if (element.isDisplayed())
         {
             System.out.println("overlay displayed");
-        }
-    }
+        }*/
 
+        Assert.assertTrue(element.isDisplayed());
+
+        System.out.println("Element is displayed Found");
+    }
     public void clickOnViewarea(AndroidDriver driver)
     {
         WebDriverWait wait = new WebDriverWait(driver,30);
@@ -162,5 +165,24 @@ public class FreewheelSampleApp {
     {
         driver.findElement(By.id("com.ooyala.sample.FreewheelSampleApp:id/toggleButton2")).click();
         System.out.println("Ad controls off");
+    }
+    public void  volumeDownClick (AndroidDriver driver)throws InterruptedException, IOException
+    {
+        driver.sendKeyEvent(25);   //25 is the Keyevent used to decrease the volume
+      //  System.out.println("Key Sent");
+        System.out.println("Volume  Decreased");
+       // Thread.sleep(5000);
+
+    }
+    public void volumeUpClick (AndroidDriver driver) throws  InterruptedException, IOException
+    {
+        driver.sendKeyEvent(24);     //24 is the keyevent used to increase the volume.
+        System.out.println("Volume Increased");
+
+    }
+    public void volumeMute(AndroidDriver driver)  throws  InterruptedException, IOException
+    {
+        driver.sendKeyEvent(91);
+        System.out.println("Volume is mute");
     }
     }

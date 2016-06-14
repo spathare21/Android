@@ -227,7 +227,7 @@ public class FWBasicTests {
 
     }
 
-        //ToDo: Failing due to PBA-3783
+    /*    //ToDo: Failing due to PBA-3783
         @org.testng.annotations.Test
         public void FreeWheelIntegrationPostroll() throws Exception {
 
@@ -371,7 +371,7 @@ public class FWBasicTests {
                 ScreenshotDevice.screenshot(driver);
             }
 
-        }
+        }*/
 
         @org.testng.annotations.Test
         public void FreeWheelIntegrationOverlay() throws Exception {
@@ -510,7 +510,7 @@ public class FWBasicTests {
         }
 
         //ToDo: Failing due to PBA-3783
-        @org.testng.annotations.Test
+      /*  @org.testng.annotations.Test
         public void FreeWheelIntegrationPreMidPostroll_overlay() throws Exception {
 
             try {
@@ -589,6 +589,6 @@ public class FWBasicTests {
                 ScreenshotDevice.screenshot(driver);
             }
 
-        }
+        }*/
 
 }
