@@ -7,8 +7,8 @@
 
 
             <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
-            <class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>
-            <class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>
+            <!--<class name="testpackage.tests.basicplaybacksampleapp.DeepTests"/>-->
+            <!--<class name="testpackage.tests.basicplaybacksampleapp.DeepTests2"/>-->
 
 
         </classes>
