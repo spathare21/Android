@@ -90,7 +90,7 @@ public class BasicTests{
 
     }
 
-    /*@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelPreRoll() throws Exception{
 
         try {
@@ -691,7 +691,7 @@ public class BasicTests{
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
+    }
 
     @org.testng.annotations.Test
     public void FreeWheelCuePointsAndAdsControlOptions() throws Exception{
