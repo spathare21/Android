@@ -7,10 +7,10 @@
 
 
             <class name="testpackage.tests.freewheelsampleapp.BasicTests"/>
-            <class name="testpackage.tests.freewheelsampleapp.DeepTests"/>
-            <class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>
-            <class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>
-            <class name="testpackage.tests.freewheelsampleapp.DeepTests4"/>
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests2"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests3"/>-->
+            <!--<class name="testpackage.tests.freewheelsampleapp.DeepTests4"/>-->
 
 
         </classes>
