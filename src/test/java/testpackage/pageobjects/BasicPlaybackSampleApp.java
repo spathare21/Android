@@ -23,6 +23,9 @@ import java.util.List;
  */
 public class BasicPlaybackSampleApp {
 
+    //WebElement playButton;
+    int[] playCoordinates= new int[2];
+
 
     /*
     Function Description :-
@@ -81,6 +84,8 @@ public class BasicPlaybackSampleApp {
         //System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
         System.out.println(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
+
+
     }
 
     public void clickImagebuttons(AndroidDriver driver, int index) {
@@ -135,9 +140,42 @@ public class BasicPlaybackSampleApp {
 
     public void playInNormalScreen(AndroidDriver driver)
     {
-        WebElement element = driver.findElement(By.xpath("//android.widget.FrameLayout[@index= '0']"));
+      /*  WebElement element = driver.findElement(By.xpath("//android.widget.FrameLayout[@index= '0']"));
         List<WebElement> play = element.findElements(By.className("android.widget.ImageButton"));
-        play.get(0).click();
+        playButton = play.get(0);
+        System.out.println("Play:"+playButton);
+        playButton.click();*/
+        int[] play = new int[2];
+        List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
+        play[0]=imageButtons.get(0).getLocation().getX();
+        play[1]=imageButtons.get(0).getLocation().getY();
+
+        playCoordinates[0]=play[0]+imageButtons.get(0).getSize().getWidth()/2 ;
+        playCoordinates[1]=play[1]+imageButtons.get(0).getSize().getHeight()/2 ;
+        System.out.println("X playCoordinates"+playCoordinates[0]);
+        System.out.println("Y playCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+
+    }
+
+    public void pauseInNormalScreen(AndroidDriver driver){
+        //playButton.click();
+        System.out.println("X pauseCoordinates"+playCoordinates[0]);
+        System.out.println("Y pauseCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
+    public void seekVideo(AndroidDriver driver){
+        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
+
+        int seekBarFieldWidth = seekBarField.getLocation().getX();
+        int seekBarFieldHeigth = seekBarField.getLocation().getY();
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
     }
 
 
