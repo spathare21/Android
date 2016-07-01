@@ -20,7 +20,7 @@ public class BasicTests {
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
-        CloserecentApps.closeApps();
+        //CloserecentApps.closeApps();
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -131,9 +131,25 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",60000);
+            Thread.sleep(7000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            po.playInNormalScreen(driver);
+
+            po.screenTap(driver);
+
+            po.pauseInNormalScreen(driver);
+
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+
+            po.seekVideoFullscreen(driver);
+            po.playInNormalScreen(driver);
+
+            ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",70000);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video started playing again", 80000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",100000);
 
         }
         catch (Exception e) {
@@ -143,7 +159,8 @@ public class BasicTests {
         }
 
     }
-/*
+
+
     @org.testng.annotations.Test
     public void multipleVideoPlayback() throws Exception {
 
@@ -241,7 +258,7 @@ public class BasicTests {
         }
 
     }
-
+/*
     @org.testng.annotations.Test
     public void changeVideoProgramatically() throws Exception {
 

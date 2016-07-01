@@ -255,11 +255,24 @@ public class advancePlayBackSampleApp {
         }
     }
 
+    public void seekVideoFullscreen(AndroidDriver driver){
+        WebElement seekBarField =  driver.findElementByClassName("//android.widget.SeekBar");
+        int seekBarFieldWidth = seekBarField.getLocation().getX();
+        int seekBarFieldHeigth = seekBarField.getLocation().getY();
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
+        System.out.println(" Seeking ------------------------- ");
+        driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
+
+    }
+
     public void playInNormalScreen(AndroidDriver driver) throws Exception
     {
         int[] play = new int[2];
         Thread.sleep(5000);
-        List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
+        List<WebElement> imageButtons = driver.findElementsByClassName("android.widget.ImageButton");;
         System.out.printf("Size : "+imageButtons.size());
         if(imageButtons.size()>0)
         {
@@ -273,6 +286,9 @@ public class advancePlayBackSampleApp {
             driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
         }
     }
+
+
+
 
     public void pauseInNormalScreen(AndroidDriver driver){
         //playButton.click();
