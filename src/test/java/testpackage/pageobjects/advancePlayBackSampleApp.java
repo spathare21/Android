@@ -15,6 +15,7 @@ import java.util.List;
  * Created by Sachin on 3/31/2016.
  */
 public class advancePlayBackSampleApp {
+    int[] playCoordinates= new int[2];
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -253,6 +254,33 @@ public class advancePlayBackSampleApp {
             System.out.println("Scrubber bar is displaying after click");
         }
     }
+
+    public void playInNormalScreen(AndroidDriver driver) throws Exception
+    {
+        int[] play = new int[2];
+        Thread.sleep(5000);
+        List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
+        System.out.printf("Size : "+imageButtons.size());
+        if(imageButtons.size()>0)
+        {
+            play[0] = imageButtons.get(0).getLocation().getX();
+            play[1] = imageButtons.get(0).getLocation().getY();
+
+            playCoordinates[0] = play[0] + imageButtons.get(0).getSize().getWidth() / 2;
+            playCoordinates[1] = play[1] + imageButtons.get(0).getSize().getHeight() / 2;
+            System.out.println("X playCoordinates" + playCoordinates[0]);
+            System.out.println("Y playCoordinates" + playCoordinates[1]);
+            driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
+        }
+    }
+
+    public void pauseInNormalScreen(AndroidDriver driver){
+        //playButton.click();
+        System.out.println("X pauseCoordinates"+playCoordinates[0]);
+        System.out.println("Y pauseCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
 }
 
 

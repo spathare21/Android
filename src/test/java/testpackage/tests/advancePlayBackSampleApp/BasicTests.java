@@ -125,6 +125,8 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.playInNormalScreen(driver);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
@@ -141,9 +143,8 @@ public class BasicTests {
         }
 
     }
-
+/*
     @org.testng.annotations.Test
-
     public void multipleVideoPlayback() throws Exception {
 
         try {
@@ -162,18 +163,23 @@ public class BasicTests {
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Multiple Video Playback");
-            Thread.sleep(2000);
+            Thread.sleep(000);
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
 
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.MultipleVideosPlayerActivity");
+           // po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.MultipleVideosPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            //System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //1st video Play Started Verification
+
+            Thread.sleep(5000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
@@ -193,7 +199,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void insertAtRunTime() throws Exception {
 
         try {
@@ -238,7 +243,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void changeVideoProgramatically() throws Exception {
 
         try {
@@ -282,9 +286,7 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
-
     public void customPluginSample() throws Exception {
 
         try {
@@ -328,9 +330,7 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
-
     public void customControls() throws Exception {
 
         try {
@@ -375,7 +375,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void customOverlay() throws Exception {
 
         try {
@@ -475,7 +474,6 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
     public void insertAtRunTime_OoyalaAd() throws Exception {
 
@@ -533,9 +531,7 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
-
     public void changeVideoProgramatically_P1() throws Exception {
 
         try {
@@ -589,7 +585,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void changeVideoProgramatically_P2() throws Exception {
 
         try {
@@ -641,9 +636,7 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
-
     public void customPluginSample_Adverfication() throws Exception {
 
         try {
@@ -707,5 +700,5 @@ public class BasicTests {
 
     }
 
-
+*/
 }
