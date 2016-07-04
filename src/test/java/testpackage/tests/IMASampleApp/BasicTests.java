@@ -165,7 +165,7 @@ public class BasicTests {
         }
     }
 
-    /*@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void IMAAdRuleMidroll() throws Exception{
 
         try {
@@ -860,6 +860,6 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver);
         }
     }
-*/
+
 
 }
