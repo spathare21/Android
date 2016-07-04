@@ -129,7 +129,7 @@ public class BasicTests {
             System.out.println("Now will play in normal screen");
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
-            
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 1000);
@@ -166,7 +166,7 @@ public class BasicTests {
         }
     }
 
-    /*@org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void IMAAdRuleMidroll() throws Exception{
 
         try {
@@ -860,7 +860,6 @@ public class BasicTests {
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver);
         }
-    }*/
-
+    }
 
 }
