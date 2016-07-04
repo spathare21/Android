@@ -185,8 +185,9 @@ public class DeepTests {
 
                 //Play video in normal screen
                 po.playInNormalScreen(driver);
-                Thread.sleep(4000);
+                Thread.sleep(1000);
                 ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+                Thread.sleep(5000);
 
                 //Tapping on screen
                 po.screenTap(driver);

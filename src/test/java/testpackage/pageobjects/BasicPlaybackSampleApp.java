@@ -136,7 +136,6 @@ public class BasicPlaybackSampleApp {
         normalScreenButton.click();
 
         //normalScreen.click();
-
     }
 
     public void screenTap(AndroidDriver driver){
@@ -281,6 +280,10 @@ public class BasicPlaybackSampleApp {
         System.out.println("showing screen unlock");
         System.out.println("Back to Sample App screen ");
         Thread.sleep(2000);
+    }
+
+    public void closeApp(AndroidDriver driver){
+        driver.quit();
     }
 
 }
