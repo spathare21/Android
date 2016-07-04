@@ -183,7 +183,7 @@ public class IMASampleApp {
         System.out.println("Play:"+playButton);
         playButton.click();*/
         int[] play = new int[2];
-        List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
+        List<WebElement> imageButtons = driver.findElements(By.className("android.widget.ImageButton"));
         WebElement button = imageButtons.get(0);
         Assert.assertEquals(true, button.isDisplayed());
         play[0]=imageButtons.get(0).getLocation().getX();
