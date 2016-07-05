@@ -44,6 +44,13 @@ public class advancePlayBackSampleApp {
         }
 
     }
+    public void waitForTextView(AndroidDriver driver, String text) {
+
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.
+                xpath("//android.widget.TextView[@text='" + text + "']")));
+
+    }
 
     public void clickOnVastAd(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
@@ -287,13 +294,39 @@ public class advancePlayBackSampleApp {
         }
     }
 
-
-
-
     public void pauseInNormalScreen(AndroidDriver driver){
         //playButton.click();
         System.out.println("X pauseCoordinates"+playCoordinates[0]);
         System.out.println("Y pauseCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
+    public void seekVideo(AndroidDriver driver){
+        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
+
+        int seekBarFieldWidth = seekBarField.getLocation().getX();
+        int seekBarFieldHeigth = seekBarField.getLocation().getY();
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
+    }
+
+    public void readTime(AndroidDriver driver){
+        List<WebElement> startTime = driver.findElementsByClassName("android.widget.TextView");
+        System.out.println("Size:"+startTime.size());
+        if (startTime.size()>0)
+        {
+            String startTimetext = startTime.get(1).getText();
+            System.out.println("The Start time of video is:" +startTimetext);
+        }
+    }
+
+    public void resumeVideoInNormalscreen(AndroidDriver driver){
+        System.out.println("X resumeCoordinates"+playCoordinates[0]);
+        System.out.println("Y resumeCoordinates"+playCoordinates[1]);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
