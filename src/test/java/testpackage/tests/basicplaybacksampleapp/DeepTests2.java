@@ -97,7 +97,7 @@ public class DeepTests2 {
 
     //TODO : create unique file names for snapshots taken .
 
-   // @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void OoyalaAdPreroll() throws Exception {
 
         try {
@@ -143,12 +143,12 @@ public class DeepTests2 {
 
             //Play video in full screen
             po.playInFullScreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -160,54 +160,55 @@ public class DeepTests2 {
 
             //Pausing video in full screen
             po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 47000);
             Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
 
             //Seeking the video in full screen
             po.seekVideoFullscreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
             Thread.sleep(3000);
 
             // going back again in normal screen
             po.gotoNormalScreen(driver);
-            Thread.sleep(2000);
+           // Thread.sleep(2000);
 
             // event verification for normal screen
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
-            Thread.sleep(3000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 53000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 53000);
+            Thread.sleep(2000);
 
             //Play video in normal screen
             po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 57000);
             Thread.sleep(3000);
 
             //Tapping on screen
             po.screenTap(driver);
-            Thread.sleep(1000);
+            Thread.sleep(500);
 
             //Pausing video in normal screen
             po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 61000);
             Thread.sleep(1000);
 
             //Seeking video in normal screen
             po.seekVideo(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
             Thread.sleep(3000);
 
             // playing video in normal screen
             po.playInNormalScreen(driver);
             //verifing event for play
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+            Thread.sleep(5000);
 
             // video completed event verificaiton
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -245,7 +246,7 @@ public class DeepTests2 {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
 
             //waitting for start screen
             po.waitForTextView(driver,"00:00");
@@ -253,7 +254,7 @@ public class DeepTests2 {
 
             // move to full screen
             po.gotoFullScreen(driver);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 
             // event verification for full screen
             EventVerification ev = new EventVerification();
@@ -264,7 +265,7 @@ public class DeepTests2 {
 
             //Play video in full screen
             po.playInFullScreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(4000);
@@ -275,43 +276,46 @@ public class DeepTests2 {
 
             //Pausing video in full screen
             po.pauseInFullScreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            Thread.sleep(2000);
 
             //Seeking the video in full screen
             po.seekVideoFullscreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
             Thread.sleep(3000);
 
             // going back again in normal screen
             po.gotoNormalScreen(driver);
-            Thread.sleep(2000);
+           // Thread.sleep(2000);
 
             // event verification for normal screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 52000);
             Thread.sleep(3000);
 
             //Play video in normal screen
             po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+           // Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
             Thread.sleep(3000);
+
             //Tapping on screen
             po.screenTap(driver);
             Thread.sleep(1000);
 
             //Pausing video in normal screen
             po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(2000);
 
             //Seeking video in normal screen
             po.seekVideo(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
             Thread.sleep(3000);
 
             // playing video in normal screen
@@ -320,17 +324,17 @@ public class DeepTests2 {
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
             Thread.sleep(8000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
 
             // event verification of video is start playing
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
             Thread.sleep(10000);
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -368,7 +372,7 @@ public class DeepTests2 {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 
             //waitting for start screen
             po.waitForTextView(driver,"00:00");
@@ -376,7 +380,7 @@ public class DeepTests2 {
 
             // move to full screen
             po.gotoFullScreen(driver);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 
             // event verification for full screen
             EventVerification ev = new EventVerification();
@@ -387,9 +391,8 @@ public class DeepTests2 {
 
             //Play video in full screen
             po.playInFullScreen(driver);
-            Thread.sleep(1000);
-
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 35000);
             Thread.sleep(4000);
 
             //Tapping on screen
@@ -398,43 +401,44 @@ public class DeepTests2 {
 
             //Pausing video in full screen
             po.pauseInFullScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 45000);
+            Thread.sleep(2000);
 
             //Seeking the video in full screen
             po.seekVideoFullscreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
             Thread.sleep(3000);
 
             // going back again in normal screen
             po.gotoNormalScreen(driver);
-            Thread.sleep(2000);
-
+            //Thread.sleep(2000);
             // event verification for normal screen
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 55000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 55000);
             Thread.sleep(3000);
 
             //Play video in normal screen
             po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
             Thread.sleep(3000);
+
             //Tapping on screen
             po.screenTap(driver);
             Thread.sleep(1000);
 
             //Pausing video in normal screen
             po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
             Thread.sleep(1000);
 
             //Seeking video in normal screen
             po.seekVideo(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
             Thread.sleep(3000);
 
             // playing video in normal screen
@@ -443,15 +447,15 @@ public class DeepTests2 {
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
             Thread.sleep(8000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
-            Thread.sleep(2000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            Thread.sleep(1000);
 
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
 
 
         } catch (Exception e) {
@@ -509,12 +513,12 @@ public class DeepTests2 {
 
             //Play video in full screen
             po.playInFullScreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -526,54 +530,55 @@ public class DeepTests2 {
 
             //Pausing video in full screen
             po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 47000);
             Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
 
             //Seeking the video in full screen
             po.seekVideoFullscreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
             Thread.sleep(3000);
 
             // going back again in normal screen
             po.gotoNormalScreen(driver);
-            Thread.sleep(2000);
+            // Thread.sleep(2000);
 
             // event verification for normal screen
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
-            Thread.sleep(3000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 53000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 53000);
+            Thread.sleep(2000);
 
             //Play video in normal screen
             po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 57000);
             Thread.sleep(3000);
 
             //Tapping on screen
             po.screenTap(driver);
-            Thread.sleep(1000);
+            Thread.sleep(500);
 
             //Pausing video in normal screen
             po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 61000);
             Thread.sleep(1000);
 
             //Seeking video in normal screen
             po.seekVideo(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
             Thread.sleep(3000);
 
             // playing video in normal screen
             po.playInNormalScreen(driver);
             //verifing event for play
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
-            Thread.sleep(10000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+            Thread.sleep(5000);
 
             // video completed event verificaiton
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
         }
         catch (Exception e) {
@@ -618,7 +623,7 @@ public class DeepTests2 {
 
             // move to full screen
             po.gotoFullScreen(driver);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 
             // event verification for full screen
             EventVerification ev = new EventVerification();
@@ -629,7 +634,7 @@ public class DeepTests2 {
 
             //Play video in full screen
             po.playInFullScreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(4000);
@@ -640,43 +645,46 @@ public class DeepTests2 {
 
             //Pausing video in full screen
             po.pauseInFullScreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            Thread.sleep(2000);
 
             //Seeking the video in full screen
             po.seekVideoFullscreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
             Thread.sleep(3000);
 
             // going back again in normal screen
             po.gotoNormalScreen(driver);
-            Thread.sleep(2000);
+            // Thread.sleep(2000);
 
             // event verification for normal screen
             ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 52000);
             Thread.sleep(3000);
 
             //Play video in normal screen
             po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            // Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
             Thread.sleep(3000);
+
             //Tapping on screen
             po.screenTap(driver);
             Thread.sleep(1000);
 
             //Pausing video in normal screen
             po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(2000);
 
             //Seeking video in normal screen
             po.seekVideo(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
             Thread.sleep(3000);
 
             // playing video in normal screen
@@ -685,17 +693,17 @@ public class DeepTests2 {
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
             Thread.sleep(8000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
 
             // event verification of video is start playing
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
             Thread.sleep(10000);
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -738,7 +746,7 @@ public class DeepTests2 {
 
             // move to full screen
             po.gotoFullScreen(driver);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 
             // event verification for full screen
             EventVerification ev = new EventVerification();
@@ -749,9 +757,8 @@ public class DeepTests2 {
 
             //Play video in full screen
             po.playInFullScreen(driver);
-            Thread.sleep(1000);
-
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 35000);
             Thread.sleep(4000);
 
             //Tapping on screen
@@ -760,43 +767,44 @@ public class DeepTests2 {
 
             //Pausing video in full screen
             po.pauseInFullScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 45000);
+            Thread.sleep(2000);
 
             //Seeking the video in full screen
             po.seekVideoFullscreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
             Thread.sleep(3000);
 
             // going back again in normal screen
             po.gotoNormalScreen(driver);
-            Thread.sleep(2000);
-
+            //Thread.sleep(2000);
             // event verification for normal screen
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 55000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 55000);
             Thread.sleep(3000);
 
             //Play video in normal screen
             po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
             Thread.sleep(3000);
+
             //Tapping on screen
             po.screenTap(driver);
             Thread.sleep(1000);
 
             //Pausing video in normal screen
             po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
             Thread.sleep(1000);
 
             //Seeking video in normal screen
             po.seekVideo(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
             Thread.sleep(3000);
 
             // playing video in normal screen
@@ -805,15 +813,15 @@ public class DeepTests2 {
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
             Thread.sleep(8000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
-            Thread.sleep(2000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            Thread.sleep(1000);
 
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
 
 
         } catch (Exception e) {
@@ -852,7 +860,7 @@ public class DeepTests2 {
 
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
 
             //waitting for start screen
             po.waitForTextView(driver,"00:00");
@@ -860,7 +868,7 @@ public class DeepTests2 {
 
             // move to full screen
             po.gotoFullScreen(driver);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 
             // event verification for full screen
             EventVerification ev = new EventVerification();
@@ -871,12 +879,12 @@ public class DeepTests2 {
 
             //Play video in full screen
             po.playInFullScreen(driver);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -888,28 +896,29 @@ public class DeepTests2 {
 
             //Pausing video in full screen
             po.pauseInFullScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 47000);
+            Thread.sleep(2000);
 
             //Seeking the video in full screen
             po.seekVideoFullscreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
             Thread.sleep(3000);
 
             // going back again in normal screen
             po.gotoNormalScreen(driver);
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 
             // event verification for normal screen
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 50000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 55000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 55000);
             Thread.sleep(3000);
 
             //Play video in normal screen
             po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
             Thread.sleep(3000);
 
             //Tapping on screen
@@ -918,34 +927,34 @@ public class DeepTests2 {
 
             //Pausing video in normal screen
             po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
             Thread.sleep(1000);
 
             //Seeking video in normal screen
             po.seekVideo(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
             Thread.sleep(3000);
 
             // playing video in normal screen
             po.playInNormalScreen(driver);
             //verifing event for play
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
-            Thread.sleep(2000);
+            Thread.sleep(8000);
+
             // Ad playing strat event verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
-
             // Ad completed verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 45000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            Thread.sleep(1000);
 
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
+            Thread.sleep(10000);
 
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 220000);
 
 
         } catch (Exception e) {
