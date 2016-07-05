@@ -451,7 +451,7 @@ public class BasicTests{
             Thread.sleep(7000);
 
             // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
+            WebElement viewarea = driver.findElementByClassName("android.widget.RelativeLayout");
             viewarea.click();
 
             //pausing the video
