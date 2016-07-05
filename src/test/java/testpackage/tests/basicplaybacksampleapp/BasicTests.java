@@ -760,18 +760,18 @@ public class BasicTests {
             Thread.sleep(11000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(2000);
+            Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(11000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
         }
         catch(Exception e)
         {
@@ -950,31 +950,31 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(2000);
+            Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
 
             //Play Started
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 41000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(11000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 55000);
 
-            Thread.sleep(2000);
+            Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(11000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
         } catch (Exception e) {
             System.out.println(" Exception " + e);
             e.printStackTrace();
