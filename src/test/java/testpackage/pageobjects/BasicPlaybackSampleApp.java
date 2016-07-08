@@ -237,6 +237,12 @@ public class BasicPlaybackSampleApp {
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
+    public void resumeInNormalScreen(AndroidDriver driver){
+        System.out.println("X resumeCoordinates"+playCoordinates[0]);
+        System.out.println("Y resumeCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
     public void seekVideo(AndroidDriver driver){
         WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
 
@@ -284,6 +290,25 @@ public class BasicPlaybackSampleApp {
 
     public void closeApp(AndroidDriver driver){
         driver.quit();
+    }
+
+    public void loadingSpinner(AndroidDriver driver) {
+        try {
+            while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
+                System.out.println("Handling Loading Spinner");
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    public void readTime(AndroidDriver driver) {
+        List<WebElement> startTime = driver.findElementsByClassName("android.widget.TextView");
+        System.out.println("Size:" + startTime.size());
+        if (startTime.size() > 0) {
+            String startTimetext = startTime.get(1).getText();
+            System.out.println("The Start time of video is:" + startTimetext);
+        }
     }
 
 }
