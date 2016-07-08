@@ -123,34 +123,42 @@ public class BasicTests {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            //Sleep for brief time
+            Thread.sleep(3000);
 
-            po.waitForTextView(driver, "00:20");
-
-            po.readTime(driver);
-
-            po.playInNormalScreen(driver);
-
-            //Play Started Verification
+             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",60000);
+
+            po.playInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
             Thread.sleep(7000);
 
             po.screenTap(driver);
             Thread.sleep(1000);
 
             po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
             Thread.sleep(1000);
 
             po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 75000);
             Thread.sleep(3000);
 
-            //po.playInNormalScreen(driver);
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",100000);
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",150000);
+
 
         }
         catch (Exception e) {
@@ -201,15 +209,22 @@ public class BasicTests {
             Thread.sleep(7000);
 
             po.screenTap(driver);
-            Thread.sleep(500);
+            Thread.sleep(1000);
 
             po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
             Thread.sleep(1000);
 
             po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 45000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
             Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
 
             //po.playInNormalScreen(driver);
             po.resumeVideoInNormalscreen(driver);
@@ -270,16 +285,22 @@ public class BasicTests {
             Thread.sleep(7000);
 
             po.screenTap(driver);
-            Thread.sleep(500);
+            Thread.sleep(1000);
 
             po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
             Thread.sleep(1000);
 
             po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
-            Thread.sleep(2000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
+            Thread.sleep(3000);
 
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
             //po.playInNormalScreen(driver);
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
@@ -334,15 +355,22 @@ public class BasicTests {
             Thread.sleep(7000);
 
             po.screenTap(driver);
-            Thread.sleep(500);
+            Thread.sleep(1000);
 
             po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
             Thread.sleep(1000);
 
             po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
-            Thread.sleep(2000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
 
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
@@ -396,8 +424,9 @@ public class BasicTests {
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            po.loadingSpinner(driver);
             Thread.sleep(60000);
-
+            po.loadingSpinner(driver);
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 120000);
 
         } catch (Exception e) {
