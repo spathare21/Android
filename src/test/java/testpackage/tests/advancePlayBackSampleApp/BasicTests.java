@@ -20,7 +20,7 @@ public class BasicTests {
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
-        CloserecentApps.closeApps();
+        //CloserecentApps.closeApps();
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -43,7 +43,6 @@ public class BasicTests {
     }
 
     @BeforeMethod
-    //public void beforeTest() throws Exception{
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
         //removeEventsLogFile.removeEventsFileLog(); create events file
@@ -83,7 +82,6 @@ public class BasicTests {
     }
 
     @AfterMethod
-    //public void afterTest() throws InterruptedException, IOException {
     public void afterMethod() throws InterruptedException, IOException {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
@@ -110,7 +108,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Play With InitialTime");
@@ -124,14 +123,42 @@ public class BasicTests {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            //Sleep for brief time
+            Thread.sleep(3000);
 
-            //Play Started Verification
+             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",60000);
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",60000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            po.playInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            Thread.sleep(7000);
+
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 75000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
+
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",150000);
+
 
         }
         catch (Exception e) {
@@ -143,7 +170,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void multipleVideoPlayback() throws Exception {
 
         try {
@@ -158,11 +184,12 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Multiple Video Playback");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
@@ -173,16 +200,42 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver, "00:00");
+
             //1st video Play Started Verification
+            po.playInNormalScreen(driver);
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(7000);
+
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            //po.playInNormalScreen(driver);
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
+            Thread.sleep(30000);
 
             //2nd video start playing in queue
-            ev.verifyEvent(" playStarted - state: READY", "2nd video start playing in queue",60000);
-
+            ev.verifyEvent(" playStarted - state: READY", "2nd video start playing in queue",90000);
+            Thread.sleep(30000);
             // video completed event verification.
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
-            Thread.sleep(50000);
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 130000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -193,7 +246,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void insertAtRunTime() throws Exception {
 
         try {
@@ -208,7 +260,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Insert Ad at Runtime");
@@ -223,11 +276,36 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(7000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+            //po.playInNormalScreen(driver);
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            Thread.sleep(20000);
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 95000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -238,7 +316,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void changeVideoProgramatically() throws Exception {
 
         try {
@@ -253,7 +330,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Change Video Programatically");
@@ -268,11 +346,37 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(7000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+            Thread.sleep(1000);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
+            Thread.sleep(20000);
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 95000);
+
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -282,9 +386,7 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
-
     public void customPluginSample() throws Exception {
 
         try {
@@ -299,11 +401,12 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Custom Plugin Sample");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
@@ -314,11 +417,17 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            po.loadingSpinner(driver);
+            Thread.sleep(60000);
+            po.loadingSpinner(driver);
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 120000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -328,9 +437,7 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
-
     public void customControls() throws Exception {
 
         try {
@@ -345,7 +452,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Custom Controls");
@@ -359,10 +467,22 @@ public class BasicTests {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomControlsPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(3000);
 
+            po.playInNormalScreen(driver);
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(7000);
+
+            po.screenTap(driver);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+            Thread.sleep(2000);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
@@ -375,7 +495,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void customOverlay() throws Exception {
 
         try {
@@ -390,7 +509,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver, "Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Custom Overlay");
@@ -405,9 +525,22 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(7000);
+
+            po.screenTap(driver);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+            Thread.sleep(2000);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
@@ -434,7 +567,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Insert Ad at Runtime");
@@ -448,6 +582,9 @@ public class BasicTests {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -458,8 +595,11 @@ public class BasicTests {
             //clicking on InsertVastAD option , inserting VAST Ad
             po.clickOnVastAd(driver);
 
+            Thread.sleep(2000);
+
             // Verifying if VAST Ad started
             ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
+            Thread.sleep(5000);
             // Verifying if VAST Ad completed
             ev.verifyEvent("adCompleted","Vast Ad completed to play",30000);
             // Veirfying if video completed
@@ -474,7 +614,6 @@ public class BasicTests {
         }
 
     }
-
 
     @org.testng.annotations.Test
     public void insertAtRunTime_OoyalaAd() throws Exception {
@@ -491,7 +630,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Insert Ad at Runtime");
@@ -505,18 +645,20 @@ public class BasicTests {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
+            po.waitForTextView(driver,"00:00");
+            po.playInNormalScreen(driver);
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
             Thread.sleep(5000);
 
             //clicking on InsertOoyalaAD option , inserting Ooyala Ad
             po.clickOnOoyalaAd(driver);
+            Thread.sleep(2000);
 
             // Verifying if Ooyala Ad started
             ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 30000);
+            Thread.sleep(5000);
             // Verifying if Ooyala Ad completed
             ev.verifyEvent("adCompleted","Ooyala Ad completed to play",30000);
             // Veirfying if video completed
@@ -533,9 +675,7 @@ public class BasicTests {
 
     }
 
-
     @org.testng.annotations.Test
-
     public void changeVideoProgramatically_P1() throws Exception {
 
         try {
@@ -550,7 +690,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Change Video Programatically");
@@ -565,6 +706,10 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Main Video Started to Play ", 30000);
@@ -577,7 +722,7 @@ public class BasicTests {
             ev.verifyEvent("playStarted", "Inserted video1 started to play", 50000);
 
             //Next video play completed.
-            ev.verifyEvent("playCompleted", "Inserted video1 ended play", 50000);
+            ev.verifyEvent("playCompleted", "Inserted video1 ended play", 90000);
 
 
         } catch (Exception e) {
@@ -589,7 +734,6 @@ public class BasicTests {
     }
 
     @org.testng.annotations.Test
-
     public void changeVideoProgramatically_P2() throws Exception {
 
         try {
@@ -604,7 +748,8 @@ public class BasicTests {
             System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+           // Thread.sleep(3000);
+            po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "Change Video Programatically");
@@ -619,6 +764,10 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Main Video Started to Play ", 30000);
@@ -631,7 +780,7 @@ public class BasicTests {
             ev.verifyEvent("playStarted", "Inserted video2 started to play", 50000);
 
             //Next video play completed.
-            ev.verifyEvent("playCompleted", "Inserted video2 ended play", 50000);
+            ev.verifyEvent("playCompleted", "Inserted video2 ended play", 90000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -642,8 +791,7 @@ public class BasicTests {
     }
 
 
-    @org.testng.annotations.Test
-
+    //@org.testng.annotations.Test
     public void customPluginSample_Adverfication() throws Exception {
 
         try {
@@ -673,31 +821,33 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.playInNormalScreen(driver);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //verifing Ad, Ad event
-            ev.verifyEvent("adStarted","Preroll Ad is playing",20000);
+            ev.verifyEvent("adPodStarted","Preroll Ad is playing",20000);
 
             // Ad completed event verification
-            ev.verifyEvent("adCompleted","Preroll Ad play completed",30000);
+            ev.verifyEvent("adPodCompleted","Preroll Ad play completed",30000);
 
             // video playing start event verification
-            ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 80000);
 
             // Midroll Ad start event verification
-            ev.verifyEvent("adStarted","Midroll Ad is playing",60000);
+            ev.verifyEvent("adPodStarted","Midroll Ad is playing",90000);
 
             // Midrill Ad completed Verification
-            ev.verifyEvent("adCompleted","Midroll Ad play completed",80000);
+            ev.verifyEvent("adPodCompleted","Midroll Ad play completed",100000);
 
             // Post Ad start event verification
-            ev.verifyEvent("adStarted","Postroll Ad is playing",80000);
+            ev.verifyEvent("adPodStarted","Postroll Ad is playing",120000);
 
             // Post  Ad completed Verification
-            ev.verifyEvent("adCompleted","Postroll Ad play completed",90000);
+            ev.verifyEvent("adPodCompleted","Postroll Ad play completed",130000);
 
-            ev.verifyEvent("playCompleted", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 130000);
 
         } catch (Exception e) {
             System.out.println(" Exception " + e);
@@ -706,6 +856,7 @@ public class BasicTests {
         }
 
     }
+
 
 
 }

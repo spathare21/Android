@@ -22,6 +22,7 @@ import java.util.Properties;
  */
 public class FreewheelSampleApp {
 
+    int[] playCoordinates= new int[2];
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -75,7 +76,7 @@ public class FreewheelSampleApp {
         driver.findElement(By.xpath("//android.widget.TextView[@text='Learn More']")).click();
 
     }
-        public void adPause (AndroidDriver driver)
+    public void adPause (AndroidDriver driver)
     {
          driver.findElement(By.id("android:id/pause")).click();
     }
@@ -185,4 +186,82 @@ public class FreewheelSampleApp {
         driver.sendKeyEvent(91);
         System.out.println("Volume is mute");
     }
+    public void playInNormalScreen(AndroidDriver driver)
+    {
+      /*  WebElement element = driver.findElement(By.xpath("//android.widget.FrameLayout[@index= '0']"));
+        List<WebElement> play = element.findElements(By.className("android.widget.ImageButton"));
+        playButton = play.get(0);
+        System.out.println("Play:"+playButton);
+        playButton.click();*/
+        int[] play = new int[2];
+        List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
+        play[0]=imageButtons.get(0).getLocation().getX();
+        play[1]=imageButtons.get(0).getLocation().getY();
+
+        playCoordinates[0]=play[0]+imageButtons.get(0).getSize().getWidth()/2 ;
+        playCoordinates[1]=play[1]+imageButtons.get(0).getSize().getHeight()/2 ;
+        System.out.println("X playCoordinates"+playCoordinates[0]);
+        System.out.println("Y playCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+
     }
+
+    public void pauseInNormalScreen(AndroidDriver driver){
+        //playButton.click();
+        System.out.println("X pauseCoordinates"+playCoordinates[0]);
+        System.out.println("Y pauseCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
+    public void resumeInNormalScreen(AndroidDriver driver){
+        //playButton.click();
+        System.out.println("X resumeCoordinates"+playCoordinates[0]);
+        System.out.println("Y resumeCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
+    public void seekVideo(AndroidDriver driver){
+        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
+
+        int seekBarFieldWidth = seekBarField.getLocation().getX();
+        int seekBarFieldHeigth = seekBarField.getLocation().getY();
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
+    }
+    public void loadingSpinner(AndroidDriver driver) {
+        try {
+            while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
+                System.out.println("Handling Loading Spinner");
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    public void readTime(AndroidDriver driver) {
+        List<WebElement> startTime = driver.findElementsByClassName("android.widget.TextView");
+        System.out.println("Size:" + startTime.size());
+        if (startTime.size() > 0) {
+            String startTimetext = startTime.get(1).getText();
+            System.out.println("The Start time of video is:" + startTimetext);
+        }
+    }
+
+    public void waitForTextView(AndroidDriver driver, String text) {
+
+        WebDriverWait wait = new WebDriverWait(driver, 50);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.
+                xpath("//android.widget.TextView[@text='" + text + "']")));
+
+    }
+
+    public void screenTap(AndroidDriver driver){
+        // Click on the web area so that player screen shows up
+        WebElement viewarea = driver.findElementByClassName("android.view.View");
+        viewarea.click();
+    }
+}

@@ -120,19 +120,51 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(5000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+
+            po.loadingSpinner(driver);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 50000);
+            Thread.sleep(6000);
+
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            Thread.sleep(2000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.resumeInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
         }
         catch(Exception e)
@@ -165,7 +197,6 @@ public class BasicTests{
             po.clickBasedOnText(driver, "Freewheel Midroll");
             Thread.sleep(2000);
 
-
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
@@ -173,20 +204,54 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            Thread.sleep(6000);
+
+            po.loadingSpinner(driver);
+
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
+            Thread.sleep(2000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
+            Thread.sleep(2000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.resumeInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
 
             //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
-
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 75000);
+            po.loadingSpinner(driver);
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 85000);
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
 
         }
         catch(Exception e)
@@ -227,20 +292,56 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            Thread.sleep(6000);
+
+            po.loadingSpinner(driver);
+
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
+            Thread.sleep(2000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
+            Thread.sleep(2000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.resumeInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+
+            po.loadingSpinner(driver);
 
             //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
+            po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 90000);
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
         }
         catch(Exception e)
@@ -281,29 +382,41 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            po.loadingSpinner(driver);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 45000);
+            po.loadingSpinner(driver);
 
             //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 65000);
+            po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 75000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 95000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 110000);
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -345,14 +458,52 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+
+            po.loadingSpinner(driver);
+            Thread.sleep(7000);
+            // Click on the web area so that player screen shows up
+            WebElement viewarea = driver.findElementByClassName("android.widget.RelativeLayout");
+            viewarea.click();
+            Thread.sleep(1000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
+            Thread.sleep(2000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.resumeInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+
+            po.loadingSpinner(driver);
+
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
 
         }
         catch(Exception e)
@@ -394,24 +545,39 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+            po.loadingSpinner(driver);
+
             //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
-
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            po.loadingSpinner(driver);
+
+            //Wait for Ad to complete and verify the adCompleted event .
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 110000);
+
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -453,29 +619,47 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
 
+            po.loadingSpinner(driver);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 50000);
+
+            po.loadingSpinner(driver);
 
             //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
+
+            po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 90000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 120000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 130000);
+
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 160000);
 
         }
         catch(Exception e)
@@ -517,14 +701,42 @@ public class BasicTests{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+
+            po.loadingSpinner(driver);
+
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 80000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 110000);
+
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
 
 
@@ -574,32 +786,49 @@ public class BasicTests{
             // Wait for the video to be generated
             po.waitForPresenceOfText(driver,"00:00");
 
+            po.loadingSpinner(driver);
+
             // Click on video play icon after video has been generated .
-            po.clickImagebuttons(driver,0);
+            //po.clickImagebuttons(driver,0);
+            po.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+
+            po.loadingSpinner(driver);
 
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
+
+            po.loadingSpinner(driver);
 
             //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 55000);
+
+            po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 65000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 90000);
+
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
         }
         catch(Exception e)

@@ -125,7 +125,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
 
             po.playInNormalScreen(driver);
@@ -136,45 +136,33 @@ public class BasicTests {
             Thread.sleep(3000);
 
             // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(500);
+            po.screenTap(driver);
+            Thread.sleep(1000);
            //Pausing Video in Normal screen.
             po.pauseInNormalScreen(driver);
             Thread.sleep(1000);
-
-         /*   // Tap coordinates to pause
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray=dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions=dimensionsarray[1].substring(0,length-1);
-            String ydimensionstrimmed=ydimensions.trim();
-            int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35 , (ydimensionsInt-25), 2);*/
-
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
+            Thread.sleep(1000);
             // Pause the running of the test for a brief amount of time
+            po.readTime(driver);
             Thread.sleep(3000);
 
-            //Seek and Verify seek event
-            //po.getXYSeekBarAndSeek(driver,20,120);
             po.seekVideo(driver);
             Thread.sleep(500);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
             Thread.sleep(5000);
 
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            po.loadingSpinner(driver);
 
-            // Tap coordinates again to play
-            //driver.tap(1, 35 , (ydimensionsInt-25), 2);
+            po.readTime(driver);
+
+            po.resumeInNormalScreen(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
         }
         catch(Exception e)
         {
@@ -213,8 +201,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            //Waiting for start screen
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
 
             //Playing the Video
@@ -227,43 +214,33 @@ public class BasicTests {
             Thread.sleep(2000);
 
             // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            //Pausing the Video
+            po.screenTap(driver);
+            Thread.sleep(1000);
+            //Pausing Video in Normal screen.
             po.pauseInNormalScreen(driver);
             Thread.sleep(1000);
-
-           /* // Tap coordinates to pause
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray=dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions=dimensionsarray[1].substring(0,length-1);
-            String ydimensionstrimmed=ydimensions.trim();
-            int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35 , (ydimensionsInt-25), 2);*/
-
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
+            Thread.sleep(1000);
             // Pause the running of the test for a brief amount of time
+            po.readTime(driver);
             Thread.sleep(3000);
 
-            //Seek and Verify seek event
-            //.po.getXYSeekBarAndSeek(driver,20,120);
             po.seekVideo(driver);
-            Thread.sleep(1000);
+            Thread.sleep(500);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
             Thread.sleep(5000);
 
-            po.playInNormalScreen(driver);
+            po.loadingSpinner(driver);
 
-            // Tap coordinates again to play
-            //driver.tap(1, 35 , (ydimensionsInt-25), 2);
+            po.readTime(driver);
+
+            po.resumeInNormalScreen(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -301,7 +278,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
 
             po.playInNormalScreen(driver);
@@ -312,41 +289,33 @@ public class BasicTests {
             Thread.sleep(3000);
 
             // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            //Pausing playing video
+            po.screenTap(driver);
+            Thread.sleep(1000);
+            //Pausing Video in Normal screen.
             po.pauseInNormalScreen(driver);
             Thread.sleep(1000);
-
-     /*       // Tap coordinates to Pause
-            String dimensions = driver.manage().window().getSize().toString();
-            String[] dimensionsarray=dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions=dimensionsarray[1].substring(0,length-1);
-            String ydimensionstrimmed=ydimensions.trim();
-            int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35 , (ydimensionsInt-25), 2);*/
-
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
-            // Pause the running of the test for a brief amount of time
-            Thread.sleep(3000);
-
-            //Seek and Verify seek event
-            //po.getXYSeekBarAndSeek(driver,20,120);
-            po.seekVideo(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+            // Pause the running of the test for a brief amount of time
+            po.readTime(driver);
             Thread.sleep(3000);
 
-            // Tap coordinates again to play
-            //driver.tap(1, 35 , (ydimensionsInt-25), 2);
-            po.playInNormalScreen(driver);
+            po.seekVideo(driver);
+            Thread.sleep(500);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+            Thread.sleep(5000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.resumeInNormalScreen(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -385,7 +354,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
 
             //Playing the video
@@ -397,25 +366,16 @@ public class BasicTests {
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(3000);
 
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            /*// Tap coordinates to pause
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray=dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions=dimensionsarray[1].substring(0,length-1);
-            String ydimensionstrimmed=ydimensions.trim();
-            int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35 , (ydimensionsInt-25), 2);
-*/
+            po.screenTap(driver);
+            Thread.sleep(1000);
             //pausing the video
             po.pauseInNormalScreen(driver);
             Thread.sleep(1000);
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            Thread.sleep(1000);
+
+            po.readTime(driver);
 
             Thread.sleep(1000);
 
@@ -437,18 +397,20 @@ public class BasicTests {
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
 
-            //Seek and Verify seek event
-            //po.getXYSeekBarAndSeek(driver,20,120);
             po.seekVideo(driver);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
             Thread.sleep(3000);
 
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
             // Tap coordinates again to play
-            po.playInNormalScreen(driver);
-            //driver.tap(1, 35 , (ydimensionsInt-25), 2);
+            po.resumeInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -487,8 +449,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            po.waitForTextView(driver,"00:00");
 
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
@@ -507,10 +468,11 @@ public class BasicTests {
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(1000);
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
+            Thread.sleep(6000);
+
+            po.loadingSpinner(driver);
+
+            po.screenTap(driver);
 
             Thread.sleep(500);
             //Pausing Video in Normal screen.
@@ -519,17 +481,23 @@ public class BasicTests {
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
             Thread.sleep(1000);
 
+            po.readTime(driver);
+
             po.seekVideo(driver);
             Thread.sleep(1000);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
             Thread.sleep(3000);
 
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
             po.playInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
             //Timeout for the duration of the video
-            Thread.sleep(11000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -568,8 +536,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            po.waitForTextView(driver,"00:00");
 
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
@@ -578,22 +545,20 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(12000);
+            po.loadingSpinner(driver);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
-            Thread.sleep(5000);
+            po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
 
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(15000);
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
         }
         catch(Exception e)
         {
@@ -631,8 +596,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            po.waitForTextView(driver,"00:00");
 
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
@@ -641,8 +605,10 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
+            po.loadingSpinner(driver);
+
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -681,7 +647,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
 
             po.playInNormalScreen(driver);
@@ -691,23 +657,23 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the AD
-            Thread.sleep(5000);
+            po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+
+            po.loadingSpinner(driver);
 
             //Time out
             Thread.sleep(1000);
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 55000);
 
-            //Timeout for the duration of the video
-            Thread.sleep(11000);
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
         }
         catch(Exception e)
         {
@@ -746,8 +712,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            po.waitForTextView(driver,"00:00");
 
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
@@ -756,22 +721,20 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
+            po.loadingSpinner(driver);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
-            Thread.sleep(2000);
+            po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
 
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
         }
         catch(Exception e)
         {
@@ -810,8 +773,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            po.waitForTextView(driver,"00:00");
 
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
@@ -820,19 +782,20 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(11000);
+            po.loadingSpinner(driver);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            Thread.sleep(5000);
+            po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
 
 
@@ -875,8 +838,7 @@ public class BasicTests {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            po.waitForTextView(driver,"00:00");
 
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
@@ -885,20 +847,20 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(12000);
-
+            po.loadingSpinner(driver);
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
-            Thread.sleep(5000);
+            po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 45000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+
+            po.loadingSpinner(driver);
 
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
 
 
@@ -950,31 +912,33 @@ public class BasicTests {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            Thread.sleep(2000);
+            po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+
+            po.loadingSpinner(driver);
 
             //Play Started
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 41000);
 
             //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
+            po.loadingSpinner(driver);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
-            Thread.sleep(2000);
+            po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
 
             //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
+            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
         } catch (Exception e) {
             System.out.println(" Exception " + e);
             e.printStackTrace();
