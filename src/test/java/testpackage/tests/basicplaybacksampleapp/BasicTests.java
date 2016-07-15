@@ -173,7 +173,7 @@ public class BasicTests {
     }
 
     //TODO : create unique file names for snapshots taken .
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void HLSVideoTest() throws Exception{
 
         try {
@@ -250,7 +250,7 @@ public class BasicTests {
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void MP4VideoTest() throws Exception{
 
         try {
@@ -568,7 +568,7 @@ public class BasicTests {
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VASTAdWrapperTest() throws Exception{
 
         try {
@@ -618,7 +618,7 @@ public class BasicTests {
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void OoyalaAdPreRollTest() throws Exception{
 
         try {
@@ -683,7 +683,7 @@ public class BasicTests {
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void OoyalaADMidRollTest() throws Exception{
 
         try {

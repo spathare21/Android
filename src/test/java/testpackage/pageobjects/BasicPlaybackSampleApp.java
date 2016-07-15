@@ -118,7 +118,6 @@ public class BasicPlaybackSampleApp {
 
     }
 
-
     public void gotoNormalScreen(AndroidDriver driver) {
         WebElement frameLayout = driver.findElement(By.id("content"));
         // System.out.println("layout" +frameLayout);
@@ -127,6 +126,7 @@ public class BasicPlaybackSampleApp {
         normalScreen.click();
 
     }
+
     public void gotoCCNormalScreen(AndroidDriver driver) {
         WebElement frameLayout = driver.findElement(By.id("content"));
         // System.out.println("layout" +frameLayout);
@@ -186,8 +186,6 @@ public class BasicPlaybackSampleApp {
         driver.tap(1, fullscreenPlayButton[0] , fullscreenPlayButton[1], 2);
     }
 
-
-
     public void clickLearnMore(AndroidDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='Learn More']")));
@@ -229,7 +227,6 @@ public class BasicPlaybackSampleApp {
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
 
     }
-
     public void pauseInNormalScreen(AndroidDriver driver){
         //playButton.click();
         System.out.println("X pauseCoordinates"+playCoordinates[0]);
@@ -256,7 +253,6 @@ public class BasicPlaybackSampleApp {
         driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
     }
 
-
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
 
         String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
@@ -268,8 +264,6 @@ public class BasicPlaybackSampleApp {
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
         System.out.println("back to SDK");
     }
-
-
 
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
 
@@ -293,9 +287,20 @@ public class BasicPlaybackSampleApp {
     }
 
     public void loadingSpinner(AndroidDriver driver) {
+        int i = 0;
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
-                System.out.println("Handling Loading Spinner");
+                //System.out.println("Handling Loading Spinner");
+                if (i<10){
+                    System.out.println("Handling Loading Spinner");
+                    Thread.sleep(1000);
+                    i++;
+                }
+                else{
+                    System.out.println("Loading spinner occured more than "+i+" seconds");
+                    break;
+                }
+
             }
         } catch (Exception e) {
             e.getMessage();
