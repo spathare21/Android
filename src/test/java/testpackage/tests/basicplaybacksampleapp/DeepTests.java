@@ -253,9 +253,9 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("AspectRatioTest throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"AspectRatioTest");
             }
         }
 
@@ -403,9 +403,9 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("HLSVideoTest throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"HLSVideoTest");
             }
         }
 
@@ -554,9 +554,9 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("MP4 throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"MP4");
             }
         }
 
@@ -711,9 +711,9 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("VastAdWrapper throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"VastAdWrapper");
             }
         }
 
@@ -881,9 +881,9 @@ public class DeepTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VOD throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VOD");
         }
     }
 

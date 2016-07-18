@@ -163,9 +163,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulePreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
         }
     }
 
@@ -240,9 +240,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRuleMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
         }
     }
 
@@ -320,9 +320,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulePostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
         }
     }
 
@@ -409,9 +409,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
         }
     }
 
@@ -498,9 +498,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
         }
     }
 
@@ -590,9 +590,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
         }
     }
 
@@ -713,9 +713,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedPreMidPost throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPost");
         }
     }
 
@@ -788,9 +788,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMASkippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMASkippable");
         }
     }
 
@@ -869,9 +869,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPreMidPostSkippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
         }
     }
 
@@ -933,9 +933,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAApplicationConfigured throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAApplicationConfigured");
         }
     }
 

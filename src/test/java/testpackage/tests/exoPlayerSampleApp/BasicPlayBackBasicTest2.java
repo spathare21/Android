@@ -172,9 +172,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("Multi_Ad Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"Multi_Ad");
         }
 
     }
@@ -257,9 +257,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_3Podded Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_3Podded");
         }
 
     }
@@ -337,9 +337,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AdWithIcon throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_AdWithIcon");
         }
 
     }
@@ -417,9 +417,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_Podded_Preroll_skippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_Podded_Preroll_skippable");
         }
 
     }
@@ -494,9 +494,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_Skippable_Ad throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_Skippable_Ad");
         }
 
     }
@@ -573,9 +573,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_Skippable_Ad_Long throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_Skippable_Ad_Long");
         }
 
     }
@@ -649,9 +649,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_Wrapper throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_AD_Wrapper");
         }
 
     }
@@ -736,9 +736,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAMP_VastAD_PreMidPost throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAMP_VastAD_PreMidPost");
         }
 
     }*/
@@ -820,9 +820,9 @@ public class BasicPlayBackBasicTest2 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_With_NewEvents Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_AD_With_NewEvents");
         }
 
     }
@@ -927,9 +927,9 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VMAP_PreMidPostSingle throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VMAP_PreMidPostSingle");
         }
     }
 }

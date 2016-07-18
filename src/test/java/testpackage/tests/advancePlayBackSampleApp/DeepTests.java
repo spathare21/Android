@@ -10,9 +10,7 @@ import testpackage.utils.*;
 
 import java.io.IOException;
 import java.util.Properties;
-/**
- * Created by Sameer on 5/4/2016.
- */
+
 public class DeepTests {
     private static AndroidDriver driver;
 
@@ -221,9 +219,9 @@ public class DeepTests {
 
         }
         catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("playWithIntitialTime Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"playWithIntitialTime");
         }
 
 
@@ -461,9 +459,9 @@ public class DeepTests {
             Thread.sleep(50000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"multipleVideoPlayback");
         }
     }
 
@@ -612,9 +610,9 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println(" insertAdAtRunTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAdAtRunTime");
         }
 
     }
@@ -753,9 +751,9 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically");
         }
     }
 
@@ -899,9 +897,9 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println(" customPluginSample throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customPluginSample");
         }
     }*/
 
@@ -971,9 +969,9 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customControls throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customControls");
         }
 
     }
@@ -1021,9 +1019,9 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customOverlay throws Exception \n" + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customOverlay");
         }
     }
 
@@ -1151,9 +1149,9 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("unbundled throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"unbundled");
         }
 
     }*/

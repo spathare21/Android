@@ -152,9 +152,9 @@ public class DeepTests3 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelOverlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelOverlay");
         }
     }
 
@@ -337,9 +337,9 @@ public class DeepTests3 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FWCuePointsAndAdsControlOptions_On throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_On");
         }
 
     }
@@ -485,9 +485,9 @@ public class DeepTests3 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_cuePointOff_leanmore");
         }
     }
 
@@ -657,9 +657,9 @@ public class DeepTests3 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_adControlsOff_leanmore");
         }
     }
 

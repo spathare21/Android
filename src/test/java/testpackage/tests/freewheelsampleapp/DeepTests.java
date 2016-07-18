@@ -220,9 +220,9 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelPreRoll throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelPreRoll");
             }
         }
 
@@ -352,9 +352,9 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelMidRoll throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelMidRoll");
             }
 
 
@@ -488,9 +488,9 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelPostRoll throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelPostRoll");
             }
         }
 */

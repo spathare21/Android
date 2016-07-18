@@ -161,9 +161,9 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
         }
 
     }
@@ -232,9 +232,9 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("preload_PromoImage_options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"preload_PromoImage_options");
         }
 
     }
@@ -287,9 +287,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("preload_promo_IntialTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"preload_promo_IntialTime");
         }
 
 
@@ -332,9 +332,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("server_side_TvRating throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"server_side_TvRating");
         }
 
 
@@ -389,9 +389,9 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("tv_rating_config throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"tv_rating_config");
         }
 
     }
@@ -432,9 +432,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("present_video_view_sharing_options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
         }
 
 
@@ -582,9 +582,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("CuePointsAndAdsControlOptions_On throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_On");
         }
     }
 
@@ -669,9 +669,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("CuePointsAndAdsControlOptions_cuePointOff throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_cuePointOff");
         }
     }
 
@@ -775,9 +775,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("CuePointsAndAdsControlOptions_adControlsOff throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_adControlsOff");
         }
     }
 
@@ -845,9 +845,9 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("timeout_Options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"timeout_Options");
         }
 
     }

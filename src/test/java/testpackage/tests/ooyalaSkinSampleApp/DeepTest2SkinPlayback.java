@@ -259,9 +259,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdPreroll");
         }
     }
 
@@ -421,9 +421,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdMidroll");
         }
     }
 
@@ -575,9 +575,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdPostroll");
         }
     }
 
@@ -741,9 +741,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdWrapper throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdWrapper");
         }
 
     }
@@ -909,9 +909,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPreroll");
         }
 
     }
@@ -1080,9 +1080,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdMidroll");
         }
 
 
@@ -1238,9 +1238,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPostroll");
         }
 
     }
@@ -1408,9 +1408,9 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MultiAdCombination throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MultiAdCombination");
         }
 
 

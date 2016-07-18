@@ -162,9 +162,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("AspectRatio throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"AspectRatio");
         }
 
     }
@@ -239,9 +239,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MP4 throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MP4");
         }
 
     }
@@ -315,9 +315,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("HLS throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"HLS");
         }
 
     }
@@ -388,9 +388,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("encrypted_HLS throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"encrypted_HLS");
         }
 
     }
@@ -461,9 +461,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VOD_CC throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VOD_CC");
         }
 
     }
@@ -539,9 +539,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Preroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Preroll");
         }
 
     }
@@ -619,9 +619,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Midroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Midroll");
         }
 
     }
@@ -699,9 +699,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Postroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Postroll");
         }
 
     }*/
@@ -778,9 +778,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_Wrapper Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_Wrapper");
         }
 
     }
@@ -857,9 +857,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("ooyalaAd_Preroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"ooyalaAd_Preroll");
         }
 
     }
@@ -937,9 +937,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("ooyalaAd_Midroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"ooyalaAd_Midroll");
         }
 
     }
@@ -1017,9 +1017,9 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("ooyalaAd_Postroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"ooyalaAd_Postroll");
         }
 
     }*/

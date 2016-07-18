@@ -277,9 +277,9 @@ public class DeepTestIMA {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("GoogleIMAIntegrationIMAAdRulesPreroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPreroll");
         }
     }
 
@@ -460,9 +460,9 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAAdRulesMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesMidroll");
         }
     }
 
@@ -650,9 +650,9 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAAdRulesPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPostroll");
         }
     }
 
@@ -842,9 +842,9 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreroll");
         }
     }
 
@@ -1038,9 +1038,9 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedMidroll");
         }
     }
 
@@ -1236,9 +1236,9 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPostroll");
         }
     }
 
@@ -1485,9 +1485,9 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedPreMidPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreMidPostroll");
         }
     }
 
@@ -1662,9 +1662,9 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMASkippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMASkippable");
         }
     }
 
@@ -1875,9 +1875,9 @@ public class DeepTestIMA {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("GoogleIMAIntegrationIMAPreMidPostSkippable throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPreMidPostSkippable");
         }
     }
 }

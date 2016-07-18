@@ -260,9 +260,9 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastPoddedAd throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastPoddedAd");
         }
 
 
@@ -424,9 +424,9 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastAdWtihNewEvents throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdWtihNewEvents");
         }
 
 
@@ -588,9 +588,9 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastAdWithIcon throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdWithIcon");
         }
 
 
@@ -743,9 +743,9 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastSkippableAd throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastSkippableAd");
         }
 
 
@@ -915,9 +915,9 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastSkippableAdLong throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastSkippableAdLong");
         }
 
 
@@ -1129,9 +1129,9 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VAMPPreMidPostSingle throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAMPPreMidPostSingle");
         }
     }*/
 }

@@ -176,9 +176,9 @@ public class DeepTests4 {
             ev.verifyEvent("playCompleted - state: LOADING", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FWPreroll_learnmore throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWPreroll_learnmore");
         }
 
 
@@ -267,9 +267,9 @@ public class DeepTests4 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FWMidRoll_learnmore throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWMidRoll_learnmore");
         }
 
     }
@@ -360,9 +360,9 @@ public class DeepTests4 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FWPostroll_learnmore throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWPostroll_learnmore");
         }
     }
 
@@ -502,9 +502,9 @@ public class DeepTests4 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FWPreMidPost_learnmore throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWPreMidPost_learnmore");
         }
     }
 
@@ -621,9 +621,9 @@ public class DeepTests4 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FWMultiMidRoll_leanrmore throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWMultiMidRoll_leanrmore");
         }
     }
 
@@ -771,9 +771,9 @@ public class DeepTests4 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FWPreMidPostRollOverlay_learnmore throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWPreMidPostRollOverlay_learnmore");
         }
     }
 
@@ -908,9 +908,9 @@ public class DeepTests4 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelApplicationConfigured_learnmore throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelApplicationConfigured_learnmore");
         }
     }
 */

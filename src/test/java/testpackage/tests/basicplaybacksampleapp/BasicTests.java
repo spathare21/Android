@@ -18,6 +18,7 @@ public class BasicTests {
 
     private static AndroidDriver driver;
 
+
     @BeforeClass
     public void beforeTest() throws Exception {
 
@@ -166,9 +167,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println(" AspectRatioTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"AspectRatioTest");
         }
     }
 
@@ -244,9 +245,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println(" HLSVideoTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"HLSVideoTest");
         }
     }
 
@@ -319,9 +320,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MP4VideoTest thows Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MP4VideoTest");
         }
     }
 
@@ -414,9 +415,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VODwithCCTest throws Exception \n"+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VODwithCCTest");
         }
     }
 
@@ -501,9 +502,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
         }
     }
 
@@ -562,9 +563,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTADMidRollTest");
         }
     }
 
@@ -612,9 +613,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTAdWrapperTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdWrapperTest");
         }
     }
 
@@ -677,9 +678,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPreRollTest");
         }
     }
 
@@ -738,9 +739,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaADMidRollTest");
         }
     }
 
@@ -803,9 +804,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaADPostRollTest");
         }
     }
 
@@ -867,9 +868,9 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
         }
     }
 
@@ -940,9 +941,9 @@ public class BasicTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
         }
     }
 

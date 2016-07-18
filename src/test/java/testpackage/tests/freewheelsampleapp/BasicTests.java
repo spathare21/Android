@@ -169,9 +169,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelPreRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelPreRoll");
         }
     }
 
@@ -256,9 +256,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelMidRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelMidRoll");
         }
     }
 
@@ -346,9 +346,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelPostRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelPostRoll");
         }
     }
 
@@ -421,9 +421,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelPreMidPostRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelPreMidPostRoll");
         }
     }
 
@@ -508,9 +508,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelOverlay throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelOverlay");
         }
     }
 
@@ -582,9 +582,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelMultiMidRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelMultiMidRoll");
         }
     }
 
@@ -664,9 +664,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelPreMidPostRollOverlay throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelPreMidPostRollOverlay");
         }
     }
 
@@ -744,9 +744,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelApplicationConfigured throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelApplicationConfigured");
         }
     }
 
@@ -833,9 +833,9 @@ public class BasicTests{
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelCuePointsAndAdsControlOptions throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelCuePointsAndAdsControlOptions");
         }
     }
 

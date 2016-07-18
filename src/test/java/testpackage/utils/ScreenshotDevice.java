@@ -17,12 +17,12 @@ public class ScreenshotDevice {
 
     // Taking Device ScreenShot
     // function goes to TestUtils package ??
-    public static void screenshot(AppiumDriver driver) throws IOException
+    public static void screenshot(AppiumDriver driver,String testMethodName) throws IOException
     {
         String currentDir = System.getProperty("user.dir");
         String Screenshotpath = currentDir+"/res/snapshot/";
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File(Screenshotpath+"testscreenshot.jpg"));
+        FileUtils.copyFile(scrFile, new File(Screenshotpath+testMethodName+".jpg"));
     }
 
 

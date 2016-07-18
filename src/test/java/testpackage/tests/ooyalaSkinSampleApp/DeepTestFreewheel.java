@@ -258,9 +258,9 @@ public class DeepTestFreewheel {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
         }
     }
 
@@ -422,9 +422,9 @@ public class DeepTestFreewheel {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationMidRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidRoll");
         }
     }
 
@@ -596,9 +596,9 @@ public class DeepTestFreewheel {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationPostRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostRoll");
         }
     }
 
@@ -773,9 +773,9 @@ public class DeepTestFreewheel {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationPreMidPostRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostRoll");
         }
     }
 
@@ -948,9 +948,9 @@ public class DeepTestFreewheel {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationMultiMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
         }
     }
 
@@ -1128,9 +1128,9 @@ public class DeepTestFreewheel {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationPreMidPostRollOverlay throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostRollOverlay");
         }
     }
 
@@ -1194,9 +1194,9 @@ public class DeepTestFreewheel {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationOverlay throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
         }
     }
 

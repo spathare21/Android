@@ -302,9 +302,9 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MultiAd throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MultiAd");
         }
 
     }
@@ -521,9 +521,9 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_3_Podded throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_3_Podded");
         }
 
     }
@@ -733,9 +733,9 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_With_NewEvents throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_AD_With_NewEvents");
         }
 
     }
@@ -944,9 +944,9 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_With_Icon throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_AD_With_Icon");
         }
 
     }
@@ -1166,9 +1166,9 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_Skippable_Long throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_AD_Skippable_Long");
         }
 
     }

@@ -162,9 +162,9 @@ public class BasicTests {
 
         }
         catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("playWithIntitialTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"playWithIntitialTime");
         }
 
     }
@@ -238,9 +238,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 130000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"multipleVideoPlayback");
         }
 
     }
@@ -308,9 +308,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 95000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("insertAtRunTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAtRunTime");
         }
 
     }
@@ -379,9 +379,9 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically");
         }
 
     }
@@ -430,9 +430,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 120000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customPluginSample throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customPluginSample");
         }
 
     }
@@ -487,9 +487,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customControls throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customControls");
         }
 
     }
@@ -545,9 +545,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customOverlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customOverlay");
         }
 
     }
@@ -608,9 +608,9 @@ public class BasicTests {
             Thread.sleep(2000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("insertAtRunTime_VastAd throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
         }
 
     }
@@ -668,9 +668,9 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("insertAtRunTime_VastAd Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
         }
 
     }
@@ -726,9 +726,9 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically_P1 Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P1");
         }
 
     }
@@ -783,9 +783,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted", "Inserted video2 ended play", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically_P2 throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P2");
         }
 
     }
@@ -850,9 +850,9 @@ public class BasicTests {
             ev.verifyEvent("playCompleted", "video play completed", 130000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customPluginSample_Adverfication throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customPluginSample_Adverfication");
         }
 
     }

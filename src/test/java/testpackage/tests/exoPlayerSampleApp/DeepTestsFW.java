@@ -251,9 +251,9 @@ public class DeepTestsFW {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
         }
 
     }
@@ -417,9 +417,9 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidroll");
         }
 
     }
@@ -585,9 +585,9 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostroll");
         }
 
     }
@@ -764,9 +764,9 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationPreMidPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll");
         }
 
     }*/
@@ -832,9 +832,9 @@ public class DeepTestsFW {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationOverlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
         }
 
     }
@@ -1003,9 +1003,9 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationMultiMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
         }
 
     }
@@ -1190,9 +1190,9 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationPreMidPostroll_overlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll_overlay");
         }
 
     }*/

@@ -276,9 +276,9 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("AspectRatioTest throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"AspectRatioTest");
         }
     }
 
@@ -464,9 +464,9 @@ public class DeepTestSkinPlayback {
 
 */
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlaybackMP4Video throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackMP4Video");
         }
     }
 
@@ -645,9 +645,9 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlaybackHLSVideo throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSVideo");
         }
 
     }
@@ -831,9 +831,9 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlaybackVODCCVideo throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVODCCVideo");
         }
 
     }
@@ -1028,9 +1028,9 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlayBackVAST2ADPreroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlayBackVAST2ADPreroll");
         }
 
 

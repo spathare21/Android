@@ -183,9 +183,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackAspectRatio throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackAspectRatio");
         }
     }
 
@@ -279,9 +279,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackMP4Video throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackMP4Video");
         }
     }
 */
@@ -374,9 +374,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackHLSVideo throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSVideo");
         }
     }
 /*
@@ -499,9 +499,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackVODwithCCTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVODwithCCTest");
         }
     }
 
@@ -584,9 +584,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackVASTAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTAdPreRollTest");
         }
     }
 
@@ -667,9 +667,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackVASTADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTADMidRollTest");
         }
     }
 
@@ -747,9 +747,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackVASTADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTADPostRollTest");
         }
     }
 
@@ -816,9 +816,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackVASTAdWrapperTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTAdWrapperTest");
         }
     }
 
@@ -900,9 +900,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackOoyalaAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaAdPreRollTest");
         }
     }
 
@@ -984,9 +984,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackOoyalaADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaADMidRollTest");
         }
     }
 
@@ -1064,9 +1064,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackOoyalaADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaADPostRollTest");
         }
     }*/
 
@@ -1155,9 +1155,9 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("SkinPlaybackMultiAdCombinationTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackMultiAdCombinationTest");
         }
     }
 }

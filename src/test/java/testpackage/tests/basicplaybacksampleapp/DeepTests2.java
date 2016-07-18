@@ -211,9 +211,9 @@ public class DeepTests2 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdPreroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPreroll");
         }
 
 
@@ -337,9 +337,9 @@ public class DeepTests2 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdMidroll");
         }
 
 
@@ -459,9 +459,9 @@ public class DeepTests2 {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPostroll");
         }
 
 
@@ -582,9 +582,9 @@ public class DeepTests2 {
 
         }
         catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdPreRollTest throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
         }
 
     }
@@ -706,9 +706,9 @@ public class DeepTests2 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdMidroll");
         }
     }
 
@@ -825,9 +825,9 @@ public class DeepTests2 {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPostroll");
         }
     }
 
@@ -958,9 +958,9 @@ public class DeepTests2 {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("multiAdCombination throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"multiAdCombination");
         }
 
     }
