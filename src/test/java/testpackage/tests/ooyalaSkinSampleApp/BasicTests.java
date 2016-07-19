@@ -1,9 +1,5 @@
 package testpackage.tests.ooyalaSkinSampleApp;
 
-/**
- * Created by bsondur on 2/22/16.
- */
-
 import org.junit.Assert;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
@@ -635,11 +631,18 @@ public class BasicTests {
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
 
+
+            Thread.sleep(3000);
+
+            po.overlay(driver);
+
+
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
             ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
@@ -656,9 +659,6 @@ public class BasicTests {
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostRollOverlay");
         }
     }
-
-
-
 
 
 }
