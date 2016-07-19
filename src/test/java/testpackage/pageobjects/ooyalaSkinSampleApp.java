@@ -417,28 +417,43 @@ public class ooyalaSkinSampleApp {
 
     public void upnextDis(AndroidDriver driver) throws InterruptedException {
         boolean flag = true;
-        while(flag)
-        {
-            List<WebElement> l = driver.findElementsByClassName("android.widget.ImageView");
+        List<WebElement> l;
+        while (flag) {
+            l = driver.findElementsByClassName("android.widget.ImageView");
             l.size();
-            System.out.println("size of it is " + l.size());;
-            if(l.size() == 2) {
+            System.out.println("size of it is " + l.size());
+            ;
+            if (l.size() == 2) {
                 //System.out.println("inside while wait.. " + l.get(1).isDisplayed());
                 System.out.println("Waiting for discovery");
                 flag = false;
             }
         }
         System.out.println("Up-Next Discovery displayed");
-        Thread.sleep(1000);
-        pauseVideo(driver);
-        Thread.sleep(2000);
         System.out.println("Closing the discovery");
-        driver.findElementByXPath("//android.widget.TextView[@text='e']").click();
-        System.out.printf("Discovery closed");
-        Thread.sleep(5000);
-        getPlay(driver);
+        boolean flag2 = true;
 
+        while (driver.findElementByXPath("//android.widget.TextView[@text='e']").isDisplayed()) {
+            flag2 = driver.findElementByXPath("//android.widget.TextView[@text='e']").isDisplayed();
+            System.out.println("value of flag2 is " + flag2);
+
+            driver.findElementByXPath("//android.widget.TextView[@text='e']").click();
+            System.out.println("up-next discovery closed");
+
+        }
+        int n = driver.findElementsByClassName("android.widget.ImageView").size();
+        System.out.println("value of n is " +n);
+        if (n == 1) {
+
+            Assert.assertTrue(flag2);
+            System.out.println("AssertPass, Up-Next Discovery closed");
+            flag2 = false;
+        } else {
+            Assert.assertTrue(flag2);
+            System.out.println("Assert Failed, Up-Next discovery closed");
+        }
     }
+
 
 
 }

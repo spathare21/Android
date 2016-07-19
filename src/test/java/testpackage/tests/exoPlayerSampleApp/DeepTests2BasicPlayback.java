@@ -510,8 +510,8 @@ public class DeepTests2BasicPlayback {
 
     }
 
-    //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3730
-/*   @org.testng.annotations.Test
+    //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3730--- issue resolved.
+   @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
 
@@ -719,7 +719,7 @@ public class DeepTests2BasicPlayback {
             ScreenshotDevice.screenshot(driver,"VAST2_Postroll");
         }
 
-    }*/
+    }
 
     @org.testng.annotations.Test
     public void VAST2_AdWrapper() throws Exception{
