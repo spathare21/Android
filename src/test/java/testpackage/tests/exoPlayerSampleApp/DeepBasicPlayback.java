@@ -2,6 +2,7 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -291,6 +292,7 @@ public class DeepBasicPlayback {
         {
             System.out.println("AspectRatio throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"AspectRatio");
         }
 
@@ -497,6 +499,7 @@ public class DeepBasicPlayback {
         {
             System.out.println("MP4 Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"MP4");
         }
 
@@ -701,6 +704,7 @@ public class DeepBasicPlayback {
         {
             System.out.println("HLS throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"HLS");
         }
 
@@ -916,6 +920,7 @@ public class DeepBasicPlayback {
         {
             System.out.println("encrypted_HLS Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"encrypted_HLS");
         }
 
@@ -1131,6 +1136,7 @@ public class DeepBasicPlayback {
         {
             System.out.println("VOD_CC throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VOD_CC");
         }
 

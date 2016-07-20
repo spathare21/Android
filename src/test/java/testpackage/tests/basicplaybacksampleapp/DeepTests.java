@@ -1,10 +1,10 @@
 package testpackage.tests.basicplaybacksampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -255,6 +255,7 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("AspectRatioTest throws Exception " + e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"AspectRatioTest");
             }
         }
@@ -405,6 +406,7 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("HLSVideoTest throws Exception " + e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"HLSVideoTest");
             }
         }
@@ -556,6 +558,7 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("MP4 throws Exception " + e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"MP4");
             }
         }
@@ -713,6 +716,7 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("VastAdWrapper throws Exception " + e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"VastAdWrapper");
             }
         }
@@ -883,6 +887,7 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("VOD throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VOD");
         }
     }

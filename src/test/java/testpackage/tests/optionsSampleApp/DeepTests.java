@@ -2,6 +2,7 @@ package testpackage.tests.optionsSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -331,6 +332,7 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
         }
 
@@ -651,7 +653,7 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println("Preload_and_PromoImage_Options throws Exception " + e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"Preload_and_PromoImage_Options");
         }
 
@@ -857,7 +859,7 @@ public class DeepTests {
 
     } catch (Exception e) {
         System.out.println("Preload_and_Promo_Options_With_Initial_Time throws Exception " + e);
-        e.printStackTrace();
+         e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
         ScreenshotDevice.screenshot(driver,"Preload_and_Promo_Options_With_Initial_Time");
         }
     }
@@ -944,7 +946,7 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println("ServersideTVRatings throws Exception " + e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"ServersideTVRatings");
         }
 
@@ -1157,7 +1159,7 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println("TV_Ratings_Configuration throws Exception " + e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"TV_Ratings_Configuration");
         }
 
@@ -1245,7 +1247,7 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println("present_video_view_sharing_options throws Exception " + e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
         }
     }

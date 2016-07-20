@@ -7,6 +7,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import sun.awt.windows.ThemeReader;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
@@ -278,6 +279,7 @@ public class DeepTestSkinPlayback {
         } catch (Exception e) {
             System.out.println("AspectRatioTest throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"AspectRatioTest");
         }
     }
@@ -465,7 +467,7 @@ public class DeepTestSkinPlayback {
 */
         } catch (Exception e) {
             System.out.println("SkinPlaybackMP4Video throws Exception " + e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlaybackMP4Video");
         }
     }
@@ -646,7 +648,7 @@ public class DeepTestSkinPlayback {
 
         } catch (Exception e) {
             System.out.println("SkinPlaybackHLSVideo throws Exception " + e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSVideo");
         }
 
@@ -833,6 +835,7 @@ public class DeepTestSkinPlayback {
         } catch (Exception e) {
             System.out.println("SkinPlaybackVODCCVideo throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlaybackVODCCVideo");
         }
 
@@ -1030,6 +1033,7 @@ public class DeepTestSkinPlayback {
         } catch (Exception e) {
             System.out.println("SkinPlayBackVAST2ADPreroll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlayBackVAST2ADPreroll");
         }
 

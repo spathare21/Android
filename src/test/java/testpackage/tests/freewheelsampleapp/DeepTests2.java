@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.utils.*;
@@ -302,6 +303,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("FreeWheelPreMidPostRoll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelPreMidPostRoll");
         }
     }
@@ -510,6 +512,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("FreeWheelApplicationConfigured throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelApplicationConfigured");
         }
     }
@@ -673,6 +676,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("FreeWheelMultiMidRoll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelMultiMidRoll");
         }
     }
@@ -881,6 +885,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("FreeWheelPreMidPostRollOverlay throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelPreMidPostRollOverlay");
         }
     }

@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.utils.*;
@@ -154,6 +155,7 @@ public class DeepTests3 {
         } catch (Exception e) {
             System.out.println("FreeWheelOverlay throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelOverlay");
         }
     }
@@ -338,7 +340,7 @@ public class DeepTests3 {
         catch(Exception e)
         {
             System.out.println("FWCuePointsAndAdsControlOptions_On throws Exception "+e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_On");
         }
 
@@ -487,6 +489,7 @@ public class DeepTests3 {
         {
             System.out.println("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_cuePointOff_leanmore");
         }
     }
@@ -659,6 +662,7 @@ public class DeepTests3 {
         {
             System.out.println("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_adControlsOff_leanmore");
         }
     }

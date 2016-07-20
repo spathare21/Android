@@ -2,6 +2,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -260,6 +261,7 @@ public class DeepTestFreewheel {
         {
             System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
         }
     }
@@ -424,6 +426,7 @@ public class DeepTestFreewheel {
         {
             System.out.println("FreeWheelIntegrationMidRoll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidRoll");
         }
     }
@@ -598,6 +601,7 @@ public class DeepTestFreewheel {
         {
             System.out.println("FreeWheelIntegrationPostRoll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostRoll");
         }
     }
@@ -775,6 +779,7 @@ public class DeepTestFreewheel {
         {
             System.out.println("FreeWheelIntegrationPreMidPostRoll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostRoll");
         }
     }
@@ -950,6 +955,7 @@ public class DeepTestFreewheel {
         {
             System.out.println("FreeWheelIntegrationMultiMidroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
         }
     }
@@ -1130,6 +1136,7 @@ public class DeepTestFreewheel {
         {
             System.out.println("FreeWheelIntegrationPreMidPostRollOverlay throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostRollOverlay");
         }
     }
@@ -1196,6 +1203,7 @@ public class DeepTestFreewheel {
         {
             System.out.println("FreeWheelIntegrationOverlay throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
         }
     }

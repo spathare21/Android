@@ -4,6 +4,7 @@ package testpackage.tests.IMASampleApp;
  * Created by dulari on 3/14/16.
  */
 
+import org.testng.Assert;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.FreewheelSampleApp;
@@ -165,6 +166,7 @@ public class BasicTests {
         {
             System.out.println("IMAAdRulePreroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
         }
     }
@@ -242,6 +244,7 @@ public class BasicTests {
         {
             System.out.println("IMAAdRuleMidroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
         }
     }
@@ -322,6 +325,7 @@ public class BasicTests {
         {
             System.out.println("IMAAdRulePostroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
         }
     }
@@ -411,6 +415,7 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
         }
     }
@@ -500,6 +505,7 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
         }
     }
@@ -592,6 +598,7 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
         }
     }
@@ -715,6 +722,7 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedPreMidPost throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPost");
         }
     }
@@ -790,6 +798,7 @@ public class BasicTests {
         {
             System.out.println("IMASkippable throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMASkippable");
         }
     }
@@ -871,6 +880,7 @@ public class BasicTests {
         {
             System.out.println("IMAPreMidPostSkippable throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
         }
     }
@@ -935,6 +945,7 @@ public class BasicTests {
         {
             System.out.println("IMAApplicationConfigured throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAApplicationConfigured");
         }
     }

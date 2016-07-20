@@ -2,6 +2,7 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -295,6 +296,7 @@ public class DeepTests2BasicPlayback {
         {
             System.out.println("VAST2_Preroll throws Exception \n"+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST2_Preroll");
         }
 
@@ -505,6 +507,7 @@ public class DeepTests2BasicPlayback {
         {
             System.out.println("VAST2_Midroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST2_Midroll");
         }
 
@@ -716,6 +719,7 @@ public class DeepTests2BasicPlayback {
         {
             System.out.println("VAST2_Postroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST2_Postroll");
         }
 
@@ -924,6 +928,7 @@ public class DeepTests2BasicPlayback {
         {
             System.out.println("VAST2_AdWrapper throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST2_AdWrapper");
         }
 
@@ -1132,7 +1137,7 @@ public class DeepTests2BasicPlayback {
         catch(Exception e)
         {
             System.out.println("Ooyala_Preroll throws Exception "+e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"Ooyala_Preroll");
         }
 
@@ -1343,6 +1348,7 @@ public class DeepTests2BasicPlayback {
         {
             System.out.println("Ooyala_Midroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"Ooyala_Midroll");
         }
 
@@ -1553,7 +1559,7 @@ public class DeepTests2BasicPlayback {
         catch(Exception e)
         {
             System.out.println("Ooyala_Postroll throws Exception "+e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"Ooyala_Postroll");
         }
 

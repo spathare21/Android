@@ -2,9 +2,9 @@ package testpackage.tests.basicplaybacksampleapp; /**
  * Created by bsondur on 11/16/15.
  */
 
-import org.junit.Assert;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.BasicPlaybackSampleApp;
@@ -169,6 +169,7 @@ public class BasicTests {
         {
             System.out.println(" AspectRatioTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"AspectRatioTest");
         }
     }
@@ -247,6 +248,7 @@ public class BasicTests {
         {
             System.out.println(" HLSVideoTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"HLSVideoTest");
         }
     }
@@ -322,6 +324,7 @@ public class BasicTests {
         {
             System.out.println("MP4VideoTest thows Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"MP4VideoTest");
         }
     }
@@ -417,6 +420,7 @@ public class BasicTests {
         {
             System.out.println("VODwithCCTest throws Exception \n"+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VODwithCCTest");
         }
     }
@@ -504,6 +508,7 @@ public class BasicTests {
         {
             System.out.println("VASTAdPreRollTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
         }
     }
@@ -565,6 +570,7 @@ public class BasicTests {
         {
             System.out.println("VASTADMidRollTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTADMidRollTest");
         }
     }
@@ -615,6 +621,7 @@ public class BasicTests {
         {
             System.out.println("VASTAdWrapperTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTAdWrapperTest");
         }
     }
@@ -680,6 +687,7 @@ public class BasicTests {
         {
             System.out.println("OoyalaAdPreRollTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdPreRollTest");
         }
     }
@@ -741,6 +749,7 @@ public class BasicTests {
         {
             System.out.println("OoyalaADMidRollTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaADMidRollTest");
         }
     }
@@ -806,6 +815,7 @@ public class BasicTests {
         {
             System.out.println("OoyalaADPostRollTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaADPostRollTest");
         }
     }
@@ -870,6 +880,7 @@ public class BasicTests {
         {
             System.out.println("VASTADPostRollTest throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
         }
     }
@@ -943,6 +954,7 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
         }
     }

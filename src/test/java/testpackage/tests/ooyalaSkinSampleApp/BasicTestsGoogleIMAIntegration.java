@@ -3,6 +3,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -178,6 +179,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAAdRulesPreroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPreroll");
         }
     }
@@ -263,6 +265,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAAdRulesMidroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesMidroll");
         }
     }
@@ -344,6 +347,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAAdRulesPostroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPostroll");
         }
     }
@@ -434,6 +438,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreroll");
         }
     }
@@ -526,6 +531,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedMidroll");
         }
     }
@@ -616,6 +622,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPostroll");
         }
     }
@@ -763,6 +770,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedPreMidPostroll throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreMidPostroll");
         }
     }
@@ -857,6 +865,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMASkippable throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMASkippable");
         }
     }
@@ -962,6 +971,7 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPreMidPostSkippable throws Exception "+e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPreMidPostSkippable");
         }
     }
@@ -1047,7 +1057,7 @@ public class BasicTestsGoogleIMAIntegration {
         catch(Exception e)
         {
             System.out.println("GoogleIMAIntegrationIMAApplicationConfigured Exception "+e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAApplicationConfigured");
         }
     }

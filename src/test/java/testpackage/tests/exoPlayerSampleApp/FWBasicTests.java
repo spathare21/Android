@@ -1,6 +1,7 @@
 package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -155,6 +156,7 @@ public class FWBasicTests {
             {
                 System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
             }
 
@@ -222,6 +224,7 @@ public class FWBasicTests {
         } catch (Exception e) {
             System.out.println("FreeWheelIntegrationMidroll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidroll");
         }
 
@@ -289,7 +292,7 @@ public class FWBasicTests {
 
             } catch (Exception e) {
                 System.out.println("FreeWheelIntegrationPostroll throws Exception " + e);
-                e.printStackTrace();
+                 e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostroll");
             }
 
@@ -367,7 +370,7 @@ public class FWBasicTests {
 
             } catch (Exception e) {
                 System.out.println("FreeWheelIntegrationPreMidPostroll throws Exception " + e);
-                e.printStackTrace();
+                 e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll");
             }
 
@@ -433,6 +436,7 @@ public class FWBasicTests {
             } catch (Exception e) {
                 System.out.println("FreeWheelIntegrationOverlay throws Exception " + e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
             }
 
@@ -504,6 +508,7 @@ public class FWBasicTests {
             } catch (Exception e) {
                 System.out.println("FreeWheelIntegrationMultiMidroll throws Exception " + e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
             }
 
@@ -585,7 +590,7 @@ public class FWBasicTests {
 
             } catch (Exception e) {
                 System.out.println("FreeWheelIntegrationPreMidPostroll_overlay throws Exception " + e);
-                e.printStackTrace();
+                 e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll_overlay");
             }
 

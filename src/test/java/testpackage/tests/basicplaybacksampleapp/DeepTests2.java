@@ -1,6 +1,7 @@
 package testpackage.tests.basicplaybacksampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -213,6 +214,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("OoyalaAdPreroll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdPreroll");
         }
 
@@ -339,6 +341,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("OoyalaAdMidroll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdMidroll");
         }
 
@@ -461,6 +464,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("OoyalaAdPostroll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdPostroll");
         }
 
@@ -584,6 +588,7 @@ public class DeepTests2 {
         catch (Exception e) {
             System.out.println("VASTAdPreRollTest throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
         }
 
@@ -707,7 +712,7 @@ public class DeepTests2 {
 
         } catch (Exception e) {
             System.out.println("VASTAdMidroll throws Exception " + e);
-            e.printStackTrace();
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTAdMidroll");
         }
     }
@@ -827,6 +832,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("VASTAdPostroll throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTAdPostroll");
         }
     }
@@ -960,6 +966,7 @@ public class DeepTests2 {
         } catch (Exception e) {
             System.out.println("multiAdCombination throws Exception " + e);
             e.printStackTrace();
+            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"multiAdCombination");
         }
 

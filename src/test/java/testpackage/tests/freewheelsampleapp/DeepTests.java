@@ -3,13 +3,12 @@ package testpackage.tests.freewheelsampleapp;
 /**
  * Created by Sachin on 2/15/2016.
  */
-import org.apache.xpath.SourceTree;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.FreewheelSampleApp;
@@ -222,6 +221,7 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("FreeWheelPreRoll throws Exception " + e);
                 e.printStackTrace();
+                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelPreRoll");
             }
         }
@@ -353,7 +353,7 @@ public class DeepTests {
 
             } catch (Exception e) {
                 System.out.println("FreeWheelMidRoll throws Exception " + e);
-                e.printStackTrace();
+                 e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelMidRoll");
             }
 
@@ -489,7 +489,7 @@ public class DeepTests {
 
             } catch (Exception e) {
                 System.out.println("FreeWheelPostRoll throws Exception " + e);
-                e.printStackTrace();
+                 e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelPostRoll");
             }
         }
