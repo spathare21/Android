@@ -6,6 +6,7 @@ package testpackage.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Instant;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -22,7 +23,7 @@ public class ScreenshotDevice {
         String currentDir = System.getProperty("user.dir");
         String Screenshotpath = currentDir+"/res/snapshot/";
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File(Screenshotpath+testMethodName+".jpg"));
+        FileUtils.copyFile(scrFile, new File(Screenshotpath+testMethodName+ Instant.now().toEpochMilli()+".jpg"));
     }
 
 
