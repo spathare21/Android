@@ -92,7 +92,7 @@ public class FWBasicTests {
 
         }
 
-        @org.testng.annotations.Test
+         @org.testng.annotations.Test
         public void FreeWheelIntegrationPreRoll() throws Exception{
 
             try {
@@ -105,7 +105,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -176,7 +176,7 @@ public class FWBasicTests {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -204,8 +204,7 @@ public class FWBasicTests {
             po.waitForPresenceOfText(driver, "h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
-
+            po.getPlay(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -246,7 +245,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -315,7 +314,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -393,7 +392,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -428,7 +427,7 @@ public class FWBasicTests {
                 EventVerification ev = new EventVerification();
 
                 //Wait for video to start and verify the playStarted event .
-                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+                ev.verifyEvent("playStarted", " Video Started Play ", 50000);
                 Thread.sleep(5000);
 
                 po.verifyOverlay(driver);
@@ -459,7 +458,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -487,7 +486,7 @@ public class FWBasicTests {
                 po.waitForPresenceOfText(driver, "h");
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver, "h");
+                po.getPlay(driver);
 
 
                 //Play Started Verification
@@ -532,7 +531,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
