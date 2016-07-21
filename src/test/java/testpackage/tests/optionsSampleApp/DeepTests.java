@@ -332,8 +332,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -653,8 +653,9 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println("Preload_and_PromoImage_Options throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"Preload_and_PromoImage_Options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -859,8 +860,9 @@ public class DeepTests {
 
     } catch (Exception e) {
         System.out.println("Preload_and_Promo_Options_With_Initial_Time throws Exception " + e);
-         e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+        e.printStackTrace();
         ScreenshotDevice.screenshot(driver,"Preload_and_Promo_Options_With_Initial_Time");
+        Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -946,8 +948,9 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println("ServersideTVRatings throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"ServersideTVRatings");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1247,8 +1250,9 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println("present_video_view_sharing_options throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 */

@@ -164,8 +164,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -236,8 +236,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("preload_PromoImage_options throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"preload_PromoImage_options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -292,8 +292,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("preload_promo_IntialTime throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"preload_promo_IntialTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -338,8 +338,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("server_side_TvRating throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"server_side_TvRating");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -396,8 +396,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("tv_rating_config throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"tv_rating_config");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -440,8 +440,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("present_video_view_sharing_options throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -591,8 +591,8 @@ public class BasicTests {
         {
             System.out.println("CuePointsAndAdsControlOptions_On throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_On");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -679,8 +679,8 @@ public class BasicTests {
         {
             System.out.println("CuePointsAndAdsControlOptions_cuePointOff throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_cuePointOff");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -786,8 +786,8 @@ public class BasicTests {
         {
             System.out.println("CuePointsAndAdsControlOptions_adControlsOff throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_adControlsOff");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -857,8 +857,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("timeout_Options throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"timeout_Options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

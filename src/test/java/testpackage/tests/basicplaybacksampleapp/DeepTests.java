@@ -255,8 +255,8 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("AspectRatioTest throws Exception " + e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"AspectRatioTest");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -406,8 +406,8 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("HLSVideoTest throws Exception " + e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"HLSVideoTest");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -558,8 +558,8 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("MP4 throws Exception " + e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"MP4");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -716,8 +716,8 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("VastAdWrapper throws Exception " + e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"VastAdWrapper");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -887,8 +887,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("VOD throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VOD");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

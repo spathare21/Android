@@ -165,8 +165,8 @@ public class BasicTests {
         {
             System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -245,8 +245,8 @@ public class BasicTests {
         {
             System.out.println("FreeWheelIntegrationMidRoll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidRoll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -324,8 +324,8 @@ public class BasicTests {
         {
             System.out.println("FreeWheelIntegrationPostRoll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostRoll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -415,8 +415,8 @@ public class BasicTests {
         {
             System.out.println("FreeWheelIntegrationPreMidPostRoll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostRoll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -493,8 +493,8 @@ public class BasicTests {
         {
             System.out.println("FreeWheelIntegrationOverlay throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -577,8 +577,8 @@ public class BasicTests {
         {
             System.out.println("FreeWheelIntegrationMultiMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -661,8 +661,8 @@ public class BasicTests {
         {
             System.out.println("FreeWheelIntegrationPreMidPostRollOverlay throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostRollOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

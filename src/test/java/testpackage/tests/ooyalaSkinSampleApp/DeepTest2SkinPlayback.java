@@ -100,7 +100,6 @@ public class DeepTest2SkinPlayback {
 
 
 
-
    @org.testng.annotations.Test
     public void VastAdPreroll () throws Exception{
 
@@ -262,8 +261,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("VastAdPreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastAdPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -425,8 +424,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("VastAdMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -580,8 +579,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("VastAdPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -747,8 +746,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("VastAdWrapper throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastAdWrapper");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -916,8 +915,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("OoyalaAdPreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -997,12 +996,6 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
-
-
-
-
-
-
 
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
@@ -1088,8 +1081,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("OoyalaAdMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -1247,8 +1240,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("OoyalaAdPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1418,8 +1411,8 @@ public class DeepTest2SkinPlayback {
         {
             System.out.println("MultiAdCombination throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"MultiAdCombination");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 

@@ -179,8 +179,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAAdRulesPreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -265,8 +265,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAAdRulesMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -347,8 +347,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAAdRulesPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -438,8 +438,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -531,8 +531,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -622,8 +622,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -770,8 +770,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPoddedPreMidPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreMidPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -865,8 +865,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMASkippable throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMASkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -971,8 +971,8 @@ public class BasicTestsGoogleIMAIntegration {
         {
             System.out.println("GoogleIMAIntegrationIMAPreMidPostSkippable throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPreMidPostSkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 /*
@@ -1057,8 +1057,9 @@ public class BasicTestsGoogleIMAIntegration {
         catch(Exception e)
         {
             System.out.println("GoogleIMAIntegrationIMAApplicationConfigured Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAApplicationConfigured");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 */

@@ -177,8 +177,9 @@ public class DeepTests4 {
 
         } catch (Exception e) {
             System.out.println("FWPreroll_learnmore throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWPreroll_learnmore");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -268,8 +269,9 @@ public class DeepTests4 {
 
         } catch (Exception e) {
             System.out.println("FWMidRoll_learnmore throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWMidRoll_learnmore");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -361,8 +363,9 @@ public class DeepTests4 {
 
         } catch (Exception e) {
             System.out.println("FWPostroll_learnmore throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWPostroll_learnmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -503,8 +506,9 @@ public class DeepTests4 {
 
         } catch (Exception e) {
             System.out.println("FWPreMidPost_learnmore throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWPreMidPost_learnmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -622,8 +626,9 @@ public class DeepTests4 {
 
         } catch (Exception e) {
             System.out.println("FWMultiMidRoll_leanrmore throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWMultiMidRoll_leanrmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -772,8 +777,9 @@ public class DeepTests4 {
 
         } catch (Exception e) {
             System.out.println("FWPreMidPostRollOverlay_learnmore throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWPreMidPostRollOverlay_learnmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -909,9 +915,9 @@ public class DeepTests4 {
 
         } catch (Exception e) {
             System.out.println("FreeWheelApplicationConfigured_learnmore throws Exception " + e);
-             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelApplicationConfigured_learnmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 */

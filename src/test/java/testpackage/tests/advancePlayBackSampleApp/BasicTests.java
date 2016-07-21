@@ -165,8 +165,8 @@ public class BasicTests {
         catch (Exception e) {
             System.out.println("playWithIntitialTime throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"playWithIntitialTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -242,8 +242,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"multipleVideoPlayback");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -313,8 +313,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("insertAtRunTime throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"insertAtRunTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -385,8 +385,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"changeVideoProgramatically");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -437,8 +437,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("customPluginSample throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"customPluginSample");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -495,8 +495,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("customControls throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"customControls");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -554,8 +554,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("customOverlay throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"customOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -618,8 +618,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("insertAtRunTime_VastAd throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -679,8 +679,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("insertAtRunTime_VastAd Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -738,8 +738,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically_P1 Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P1");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -796,8 +796,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically_P2 throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P2");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -864,8 +864,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("customPluginSample_Adverfication throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"customPluginSample_Adverfication");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

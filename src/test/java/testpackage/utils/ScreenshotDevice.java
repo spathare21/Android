@@ -20,10 +20,17 @@ public class ScreenshotDevice {
     // function goes to TestUtils package ??
     public static void screenshot(AppiumDriver driver,String testMethodName) throws IOException
     {
-        String currentDir = System.getProperty("user.dir");
-        String Screenshotpath = currentDir+"/res/snapshot/";
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File(Screenshotpath+testMethodName+ Instant.now().toEpochMilli()+".jpg"));
+        try {
+            String currentDir = System.getProperty("user.dir");
+            String Screenshotpath = currentDir + "/res/snapshot/";
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File(Screenshotpath + testMethodName + Instant.now().toEpochMilli() + ".jpg"));
+            System.out.println("Screen shot taken successfully..!!! \n\n\n\n");
+        }
+        catch (Exception e)
+        {
+            System.out.println("\n Exception while taking screenshot : " + e.getMessage());
+        }
     }
 
 

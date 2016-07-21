@@ -279,8 +279,8 @@ public class DeepTestSkinPlayback {
         } catch (Exception e) {
             System.out.println("AspectRatioTest throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"AspectRatioTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -467,8 +467,9 @@ public class DeepTestSkinPlayback {
 */
         } catch (Exception e) {
             System.out.println("SkinPlaybackMP4Video throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackMP4Video");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -648,8 +649,9 @@ public class DeepTestSkinPlayback {
 
         } catch (Exception e) {
             System.out.println("SkinPlaybackHLSVideo throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSVideo");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -835,8 +837,8 @@ public class DeepTestSkinPlayback {
         } catch (Exception e) {
             System.out.println("SkinPlaybackVODCCVideo throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlaybackVODCCVideo");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1033,8 +1035,8 @@ public class DeepTestSkinPlayback {
         } catch (Exception e) {
             System.out.println("SkinPlayBackVAST2ADPreroll throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlayBackVAST2ADPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 

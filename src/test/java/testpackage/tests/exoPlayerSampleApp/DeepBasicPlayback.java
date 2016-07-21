@@ -292,8 +292,8 @@ public class DeepBasicPlayback {
         {
             System.out.println("AspectRatio throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"AspectRatio");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -499,8 +499,8 @@ public class DeepBasicPlayback {
         {
             System.out.println("MP4 Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"MP4");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -704,8 +704,8 @@ public class DeepBasicPlayback {
         {
             System.out.println("HLS throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -920,8 +920,8 @@ public class DeepBasicPlayback {
         {
             System.out.println("encrypted_HLS Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"encrypted_HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1136,8 +1136,8 @@ public class DeepBasicPlayback {
         {
             System.out.println("VOD_CC throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VOD_CC");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

@@ -195,8 +195,8 @@ public class DeepTests {
         {
             System.out.println("IMAAdRulePreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -303,8 +303,8 @@ public class DeepTests {
         {
             System.out.println("IMAAdRuleMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -409,8 +409,8 @@ public class DeepTests {
         {
             System.out.println("IMAAdRulePostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -521,8 +521,8 @@ public class DeepTests {
         {
             System.out.println("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -637,8 +637,8 @@ public class DeepTests {
         {
             System.out.println("IMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -749,8 +749,8 @@ public class DeepTests {
         {
             System.out.println("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -918,8 +918,8 @@ public class DeepTests {
         {
             System.out.println("IMAPoddedPreMidPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1029,8 +1029,8 @@ public class DeepTests {
         {
             System.out.println("IMASkippable throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMASkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1137,8 +1137,8 @@ public class DeepTests {
         {
             System.out.println("IMAApplication_Configured throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAApplication_Configured");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1262,8 +1262,8 @@ public class DeepTests {
         {
             System.out.println("IMA_PreMidPost_skippable throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMA_PreMidPost_skippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1370,8 +1370,8 @@ public class DeepTests {
         {
             System.out.println("IMASkippable_skip throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMASkippable_skip");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

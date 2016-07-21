@@ -221,8 +221,9 @@ public class DeepTests {
             } catch (Exception e) {
                 System.out.println("FreeWheelPreRoll throws Exception " + e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"FreeWheelPreRoll");
+                Assert.assertTrue(false, "This will fail!");
+
             }
         }
 
@@ -353,8 +354,10 @@ public class DeepTests {
 
             } catch (Exception e) {
                 System.out.println("FreeWheelMidRoll throws Exception " + e);
-                 e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+                e.printStackTrace();
                 ScreenshotDevice.screenshot(driver,"FreeWheelMidRoll");
+                            Assert.assertTrue(false, "This will fail!");
+
             }
 
 
@@ -489,8 +492,9 @@ public class DeepTests {
 
             } catch (Exception e) {
                 System.out.println("FreeWheelPostRoll throws Exception " + e);
-                 e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+                e.printStackTrace();
                 ScreenshotDevice.screenshot(driver,"FreeWheelPostRoll");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 */

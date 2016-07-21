@@ -155,8 +155,8 @@ public class DeepTests3 {
         } catch (Exception e) {
             System.out.println("FreeWheelOverlay throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -340,8 +340,9 @@ public class DeepTests3 {
         catch(Exception e)
         {
             System.out.println("FWCuePointsAndAdsControlOptions_On throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_On");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -489,8 +490,8 @@ public class DeepTests3 {
         {
             System.out.println("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_cuePointOff_leanmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -662,8 +663,8 @@ public class DeepTests3 {
         {
             System.out.println("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_adControlsOff_leanmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

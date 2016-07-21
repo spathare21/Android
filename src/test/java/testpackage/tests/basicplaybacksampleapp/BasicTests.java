@@ -169,8 +169,8 @@ public class BasicTests {
         {
             System.out.println(" AspectRatioTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"AspectRatioTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -248,8 +248,8 @@ public class BasicTests {
         {
             System.out.println(" HLSVideoTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"HLSVideoTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -324,8 +324,8 @@ public class BasicTests {
         {
             System.out.println("MP4VideoTest thows Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"MP4VideoTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -420,8 +420,8 @@ public class BasicTests {
         {
             System.out.println("VODwithCCTest throws Exception \n"+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VODwithCCTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -508,8 +508,8 @@ public class BasicTests {
         {
             System.out.println("VASTAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -570,8 +570,8 @@ public class BasicTests {
         {
             System.out.println("VASTADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTADMidRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -621,8 +621,8 @@ public class BasicTests {
         {
             System.out.println("VASTAdWrapperTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTAdWrapperTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -687,8 +687,8 @@ public class BasicTests {
         {
             System.out.println("OoyalaAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -749,8 +749,8 @@ public class BasicTests {
         {
             System.out.println("OoyalaADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaADMidRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -815,8 +815,8 @@ public class BasicTests {
         {
             System.out.println("OoyalaADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"OoyalaADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -880,8 +880,8 @@ public class BasicTests {
         {
             System.out.println("VASTADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -954,8 +954,8 @@ public class BasicTests {
         } catch (Exception e) {
             System.out.println("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

@@ -222,8 +222,8 @@ public class DeepTests {
         catch (Exception e) {
             System.out.println("playWithIntitialTime Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"playWithIntitialTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -463,8 +463,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"multipleVideoPlayback");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -615,8 +615,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println(" insertAdAtRunTime throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"insertAdAtRunTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -757,8 +757,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"changeVideoProgramatically");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -903,8 +903,9 @@ public class DeepTests {
 
         } catch (Exception e) {
             System.out.println(" customPluginSample throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"customPluginSample");
+            Assert.assertTrue(false, "This will fail!");
         }
     }*/
 
@@ -976,8 +977,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("customControls throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"customControls");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1027,8 +1028,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("customOverlay throws Exception \n" + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"customOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1158,8 +1159,8 @@ public class DeepTests {
         } catch (Exception e) {
             System.out.println("unbundled throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"unbundled");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/

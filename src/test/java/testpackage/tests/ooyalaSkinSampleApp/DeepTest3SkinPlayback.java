@@ -262,8 +262,9 @@ public class DeepTest3SkinPlayback {
 
         } catch (Exception e) {
             System.out.println("VastPoddedAd throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VastPoddedAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -427,8 +428,8 @@ public class DeepTest3SkinPlayback {
         } catch (Exception e) {
             System.out.println("VastAdWtihNewEvents throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastAdWtihNewEvents");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -592,8 +593,8 @@ public class DeepTest3SkinPlayback {
         } catch (Exception e) {
             System.out.println("VastAdWithIcon throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastAdWithIcon");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -748,8 +749,8 @@ public class DeepTest3SkinPlayback {
         } catch (Exception e) {
             System.out.println("VastSkippableAd throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastSkippableAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -921,8 +922,8 @@ public class DeepTest3SkinPlayback {
         } catch (Exception e) {
             System.out.println("VastSkippableAdLong throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VastSkippableAdLong");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -1135,8 +1136,9 @@ public class DeepTest3SkinPlayback {
 
         } catch (Exception e) {
             System.out.println("VAMPPreMidPostSingle throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAMPPreMidPostSingle");
+            Assert.assertTrue(false, "This will fail!");
         }
     }*/
 }

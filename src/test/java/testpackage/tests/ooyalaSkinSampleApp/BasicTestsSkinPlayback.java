@@ -185,8 +185,8 @@ public class BasicTestsSkinPlayback {
         {
             System.out.println("SkinPlaybackAspectRatio throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlaybackAspectRatio");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -281,8 +281,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackMP4Video throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackMP4Video");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 */
@@ -377,8 +378,8 @@ public class BasicTestsSkinPlayback {
         {
             System.out.println("SkinPlaybackHLSVideo throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSVideo");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 /*
@@ -502,9 +503,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackVODwithCCTest throws Exception "+e);
-             e.printStackTrace();
-                          Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackVODwithCCTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -588,8 +589,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackVASTAdPreRollTest throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -671,8 +673,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackVASTADMidRollTest throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTADMidRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -751,8 +754,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackVASTADPostRollTest throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -820,8 +824,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackVASTAdWrapperTest throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTAdWrapperTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -904,8 +909,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackOoyalaAdPreRollTest throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1068,8 +1074,9 @@ public class BasicTestsSkinPlayback {
         catch(Exception e)
         {
             System.out.println("SkinPlaybackOoyalaADPostRollTest throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }*/
 
@@ -1160,8 +1167,8 @@ public class BasicTestsSkinPlayback {
         {
             System.out.println("SkinPlaybackMultiAdCombinationTest throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"SkinPlaybackMultiAdCombinationTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 }

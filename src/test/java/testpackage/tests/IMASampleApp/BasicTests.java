@@ -166,8 +166,8 @@ public class BasicTests {
         {
             System.out.println("IMAAdRulePreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -244,8 +244,8 @@ public class BasicTests {
         {
             System.out.println("IMAAdRuleMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -325,8 +325,8 @@ public class BasicTests {
         {
             System.out.println("IMAAdRulePostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -415,8 +415,8 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -505,8 +505,8 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -598,8 +598,8 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -722,8 +722,8 @@ public class BasicTests {
         {
             System.out.println("IMAPoddedPreMidPost throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPost");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -798,8 +798,8 @@ public class BasicTests {
         {
             System.out.println("IMASkippable throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMASkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -880,8 +880,8 @@ public class BasicTests {
         {
             System.out.println("IMAPreMidPostSkippable throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -945,8 +945,8 @@ public class BasicTests {
         {
             System.out.println("IMAApplicationConfigured throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"IMAApplicationConfigured");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

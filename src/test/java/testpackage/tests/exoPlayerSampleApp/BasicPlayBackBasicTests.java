@@ -165,8 +165,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("AspectRatio throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"AspectRatio");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -243,8 +243,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("MP4 throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"MP4");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -320,8 +320,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("HLS throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -394,8 +394,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("encrypted_HLS throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"encrypted_HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -468,8 +468,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("VOD_CC throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VOD_CC");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -547,8 +547,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("VAST2_Preroll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST2_Preroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -628,8 +628,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("VAST2_Midroll Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST2_Midroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -709,8 +709,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("VAST2_Postroll Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST2_Postroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/
@@ -789,8 +789,8 @@ public class BasicPlayBackBasicTests {
         {
             System.out.println("VAST_Wrapper Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"VAST_Wrapper");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -868,8 +868,9 @@ public class BasicPlayBackBasicTests {
         catch(Exception e)
         {
             System.out.println("ooyalaAd_Preroll Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"ooyalaAd_Preroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -948,8 +949,9 @@ public class BasicPlayBackBasicTests {
         catch(Exception e)
         {
             System.out.println("ooyalaAd_Midroll throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"ooyalaAd_Midroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1028,8 +1030,9 @@ public class BasicPlayBackBasicTests {
         catch(Exception e)
         {
             System.out.println("ooyalaAd_Postroll Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"ooyalaAd_Postroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/

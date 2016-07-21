@@ -254,8 +254,8 @@ public class DeepTestsFW {
         {
             System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -421,8 +421,8 @@ public class DeepTestsFW {
         } catch (Exception e) {
             System.out.println("FreeWheelIntegrationMidroll throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -589,8 +589,9 @@ public class DeepTestsFW {
 
         } catch (Exception e) {
             System.out.println("FreeWheelIntegrationPostroll throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -768,8 +769,9 @@ public class DeepTestsFW {
 
         } catch (Exception e) {
             System.out.println("FreeWheelIntegrationPreMidPostroll throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/
@@ -837,8 +839,8 @@ public class DeepTestsFW {
         } catch (Exception e) {
             System.out.println("FreeWheelIntegrationOverlay throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1009,8 +1011,8 @@ public class DeepTestsFW {
         } catch (Exception e) {
             System.out.println("FreeWheelIntegrationMultiMidroll throws Exception " + e);
             e.printStackTrace();
-            Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1196,8 +1198,9 @@ public class DeepTestsFW {
 
         } catch (Exception e) {
             System.out.println("FreeWheelIntegrationPreMidPostroll_overlay throws Exception " + e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll_overlay");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/

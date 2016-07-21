@@ -280,8 +280,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAAdRulesPreroll throws Exception "+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAAdRulesPreroll");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -472,8 +472,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAAdRulesMidroll throws Exception "+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAAdRulesMidroll");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -661,8 +661,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAAdRulesPostoll throws Exception \n"+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAAdRulesPostoll");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -863,8 +863,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMASkippable throws Exception "+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMASkippable");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -1072,8 +1072,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAPreMidPostSkippable throws Exception "+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -1269,8 +1269,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAAdRulesPoddedMidroll throws Exception\n "+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedMidroll");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -1465,8 +1465,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAAdRulesPoddedPostroll throws Exception \n"+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedPostroll");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -1695,8 +1695,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAAdRulesPoddedPreMidPost throws Exception "+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedPreMidPost");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -1888,8 +1888,8 @@ public class DeepTestIMA {
             {
                 System.out.println("IMAAdRulesPoddedPreroll throws Exception "+e);
                 e.printStackTrace();
-                Assert.assertTrue(false, "This will fail!");
                 ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedPreroll");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 }
