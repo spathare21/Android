@@ -149,7 +149,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -330,7 +330,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
 
             // event verification of video is start playing
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
@@ -454,7 +454,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
             Thread.sleep(1000);
 
             // video completed event verification
@@ -522,7 +522,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -702,7 +702,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
 
             // event verification of video is start playing
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
@@ -823,7 +823,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
             Thread.sleep(1000);
 
             // video completed event verification
@@ -891,7 +891,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -954,7 +954,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
             // Ad completed verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);

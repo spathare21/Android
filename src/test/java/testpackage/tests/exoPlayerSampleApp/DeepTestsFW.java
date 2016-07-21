@@ -145,7 +145,7 @@ public class DeepTestsFW {
 
             Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
             Thread.sleep(1000);
 
             //Wait for video to start and verify the playStarted event .
@@ -318,7 +318,7 @@ public class DeepTestsFW {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(5000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -486,7 +486,7 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(1000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -649,7 +649,7 @@ public class DeepTestsFW {
             EventVerification ev = new EventVerification();
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
             Thread.sleep(5000);
 
             //Wait for video to start and verify the playStarted event .
@@ -661,7 +661,7 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(1000);
 
             ev.verifyEvent("playStarted", " Video Started Play ", 49000);
@@ -669,7 +669,7 @@ public class DeepTestsFW {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
             Thread.sleep(5000);
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
             Thread.sleep(1000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -902,12 +902,12 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             Thread.sleep(5000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
             Thread.sleep(5000);
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
             Thread.sleep(1000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -1071,7 +1071,7 @@ public class DeepTestsFW {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
             Thread.sleep(1000);
 
             //Wait for video to start and verify the playStarted event .
@@ -1086,7 +1086,7 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(1000);
 
             //Wait for video to start and verify the playStarted event .
@@ -1096,7 +1096,7 @@ public class DeepTestsFW {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
             Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);

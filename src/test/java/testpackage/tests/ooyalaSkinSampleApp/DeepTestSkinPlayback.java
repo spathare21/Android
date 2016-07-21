@@ -897,7 +897,7 @@ public class DeepTestSkinPlayback {
 
             Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             Thread.sleep(5000);
             //Wait for video to start and verify the playStarted event .

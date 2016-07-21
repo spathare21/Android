@@ -155,7 +155,7 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
@@ -164,7 +164,7 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
@@ -241,12 +241,12 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 45000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 45000);
 
 
             //Play Started
@@ -327,7 +327,7 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 55000);
@@ -407,7 +407,7 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
 
             //Play Started
@@ -566,7 +566,7 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
 
             //Play Started
@@ -724,18 +724,18 @@ public class BasicPlayBackBasicTest2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
@@ -901,7 +901,7 @@ public class BasicPlayBackBasicTest2 {
 
             ev.verifyEvent("adSkipped", "Ad has been skipped", 20000);
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 20000);
@@ -917,7 +917,7 @@ public class BasicPlayBackBasicTest2 {
 
             ev.verifyEvent("adSkipped", "Ad has been skipped", 20000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
             Thread.sleep(40000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
@@ -929,7 +929,7 @@ public class BasicPlayBackBasicTest2 {
             // there is no skip button for third ad
             //po.clickBasedOnText(driver, "Skip Ad");
             //ev.verifyEvent("adSkipped", "Ad has been skipped", 100000);
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 110000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);

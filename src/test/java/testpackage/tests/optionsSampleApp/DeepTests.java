@@ -130,7 +130,7 @@ public class DeepTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -154,11 +154,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -182,7 +182,7 @@ public class DeepTests {
             //Play Started Verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -208,11 +208,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -237,7 +237,7 @@ public class DeepTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -263,11 +263,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -292,7 +292,7 @@ public class DeepTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -318,11 +318,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -390,7 +390,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -433,13 +433,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -470,7 +470,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -508,13 +508,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -547,7 +547,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -573,13 +573,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -612,7 +612,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -638,13 +638,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);

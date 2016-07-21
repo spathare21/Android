@@ -614,7 +614,7 @@ public class DeepTests {
                 Thread.sleep(5000);
 
                 //Ad Completed Verification
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
                 Thread.sleep(1000);
 
                 //Play Started Verification

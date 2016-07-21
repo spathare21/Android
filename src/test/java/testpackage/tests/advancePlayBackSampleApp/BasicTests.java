@@ -609,7 +609,7 @@ public class BasicTests {
             ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
             Thread.sleep(5000);
             // Verifying if VAST Ad completed
-            ev.verifyEvent("adCompleted","Vast Ad completed to play",30000);
+            ev.verifyEvent("adCompleted","Vast Ad Playback Completed",30000);
             // Veirfying if video completed
             ev.verifyEvent("playCompleted", "video play completed", 90000);
 
@@ -669,7 +669,7 @@ public class BasicTests {
             ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 30000);
             Thread.sleep(5000);
             // Verifying if Ooyala Ad completed
-            ev.verifyEvent("adCompleted","Ooyala Ad completed to play",30000);
+            ev.verifyEvent("adCompleted","Ooyala Ad Playback Completed",30000);
             // Veirfying if video completed
             ev.verifyEvent("playCompleted", "video play completed", 90000);
 

@@ -243,7 +243,7 @@ public class DeepTests3 {
 //
 //            Thread.sleep(4000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to start and verify the playStarted event .
@@ -291,7 +291,7 @@ public class DeepTests3 {
 //            Thread.sleep(4000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
@@ -331,7 +331,7 @@ public class DeepTests3 {
 //
 //            Thread.sleep(4000);
 //
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -419,7 +419,7 @@ public class DeepTests3 {
             System.out.println("Back to SDK");
 
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
 
@@ -452,7 +452,7 @@ public class DeepTests3 {
             System.out.println("Back to SDK");
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
@@ -479,7 +479,7 @@ public class DeepTests3 {
             //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -575,7 +575,7 @@ public class DeepTests3 {
             ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 */
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
 
@@ -619,7 +619,7 @@ public class DeepTests3 {
 
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             Thread.sleep(5000);
 
@@ -652,7 +652,7 @@ public class DeepTests3 {
             ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 */
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
 
             //Wait for video to finish and verify the playCompleted event .

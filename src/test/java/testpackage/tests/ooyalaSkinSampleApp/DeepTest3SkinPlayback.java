@@ -158,7 +158,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(1000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -168,7 +168,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
@@ -330,7 +330,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Time out
             Thread.sleep(1000);
@@ -495,7 +495,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -827,7 +827,7 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
@@ -1002,7 +1002,7 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
@@ -1108,7 +1108,7 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 300000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 300000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 500000);
 
@@ -1130,7 +1130,7 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 700000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 700000);
             ev.verifyEvent("playCompleted", " Video Completed Play ", 800000);
 
 

@@ -132,7 +132,7 @@ public class BasicTests{
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             po.loadingSpinner(driver);
 
@@ -250,7 +250,7 @@ public class BasicTests{
             ev.verifyEvent("adStarted", " Ad Started to Play ", 75000);
             po.loadingSpinner(driver);
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 85000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 85000);
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -342,7 +342,7 @@ public class BasicTests{
             po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 90000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -401,7 +401,7 @@ public class BasicTests{
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             po.loadingSpinner(driver);
 
             //Wait for video to start and verify the playStarted event .
@@ -413,13 +413,13 @@ public class BasicTests{
             po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 75000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 75000);
             po.loadingSpinner(driver);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 95000);
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 110000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -575,7 +575,7 @@ public class BasicTests{
             po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             po.loadingSpinner(driver);
 
@@ -583,7 +583,7 @@ public class BasicTests{
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 110000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
 
             po.loadingSpinner(driver);
 
@@ -644,7 +644,7 @@ public class BasicTests{
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             po.loadingSpinner(driver);
 
@@ -659,7 +659,7 @@ public class BasicTests{
             po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 90000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
 
             po.loadingSpinner(driver);
 
@@ -667,7 +667,7 @@ public class BasicTests{
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 130000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 130000);
 
             po.loadingSpinner(driver);
 
@@ -728,7 +728,7 @@ public class BasicTests{
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             po.loadingSpinner(driver);
 
@@ -739,14 +739,14 @@ public class BasicTests{
             ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 80000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 80000);
 
             po.loadingSpinner(driver);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 110000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
 
             po.loadingSpinner(driver);
 
@@ -816,7 +816,7 @@ public class BasicTests{
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             po.loadingSpinner(driver);
 
@@ -832,7 +832,7 @@ public class BasicTests{
             po.loadingSpinner(driver);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 65000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 65000);
 
             po.loadingSpinner(driver);
 
@@ -840,7 +840,7 @@ public class BasicTests{
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 90000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
 
             po.loadingSpinner(driver);
 

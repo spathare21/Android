@@ -143,7 +143,7 @@ public class FWBasicTests {
 
                 Thread.sleep(5000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -215,7 +215,7 @@ public class FWBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
@@ -285,7 +285,7 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
@@ -350,7 +350,7 @@ public class FWBasicTests {
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
                 //Wait for video to start and verify the playStarted event .
@@ -360,11 +360,11 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -445,7 +445,7 @@ public class FWBasicTests {
 
         }
 
-        @org.testng.annotations.Test
+       // @org.testng.annotations.Test App crashed intermittently PBA-4294:P2
         public void FreeWheelIntegrationMultiMidroll() throws Exception {
 
             try {
@@ -499,11 +499,11 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
@@ -567,7 +567,7 @@ public class FWBasicTests {
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
                 //Wait for video to start and verify the playStarted event .
@@ -581,11 +581,11 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);

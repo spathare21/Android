@@ -159,7 +159,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -412,7 +412,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(1000);
@@ -570,7 +570,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -644,7 +644,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -813,7 +813,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -1069,7 +1069,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(1000);
@@ -1231,7 +1231,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -1306,7 +1306,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -1399,7 +1399,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(1000);

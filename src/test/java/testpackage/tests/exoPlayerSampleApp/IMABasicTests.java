@@ -159,7 +159,7 @@ public class IMABasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Time out
             Thread.sleep(1000);
@@ -253,7 +253,7 @@ public class IMABasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Time out
             Thread.sleep(1000);
@@ -343,7 +343,7 @@ public class IMABasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -359,7 +359,6 @@ public class IMABasicTests {
 
         }
     }
-
 
     @org.testng.annotations.Test
     public void IMASkippable() throws Exception{
@@ -427,7 +426,7 @@ public class IMABasicTests {
 //            po.skipAd(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             //Time out
             Thread.sleep(1000);
@@ -616,7 +615,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Time out
             Thread.sleep(1000);
@@ -624,7 +623,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
 
             Thread.sleep(30000);
@@ -708,12 +707,12 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 55000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 55000);
 
 
             Thread.sleep(30000);
@@ -795,7 +794,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
@@ -803,7 +802,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -811,7 +810,7 @@ public class IMABasicTests {
             Thread.sleep(1000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
 
             Thread.sleep(30000);
@@ -892,7 +891,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Time out
             Thread.sleep(1000);
@@ -900,7 +899,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             Thread.sleep(1000);
 

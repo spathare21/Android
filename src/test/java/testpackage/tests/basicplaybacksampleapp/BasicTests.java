@@ -466,7 +466,7 @@ public class BasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Time out
             Thread.sleep(1000);
@@ -559,7 +559,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             po.loadingSpinner(driver);
 
@@ -668,7 +668,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             po.loadingSpinner(driver);
 
@@ -738,7 +738,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             po.loadingSpinner(driver);
 
@@ -800,7 +800,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             po.loadingSpinner(driver);
 
@@ -865,7 +865,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             po.loadingSpinner(driver);
 
@@ -927,7 +927,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             po.loadingSpinner(driver);
 
@@ -944,7 +944,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             po.loadingSpinner(driver);
