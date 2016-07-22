@@ -95,7 +95,6 @@ public class BasicTestsGoogleIMAIntegration {
 
     }
 
-
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAAdRulesPreroll() throws Exception{
         int[] locPlayButon;
@@ -536,7 +535,6 @@ public class BasicTestsGoogleIMAIntegration {
         }
     }
 
-
     @org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAPoddedPostroll() throws Exception{
         int[] locPlayButon;
@@ -975,9 +973,8 @@ public class BasicTestsGoogleIMAIntegration {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-/*
 
-    @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void GoogleIMAIntegrationIMAApplicationConfigured() throws Exception{
         int[] locPlayButon;
 
@@ -1062,6 +1059,6 @@ public class BasicTestsGoogleIMAIntegration {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-*/
+
 
 }

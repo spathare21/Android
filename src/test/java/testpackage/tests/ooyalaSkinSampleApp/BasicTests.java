@@ -170,7 +170,7 @@ public class BasicTests {
         }
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelIntegrationMidRoll() throws Exception{
 
         try {
@@ -250,7 +250,7 @@ public class BasicTests {
         }
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelIntegrationPostRoll() throws Exception{
 
         try {
@@ -330,7 +330,7 @@ public class BasicTests {
     }
 
     
-   // @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelIntegrationPreMidPostRoll() throws Exception{
 
         try {
@@ -419,8 +419,8 @@ public class BasicTests {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-
-    @org.testng.annotations.Test
+   //TODO Overlay element content desc is changin contunously PBA-4296
+    //@org.testng.annotations.Test
     public void FreeWheelIntegrationOverlay() throws Exception{
 
         try {
@@ -498,7 +498,7 @@ public class BasicTests {
         }
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelIntegrationMultiMidroll() throws Exception{
 
         try {
@@ -582,6 +582,7 @@ public class BasicTests {
         }
     }
 
+    //TODO Overlay element content desc is changin contunously PBA-4296
     //@org.testng.annotations.Test
     public void FreeWheelIntegrationPreMidPostRollOverlay() throws Exception{
 
