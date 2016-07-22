@@ -506,7 +506,7 @@ public class IMABasicTests {
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Ad Started Verification
             EventVerification ev = new EventVerification();
