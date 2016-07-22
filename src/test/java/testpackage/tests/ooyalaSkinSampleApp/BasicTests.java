@@ -90,7 +90,7 @@ public class BasicTests {
 
     }
 
-    @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void FreeWheelIntegrationPreRoll() throws Exception{
 
         try {
@@ -154,8 +154,8 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
-
-            po.upnextDis(driver);
+            //po.upnextDis(driver);
+            //po.seek_video(driver);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
@@ -236,7 +236,7 @@ public class BasicTests {
 
             Thread.sleep(1000);
 
-            po.upnextDis(driver);
+            //po.upnextDis(driver);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
@@ -308,7 +308,7 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
-            po.upnextDis(driver);
+            //po.upnextDis(driver);
 
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
@@ -330,7 +330,7 @@ public class BasicTests {
     }
 
     
-    //@org.testng.annotations.Test
+   // @org.testng.annotations.Test
     public void FreeWheelIntegrationPreMidPostRoll() throws Exception{
 
         try {
@@ -401,7 +401,7 @@ public class BasicTests {
 
             Thread.sleep(5000);
 
-            po.upnextDis(driver);
+            //po.upnextDis(driver);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
@@ -420,7 +420,7 @@ public class BasicTests {
         }
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelIntegrationOverlay() throws Exception{
 
         try {
@@ -482,7 +482,7 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
-            po.upnextDis(driver);
+            //po.upnextDis(driver);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -562,7 +562,7 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
-            po.upnextDis(driver);
+            //po.upnextDis(driver);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
@@ -631,16 +631,12 @@ public class BasicTests {
 
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
-
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-
 
             Thread.sleep(3000);
 
             po.overlay(driver);
-
 
             //Wait for Ad to start and verify the adStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);

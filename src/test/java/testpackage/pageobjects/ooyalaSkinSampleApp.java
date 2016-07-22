@@ -4,28 +4,17 @@ package testpackage.pageobjects;
  * Created by bsondur on 2/23/16.
  */
 
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import org.apache.xpath.operations.And;
-import org.apache.xpath.operations.Bool;
 import org.junit.Assert;
-import org.omg.PortableInterceptor.AdapterNameHelper;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import testpackage.utils.CommandLine;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.Exception;
 import java.util.Date;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Properties;
 
 public class ooyalaSkinSampleApp {
 
@@ -228,8 +217,8 @@ public class ooyalaSkinSampleApp {
 
     public void pauseVideo(AndroidDriver driver) throws InterruptedException {
         System.out.println("moved to pause method");
-        System.out.println("replay.x value is " + play.getX());
-        System.out.println("replay.x value is " + play.getY());
+        System.out.println("play.x value is " + play.getX());
+        System.out.println("play.y value is " + play.getY());
         driver.tap(1, play.getX(), play.getY(), 3);
         Thread.sleep(1000);
         driver.tap(1,play.getX(),play.getY(),3);
@@ -316,12 +305,18 @@ public class ooyalaSkinSampleApp {
         driver.tap(1, 450, 867, 2);
     }
 
-    public void seek_video (AndroidDriver driver)
-
+    public void seek_video (AndroidDriver driver) throws Exception
     {
-      WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
-        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>" + element);
-
+        System.out.println("\n---------seek video------\n");
+        pauseVideo(driver);
+        List<WebElement>  l = driver.findElements(By.className("android.view.View"));
+        System.out.println("size of view : " + l.size());
+        Point p = l.get(2).getLocation();
+        System.out.println("locatation of scrubber pointer is :" + p.getX() + " " + p.getY());
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(p.getX() + 20, p.getY(), p.getX() + 100, p.getY(), 3);
+        driver.tap(1,658,700,2);
+        getPlay(driver);
     }
 
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
@@ -371,9 +366,12 @@ public class ooyalaSkinSampleApp {
     }
 
 
-    public void overlay (AndroidDriver driver) {
+    public void overlay (AndroidDriver driver) throws Exception {
         System.out.println("in overlay method");
-        WebElement ele = driver.findElementByXPath("//android.view.View[@content-desc='1?s=g002&n=380912%3B380912&t=1461829324669617003&f=&r=380912&adid=6772707&reid=3129141&arid=0&auid=&cn=defaultClick&et=c&_cc=&tpos=0&sr=0&cr=']");
+        pauseVideo(driver);
+        driver.tap(1,658,700,2);
+        Thread.sleep(2000);
+        WebElement ele = driver.findElementByXPath("//android.webkit.WebView[@content-desc='Web View']");
         Boolean over = false;
         over =   ele.isDisplayed();
         if (over)
@@ -384,9 +382,12 @@ public class ooyalaSkinSampleApp {
         }
         else
         {
-            Assert.assertTrue(over);
             System.out.println("Overlay NOt displayed");
+            Assert.assertTrue(over);
         }
+        driver.tap(1,658,700,2);
+        Thread.sleep(2000);
+        getPlay(driver);
     }
 
     public void discoverElement (AndroidDriver driver) {
