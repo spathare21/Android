@@ -190,8 +190,6 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-
-/*
     @org.testng.annotations.Test
     public void SkinPlaybackMP4Video() throws Exception{
         int[] locPlayButon;
@@ -286,7 +284,6 @@ public class BasicTestsSkinPlayback {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-*/
 
     @org.testng.annotations.Test
     public void SkinPlaybackHLSVideo() throws Exception{
@@ -362,7 +359,7 @@ public class BasicTestsSkinPlayback {
             // Pause the running of the test for a brief amount of time
             Thread.sleep(3000);
 
-            po.SeekOoyalaSkin(driver,0,200);
+            //po.SeekOoyalaSkin(driver,0,200);
             //ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
             //Thread.sleep(3000);
 
@@ -382,7 +379,7 @@ public class BasicTestsSkinPlayback {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void SkinPlaybackVODwithCCTest() throws Exception{
         int[] locPlayButon;
@@ -915,7 +912,6 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-
     @org.testng.annotations.Test
     public void SkinPlaybackOoyalaADMidRollTest() throws Exception{
         int[] locPlayButon;
@@ -1078,7 +1074,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaADPostRollTest");
             Assert.assertTrue(false, "This will fail!");
         }
-    }*/
+    }
 
     @org.testng.annotations.Test
     public void SkinPlaybackMultiAdCombinationTest() throws Exception{
