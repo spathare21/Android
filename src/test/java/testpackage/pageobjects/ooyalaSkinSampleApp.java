@@ -366,10 +366,10 @@ public class ooyalaSkinSampleApp {
 
 
     public void screentap(AndroidDriver driver) throws InterruptedException {
-        System.out.println("in screen tapped method");
+        //System.out.println("in screen tapped method");
         Thread.sleep(1000);
-        driver.tap(1, replay.getX(), replay.getY(), 2);
-        System.out.println("out of the screen tapped method");
+        driver.tap(1, play.getX(), play.getY(), 2);
+        //System.out.println("out of the screen tapped method");
     }
 
 

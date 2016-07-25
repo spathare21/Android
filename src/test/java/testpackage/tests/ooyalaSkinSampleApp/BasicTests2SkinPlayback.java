@@ -1,23 +1,22 @@
 package testpackage.tests.ooyalaSkinSampleApp;
 
-/**
- * Created by bsondur on 2/24/16.
- */
-
-import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.Assert;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
 import testpackage.utils.*;
 
-import java.util.Properties;
 import java.io.IOException;
+import java.util.Properties;
 
-
-public class BasicTestsSkinPlayback {
-
+/**
+ * Created by Shivam on 25/07/16.
+ */
+public class BasicTests2SkinPlayback {
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -93,9 +92,8 @@ public class BasicTestsSkinPlayback {
 
     }
 
-
-   // @org.testng.annotations.Test
-    public void SkinPlaybackAspectRatio() throws Exception{
+    //@org.testng.annotations.Test
+    public void SkinPlaybackEncryptedHLS() throws Exception{
         int[] locPlayButon;
 
         try {
@@ -132,7 +130,7 @@ public class BasicTestsSkinPlayback {
             System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "4:3 Aspect Ratio");
+            po.clickBasedOnText(driver, "Ooyala Encrypted HLS");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -167,7 +165,7 @@ public class BasicTestsSkinPlayback {
 
             ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
-            Thread.sleep(5000);
+            Thread.sleep(7000);
 
             // playing video again.
             po.getPlay(driver);
@@ -180,917 +178,15 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println("SkinPlaybackAspectRatio throws Exception "+e);
+            System.out.println("SkinPlaybackEncryptedHLS throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackAspectRatio");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-        @org.testng.annotations.Test
-    public void SkinPlaybackMP4Video() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"MP4 Video");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "MP4 Video");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 400);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackMP4Video throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackMP4Video");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-   // @org.testng.annotations.Test
-    public void SkinPlaybackHLSVideo() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"HLS Video");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "HLS Video");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 400);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackHLSVideo throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSVideo");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-  //  @org.testng.annotations.Test
-    public void SkinPlaybackVASTAdPreRollTest() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"VAST2 Ad Pre-roll");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Pre-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Ad Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            //Thread sleep time is equivalent to the length of the AD
-            Thread.sleep(5000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-
-            //Time out
-            Thread.sleep(1000);
-
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //pause the video
-            Thread.sleep(2000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 20);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackVASTAdPreRollTest throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTAdPreRollTest");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-   //     @org.testng.annotations.Test
-    public void SkinPlaybackVASTADMidRollTest() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"VAST2 Ad Mid-roll");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Mid-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Play Started
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            Thread.sleep(2000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 10);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackVASTADMidRollTest throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTADMidRollTest");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-  //  @org.testng.annotations.Test
-    public void SkinPlaybackVASTADPostRollTest() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"VAST2 Ad Post-roll");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Post-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Play Started
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 20);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            Thread.sleep(5000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackVASTADPostRollTest throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTADPostRollTest");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-  //     @org.testng.annotations.Test
-    public void SkinPlaybackOoyalaAdPreRollTest() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Pre-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Ad Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            //Thread sleep time is equivalent to the length of the AD
-            Thread.sleep(5000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-
-            //Time out
-            Thread.sleep(1000);
-
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 10);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackOoyalaAdPreRollTest throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaAdPreRollTest");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-  //  @org.testng.annotations.Test
-    public void SkinPlaybackOoyalaADMidRollTest() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Mid-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Play Started
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            Thread.sleep(2000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 10);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackOoyalaADMidRollTest throws Exception "+e);
-             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaADMidRollTest");
-        }
-    }
-
- //   @org.testng.annotations.Test
-    public void SkinPlaybackOoyalaADPostRollTest() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnTextScrollTo(driver, "Ooyala Ad Post-roll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Play Started
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 10);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
-
-            Thread.sleep(5000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 95000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackOoyalaADPostRollTest throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaADPostRollTest");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-  //  @org.testng.annotations.Test
-    public void SkinPlaybackMultiAdCombinationTest() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Skin Playback");
-            Thread.sleep(2000);
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnTextScrollTo(driver, "Multi Ad combination");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
-
-            //Ad Started Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            Thread.sleep(2000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //pause the video
-            Thread.sleep(3000);
-            //pausing the video.
-            po.pauseVideo(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-
-            Thread.sleep(1000);
-
-            //seeking the video
-            po.seek_video(driver, 10);
-
-            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-
-            Thread.sleep(5000);
-
-            // playing video again.
-            po.getPlay(driver);
-
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
-
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
-
-            Thread.sleep(2000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
-
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 95000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("SkinPlaybackMultiAdCombinationTest throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackMultiAdCombinationTest");
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackEncryptedHLS");
             Assert.assertTrue(false, "This will fail!");
         }
     }
 
     //@org.testng.annotations.Test
-    public void SkinPlaybackVASTAdWrapperTest() throws Exception{
+    public void SkinPlaybackClearHLSHighProfile() throws Exception{
         int[] locPlayButon;
 
         try {
@@ -1111,6 +207,7 @@ public class BasicTestsSkinPlayback {
             po.clickBasedOnText(driver, "Skin Playback");
             Thread.sleep(2000);
 
+            System.out.println(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -1118,7 +215,7 @@ public class BasicTestsSkinPlayback {
 
             }
 
-            po.waitForPresenceOfText(driver,"VAST2 Ad Wrapper");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
@@ -1126,7 +223,7 @@ public class BasicTestsSkinPlayback {
             System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VAST2 Ad Wrapper");
+            po.clickBasedOnText(driver, "Clear HLS High Profile");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -1147,21 +244,228 @@ public class BasicTestsSkinPlayback {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
+            //pause the video
+            Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 950);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(7000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+
         }
         catch(Exception e)
         {
-            System.out.println("SkinPlaybackVASTAdWrapperTest throws Exception "+e);
+            System.out.println("SkinPlaybackClearHLSHighProfile throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackVASTAdWrapperTest");
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackClearHLSHighProfile");
             Assert.assertTrue(false, "This will fail!");
         }
     }
 
-    // TODO Unstable
    // @org.testng.annotations.Test
-    public void SkinPlaybackVODwithCCTest() throws Exception{
+    public void SkinPlaybackHLSMainProfile() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Clear HLS Main Profile");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 950);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(7000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackHLSMainProfile throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSMainProfile");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+   // @org.testng.annotations.Test
+    public void SkinPlaybackHLSBaseLine() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            System.out.println(" Print current activity name"+driver.currentActivity());
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "Clear HLS Baseline");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 950);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(7000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackHLSBaseLine throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSBaseLine");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+  //  @org.testng.annotations.Test
+    public void SkinPlaybackVAST3PoddedAd() throws Exception{
         int[] locPlayButon;
 
         try {
@@ -1189,15 +493,15 @@ public class BasicTestsSkinPlayback {
 
             }
 
-            po.waitForPresenceOfText(driver,"VOD with CCs");
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "VOD with CCs");
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 2 Podded Ad");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -1214,64 +518,50 @@ public class BasicTestsSkinPlayback {
             //Clicking on Play button in Ooyala Skin
             po.getPlay(driver);
 
-            //Play Started Verification
+            //Ad Started Verification
             EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
+            //pause the video
             Thread.sleep(2000);
+            //pausing the video.
+            po.pauseVideo(driver);
 
-            // Tap coordinates to Pause
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
-            // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            Thread.sleep(1000);
 
-            // Pause the running of the test for a brief amount of time
-            Thread.sleep(3000);
+            //seeking the video
+            po.seek_video(driver, 450);
 
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
-            po.SeekOoyalaSkin(driver,0,200);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
-            //Clicking on CC option showing button in Ooyala Skin
-            po.clickBasedOnText(driver,"f");
+            // playing video again.
+            po.getPlay(driver);
 
-            //wait for the presence of CC option
-            po.waitForPresenceOfText(driver,"k");
-
-            //Click on CC option
-            po.clickBasedOnText(driver,"k");
-
-            // Wait for CC options for different languages
-            po.waitForPresenceOfText(driver,"CLOSE CAPTION PREVIEW");
-
-            //click on Japanese Language
-            po.clickBasedOnText(driver,"ja");
-
-            // Sleep for some time after the language selection
-            Thread.sleep(3000);
-
-            // closed Captions event verification
-            //ev.verifyEvent("closedCaptionsLanguageChanged", " CC of the Video Was Changed ", 30000);
-
-            // Close the CC window
-            po.clickBasedOnText(driver,"e");
-
-            // Click on the web area so that player screen shows up
-            viewarea.click();
-
-            Thread.sleep(2000);
-
-
-            // Tap coordinates again to play
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -1279,12 +569,675 @@ public class BasicTestsSkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println("SkinPlaybackVODwithCCTest throws Exception "+e);
+            System.out.println("SkinPlaybackVAST3PoddedAd throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"SkinPlaybackVODwithCCTest");
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVAST3PoddedAd");
             Assert.assertTrue(false, "This will fail!");
         }
     }
+
+   // @org.testng.annotations.Test
+    public void SkinPlaybackVAST3AllNewEvents() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad With All Of The New Events");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(15000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(2000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 450);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackVAST3AllNewEvents throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVAST3AllNewEvents");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void SkinPlaybackVAST3AdWithIcon() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad With Icon");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(15000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(2000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 450);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackVAST3AdWithIcon throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVAST3AdWithIcon");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+   // @org.testng.annotations.Test
+    public void SkinPlaybackVAST3AdWrapper() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad Wrapper");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(2000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 950);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackVAST3AdWrapper throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVAST3AdWrapper");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+  //  @org.testng.annotations.Test
+    public void SkinPlaybackVMAPPreMidVASTAdData() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VMAP PreMid VASTAdData");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ",45000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(2000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 950);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            Thread.sleep(1000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
+
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackVMAPPreMidVASTAdData throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVMAPPreMidVASTAdData");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+  //  @org.testng.annotations.Test
+    public void SkinPlaybackVMAPPreMidPostSingle() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VMAP PreMidPost Single");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 950);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 100000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 80000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(30000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
+
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackVMAPPreMidPostSingle throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVMAPPreMidPostSingle");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    // TODO Asset Is not play (Pcode and Embed Code owner do not match )
+    //@org.testng.annotations.Test
+    public void SkinPlaybackVAST3AdSkippableAdLong() throws Exception{
+        int[] locPlayButon;
+
+        try {
+
+            // Creating an Object of FreeWheelSampleApp class
+            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
+            // wait till home screen of basicPlayBackApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
+            po.clickBasedOnText(driver, "Skin Playback");
+            Thread.sleep(2000);
+
+            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
+                //Navigate back to Skin playback activity
+                driver.navigate().back();
+                Thread.sleep(2000);
+
+            }
+
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaSkinListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad Long");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresenceOfText(driver,"h");
+
+            locPlayButon=po.locationTextOnScreen(driver,"h");
+
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+
+            //Ad Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(15000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
+            //Thread sleep time is equivalent to the length of the AD
+            Thread.sleep(5000);
+
+            //Ad Completed Verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+
+            //Time out
+            Thread.sleep(1000);
+
+            //Play Started
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(2000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 450);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+
+        }
+        catch(Exception e)
+        {
+            System.out.println("SkinPlaybackVAST3AdSkippableAdLong throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVAST3AdSkippableAdLong");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+
+
+
 
 
 }
