@@ -149,7 +149,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Ad Started Verification
             EventVerification ev = new EventVerification();
@@ -161,17 +161,33 @@ public class BasicTestsGoogleIMAIntegration {
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
-            //Time out
-            Thread.sleep(1000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+
+            //pause the video
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
 
             //Timeout for the duration of the video
             Thread.sleep(30000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -236,7 +252,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
@@ -253,11 +269,24 @@ public class BasicTestsGoogleIMAIntegration {
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(22000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -322,25 +351,38 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(30000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ",80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -404,7 +446,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Ad Started Verification
             EventVerification ev = new EventVerification();
@@ -427,11 +469,24 @@ public class BasicTestsGoogleIMAIntegration {
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Timeout for the duration of the video
-            Thread.sleep(30000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -495,7 +550,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
@@ -520,11 +575,24 @@ public class BasicTestsGoogleIMAIntegration {
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(22000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -588,33 +656,47 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(30000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " ,50000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -678,7 +760,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
@@ -712,57 +794,71 @@ public class BasicTestsGoogleIMAIntegration {
             Thread.sleep(11000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 40000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 40000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 40000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 50000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 50000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 50000);
 
-            Thread.sleep(30000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 60000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed",70000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 80000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 80000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 80000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 80000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 80000);
 
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -826,7 +922,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
@@ -845,19 +941,32 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(11000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 70000);
 
             Thread.sleep(11000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -921,7 +1030,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
@@ -951,19 +1060,32 @@ public class BasicTestsGoogleIMAIntegration {
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
 
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(35000);
+            Thread.sleep(3000);
+
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 60000);
 
             Thread.sleep(11000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e)
         {
@@ -973,92 +1095,4 @@ public class BasicTestsGoogleIMAIntegration {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-
-    //@org.testng.annotations.Test
-    public void GoogleIMAIntegrationIMAApplicationConfigured() throws Exception{
-        int[] locPlayButon;
-
-        try {
-
-            // Creating an Object of FreeWheelSampleApp class
-            ooyalaSkinSampleApp po = new ooyalaSkinSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            po.clickBasedOnText(driver, "Google IMA Integration");
-            Thread.sleep(2000);
-
-            System.out.println(" Print current activity name"+driver.currentActivity());
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-
-            }
-
-            po.waitForPresenceOfText(driver,"IMA Application-Configured");
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Application-Configured");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredIMAPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForPresenceOfText(driver,"h");
-
-            locPlayButon=po.locationTextOnScreen(driver,"h");
-
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Play Started
-            EventVerification ev = new EventVerification();
-
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(10000);
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
-
-            Thread.sleep(5000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
-
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(31000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("GoogleIMAIntegrationIMAApplicationConfigured Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAApplicationConfigured");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-
 }

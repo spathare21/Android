@@ -23,7 +23,7 @@ public class BasicTestsSkinPlayback {
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
-        CloserecentApps.closeApps();
+        //CloserecentApps.closeApps();
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
@@ -147,38 +147,35 @@ public class BasicTestsSkinPlayback {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(2000);
-
-            // Tap coordinates to Pause
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
-
-            // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
-            // Pause the running of the test for a brief amount of time
+            //pause the video
             Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
 
-            //po.SeekOoyalaSkin(driver,0,200);
-            //ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            //Thread.sleep(3000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
-            // Tap coordinates again to play
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 900);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -190,8 +187,6 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-
-/*
     @org.testng.annotations.Test
     public void SkinPlaybackMP4Video() throws Exception{
         int[] locPlayButon;
@@ -244,35 +239,32 @@ public class BasicTestsSkinPlayback {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(2000);
-
-            // Tap coordinates to Pause
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
-
-            // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
-            // Pause the running of the test for a brief amount of time
+            //pause the video
             Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
 
-            //po.SeekOoyalaSkin(driver,0,200);
-            //ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            //Thread.sleep(3000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
-            // Tap coordinates again to play
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 400);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -286,7 +278,6 @@ public class BasicTestsSkinPlayback {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-*/
 
     @org.testng.annotations.Test
     public void SkinPlaybackHLSVideo() throws Exception{
@@ -346,30 +337,26 @@ public class BasicTestsSkinPlayback {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.view.View");
-            viewarea.click();
-
-            Thread.sleep(2000);
-
-            // Tap coordinates to Pause
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
-
-            // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
-            // Pause the running of the test for a brief amount of time
+            //pause the video
             Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
 
-            po.SeekOoyalaSkin(driver,0,200);
-            //ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            //Thread.sleep(3000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
-            // Tap coordinates again to play
-            driver.tap(1,locPlayButon[0],locPlayButon[1],2);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
+            //seeking the video
+            po.seek_video(driver, 400);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
 
@@ -382,7 +369,7 @@ public class BasicTestsSkinPlayback {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-/*
+
     @org.testng.annotations.Test
     public void SkinPlaybackVODwithCCTest() throws Exception{
         int[] locPlayButon;
@@ -435,7 +422,7 @@ public class BasicTestsSkinPlayback {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -561,7 +548,7 @@ public class BasicTestsSkinPlayback {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Ad Started Verification
             EventVerification ev = new EventVerification();
@@ -579,8 +566,26 @@ public class BasicTestsSkinPlayback {
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Timeout for the duration of the video
-            Thread.sleep(11000);
+            //pause the video
+            Thread.sleep(2000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 20);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -647,7 +652,7 @@ public class BasicTestsSkinPlayback {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
@@ -664,8 +669,26 @@ public class BasicTestsSkinPlayback {
             //Ad Completed Verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
-            //Thread sleep time is equivalent to the length of the half of the video
-            Thread.sleep(11000);
+            //pause the video
+            Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 10);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -731,14 +754,32 @@ public class BasicTestsSkinPlayback {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Play Started
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            //Thread sleep time is equivalent to the length of the video
-            Thread.sleep(11000);
+            //pause the video
+            Thread.sleep(3000);
+            //pausing the video.
+            po.pauseVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            Thread.sleep(1000);
+
+            //seeking the video
+            po.seek_video(driver, 20);
+
+            ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
+
+            Thread.sleep(5000);
+
+            // playing video again.
+            po.getPlay(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -760,7 +801,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-    @org.testng.annotations.Test
+    /*@org.testng.annotations.Test
     public void SkinPlaybackVASTAdWrapperTest() throws Exception{
         int[] locPlayButon;
 
@@ -914,7 +955,6 @@ public class BasicTestsSkinPlayback {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-
 
     @org.testng.annotations.Test
     public void SkinPlaybackOoyalaADMidRollTest() throws Exception{
@@ -1078,7 +1118,7 @@ public class BasicTestsSkinPlayback {
             ScreenshotDevice.screenshot(driver,"SkinPlaybackOoyalaADPostRollTest");
             Assert.assertTrue(false, "This will fail!");
         }
-    }*/
+    }
 
     @org.testng.annotations.Test
     public void SkinPlaybackMultiAdCombinationTest() throws Exception{
@@ -1171,4 +1211,6 @@ public class BasicTestsSkinPlayback {
             Assert.assertTrue(false, "This will fail!");
         }
     }
+    */
+
 }
