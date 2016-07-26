@@ -278,7 +278,7 @@ public class BasicTestsGoogleIMAIntegration {
 
             po.pauseVideo(driver);
 
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 60000);
 
             Thread.sleep(1000);
 
@@ -452,7 +452,7 @@ public class BasicTestsGoogleIMAIntegration {
             po.waitForPresenceOfText(driver,"h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
-
+            Thread.sleep(5000);
             //Clicking on Play button in Ooyala Skin
             po.getPlay(driver);
 
@@ -770,6 +770,7 @@ public class BasicTestsGoogleIMAIntegration {
             locPlayButon=po.locationTextOnScreen(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             //Play Started
@@ -1040,7 +1041,7 @@ public class BasicTestsGoogleIMAIntegration {
             po.waitForPresenceOfText(driver,"h");
 
             locPlayButon=po.locationTextOnScreen(driver,"h");
-
+            Thread.sleep(5000);
             //Clicking on Play button in Ooyala Skin
             po.getPlay(driver);
 

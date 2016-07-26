@@ -316,7 +316,7 @@ public class BasicTests {
 
             po.pauseVideo(driver);
 
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 80000);
 
             Thread.sleep(1000);
 
