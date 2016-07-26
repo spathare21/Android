@@ -586,7 +586,7 @@ public class BasicTests {
 
             Thread.sleep(1000);
 
-            po.seek_video(driver,40);
+            po.seek_video(driver,60);
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 

@@ -410,15 +410,14 @@ public class ooyalaSkinSampleApp {
         driver.scrollTo(clickText).click();
     }
 
-
-    public void getPlay (AndroidDriver driver){
+    public void getPlay (AndroidDriver driver) throws Exception {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='h']";
-
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         play= ele.getLocation();
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
+        Thread.sleep(1000);
         ele.click();
 
     }
