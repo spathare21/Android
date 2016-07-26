@@ -187,7 +187,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-        @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackMP4Video() throws Exception{
         int[] locPlayButon;
 
@@ -279,7 +279,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackHLSVideo() throws Exception{
         int[] locPlayButon;
 
@@ -474,7 +474,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-       @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVASTADMidRollTest() throws Exception{
         int[] locPlayButon;
 
@@ -675,7 +675,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-       @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackOoyalaAdPreRollTest() throws Exception{
         int[] locPlayButon;
 

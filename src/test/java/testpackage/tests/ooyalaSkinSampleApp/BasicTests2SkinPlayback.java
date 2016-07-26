@@ -92,7 +92,7 @@ public class BasicTests2SkinPlayback {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackEncryptedHLS() throws Exception{
         int[] locPlayButon;
 
@@ -185,7 +185,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackClearHLSHighProfile() throws Exception{
         int[] locPlayButon;
 
@@ -278,7 +278,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-   // @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackHLSMainProfile() throws Exception{
         int[] locPlayButon;
 
@@ -371,7 +371,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-   // @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackHLSBaseLine() throws Exception{
         int[] locPlayButon;
 
@@ -464,7 +464,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-  //  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVAST3PoddedAd() throws Exception{
         int[] locPlayButon;
 
@@ -576,7 +576,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-   // @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVAST3AllNewEvents() throws Exception{
         int[] locPlayButon;
 
@@ -784,7 +784,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-   // @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVAST3AdWrapper() throws Exception{
         int[] locPlayButon;
 
@@ -888,7 +888,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-  //  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVMAPPreMidVASTAdData() throws Exception{
         int[] locPlayButon;
 
@@ -1002,7 +1002,7 @@ public class BasicTests2SkinPlayback {
         }
     }
 
-  //  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVMAPPreMidPostSingle() throws Exception{
         int[] locPlayButon;
 
