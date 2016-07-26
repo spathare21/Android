@@ -1082,7 +1082,7 @@ public class BasicTests2SkinPlayback {
             Thread.sleep(1000);
 
             //seeking the video
-            po.seek_video(driver, 950);
+            po.seek_video(driver, 500);
 
             ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
