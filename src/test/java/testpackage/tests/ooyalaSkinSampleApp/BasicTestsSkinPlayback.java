@@ -94,7 +94,7 @@ public class BasicTestsSkinPlayback {
     }
 
 
-   // @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackAspectRatio() throws Exception{
         int[] locPlayButon;
 
@@ -279,7 +279,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-   // @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void SkinPlaybackHLSVideo() throws Exception{
         int[] locPlayButon;
 
@@ -370,7 +370,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-  //  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVASTAdPreRollTest() throws Exception{
         int[] locPlayButon;
 
@@ -474,7 +474,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-   //     @org.testng.annotations.Test
+       @org.testng.annotations.Test
     public void SkinPlaybackVASTADMidRollTest() throws Exception{
         int[] locPlayButon;
 
@@ -576,7 +576,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-  //  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVASTADPostRollTest() throws Exception{
         int[] locPlayButon;
 
@@ -675,7 +675,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-  //     @org.testng.annotations.Test
+       @org.testng.annotations.Test
     public void SkinPlaybackOoyalaAdPreRollTest() throws Exception{
         int[] locPlayButon;
 
@@ -778,7 +778,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-  //  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackOoyalaADMidRollTest() throws Exception{
         int[] locPlayButon;
 
@@ -879,7 +879,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
- //   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackOoyalaADPostRollTest() throws Exception{
         int[] locPlayButon;
 
@@ -978,7 +978,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-  //  @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackMultiAdCombinationTest() throws Exception{
         int[] locPlayButon;
 
@@ -1089,7 +1089,7 @@ public class BasicTestsSkinPlayback {
         }
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void SkinPlaybackVASTAdWrapperTest() throws Exception{
         int[] locPlayButon;
 
@@ -1160,7 +1160,7 @@ public class BasicTestsSkinPlayback {
     }
 
     // TODO Unstable
-   // @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void SkinPlaybackVODwithCCTest() throws Exception{
         int[] locPlayButon;
 
