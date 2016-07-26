@@ -1,6 +1,7 @@
 package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -162,9 +163,10 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("AspectRatio throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"AspectRatio");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -239,9 +241,10 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MP4 throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MP4");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -315,9 +318,10 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("HLS throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -388,9 +392,10 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("encrypted_HLS throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"encrypted_HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -461,9 +466,10 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VOD_CC throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VOD_CC");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -528,7 +534,7 @@ public class BasicPlayBackBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
@@ -539,9 +545,10 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Preroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Preroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -611,7 +618,7 @@ public class BasicPlayBackBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
@@ -619,15 +626,16 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Midroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Midroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
 
-    //TODO Fails because of https://jira.corp.ooyala.com/browse/PBA-3730
-/*    @org.testng.annotations.Test
+    //TODO Fails because of https://jira.corp.ooyala.com/browse/PBA-3730 issue resolved
+    @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
 
@@ -691,7 +699,7 @@ public class BasicPlayBackBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
@@ -699,12 +707,13 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Postroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Postroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
+    }
 
     @org.testng.annotations.Test
     public void VAST_Wrapper() throws Exception{
@@ -767,7 +776,7 @@ public class BasicPlayBackBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
@@ -778,14 +787,15 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_Wrapper Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST_Wrapper");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
 
-/*   //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
+    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704 issue resolved
     @org.testng.annotations.Test
     public void ooyalaAd_Preroll() throws Exception{
         try {
@@ -846,7 +856,7 @@ public class BasicPlayBackBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
@@ -857,14 +867,15 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("ooyalaAd_Preroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"ooyalaAd_Preroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
 
-    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
+    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704 issue resolved
     @org.testng.annotations.Test
     public void ooyalaAd_Midroll() throws Exception{
         try {
@@ -929,7 +940,7 @@ public class BasicPlayBackBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
@@ -937,14 +948,15 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("ooyalaAd_Midroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"ooyalaAd_Midroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
 
-    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
+    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704 issue resolved
     @org.testng.annotations.Test
     public void ooyalaAd_Postroll() throws Exception{
         try {
@@ -1009,7 +1021,7 @@ public class BasicPlayBackBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 41000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -1017,13 +1029,13 @@ public class BasicPlayBackBasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("ooyalaAd_Postroll Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"ooyalaAd_Postroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
-
+    }
 
 
 }

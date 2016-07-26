@@ -2,6 +2,7 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -302,9 +303,10 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MultiAd throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            Assert.assertTrue(false, "This will fail!");
+            ScreenshotDevice.screenshot(driver,"MultiAd");
         }
 
     }
@@ -521,9 +523,9 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            System.out.println("VAST_3_Podded throws Exception "+e);
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            ScreenshotDevice.screenshot(driver,"VAST_3_Podded");
         }
 
     }
@@ -733,9 +735,10 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_With_NewEvents throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            Assert.assertTrue(false, "This will fail!");
+            ScreenshotDevice.screenshot(driver,"VAST_AD_With_NewEvents");
         }
 
     }
@@ -944,9 +947,10 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_With_Icon throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            Assert.assertTrue(false, "This will fail!");
+            ScreenshotDevice.screenshot(driver,"VAST_AD_With_Icon");
         }
 
     }
@@ -1166,9 +1170,10 @@ public class DeepTests3BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST_AD_Skippable_Long throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            Assert.assertTrue(false, "This will fail!");
+            ScreenshotDevice.screenshot(driver,"VAST_AD_Skippable_Long");
         }
 
     }

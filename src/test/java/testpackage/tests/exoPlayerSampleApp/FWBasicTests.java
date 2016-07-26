@@ -1,6 +1,7 @@
 package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -91,7 +92,7 @@ public class FWBasicTests {
 
         }
 
-        @org.testng.annotations.Test
+         @org.testng.annotations.Test
         public void FreeWheelIntegrationPreRoll() throws Exception{
 
             try {
@@ -104,7 +105,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -142,7 +143,7 @@ public class FWBasicTests {
 
                 Thread.sleep(5000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -153,9 +154,11 @@ public class FWBasicTests {
             }
             catch(Exception e)
             {
-                System.out.println(" Exception "+e);
+                System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
+                Assert.assertTrue(false, "This will fail!");
+
             }
 
         }
@@ -173,7 +176,7 @@ public class FWBasicTests {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -201,8 +204,7 @@ public class FWBasicTests {
             po.waitForPresenceOfText(driver, "h");
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver, "h");
-
+            po.getPlay(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -213,16 +215,18 @@ public class FWBasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidroll");
+            Assert.assertTrue(false, "This will fail!");
+
         }
 
     }
@@ -241,7 +245,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -281,16 +285,17 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 40000);
 
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelIntegrationPostroll throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostroll");
+                Assert.assertTrue(false, "This will fail!");
             }
 
         }
@@ -309,7 +314,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -345,7 +350,7 @@ public class FWBasicTests {
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
                 //Wait for video to start and verify the playStarted event .
@@ -355,20 +360,21 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelIntegrationPreMidPostroll throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll");
+                Assert.assertTrue(false, "This will fail!");
             }
 
         }*/
@@ -386,7 +392,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -421,7 +427,7 @@ public class FWBasicTests {
                 EventVerification ev = new EventVerification();
 
                 //Wait for video to start and verify the playStarted event .
-                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+                ev.verifyEvent("playStarted", " Video Started Play ", 50000);
                 Thread.sleep(5000);
 
                 po.verifyOverlay(driver);
@@ -431,14 +437,15 @@ public class FWBasicTests {
 
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelIntegrationOverlay throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
+                Assert.assertTrue(false, "This will fail!");
             }
 
         }
 
-        @org.testng.annotations.Test
+       // @org.testng.annotations.Test App crashed intermittently PBA-4294:P2
         public void FreeWheelIntegrationMultiMidroll() throws Exception {
 
             try {
@@ -451,7 +458,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -479,7 +486,7 @@ public class FWBasicTests {
                 po.waitForPresenceOfText(driver, "h");
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver, "h");
+                po.getPlay(driver);
 
 
                 //Play Started Verification
@@ -492,19 +499,20 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelIntegrationMultiMidroll throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
+                Assert.assertTrue(false, "This will fail!");
             }
 
         }
@@ -523,7 +531,7 @@ public class FWBasicTests {
                 // Assert if current activity is indeed equal to the activity name of app home screen
                 po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
                 // Wrire to console activity name of home screen app
-                System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+                System.out.println("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
                 //Pause the running of test for a brief time .
                 Thread.sleep(3000);
@@ -559,7 +567,7 @@ public class FWBasicTests {
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
                 //Wait for video to start and verify the playStarted event .
@@ -573,20 +581,21 @@ public class FWBasicTests {
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
                 //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
                 //Wait for video to finish and verify the playCompleted event .
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("FreeWheelIntegrationPreMidPostroll_overlay throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll_overlay");
+                Assert.assertTrue(false, "This will fail!");
             }
 
         }*/

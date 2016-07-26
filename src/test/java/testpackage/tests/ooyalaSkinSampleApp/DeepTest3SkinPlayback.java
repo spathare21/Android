@@ -9,8 +9,9 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.*;
-import sun.awt.windows.ThemeReader;
+
 import testpackage.pageobjects.ooyalaSkinSampleApp;
 import testpackage.utils.*;
 
@@ -157,7 +158,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(1000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -167,7 +168,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
@@ -260,9 +261,10 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            System.out.println("VastPoddedAd throws Exception " + e);
+             e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"VastPoddedAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -328,7 +330,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Time out
             Thread.sleep(1000);
@@ -424,9 +426,10 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastAdWtihNewEvents throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdWtihNewEvents");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -492,7 +495,7 @@ public class DeepTest3SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -588,9 +591,10 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastAdWithIcon throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdWithIcon");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -743,9 +747,10 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastSkippableAd throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastSkippableAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -822,7 +827,7 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
@@ -915,9 +920,10 @@ public class DeepTest3SkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VastSkippableAdLong throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastSkippableAdLong");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -996,7 +1002,7 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
 
@@ -1102,7 +1108,7 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 300000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 300000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 500000);
 
@@ -1124,14 +1130,15 @@ public class DeepTest3SkinPlayback {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 700000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 700000);
             ev.verifyEvent("playCompleted", " Video Completed Play ", 800000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VAMPPreMidPostSingle throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAMPPreMidPostSingle");
+            Assert.assertTrue(false, "This will fail!");
         }
     }*/
 }

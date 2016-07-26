@@ -1,10 +1,10 @@
 package testpackage.tests.basicplaybacksampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
@@ -253,9 +253,10 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("AspectRatioTest throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"AspectRatioTest");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -403,9 +404,10 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("HLSVideoTest throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"HLSVideoTest");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -554,9 +556,10 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("MP4 throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"MP4");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -611,7 +614,7 @@ public class DeepTests {
                 Thread.sleep(5000);
 
                 //Ad Completed Verification
-                ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
                 Thread.sleep(1000);
 
                 //Play Started Verification
@@ -711,9 +714,10 @@ public class DeepTests {
                 ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
 
             } catch (Exception e) {
-                System.out.println(" Exception " + e);
+                System.out.println("VastAdWrapper throws Exception " + e);
                 e.printStackTrace();
-                ScreenshotDevice.screenshot(driver);
+                ScreenshotDevice.screenshot(driver,"VastAdWrapper");
+                Assert.assertTrue(false, "This will fail!");
             }
         }
 
@@ -881,9 +885,10 @@ public class DeepTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VOD throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VOD");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

@@ -1,6 +1,7 @@
 package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -158,7 +159,7 @@ public class IMABasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Time out
             Thread.sleep(1000);
@@ -175,9 +176,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulesPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulesPreroll");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 
@@ -250,7 +253,7 @@ public class IMABasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Time out
             Thread.sleep(1000);
@@ -264,9 +267,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulesMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulesMidroll");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 
@@ -338,7 +343,7 @@ public class IMABasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -347,12 +352,13 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulesPostoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulesPostoll");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
-
 
     @org.testng.annotations.Test
     public void IMASkippable() throws Exception{
@@ -420,7 +426,7 @@ public class IMABasicTests {
 //            po.skipAd(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             //Time out
             Thread.sleep(1000);
@@ -437,9 +443,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMASkippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMASkippable");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 
@@ -498,7 +506,7 @@ public class IMABasicTests {
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
+            po.getPlay(driver);
 
             //Ad Started Verification
             EventVerification ev = new EventVerification();
@@ -534,9 +542,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPreMidPostSkippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 
@@ -605,7 +615,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Time out
             Thread.sleep(1000);
@@ -613,7 +623,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
 
             Thread.sleep(30000);
@@ -624,9 +634,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulesPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedMidroll");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 
@@ -695,12 +707,12 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 55000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 55000);
 
 
             Thread.sleep(30000);
@@ -711,9 +723,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulesPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedPostroll");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 
@@ -780,7 +794,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
@@ -788,7 +802,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -796,7 +810,7 @@ public class IMABasicTests {
             Thread.sleep(1000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
 
             Thread.sleep(30000);
@@ -807,9 +821,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulesPoddedPreMidPost throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedPreMidPost");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 
@@ -875,7 +891,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Time out
             Thread.sleep(1000);
@@ -883,7 +899,7 @@ public class IMABasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             Thread.sleep(1000);
 
@@ -899,9 +915,11 @@ public class IMABasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulesPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulesPoddedPreroll");
+            Assert.assertTrue(false, "This will fail!");
+
         }
     }
 

@@ -1,6 +1,7 @@
 package testpackage.tests.advancePlayBackSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -162,9 +163,10 @@ public class BasicTests {
 
         }
         catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("playWithIntitialTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"playWithIntitialTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -238,9 +240,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 130000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"multipleVideoPlayback");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -308,9 +311,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 95000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("insertAtRunTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAtRunTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -379,9 +383,10 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -430,9 +435,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 120000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customPluginSample throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customPluginSample");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -487,9 +493,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customControls throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customControls");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -545,9 +552,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customOverlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -601,16 +609,17 @@ public class BasicTests {
             ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
             Thread.sleep(5000);
             // Verifying if VAST Ad completed
-            ev.verifyEvent("adCompleted","Vast Ad completed to play",30000);
+            ev.verifyEvent("adCompleted","Vast Ad Playback Completed",30000);
             // Veirfying if video completed
             ev.verifyEvent("playCompleted", "video play completed", 90000);
 
             Thread.sleep(2000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("insertAtRunTime_VastAd throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -660,7 +669,7 @@ public class BasicTests {
             ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 30000);
             Thread.sleep(5000);
             // Verifying if Ooyala Ad completed
-            ev.verifyEvent("adCompleted","Ooyala Ad completed to play",30000);
+            ev.verifyEvent("adCompleted","Ooyala Ad Playback Completed",30000);
             // Veirfying if video completed
             ev.verifyEvent("playCompleted", "video play completed", 90000);
 
@@ -668,9 +677,10 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("insertAtRunTime_VastAd Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -726,9 +736,10 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically_P1 Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P1");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -783,9 +794,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted", "Inserted video2 ended play", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically_P2 throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P2");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -850,9 +862,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted", "video play completed", 130000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customPluginSample_Adverfication throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customPluginSample_Adverfication");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

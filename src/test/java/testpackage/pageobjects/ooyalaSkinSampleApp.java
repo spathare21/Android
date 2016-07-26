@@ -4,31 +4,21 @@ package testpackage.pageobjects;
  * Created by bsondur on 2/23/16.
  */
 
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import org.apache.xpath.operations.And;
 import org.junit.Assert;
-import org.omg.PortableInterceptor.AdapterNameHelper;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import testpackage.utils.CommandLine;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.Exception;
 import java.util.Date;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Properties;
 
 public class ooyalaSkinSampleApp {
 
-    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button,play ;
+    Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button,play, PlayEle ;
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -69,6 +59,9 @@ public class ooyalaSkinSampleApp {
     public void clickBasedOnText(AndroidDriver driver, String clickText) {
 
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
+        PlayEle = clickTextField.getLocation();
+//        System.out.println("x cordinate is " +PlayEle.getX());
+//        System.out.println("x cordinate is " +PlayEle.getY());
         clickTextField.click();
 
     }
@@ -88,16 +81,23 @@ public class ooyalaSkinSampleApp {
 
     }
 
-    public void getXYSeekBarAndSeek(AndroidDriver driver, int widthOffSet1, int widthOffSet2) {
-        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
-
-        int seekBarFieldWidth = seekBarField.getLocation().getX();
-        int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
-        System.out.println(" Seeking -------------------------  ");
-        driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
+    public void seek_video (AndroidDriver driver,int time) throws Exception {
+        try {
+            List<WebElement> views = driver.findElements(By.className("android.view.ViewGroup"));
+            System.out.println("number of views present are : " + views.size());
+            Point p = views.get(6).getLocation();
+            driver.swipe(p.getX(), p.getY(), p.getX() + time, p.getY(), 5);
+        } catch (Exception e) {
+            List<WebElement> views = driver.findElements(By.className("android.view.View"));
+            System.out.println("number of views present are : " + views.size());
+//            Point p = views.get(6).getLocation();
+//            driver.swipe(p.getX(), p.getY(), p.getX() + time, p.getY(), 5);
+//
+            Point p1 = views.get(6).getLocation();
+            driver.swipe(p1.getX(), p1.getY(), p1.getX() + time, p1.getY(), 5);
+        }
     }
+
 
     public void replayVideo(AndroidDriver driver) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -222,22 +222,15 @@ public class ooyalaSkinSampleApp {
         //ele.click();
     }
 
-    public  void pauseVideo(AndroidDriver driver) throws InterruptedException {
+    public void pauseVideo(AndroidDriver driver) throws InterruptedException {
         System.out.println("moved to pause method");
-
-        System.out.println("replay.x value is " + replay.getX());
-        System.out.println("replay.x value is " + replay.getY());
-
-
-
-
-                driver.tap(1, replay.getX(), replay.getY(), 2);
-
-
-                driver.tap(1,replay.getX(),replay.getY(),2);
-
-                System.out.println("clicked pause");
-
+        System.out.println("play.x value is " + play.getX());
+        System.out.println("play.y value is " + play.getY());
+        Thread.sleep(2000);
+        driver.tap(1, play.getX(), play.getY(), 5);
+        Thread.sleep(2000);
+        driver.tap(1,play.getX(),play.getY(),5);
+        System.out.println("clicked pause");
     }
 
 
@@ -320,12 +313,18 @@ public class ooyalaSkinSampleApp {
         driver.tap(1, 450, 867, 2);
     }
 
-    public void seek_video (AndroidDriver driver)
-
+    public void seek_video (AndroidDriver driver) throws Exception
     {
-      WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
-        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>" + element);
-
+        System.out.println("\n---------seek video------\n");
+        pauseVideo(driver);
+        List<WebElement>  l = driver.findElements(By.className("android.view.View"));
+        System.out.println("size of view : " + l.size());
+        Point p = l.get(2).getLocation();
+        System.out.println("locatation of scrubber pointer is :" + p.getX() + " " + p.getY());
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(p.getX() + 20, p.getY(), p.getX() + 100, p.getY(), 3);
+        driver.tap(1,658,700,2);
+        getPlay(driver);
     }
 
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
@@ -350,6 +349,7 @@ public class ooyalaSkinSampleApp {
 
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
 
+        //driver.lockScreen(5);
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
         System.out.println("key sent");
         System.out.println("screen lock");
@@ -367,52 +367,35 @@ public class ooyalaSkinSampleApp {
 
 
     public void screentap(AndroidDriver driver) throws InterruptedException {
-        System.out.println("in screen tapped method");
+        //System.out.println("in screen tapped method");
         Thread.sleep(1000);
-        driver.tap(1, replay.getX(), replay.getY(), 2);
-        System.out.println("out of the screen tapped method");
+        driver.tap(1, play.getX(), play.getY(), 2);
+        //System.out.println("out of the screen tapped method");
     }
 
 
-    public void overlay (AndroidDriver driver)
-    {
+    public void overlay (AndroidDriver driver) throws Exception {
         System.out.println("in overlay method");
-        WebElement ele = driver.findElement(By.xpath("//android.view.View[@content-desc='1?s=g002&n=380912%3B380912&t=1461829324669617003&f=&r=380912&adid=6772707&reid=3129141&arid=0&auid=&cn=defaultClick&et=c&_cc=&tpos=0&sr=0&cr=']"));
-        if (ele.isDisplayed())
+        pauseVideo(driver);
+        driver.tap(1,658,700,2);
+        Thread.sleep(2000);
+        WebElement ele = driver.findElementByXPath("//android.webkit.WebView[@content-desc='Web View']");
+        Boolean over = false;
+        over =   ele.isDisplayed();
+        if (over)
         {
-            System.out.println("overlay displayed");
-
-        }
-        else
-            System.out.println("not diplayed failed ");
-    }
-
-   /* public void discoverUpNext (AndroidDriver driver)
-    {
-       //System.out.println("Discovery up next banner displayed");
-        List<WebElement> list = driver.findElementsByXPath("//android.widget.FrameLayout[@resource-id='com.ooyala.sample.SkinCompleteSampleApp:id/ooyalaSkin']");
-        List<WebElement> list1 = list.get(0).findElements(By.className("android.view.View"));
-        if (list1.get(2).isDisplayed())
-        {
-            System.out.println("Discovery is displayed");
-
-        }
-        else
-            System.out.println("not displayed failed ");
-    }*/
-    public void discoverUpNext (AndroidDriver driver)
-    {
-        System.out.println("Wil look for cancel element.");
-        WebElement e = driver.findElement(By.name("e"));
-       // WebElement e = driver.findElement(By.xpath("//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.ImageView[1]"));
-        if (e.isDisplayed())
-        {
-            System.out.println("Discovery pop up found");
+            System.out.println("over value is" +over);
+            Assert.assertTrue(over);
+            System.out.println("Overlay displayed, Assertion pass");
         }
         else
         {
-            System.out.println("Not found pop up");
+            System.out.println("Overlay NOt displayed");
+            Assert.assertTrue(over);
         }
+        driver.tap(1,658,700,2);
+        Thread.sleep(2000);
+        getPlay(driver);
     }
 
     public void discoverElement (AndroidDriver driver) {
@@ -428,17 +411,58 @@ public class ooyalaSkinSampleApp {
         driver.scrollTo(clickText).click();
     }
 
-
-    public void getPlay (AndroidDriver driver){
+    public void getPlay (AndroidDriver driver) throws Exception {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='h']";
-
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         play= ele.getLocation();
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
+        Thread.sleep(1000);
+        ele.click();
 
     }
+
+    public void upnextDis(AndroidDriver driver) throws InterruptedException {
+        boolean flag = true;
+        List<WebElement> l;
+        while (flag) {
+            l = driver.findElementsByClassName("android.widget.ImageView");
+            l.size();
+            System.out.println("size of it is " + l.size());
+            ;
+            if (l.size() == 2) {
+                //System.out.println("inside while wait.. " + l.get(1).isDisplayed());
+                System.out.println("Waiting for discovery");
+                flag = false;
+            }
+        }
+        System.out.println("Up-Next Discovery displayed");
+        System.out.println("Closing the discovery");
+        boolean flag2 = true;
+
+        while (driver.findElementByXPath("//android.widget.TextView[@text='e']").isDisplayed()) {
+            flag2 = driver.findElementByXPath("//android.widget.TextView[@text='e']").isDisplayed();
+            System.out.println("value of flag2 is " + flag2);
+
+            driver.findElementByXPath("//android.widget.TextView[@text='e']").click();
+            System.out.println("up-next discovery closed");
+
+        }
+        int n = driver.findElementsByClassName("android.widget.ImageView").size();
+        System.out.println("value of n is " +n);
+        if (n == 1) {
+
+            Assert.assertTrue(flag2);
+            System.out.println("AssertPass, Up-Next Discovery closed");
+            flag2 = false;
+        } else {
+            Assert.assertTrue(flag2);
+            System.out.println("Assert Failed, Up-Next discovery closed");
+        }
+    }
+
+
 
 }
 

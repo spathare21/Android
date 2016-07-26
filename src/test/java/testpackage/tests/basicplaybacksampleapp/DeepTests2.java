@@ -1,6 +1,7 @@
 package testpackage.tests.basicplaybacksampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -148,7 +149,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -211,9 +212,10 @@ public class DeepTests2 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdPreroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -328,7 +330,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
 
             // event verification of video is start playing
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
@@ -337,9 +339,10 @@ public class DeepTests2 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -451,7 +454,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
             Thread.sleep(1000);
 
             // video completed event verification
@@ -459,9 +462,10 @@ public class DeepTests2 {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -518,7 +522,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -582,9 +586,10 @@ public class DeepTests2 {
 
         }
         catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdPreRollTest throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -697,7 +702,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
 
             // event verification of video is start playing
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
@@ -706,9 +711,10 @@ public class DeepTests2 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -817,7 +823,7 @@ public class DeepTests2 {
             Thread.sleep(5000);
 
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
             Thread.sleep(1000);
 
             // video completed event verification
@@ -825,9 +831,10 @@ public class DeepTests2 {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -884,7 +891,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             Thread.sleep(5000);
             // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
@@ -947,7 +954,7 @@ public class DeepTests2 {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
             // Ad completed verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 100000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
             Thread.sleep(1000);
 
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
@@ -958,9 +965,10 @@ public class DeepTests2 {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("multiAdCombination throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"multiAdCombination");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

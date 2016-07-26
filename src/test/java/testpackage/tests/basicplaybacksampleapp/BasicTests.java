@@ -2,9 +2,9 @@ package testpackage.tests.basicplaybacksampleapp; /**
  * Created by bsondur on 11/16/15.
  */
 
-import org.junit.Assert;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.BasicPlaybackSampleApp;
@@ -17,6 +17,7 @@ import java.io.IOException;
 public class BasicTests {
 
     private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -166,14 +167,15 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println(" AspectRatioTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"AspectRatioTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
     //TODO : create unique file names for snapshots taken .
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void HLSVideoTest() throws Exception{
 
         try {
@@ -244,13 +246,14 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println(" HLSVideoTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"HLSVideoTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void MP4VideoTest() throws Exception{
 
         try {
@@ -319,9 +322,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MP4VideoTest thows Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MP4VideoTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -414,9 +418,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VODwithCCTest throws Exception \n"+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VODwithCCTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -461,7 +466,7 @@ public class BasicTests {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             //Time out
             Thread.sleep(1000);
@@ -501,9 +506,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -553,7 +559,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             po.loadingSpinner(driver);
 
@@ -562,13 +568,14 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTADMidRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VASTAdWrapperTest() throws Exception{
 
         try {
@@ -612,13 +619,14 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTAdWrapperTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdWrapperTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void OoyalaAdPreRollTest() throws Exception{
 
         try {
@@ -660,7 +668,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             po.loadingSpinner(driver);
 
@@ -677,13 +685,14 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdPreRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void OoyalaADMidRollTest() throws Exception{
 
         try {
@@ -729,7 +738,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             po.loadingSpinner(driver);
 
@@ -738,9 +747,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaADMidRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaADMidRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -790,7 +800,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             po.loadingSpinner(driver);
 
@@ -803,9 +813,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -854,7 +865,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             po.loadingSpinner(driver);
 
@@ -867,9 +878,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VASTADPostRollTest throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -915,7 +927,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
 
             po.loadingSpinner(driver);
 
@@ -932,7 +944,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             po.loadingSpinner(driver);
@@ -940,9 +952,10 @@ public class BasicTests {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

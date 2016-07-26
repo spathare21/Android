@@ -2,6 +2,7 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -293,9 +294,10 @@ public class DeepTests2BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Preroll throws Exception \n"+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Preroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -503,15 +505,16 @@ public class DeepTests2BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Midroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Midroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
 
-    //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3730
-/*   @org.testng.annotations.Test
+    //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3730--- issue resolved.
+   @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
 
@@ -714,12 +717,13 @@ public class DeepTests2BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_Postroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_Postroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
+    }
 
     @org.testng.annotations.Test
     public void VAST2_AdWrapper() throws Exception{
@@ -922,9 +926,10 @@ public class DeepTests2BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VAST2_AdWrapper throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VAST2_AdWrapper");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1131,9 +1136,10 @@ public class DeepTests2BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("Ooyala_Preroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"Ooyala_Preroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1341,9 +1347,10 @@ public class DeepTests2BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("Ooyala_Midroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"Ooyala_Midroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1552,9 +1559,10 @@ public class DeepTests2BasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("Ooyala_Postroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"Ooyala_Postroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/

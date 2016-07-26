@@ -3,6 +3,7 @@ package testpackage.tests.IMASampleApp;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -192,9 +193,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulePreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -299,9 +301,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRuleMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -404,9 +407,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAAdRulePostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -515,9 +519,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -630,9 +635,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -741,9 +747,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -909,9 +916,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAPoddedPreMidPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1019,9 +1027,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMASkippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMASkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1126,9 +1135,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMAApplication_Configured throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMAApplication_Configured");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1250,9 +1260,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMA_PreMidPost_skippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMA_PreMidPost_skippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1357,9 +1368,10 @@ public class DeepTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("IMASkippable_skip throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"IMASkippable_skip");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

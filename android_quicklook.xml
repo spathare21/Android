@@ -8,7 +8,7 @@
             <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
             <class name="testpackage.tests.freewheelsampleapp.BasicTests"/>
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
-            <!--<class name="testpackage.tests.IMASampleApp.BasicTests"/>-->
+            <class name="testpackage.tests.IMASampleApp.BasicTests"/>
             <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
 
 

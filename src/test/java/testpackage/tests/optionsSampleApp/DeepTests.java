@@ -2,6 +2,7 @@ package testpackage.tests.optionsSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -129,7 +130,7 @@ public class DeepTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -153,11 +154,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -181,7 +182,7 @@ public class DeepTests {
             //Play Started Verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -207,11 +208,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -236,7 +237,7 @@ public class DeepTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -262,11 +263,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -291,7 +292,7 @@ public class DeepTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -317,11 +318,11 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -329,9 +330,10 @@ public class DeepTests {
             Thread.sleep(2000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -388,7 +390,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -431,13 +433,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -468,7 +470,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -506,13 +508,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -545,7 +547,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -571,13 +573,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -610,7 +612,7 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 60000);
@@ -636,13 +638,13 @@ public class DeepTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Ad to start and verify the adStarted event.
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
             //Wait for Ad to complete and verify the adCompleted event.
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
 
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -650,9 +652,10 @@ public class DeepTests {
             Thread.sleep(3000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("Preload_and_PromoImage_Options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"Preload_and_PromoImage_Options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -856,9 +859,10 @@ public class DeepTests {
             Thread.sleep(3000);
 
     } catch (Exception e) {
-        System.out.println(" Exception " + e);
+        System.out.println("Preload_and_Promo_Options_With_Initial_Time throws Exception " + e);
         e.printStackTrace();
-        ScreenshotDevice.screenshot(driver);
+        ScreenshotDevice.screenshot(driver,"Preload_and_Promo_Options_With_Initial_Time");
+        Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -943,9 +947,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("ServersideTVRatings throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"ServersideTVRatings");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1156,9 +1161,9 @@ public class DeepTests {
             Thread.sleep(3000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            System.out.println("TV_Ratings_Configuration throws Exception " + e);
+             e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
+            ScreenshotDevice.screenshot(driver,"TV_Ratings_Configuration");
         }
 
     }
@@ -1244,9 +1249,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("present_video_view_sharing_options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 */
