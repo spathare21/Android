@@ -162,6 +162,9 @@ public class BasicTestsGoogleIMAIntegration {
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
 
+            Thread.sleep(1000);
+
+
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
@@ -177,6 +180,8 @@ public class BasicTestsGoogleIMAIntegration {
             po.seek_video(driver,40);
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            Thread.sleep(5000);
 
             po.getPlay(driver);
 
@@ -281,6 +286,8 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
 
+            Thread.sleep(5000);
+
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -369,6 +376,7 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -481,6 +489,7 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -587,6 +596,7 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -668,13 +678,13 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
 
-
             Thread.sleep(1000);
 
             po.seek_video(driver,40);
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " ,50000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -829,6 +839,7 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed",70000);
@@ -953,6 +964,7 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -1072,6 +1084,7 @@ public class BasicTestsGoogleIMAIntegration {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);

@@ -226,8 +226,9 @@ public class ooyalaSkinSampleApp {
         System.out.println("moved to pause method");
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
+        Thread.sleep(2000);
         driver.tap(1, play.getX(), play.getY(), 5);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         driver.tap(1,play.getX(),play.getY(),5);
         System.out.println("clicked pause");
     }

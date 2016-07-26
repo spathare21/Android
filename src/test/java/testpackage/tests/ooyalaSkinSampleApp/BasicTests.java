@@ -156,6 +156,7 @@ public class BasicTests {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -236,6 +237,7 @@ public class BasicTests {
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -321,7 +323,7 @@ public class BasicTests {
             po.seek_video(driver,40);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.getPlay(driver);
 
@@ -412,7 +414,7 @@ public class BasicTests {
             po.seek_video(driver,40);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 
-            Thread.sleep(1000);
+            Thread.sleep(5000);
 
             po.getPlay(driver);
 
@@ -588,8 +590,9 @@ public class BasicTests {
 
             po.seek_video(driver,60);
 
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 30000);
 
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
