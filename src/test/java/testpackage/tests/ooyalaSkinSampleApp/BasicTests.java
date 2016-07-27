@@ -4,6 +4,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
@@ -81,10 +82,11 @@ public class BasicTests {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
+        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
