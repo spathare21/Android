@@ -163,7 +163,7 @@ public class BasicTests {
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
         }
         catch(Exception e)
         {
@@ -743,7 +743,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
         }
         catch(Exception e)
         {
@@ -950,7 +950,7 @@ public class BasicTests {
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
         } catch (Exception e) {
             System.out.println("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();

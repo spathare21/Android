@@ -3,6 +3,7 @@ package testpackage.utils;
 import com.sun.jmx.snmp.Timestamp;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
+import java.io.File;
 import java.time.Instant;
 
 /**
@@ -30,9 +31,13 @@ public class RemoveEventsLogFile {
     public static void storeLogFile(String logfilename)
     {
         try{
-            String[] final_command = CommandLine.command("adb pull /mnt/sdcard/log.file ../../appiumProj/appium-android/res/snapshot/"+logfilename+Instant.now().toEpochMilli());
+            String filename = logfilename + Instant.now().toEpochMilli();
+            String[] final_command = CommandLine.command("adb pull /mnt/sdcard/log.file ../../appiumProj/appium-android/res/snapshot/"+filename);
             Runtime run=Runtime.getRuntime();
             Process pr = run.exec(final_command);
+            File logfile = new File("./res/snapshot/"+filename);
+            Thread.sleep(10000);
+            ScreenshotDevice.appendLogToAllure(logfile);
         }
         catch(Exception e)
         {
