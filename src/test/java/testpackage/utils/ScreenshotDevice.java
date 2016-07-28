@@ -13,6 +13,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import io.appium.java_client.AppiumDriver;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class ScreenshotDevice {
 
@@ -30,6 +31,15 @@ public class ScreenshotDevice {
         catch (Exception e)
         {
             System.out.println("\n Exception while taking screenshot : " + e.getMessage());
+        }
+    }
+
+    @Attachment(value = "Test Logs", type = "text/html")
+    public static byte[] appendLogToAllure(File file) throws Exception {
+        try {
+            return FileUtils.readFileToByteArray(file);
+        } catch (IOException ignored) {
+            return null;
         }
     }
 

@@ -81,16 +81,23 @@ public class ooyalaSkinSampleApp {
 
     }
 
-    public void getXYSeekBarAndSeek(AndroidDriver driver, int widthOffSet1, int widthOffSet2) {
-        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
-
-        int seekBarFieldWidth = seekBarField.getLocation().getX();
-        int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
-        System.out.println(" Seeking -------------------------  ");
-        driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
+    public void seek_video (AndroidDriver driver,int time) throws Exception {
+        try {
+            List<WebElement> views = driver.findElements(By.className("android.view.ViewGroup"));
+            System.out.println("number of views present are : " + views.size());
+            Point p = views.get(6).getLocation();
+            driver.swipe(p.getX(), p.getY(), p.getX() + time, p.getY(), 5);
+        } catch (Exception e) {
+            List<WebElement> views = driver.findElements(By.className("android.view.View"));
+            System.out.println("number of views present are : " + views.size());
+//            Point p = views.get(6).getLocation();
+//            driver.swipe(p.getX(), p.getY(), p.getX() + time, p.getY(), 5);
+//
+            Point p1 = views.get(6).getLocation();
+            driver.swipe(p1.getX(), p1.getY(), p1.getX() + time, p1.getY(), 5);
+        }
     }
+
 
     public void replayVideo(AndroidDriver driver) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -219,9 +226,10 @@ public class ooyalaSkinSampleApp {
         System.out.println("moved to pause method");
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
-        driver.tap(1, play.getX(), play.getY(), 3);
-        Thread.sleep(1000);
-        driver.tap(1,play.getX(),play.getY(),3);
+        Thread.sleep(2000);
+        driver.tap(1, play.getX(), play.getY(), 5);
+        Thread.sleep(2000);
+        driver.tap(1,play.getX(),play.getY(),5);
         System.out.println("clicked pause");
     }
 
@@ -359,10 +367,10 @@ public class ooyalaSkinSampleApp {
 
 
     public void screentap(AndroidDriver driver) throws InterruptedException {
-        System.out.println("in screen tapped method");
+        //System.out.println("in screen tapped method");
         Thread.sleep(1000);
-        driver.tap(1, replay.getX(), replay.getY(), 2);
-        System.out.println("out of the screen tapped method");
+        driver.tap(1, play.getX(), play.getY(), 2);
+        //System.out.println("out of the screen tapped method");
     }
 
 
@@ -403,15 +411,14 @@ public class ooyalaSkinSampleApp {
         driver.scrollTo(clickText).click();
     }
 
-
-    public void getPlay (AndroidDriver driver){
+    public void getPlay (AndroidDriver driver) throws Exception {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='h']";
-
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         play= ele.getLocation();
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
+        Thread.sleep(1000);
         ele.click();
 
     }

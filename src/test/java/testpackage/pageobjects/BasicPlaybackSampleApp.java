@@ -291,7 +291,7 @@ public class BasicPlaybackSampleApp {
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
                 //System.out.println("Handling Loading Spinner");
-                if (i<10){
+                if (i<20){
                     System.out.println("Handling Loading Spinner");
                     Thread.sleep(1000);
                     i++;

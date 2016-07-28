@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -84,10 +85,11 @@ public class DeepTestIMA {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
+        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

@@ -4,6 +4,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
@@ -81,16 +82,17 @@ public class BasicTests {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
+        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void FreeWheelIntegrationPreRoll() throws Exception{
 
         try {
@@ -150,6 +152,13 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -224,6 +233,13 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -302,7 +318,14 @@ public class BasicTests {
 
             po.pauseVideo(driver);
 
-            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 80000);
+
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+            Thread.sleep(5000);
 
             po.getPlay(driver);
 
@@ -329,7 +352,6 @@ public class BasicTests {
         }
     }
 
-    
     @org.testng.annotations.Test
     public void FreeWheelIntegrationPreMidPostRoll() throws Exception{
 
@@ -389,6 +411,13 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
+            Thread.sleep(1000);
+
+            po.seek_video(driver,40);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+            Thread.sleep(5000);
+
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -419,6 +448,7 @@ public class BasicTests {
             Assert.assertTrue(false, "This will fail!");
         }
     }
+
    //TODO Overlay element content desc is changin contunously PBA-4296
     //@org.testng.annotations.Test
     public void FreeWheelIntegrationOverlay() throws Exception{
@@ -558,6 +588,13 @@ public class BasicTests {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
+            Thread.sleep(1000);
+
+            po.seek_video(driver,60);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 30000);
+
+            Thread.sleep(5000);
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
