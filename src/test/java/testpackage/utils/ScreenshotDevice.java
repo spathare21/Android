@@ -37,7 +37,8 @@ public class ScreenshotDevice {
     @Attachment(value = "Test Logs", type = "text/html")
     public static byte[] appendLogToAllure(File file) throws Exception {
         try {
-            System.out.println("attach loggile to allure");
+            System.out.println("attach loggile "+file + "to allure");
+            Thread.sleep(5000);
             return FileUtils.readFileToByteArray(file);
         } catch (IOException ignored) {
             return null;
