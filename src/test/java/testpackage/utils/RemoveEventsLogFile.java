@@ -38,10 +38,9 @@ public class RemoveEventsLogFile {
             String[] final_command = CommandLine.command("adb pull /mnt/sdcard/log.file "+logspath);
             Runtime run=Runtime.getRuntime();
             Process pr = run.exec(final_command);
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             File logfile = new File(logspath);
             System.out.println("Log File Path : " + logfile.getAbsolutePath());
-            Thread.sleep(5000);
             ScreenshotDevice.appendLogToAllure(logfile,filename);
         }
         catch(Exception e)
