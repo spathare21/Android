@@ -32,7 +32,7 @@ public class RemoveEventsLogFile {
     {
         try{
             System.out.println("\n Storing logfile to machine \n");
-            String filename = logfilename + Instant.now().toEpochMilli();
+            String filename = logfilename + "_" + Instant.now().toEpochMilli();
             String[] final_command = CommandLine.command("adb pull /mnt/sdcard/log.file ../../appiumProj/appium-android/res/snapshot/"+filename);
             Runtime run=Runtime.getRuntime();
             Process pr = run.exec(final_command);
