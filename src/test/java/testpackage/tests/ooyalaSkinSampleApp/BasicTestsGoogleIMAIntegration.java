@@ -261,6 +261,8 @@ public class BasicTestsGoogleIMAIntegration {
             //Clicking on Play button in Ooyala Skin
             po.getPlay(driver);
 
+            Thread.sleep(5000);
+
             //Play Started
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
