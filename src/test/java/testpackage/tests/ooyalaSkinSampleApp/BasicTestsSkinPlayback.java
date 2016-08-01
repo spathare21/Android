@@ -353,7 +353,12 @@ public class BasicTestsSkinPlayback {
 
             ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
+            //po.SeekOoyalaSkin(driver,0,200);
+            //ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+            //Thread.sleep(3000);
+
             Thread.sleep(5000);
+
 
             // playing video again.
             po.getPlay(driver);
