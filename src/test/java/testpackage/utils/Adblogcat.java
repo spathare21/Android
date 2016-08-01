@@ -88,7 +88,7 @@ public class Adblogcat {
         }
     }
 
-    public static void sdkVersion() throws IOException {
+    /*public static void sdkVersion() throws IOException {
         System.out.println("Here is sdk version  :--");
         final String command = "adb logcat";
         String[] ver = CommandLine.command(command);
@@ -108,7 +108,7 @@ public class Adblogcat {
 
         //pr.destroy();
 
-    }
+    }*/
 
 }
 
