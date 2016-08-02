@@ -7,6 +7,8 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import sun.awt.windows.ThemeReader;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
@@ -15,7 +17,7 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DeepTestSkinPlayback {
+public class DeepTestSkinPlayback extends EventLogTest{
 
     private static AndroidDriver driver;
 
@@ -86,7 +88,7 @@ public class DeepTestSkinPlayback {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -276,9 +278,10 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("AspectRatioTest throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"AspectRatioTest");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -464,9 +467,10 @@ public class DeepTestSkinPlayback {
 
 */
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlaybackMP4Video throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackMP4Video");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -645,9 +649,10 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlaybackHLSVideo throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackHLSVideo");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -831,9 +836,10 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlaybackVODCCVideo throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlaybackVODCCVideo");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -892,7 +898,7 @@ public class DeepTestSkinPlayback {
 
             Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             Thread.sleep(5000);
             //Wait for video to start and verify the playStarted event .
@@ -1028,9 +1034,10 @@ public class DeepTestSkinPlayback {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("SkinPlayBackVAST2ADPreroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"SkinPlayBackVAST2ADPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 

@@ -2,6 +2,8 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -13,10 +15,8 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Created by Sameer on 5/24/2016.
- */
-public class DeepBasicPlayback {
+
+public class DeepBasicPlayback extends EventLogTest {
 
     private static AndroidDriver driver;
 
@@ -85,7 +85,7 @@ public class DeepBasicPlayback {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -291,9 +291,10 @@ public class DeepBasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("AspectRatio throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"AspectRatio");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -497,9 +498,10 @@ public class DeepBasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MP4 Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MP4");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -701,9 +703,10 @@ public class DeepBasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("HLS throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -916,9 +919,10 @@ public class DeepBasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("encrypted_HLS Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"encrypted_HLS");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1131,9 +1135,10 @@ public class DeepBasicPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VOD_CC throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VOD_CC");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

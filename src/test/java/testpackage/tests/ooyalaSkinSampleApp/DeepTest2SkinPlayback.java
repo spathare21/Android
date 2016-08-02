@@ -9,6 +9,8 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import sun.awt.windows.ThemeReader;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
@@ -17,7 +19,7 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DeepTest2SkinPlayback {
+public class DeepTest2SkinPlayback extends EventLogTest{
 
     private static AndroidDriver driver;
 
@@ -88,7 +90,7 @@ public class DeepTest2SkinPlayback {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -96,8 +98,6 @@ public class DeepTest2SkinPlayback {
         Thread.sleep(10000);
 
     }
-
-
 
 
    @org.testng.annotations.Test
@@ -159,7 +159,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -259,9 +259,10 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -411,7 +412,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(1000);
@@ -421,9 +422,10 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -568,16 +570,17 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -641,7 +644,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -741,9 +744,10 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("VastAdWrapper throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VastAdWrapper");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -809,7 +813,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -909,9 +913,10 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -992,12 +997,6 @@ public class DeepTest2SkinPlayback {
             driver.tap(1, locationPlayButton[0], locationPlayButton[1], 2);
             Thread.sleep(2000);
 
-
-
-
-
-
-
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
 
@@ -1070,7 +1069,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(1000);
@@ -1080,9 +1079,10 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -1231,16 +1231,17 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("OoyalaAdPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1305,7 +1306,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 20000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 20000);
 
             //Time out
             Thread.sleep(1000);
@@ -1398,7 +1399,7 @@ public class DeepTest2SkinPlayback {
             Thread.sleep(2000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(1000);
@@ -1408,9 +1409,10 @@ public class DeepTest2SkinPlayback {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("MultiAdCombination throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"MultiAdCombination");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 

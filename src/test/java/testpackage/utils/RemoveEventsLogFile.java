@@ -1,5 +1,11 @@
 package testpackage.utils;
 
+import com.sun.jmx.snmp.Timestamp;
+
+import javax.print.attribute.standard.DateTimeAtCreation;
+import java.io.File;
+import java.time.Instant;
+
 /**
  * Created by bsondur on 11/30/15.
  */
@@ -17,9 +23,10 @@ public class RemoveEventsLogFile {
         }
         catch(Exception e)
         {
-            System.out.println("Exception is"+e);
+            System.out.println("Exception is : "+e);
             e.printStackTrace();
 
         }
     }
+
 }

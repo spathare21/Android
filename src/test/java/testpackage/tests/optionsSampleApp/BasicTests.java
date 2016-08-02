@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -19,7 +21,7 @@ import java.util.Properties;
 /**
  * Created by Sachin on 4/11/2016.
  */
-public class BasicTests {
+public class BasicTests extends EventLogTest {
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -88,7 +90,7 @@ public class BasicTests {
 
     @AfterMethod
     //public void afterTest() throws InterruptedException, IOException {
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -140,7 +142,7 @@ public class BasicTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to start and verify the playStarted event .
@@ -150,20 +152,21 @@ public class BasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -211,7 +214,7 @@ public class BasicTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to start and verify the playStarted event .
@@ -221,20 +224,21 @@ public class BasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("preload_PromoImage_options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"preload_PromoImage_options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -287,9 +291,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("preload_promo_IntialTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"preload_promo_IntialTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -332,9 +337,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("server_side_TvRating throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"server_side_TvRating");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -389,9 +395,10 @@ public class BasicTests {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("tv_rating_config throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"tv_rating_config");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -432,9 +439,10 @@ public class BasicTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("present_video_view_sharing_options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -509,7 +517,7 @@ public class BasicTests {
 
             Thread.sleep(4000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to start and verify the playStarted event .
@@ -545,7 +553,7 @@ public class BasicTests {
             Thread.sleep(4000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
@@ -574,7 +582,7 @@ public class BasicTests {
 
             Thread.sleep(4000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -582,9 +590,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("CuePointsAndAdsControlOptions_On throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_On");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -639,7 +648,7 @@ public class BasicTests {
 
             // clicking on learn more button
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
 
@@ -653,14 +662,14 @@ public class BasicTests {
 
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
             Thread.sleep(4000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -669,9 +678,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("CuePointsAndAdsControlOptions_cuePointOff throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_cuePointOff");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -731,7 +741,7 @@ public class BasicTests {
             driver.navigate().back();
 
             // ad completed event verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
 
@@ -767,7 +777,7 @@ public class BasicTests {
             driver.navigate().back();
 
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
@@ -775,9 +785,10 @@ public class BasicTests {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("CuePointsAndAdsControlOptions_adControlsOff throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions_adControlsOff");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -824,7 +835,7 @@ public class BasicTests {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to start and verify the playStarted event .
@@ -834,20 +845,21 @@ public class BasicTests {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("timeout_Options throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"timeout_Options");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

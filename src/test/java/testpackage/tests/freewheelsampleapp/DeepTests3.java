@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.utils.*;
@@ -15,7 +17,7 @@ import java.util.Properties;
 /**
  * Created by Sachin on 2/29/2016.
  */
-public class DeepTests3 {
+public class DeepTests3 extends EventLogTest{
 
     private static AndroidDriver driver;
 
@@ -83,7 +85,7 @@ public class DeepTests3 {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -152,9 +154,10 @@ public class DeepTests3 {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelOverlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -241,7 +244,7 @@ public class DeepTests3 {
 //
 //            Thread.sleep(4000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to start and verify the playStarted event .
@@ -289,7 +292,7 @@ public class DeepTests3 {
 //            Thread.sleep(4000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
@@ -329,7 +332,7 @@ public class DeepTests3 {
 //
 //            Thread.sleep(4000);
 //
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
@@ -337,9 +340,10 @@ public class DeepTests3 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FWCuePointsAndAdsControlOptions_On throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_On");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -416,7 +420,7 @@ public class DeepTests3 {
             System.out.println("Back to SDK");
 
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
 
@@ -449,7 +453,7 @@ public class DeepTests3 {
             System.out.println("Back to SDK");
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
@@ -476,7 +480,7 @@ public class DeepTests3 {
             //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -485,9 +489,10 @@ public class DeepTests3 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_cuePointOff_leanmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -571,7 +576,7 @@ public class DeepTests3 {
             ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 */
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
 
 
@@ -615,7 +620,7 @@ public class DeepTests3 {
 
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
             Thread.sleep(5000);
 
@@ -648,7 +653,7 @@ public class DeepTests3 {
             ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 */
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
 
             //Wait for video to finish and verify the playCompleted event .
@@ -657,9 +662,10 @@ public class DeepTests3 {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_adControlsOff_leanmore");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 

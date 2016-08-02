@@ -1,6 +1,8 @@
 package testpackage.tests.advancePlayBackSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -10,10 +12,8 @@ import testpackage.utils.*;
 
 import java.io.IOException;
 import java.util.Properties;
-/**
- * Created by Sameer on 5/4/2016.
- */
-public class DeepTests {
+
+public class DeepTests extends EventLogTest {
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -82,11 +82,9 @@ public class DeepTests {
     }
 
     @AfterMethod
-    //public void afterTest() throws InterruptedException, IOException {
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
-        //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
@@ -221,9 +219,10 @@ public class DeepTests {
 
         }
         catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("playWithIntitialTime Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"playWithIntitialTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -461,9 +460,10 @@ public class DeepTests {
             Thread.sleep(50000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"multipleVideoPlayback");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -612,9 +612,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println(" insertAdAtRunTime throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"insertAdAtRunTime");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -753,9 +754,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"changeVideoProgramatically");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -899,9 +901,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            System.out.println(" customPluginSample throws Exception " + e);
+             e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"customPluginSample");
+            Assert.assertTrue(false, "This will fail!");
         }
     }*/
 
@@ -971,9 +974,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customControls throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customControls");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1021,9 +1025,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("customOverlay throws Exception \n" + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"customOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1151,9 +1156,10 @@ public class DeepTests {
             ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("unbundled throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"unbundled");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/

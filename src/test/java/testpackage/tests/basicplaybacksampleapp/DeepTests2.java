@@ -1,6 +1,8 @@
 package testpackage.tests.basicplaybacksampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -9,18 +11,20 @@ import testpackage.pageobjects.BasicPlaybackSampleApp;
 import testpackage.utils.*;
 
 import java.io.IOException;
+import java.lang.annotation.Target;
 import java.util.Properties;
 
 /**
  * Created by Sachin on 4/18/2016.
  */
-public class DeepTests2 {
+public class DeepTests2 extends EventLogTest{
     private static AndroidDriver driver;
 
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
         CloserecentApps.closeApps();
+        //driver.quit();
 
         System.out.println("BeforeTest \n");
 
@@ -83,8 +87,7 @@ public class DeepTests2 {
     }
 
     @AfterMethod
-    //public void afterTest() throws InterruptedException, IOException {
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -123,82 +126,96 @@ public class DeepTests2 {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             Thread.sleep(3000);
+
+            //waitting for start screen
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            // move to full screen
+            po.gotoFullScreen(driver);
+            Thread.sleep(2000);
+
+            // event verification for full screen
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            Thread.sleep(3000);
+
+            //Play video in full screen
+            po.playInFullScreen(driver);
+            //Thread.sleep(1000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
+            Thread.sleep(5000);
+            // AD completed event  verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             Thread.sleep(1000);
 
-            //Removing Learn More feature for now
-            /*
-            // Tap coordinates to pause
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray = dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions = dimensionsarray[1].substring(0, length - 1);
-            String ydimensionstrimmed = ydimensions.trim();
-            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-            Thread.sleep(2000);
-
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            po.clickLearnMore(driver);
-
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 40000);
-
-            Thread.sleep(2000);
-
-            // navigating back to SDK
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            // playing asset in normal screen
-            po.playInNormalScreen(driver);
-
-            // AD playing started event verification
-//            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-//            Thread.sleep(3000);
-
-
-            // ad completed event verificaiton
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
-*/
-            // video playing started again event verification
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
+            Thread.sleep(5000);
 
+            //Tapping on screen
+            po.screenTap(driver);
             Thread.sleep(1000);
 
-            po.powerKeyClick(driver);
+            //Pausing video in full screen
+            po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 47000);
+            Thread.sleep(1000);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+            //Seeking the video in full screen
+            po.seekVideoFullscreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
+            Thread.sleep(3000);
 
+            // going back again in normal screen
+            po.gotoNormalScreen(driver);
+           // Thread.sleep(2000);
+
+            // event verification for normal screen
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 53000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 53000);
             Thread.sleep(2000);
 
-            po.getBackFromRecentApp(driver);
+            //Play video in normal screen
+            po.playInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 57000);
+            Thread.sleep(3000);
 
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(500);
+
+            //Pausing video in normal screen
+            po.pauseInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 61000);
+            Thread.sleep(1000);
+
+            //Seeking video in normal screen
+            po.seekVideo(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            Thread.sleep(3000);
+
+            // playing video in normal screen
+            po.playInNormalScreen(driver);
+            //verifing event for play
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+            Thread.sleep(5000);
 
             // video completed event verificaiton
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdPreroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -231,84 +248,101 @@ public class DeepTests2 {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(3000);
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            Thread.sleep(11000);
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(2000);
-            //Commenting out learn more button feature for now
-            /*
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray = dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions = dimensionsarray[1].substring(0, length - 1);
-            String ydimensionstrimmed = ydimensions.trim();
-            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
+            //Thread.sleep(3000);
 
-            Thread.sleep(2000);
-
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            // clicking on learn more
-            po.clickLearnMore(driver);
-
-            // verifing event for learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 30000);
-
-            Thread.sleep(2000);
-
-            // nagivating back to SDK
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(10000);
-
-            // playing asset in normal screen
-            po.playInNormalScreen(driver);
-*/
-            // verifing event for ad playing started
-           ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(3000);
-
-            // AD completed event  verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
-            // event verification of video is start playing
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
-
+            //waitting for start screen
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
 
-            po.powerKeyClick(driver);
+            // move to full screen
+            po.gotoFullScreen(driver);
+            //Thread.sleep(2000);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
+            // event verification for full screen
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(3000);
 
-            po.getBackFromRecentApp(driver);
+            //Play video in full screen
+            po.playInFullScreen(driver);
+            //Thread.sleep(1000);
 
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(4000);
+
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //Pausing video in full screen
+            po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            Thread.sleep(2000);
+
+            //Seeking the video in full screen
+            po.seekVideoFullscreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
+            Thread.sleep(3000);
+
+            // going back again in normal screen
+            po.gotoNormalScreen(driver);
+           // Thread.sleep(2000);
+
+            // event verification for normal screen
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 52000);
+            Thread.sleep(3000);
+
+            //Play video in normal screen
+            po.playInNormalScreen(driver);
+           // Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            Thread.sleep(3000);
+
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //Pausing video in normal screen
+            po.pauseInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(2000);
+
+            //Seeking video in normal screen
+            po.seekVideo(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
+            Thread.sleep(3000);
+
+            // playing video in normal screen
+            po.playInNormalScreen(driver);
+            //verifing event for play
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
+            Thread.sleep(8000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            Thread.sleep(5000);
+
+            // AD completed event  verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
+
+            // event verification of video is start playing
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
+            Thread.sleep(10000);
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -341,88 +375,97 @@ public class DeepTests2 {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
+
+            //waitting for start screen
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            // move to full screen
+            po.gotoFullScreen(driver);
+            //Thread.sleep(2000);
+
+            // event verification for full screen
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
-            po.powerKeyClick(driver);
-
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
+            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            Thread.sleep(3000);
 
+            //Play video in full screen
+            po.playInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 35000);
+            Thread.sleep(4000);
+
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //Pausing video in full screen
+            po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 45000);
             Thread.sleep(2000);
 
-            po.getBackFromRecentApp(driver);
+            //Seeking the video in full screen
+            po.seekVideoFullscreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
+            Thread.sleep(3000);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            // going back again in normal screen
+            po.gotoNormalScreen(driver);
+            //Thread.sleep(2000);
+            // event verification for normal screen
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 55000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 55000);
+            Thread.sleep(3000);
 
+            //Play video in normal screen
+            po.playInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            Thread.sleep(3000);
 
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
 
-            // event verification for ad started
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(1500);
+            //Pausing video in normal screen
+            po.pauseInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(1000);
 
+            //Seeking video in normal screen
+            po.seekVideo(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
+            Thread.sleep(3000);
 
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray = dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions = dimensionsarray[1].substring(0, length - 1);
-            String ydimensionstrimmed = ydimensions.trim();
-            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
+            // playing video in normal screen
+            po.playInNormalScreen(driver);
+            //verifing event for play
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
+            Thread.sleep(8000);
 
-            // Pausing the video
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-
-            // event verification for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-
-            // Clicking on learn more button
-            po.clickLearnMore(driver);
-
-            // event verification for learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 30000);
-
-            Thread.sleep(2000);
-
-            //Navigating back to SDK
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             Thread.sleep(5000);
 
-            //Playing in normal state
-            po.playInNormalScreen(driver);
-
-            // Ad started again event verification
-//            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-//            Thread.sleep(3000);*//*
-
-            // AD completed event verificatio
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            // AD completed event  verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
+            Thread.sleep(1000);
 
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
-
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("OoyalaAdPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"OoyalaAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
 
@@ -457,81 +500,96 @@ public class DeepTests2 {
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             Thread.sleep(2000);
 
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
-
-           /* Thread.sleep(2000);
-
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray=dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions=dimensionsarray[1].substring(0,length-1);
-            String ydimensionstrimmed=ydimensions.trim();
-            int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-
-            driver.tap(1, 35 , (ydimensionsInt-25), 0);
-
-            // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
-
-            Thread.sleep(2000);
-
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-
-
-            po.clickLearnMore(driver);
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",30000);
-            Thread.sleep(2000);
-
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(4000);
-
-            po.playInNormalScreen(driver);
-
-            // ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
-
-            Thread.sleep(3000);*/
-
-
-
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
+            //waitting for start screen
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
 
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+            // move to full screen
+            po.gotoFullScreen(driver);
+            Thread.sleep(2000);
 
-
-            po.powerKeyClick(driver);
-
+            // event verification for full screen
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
+            Thread.sleep(2000);
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
+            Thread.sleep(3000);
 
+            //Play video in full screen
+            po.playInFullScreen(driver);
+            //Thread.sleep(1000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
+            Thread.sleep(5000);
+            // AD completed event  verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
+            Thread.sleep(1000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
             Thread.sleep(5000);
 
-            po.getBackFromRecentApp(driver);
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
 
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            //Pausing video in full screen
+            po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 47000);
+            Thread.sleep(1000);
+
+            //Seeking the video in full screen
+            po.seekVideoFullscreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
+            Thread.sleep(3000);
+
+            // going back again in normal screen
+            po.gotoNormalScreen(driver);
+            // Thread.sleep(2000);
+
+            // event verification for normal screen
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 53000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 53000);
+            Thread.sleep(2000);
+
+            //Play video in normal screen
+            po.playInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 57000);
+            Thread.sleep(3000);
+
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(500);
+
+            //Pausing video in normal screen
+            po.pauseInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 61000);
+            Thread.sleep(1000);
+
+            //Seeking video in normal screen
+            po.seekVideo(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            Thread.sleep(3000);
+
+            // playing video in normal screen
+            po.playInNormalScreen(driver);
+            //verifing event for play
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+            Thread.sleep(5000);
+
+            // video completed event verificaiton
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
         }
         catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdPreRollTest throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -564,82 +622,99 @@ public class DeepTests2 {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            //waitting for start screen
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            // move to full screen
+            po.gotoFullScreen(driver);
+            //Thread.sleep(2000);
+
+            // event verification for full screen
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", "Video Started to Play", 30000);
-
-            Thread.sleep(11000);
-
-            ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);
-
-            /*Thread.sleep(1000);
-
-            // Tap coordinates to pause
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray = dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions = dimensionsarray[1].substring(0, length - 1);
-            String ydimensionstrimmed = ydimensions.trim();
-            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
-
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing ad Was Paused ", 30000);
-
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
             Thread.sleep(2000);
-
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
-
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-
-            po.clickLearnMore(driver);
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",30000);
-            Thread.sleep(2000);
-
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(10000);
-
-
-            po.playInNormalScreen(driver);*/
-
-            //ev.verifyEvent("adStarted"," Ad Started to Play ", 30000);*//*
-
-
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
             Thread.sleep(3000);
 
-            po.getBackFromRecentApp(driver);
+            //Play video in full screen
+            po.playInFullScreen(driver);
+            //Thread.sleep(1000);
 
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(4000);
 
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
 
+            //Pausing video in full screen
+            po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            Thread.sleep(2000);
 
+            //Seeking the video in full screen
+            po.seekVideoFullscreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 45000);
+            Thread.sleep(3000);
+
+            // going back again in normal screen
+            po.gotoNormalScreen(driver);
+            // Thread.sleep(2000);
+
+            // event verification for normal screen
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 50000);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 52000);
+            Thread.sleep(3000);
+
+            //Play video in normal screen
+            po.playInNormalScreen(driver);
+            // Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            Thread.sleep(3000);
+
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //Pausing video in normal screen
+            po.pauseInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(2000);
+
+            //Seeking video in normal screen
+            po.seekVideo(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
+            Thread.sleep(3000);
+
+            // playing video in normal screen
+            po.playInNormalScreen(driver);
+            //verifing event for play
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
+            Thread.sleep(8000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            Thread.sleep(5000);
+
+            // AD completed event  verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
+
+            // event verification of video is start playing
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
+            Thread.sleep(10000);
+            // video completed event verification
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -670,83 +745,96 @@ public class DeepTests2 {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", "Video Started to Play", 30000);
 
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            Thread.sleep(2000);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
-
-
-            ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
-           /* Thread.sleep(2000);
-
-            // Tap coordinates to pause
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray = dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions = dimensionsarray[1].substring(0, length - 1);
-            String ydimensionstrimmed = ydimensions.trim();
-            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-
-            // event verification for pause
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 40000);
-
+            //waitting for start screen
+            po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
 
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
+            // move to full screen
+            po.gotoFullScreen(driver);
+            //Thread.sleep(2000);
 
+            // event verification for full screen
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
             Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-            //clicking on learn more
-            po.clickLearnMore(driver);
-            Thread.sleep(2000);
-
-            // verifing event for learn more
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more",40000);
-
-            //  navigating back to SDK
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-            Thread.sleep(10000);
-
-            //playing again in normal screen
-            po.playInNormalScreen(driver);
-
-            //verifing event for Ad start playing
-            //ev.verifyEvent("adStarted"," Ad Started to Play ", 40000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(3000);
-*/
 
+            //Play video in full screen
+            po.playInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 35000);
+            Thread.sleep(4000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
 
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+            //Pausing video in full screen
+            po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 45000);
+            Thread.sleep(2000);
 
+            //Seeking the video in full screen
+            po.seekVideoFullscreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
+            Thread.sleep(3000);
+
+            // going back again in normal screen
+            po.gotoNormalScreen(driver);
+            //Thread.sleep(2000);
+            // event verification for normal screen
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 55000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 55000);
+            Thread.sleep(3000);
+
+            //Play video in normal screen
+            po.playInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            Thread.sleep(3000);
+
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //Pausing video in normal screen
+            po.pauseInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(1000);
+
+            //Seeking video in normal screen
+            po.seekVideo(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
+            Thread.sleep(3000);
+
+            // playing video in normal screen
+            po.playInNormalScreen(driver);
+            //verifing event for play
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
+            Thread.sleep(8000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            Thread.sleep(5000);
+
+            // AD completed event  verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
+            Thread.sleep(1000);
+
+            // video completed event verification
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("VASTAdPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"VASTAdPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -779,145 +867,108 @@ public class DeepTests2 {
 
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            //Thread.sleep(3000);
+
+            //waitting for start screen
+            po.waitForTextView(driver,"00:00");
+            Thread.sleep(1000);
+
+            // move to full screen
+            po.gotoFullScreen(driver);
+            //Thread.sleep(2000);
+
+            // event verification for full screen
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in full screen", 30000);
+            Thread.sleep(2000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(3000);
 
-            // creating Event verification object
-            EventVerification ev = new EventVerification();
+            //Play video in full screen
+            po.playInFullScreen(driver);
+            //Thread.sleep(1000);
 
-            // Ad play starting event
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            Thread.sleep(1000);
-            /*
-            // Tap coordinates to pause
-            String dimensions = driver.manage().window().getSize().toString();
-            //System.out.println(" Dimensions are "+dimensions);
-            String[] dimensionsarray = dimensions.split(",");
-            int length = dimensionsarray[1].length();
-            String ydimensions = dimensionsarray[1].substring(0, length - 1);
-            String ydimensionstrimmed = ydimensions.trim();
-            int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-
-            // Ad pause verifying
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Ad Was Paused ", 30000);
-
-            Thread.sleep(2000);
-
-            // After pausing clicking on recent app button and getting sample app back
-            po.getBackFromRecentApp(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            // click on learn more button
-            po.clickLearnMore(driver);
-
-            //verifing event
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 40000);
-
-            Thread.sleep(2000);
-
-            // coming back to SDK
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-
-            Thread.sleep(10000);
-
-            // Playing the video in normal screen
-            po.playInNormalScreen(driver);
-
-            //verifing Ad started playing event
-            // ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-
-            //Thread sleep time is equivalent to the completetion of the Ad
-            Thread.sleep(3000);*/
-
-            // Ad completed verifing event
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
-
+            Thread.sleep(5000);
+            // AD completed event  verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
             Thread.sleep(1000);
 
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-
-            // Video playing started event verification
-            ev.verifyEvent("playStarted", "Video Started to Play", 40000);
-
-            po.powerKeyClick(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            Thread.sleep(2000);
-
-            po.getBackFromRecentApp(driver);
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
-            // Ad playing strat event verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-            /*
-            Thread.sleep(2000);
-
-            // pausing
-            driver.tap(1, 35, (ydimensionsInt - 25), 0);
-
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
-
-
-            Thread.sleep(2000);
-
-            // clicking on learn more button
-            po.clickLearnMore(driver);
-
-            // verifing the event
-            ev.verifyEvent("stateChanged - state: SUSPENDED", "clicked on learn more", 70000);
-
-            Thread.sleep(2000);
-
-            // navigating back to SDK
-            driver.navigate().back();
-
-            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 40000);
-
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 40000);
             Thread.sleep(5000);
 
-            // Playing asset in normal screen
-            po.playInNormalScreen(driver);
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
 
-            // Ad start playing verification
-            // ev.verifyEvent("stateChanged - state: PLAYING", " Ad Started to Play ", 30000);
-
-            Thread.sleep(3000);*/
-
-
-            // Ad completed verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
-
+            //Pausing video in full screen
+            po.pauseInFullScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 47000);
             Thread.sleep(2000);
 
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 30000);
+            //Seeking the video in full screen
+            po.seekVideoFullscreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
+            Thread.sleep(3000);
 
+            // going back again in normal screen
+            po.gotoNormalScreen(driver);
+            //Thread.sleep(2000);
+
+            // event verification for normal screen
+            ev.verifyEvent("stateChanged - state: SUSPENDED", "Player moved in normal screen", 55000);
+            ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 55000);
+            Thread.sleep(3000);
+
+            //Play video in normal screen
+            po.playInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
+            Thread.sleep(3000);
+
+            //Tapping on screen
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //Pausing video in normal screen
+            po.pauseInNormalScreen(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(1000);
+
+            //Seeking video in normal screen
+            po.seekVideo(driver);
+            //Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 70000);
+            Thread.sleep(3000);
+
+            // playing video in normal screen
+            po.playInNormalScreen(driver);
+            //verifing event for play
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 75000);
+            Thread.sleep(8000);
+
+            // Ad playing strat event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            Thread.sleep(5000);
+            // Ad completed verification
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 100000);
+            Thread.sleep(1000);
+
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 110000);
+            Thread.sleep(10000);
 
             // video completed event verification
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
-
-
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 220000);
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("multiAdCombination throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"multiAdCombination");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }

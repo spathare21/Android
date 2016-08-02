@@ -2,6 +2,8 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -15,7 +17,7 @@ import java.util.Properties;
 /**
  * Created by sumit on 03/05/16.
  */
-public class DeepTestsFW {
+public class DeepTestsFW extends EventLogTest {
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -83,7 +85,7 @@ public class DeepTestsFW {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -144,7 +146,7 @@ public class DeepTestsFW {
 
             Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
             Thread.sleep(1000);
 
             //Wait for video to start and verify the playStarted event .
@@ -251,9 +253,10 @@ public class DeepTestsFW {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("FreeWheelIntegrationPreRoll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreRoll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -316,7 +319,7 @@ public class DeepTestsFW {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(5000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -417,9 +420,10 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -483,7 +487,7 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(1000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -585,9 +589,10 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            System.out.println("FreeWheelIntegrationPostroll throws Exception " + e);
+             e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -645,7 +650,7 @@ public class DeepTestsFW {
             EventVerification ev = new EventVerification();
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
             Thread.sleep(5000);
 
             //Wait for video to start and verify the playStarted event .
@@ -657,7 +662,7 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(1000);
 
             ev.verifyEvent("playStarted", " Video Started Play ", 49000);
@@ -665,7 +670,7 @@ public class DeepTestsFW {
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
             Thread.sleep(5000);
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
             Thread.sleep(1000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -764,9 +769,10 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationPreMidPostroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/
@@ -832,9 +838,10 @@ public class DeepTestsFW {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationOverlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationOverlay");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -896,12 +903,12 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             Thread.sleep(5000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
             Thread.sleep(5000);
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
             Thread.sleep(1000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -1003,9 +1010,10 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationMultiMidroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationMultiMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }
@@ -1064,7 +1072,7 @@ public class DeepTestsFW {
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
             Thread.sleep(1000);
 
             //Wait for video to start and verify the playStarted event .
@@ -1079,7 +1087,7 @@ public class DeepTestsFW {
             Thread.sleep(5000);
 
             //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 49000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 49000);
             Thread.sleep(1000);
 
             //Wait for video to start and verify the playStarted event .
@@ -1089,7 +1097,7 @@ public class DeepTestsFW {
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
             Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
@@ -1190,9 +1198,10 @@ public class DeepTestsFW {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("FreeWheelIntegrationPreMidPostroll_overlay throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"FreeWheelIntegrationPreMidPostroll_overlay");
+            Assert.assertTrue(false, "This will fail!");
         }
 
     }*/

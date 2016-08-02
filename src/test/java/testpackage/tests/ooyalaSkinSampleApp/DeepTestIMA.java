@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -16,7 +18,7 @@ import org.testng.annotations.Test;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
 import testpackage.utils.*;
 
-public class DeepTestIMA {
+public class DeepTestIMA extends EventLogTest{
 
     private static AndroidDriver driver;
 
@@ -83,7 +85,7 @@ public class DeepTestIMA {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -160,7 +162,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Time out
             Thread.sleep(1000);
@@ -277,9 +279,10 @@ public class DeepTestIMA {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("GoogleIMAIntegrationIMAAdRulesPreroll throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -355,7 +358,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(22000);
@@ -460,9 +463,10 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAAdRulesMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -538,7 +542,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -650,9 +654,10 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAAdRulesPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -723,7 +728,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
@@ -731,7 +736,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Play Started
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
@@ -842,9 +847,10 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -920,7 +926,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -928,7 +934,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Thread sleep time is equivalent to the length of the half of the video
             Thread.sleep(22000);
@@ -1038,9 +1044,10 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedMidroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1116,7 +1123,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
@@ -1124,7 +1131,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -1236,9 +1243,10 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1309,7 +1317,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Pre - Ad Started to Play ", 30000);
@@ -1317,7 +1325,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Pre - Ad Started to Play ", 30000);
@@ -1325,7 +1333,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
@@ -1338,7 +1346,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
@@ -1346,7 +1354,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
@@ -1354,7 +1362,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
 
             Thread.sleep(30000);
 
@@ -1364,7 +1372,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
@@ -1372,7 +1380,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
 
             //Ad Started Verification
             ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 30000);
@@ -1380,7 +1388,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 30000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
@@ -1485,9 +1493,10 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMAPoddedPreMidPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreMidPostroll");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1558,7 +1567,7 @@ public class DeepTestIMA {
 
             Thread.sleep(5000);
 
-            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 35000);
+            ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 35000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 36000);
 
@@ -1571,7 +1580,7 @@ public class DeepTestIMA {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 50000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 50000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 51000);
@@ -1662,9 +1671,10 @@ public class DeepTestIMA {
         }
         catch(Exception e)
         {
-            System.out.println(" Exception "+e);
+            System.out.println("GoogleIMAIntegrationIMASkippable throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMASkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 
@@ -1742,7 +1752,7 @@ public class DeepTestIMA {
             //po.clickBasedOnText(driver,"Skip Ad");
             //Thread.sleep(5000);
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Pre - Ad Completed to Play ", 30000);
+            ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
@@ -1755,7 +1765,7 @@ public class DeepTestIMA {
 
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Completed to Play ", 40000);
+            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 40000);
 
             //Thread sleep time is equivalent to the length of the video
             Thread.sleep(35000);
@@ -1766,7 +1776,7 @@ public class DeepTestIMA {
             Thread.sleep(11000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Completed to Play ", 60000);
+            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 75000);
@@ -1875,9 +1885,10 @@ public class DeepTestIMA {
 
 
         } catch (Exception e) {
-            System.out.println(" Exception " + e);
+            System.out.println("GoogleIMAIntegrationIMAPreMidPostSkippable throws Exception " + e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver);
+            ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPreMidPostSkippable");
+            Assert.assertTrue(false, "This will fail!");
         }
     }
 }
