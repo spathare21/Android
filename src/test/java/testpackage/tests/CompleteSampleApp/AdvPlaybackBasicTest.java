@@ -80,7 +80,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void playWithIntitialTime() throws Exception {
 
         try
@@ -160,7 +160,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void multipleVideoPlayback() throws Exception {
 
         try {
@@ -238,7 +238,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void insertAtRunTime() throws Exception {
 
         try {
@@ -311,7 +311,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void changeVideoProgramatically() throws Exception {
 
         try {
@@ -385,7 +385,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void customPluginSample() throws Exception {
 
         try {
@@ -439,7 +439,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void customControls() throws Exception {
 
         try {
@@ -498,7 +498,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void customOverlay() throws Exception {
 
         try {
@@ -604,21 +604,20 @@ public class AdvPlaybackBasicTest extends EventLogTest {
             po.pauseInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
 
+            //clicking on InsertVastAD option , inserting VAST Ad
+            po.clickOnVastAd(driver);
+            Thread.sleep(2000);
+
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
 
-            //clicking on InsertVastAD option , inserting VAST Ad
-            po.clickOnVastAd(driver);
-
-            Thread.sleep(2000);
-
             // Verifying if VAST Ad started
-            ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 85000);
             Thread.sleep(5000);
             // Verifying if VAST Ad completed
-            ev.verifyEvent("adCompleted","Vast Ad Playback Completed",30000);
+            ev.verifyEvent("adCompleted","Vast Ad Playback Completed",85000);
             // Veirfying if video completed
-            ev.verifyEvent("playCompleted", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 120000);
 
             Thread.sleep(2000);
 
@@ -675,20 +674,21 @@ public class AdvPlaybackBasicTest extends EventLogTest {
             po.pauseInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
 
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
-
             //clicking on InsertOoyalaAD option , inserting Ooyala Ad
             po.clickOnOoyalaAd(driver);
             Thread.sleep(2000);
 
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
+
+
             // Verifying if Ooyala Ad started
-            ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 85000);
             Thread.sleep(5000);
             // Verifying if Ooyala Ad completed
-            ev.verifyEvent("adCompleted","Ooyala Ad Playback Completed",30000);
+            ev.verifyEvent("adCompleted","Ooyala Ad Playback Completed",85000);
             // Veirfying if video completed
-            ev.verifyEvent("playCompleted", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 120000);
 
             Thread.sleep(2000);
 
@@ -750,11 +750,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
             po.pauseInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
 
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
-
             po.clickOnP1(driver);
-
             // verifing that next video started to play
             ev.verifyEvent("playStarted", "Inserted video1 started to play", 50000);
 
@@ -819,11 +815,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
             po.pauseInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
 
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
-
             po.clickOnP2(driver);
-
             // verifing that next video started to play
             ev.verifyEvent("playStarted", "Inserted video2 started to play", 50000);
 
