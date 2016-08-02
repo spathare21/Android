@@ -21,7 +21,7 @@ import java.util.Properties;
 
 public class DeepTest2SkinPlayback extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

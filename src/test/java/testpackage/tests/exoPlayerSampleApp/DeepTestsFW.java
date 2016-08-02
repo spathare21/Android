@@ -18,7 +18,7 @@ import java.util.Properties;
  * Created by sumit on 03/05/16.
  */
 public class DeepTestsFW extends EventLogTest {
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

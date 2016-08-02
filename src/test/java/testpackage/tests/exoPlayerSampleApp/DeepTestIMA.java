@@ -18,7 +18,7 @@ import java.util.Properties;
  * Created by Sameer on 5/3/2016.
  */
 public class DeepTestIMA extends EventLogTest{
-    private static AndroidDriver driver;
+
 
         @BeforeClass
         public void beforeTest() throws Exception {

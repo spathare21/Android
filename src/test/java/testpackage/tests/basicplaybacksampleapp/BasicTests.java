@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class BasicTests extends EventLogTest {
 
-    private static AndroidDriver driver;
+
 
 
     @BeforeClass

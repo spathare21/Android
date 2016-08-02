@@ -20,7 +20,7 @@ import testpackage.utils.*;
 
 public class DeepTestIMA extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

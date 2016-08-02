@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class BasicTestsSkinPlayback extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

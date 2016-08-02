@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class BasicPlayBackBasicTest2 extends EventLogTest {
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -89,6 +89,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         Thread.sleep(5000);
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
+
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(5000);
 

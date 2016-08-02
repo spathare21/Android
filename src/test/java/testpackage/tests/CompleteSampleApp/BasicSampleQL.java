@@ -16,7 +16,7 @@ import java.util.Properties;
 
 public class BasicSampleQL extends EventLogTest {
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

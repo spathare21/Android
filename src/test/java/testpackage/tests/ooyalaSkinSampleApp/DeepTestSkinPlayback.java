@@ -19,7 +19,7 @@ import java.util.Properties;
 
 public class DeepTestSkinPlayback extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

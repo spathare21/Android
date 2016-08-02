@@ -17,7 +17,7 @@ import java.util.Properties;
  * Created by Sachin on 3/31/2016.
  */
 public class BasicTests extends EventLogTest {
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

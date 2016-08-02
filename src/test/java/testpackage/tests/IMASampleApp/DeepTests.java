@@ -19,7 +19,7 @@ import java.util.Properties;
  * Created by Sachin on 4/26/2016.
  */
 public class DeepTests extends EventLogTest{
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

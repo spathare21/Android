@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class DeepTests extends EventLogTest {
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

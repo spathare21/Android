@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class DeepTests extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

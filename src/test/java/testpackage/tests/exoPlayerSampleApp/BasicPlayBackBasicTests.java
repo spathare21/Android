@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class BasicPlayBackBasicTests extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

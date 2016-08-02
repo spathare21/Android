@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class BasicTests extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

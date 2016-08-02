@@ -20,7 +20,7 @@ import java.util.Properties;
  */
 public class BasicTestsGoogleIMAIntegration extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -563,6 +563,7 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
 
             //Clicking on Play button in Ooyala Skin
             po.getPlay(driver);
+            Thread.sleep(3000);
 
             //Play Started
             EventVerification ev = new EventVerification();

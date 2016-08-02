@@ -25,7 +25,7 @@ import java.util.Properties;
  */
 public class DeepTests extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
 
 

@@ -18,7 +18,7 @@ import java.util.Properties;
  * Created by Shivam on 27/05/16.
  */
 public class DeepTests2BasicPlayback extends EventLogTest{
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {

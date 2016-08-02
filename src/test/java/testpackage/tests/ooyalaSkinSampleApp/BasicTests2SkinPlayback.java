@@ -18,7 +18,7 @@ import java.util.Properties;
  * Created by Shivam on 25/07/16.
  */
 public class BasicTests2SkinPlayback extends EventLogTest{
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
