@@ -331,9 +331,20 @@ public class advancePlayBackSampleApp {
     }
 
     public void loadingSpinner(AndroidDriver driver) {
+        int i = 0;
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
-                System.out.println("Handling Loading Spinner");
+                //System.out.println("Handling Loading Spinner");
+                if (i<10){
+                    System.out.println("Handling Loading Spinner");
+                    Thread.sleep(1000);
+                    i++;
+                }
+                else{
+                    System.out.println("Loading spinner occured more than "+i+" seconds");
+                    break;
+                }
+
             }
         } catch (Exception e) {
             e.getMessage();

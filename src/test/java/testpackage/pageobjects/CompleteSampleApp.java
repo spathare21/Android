@@ -102,9 +102,20 @@ public class CompleteSampleApp {
     }
 
     public void loadingSpinner(AndroidDriver driver) {
+        int i = 0;
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
-                System.out.println("Handling Loading Spinner");
+                //System.out.println("Handling Loading Spinner");
+                if (i<25){
+                    System.out.println("Handling Loading Spinner");
+                    Thread.sleep(1000);
+                    i++;
+                }
+                else{
+                    System.out.println("Loading spinner occured more than "+i+" seconds");
+                    break;
+                }
+
             }
         } catch (Exception e) {
             e.getMessage();
@@ -120,14 +131,14 @@ public class CompleteSampleApp {
     public void clickOnOoyalaAd(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("in Ooyala ad");
-        driver.findElement(By.xpath("//android.widget.Button[@text=Insert Ooyala Ad]")).click();
+        driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleRightButton").click();
         System.out.println("clicked");
     }
 
     public void clickOnP1(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("in Video1 ad");
-        driver.findElement(By.xpath("//android.widget.Button[@text=Play Video 1]")).click();
+        driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleLeftButton").click();
         System.out.println("clicked");
 
     }
@@ -135,7 +146,7 @@ public class CompleteSampleApp {
     public void clickOnP2(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("in Video2 ad");
-        driver.findElement(By.xpath("//android.widget.Button[@text=Play Video 2]")).click();
+        driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleRightButton").click();
         System.out.println("clicked");
 
     }
@@ -143,8 +154,31 @@ public class CompleteSampleApp {
     public void clickOnVastAd(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("in vast ad");
-        driver.findElement(By.xpath("//android.widget.Button[@text=Insert VAST Ad]")).click();
+        driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleLeftButton").click();
         System.out.println("clicked");
+    }
+
+    public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) {
+
+        driver.scrollTo(clickText).click();
+    }
+
+    public void clickImagebuttons(AndroidDriver driver, int index) {
+
+        List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
+        imageButtons.get(index).click();
+    }
+
+    public void clickRadiobuttons(AndroidDriver driver, int index) {
+
+        List<WebElement> radioButtons = driver.findElements(By.xpath("//android.widget.RadioButton"));
+        radioButtons.get(index).click();
+    }
+
+    public boolean radioButtonChecked(AndroidDriver driver, int index) {
+
+        List<WebElement> radioButtons = driver.findElements(By.xpath("//android.widget.RadioButton"));
+        return radioButtons.get(index).isEnabled();
     }
 
 }
