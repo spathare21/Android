@@ -16,7 +16,7 @@ import java.util.Properties;
 /**
  * Created by Sachin on 3/31/2016.
  */
-public class BasicTests {
+public class BasicTests extends EventLogTest {
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -87,7 +87,6 @@ public class BasicTests {
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
-        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

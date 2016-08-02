@@ -13,7 +13,7 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DeepTests {
+public class DeepTests extends EventLogTest {
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -85,7 +85,6 @@ public class DeepTests {
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
-        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

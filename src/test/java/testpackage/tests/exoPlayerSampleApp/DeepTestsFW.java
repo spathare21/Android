@@ -17,7 +17,7 @@ import java.util.Properties;
 /**
  * Created by sumit on 03/05/16.
  */
-public class DeepTestsFW {
+public class DeepTestsFW extends EventLogTest {
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -89,7 +89,6 @@ public class DeepTestsFW {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
-        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

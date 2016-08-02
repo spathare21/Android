@@ -17,7 +17,7 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DeepTestSkinPlayback {
+public class DeepTestSkinPlayback extends EventLogTest{
 
     private static AndroidDriver driver;
 
@@ -92,7 +92,6 @@ public class DeepTestSkinPlayback {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
-        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

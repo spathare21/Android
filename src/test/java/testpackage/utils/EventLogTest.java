@@ -12,7 +12,7 @@ import java.time.Instant;
 
 
 
-public class AttachLogs implements IHookable {
+public class EventLogTest implements IHookable {
 
     @Override
     public void run(IHookCallBack callBack, ITestResult testResult){

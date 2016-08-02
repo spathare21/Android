@@ -16,7 +16,7 @@ import java.util.Properties;
 /**
  * Created by Shivam on 27/05/16.
  */
-public class DeepTest4Basicplayback {
+public class DeepTest4Basicplayback extends EventLogTest{
 
     private static AndroidDriver driver;
 
@@ -89,7 +89,6 @@ public class DeepTest4Basicplayback {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
-        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

@@ -13,7 +13,7 @@ import testpackage.utils.*;
 import java.util.Properties;
 import java.io.IOException;
 
-public class BasicTests{
+public class BasicTests extends EventLogTest{
 
     private static AndroidDriver driver;
 
@@ -87,7 +87,6 @@ public class BasicTests{
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
-        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

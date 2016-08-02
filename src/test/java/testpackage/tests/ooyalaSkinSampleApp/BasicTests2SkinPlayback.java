@@ -17,7 +17,7 @@ import java.util.Properties;
 /**
  * Created by Shivam on 25/07/16.
  */
-public class BasicTests2SkinPlayback {
+public class BasicTests2SkinPlayback extends EventLogTest{
     private static AndroidDriver driver;
 
     @BeforeClass
@@ -88,7 +88,6 @@ public class BasicTests2SkinPlayback {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
-        RemoveEventsLogFile.storeLogFile(result.getName());
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
