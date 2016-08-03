@@ -25,6 +25,12 @@ public class CompleteSampleApp {
         Assert.assertEquals(driver.currentActivity(), activityName);
     }
 
+    public void clickButtons(AndroidDriver driver, int index) {
+
+        List<WebElement> buttons = driver.findElements(By.xpath("//android.widget.Button"));
+        buttons.get(index).click();
+    }
+
     public void clickBasedOnText(AndroidDriver driver, String clickText) {
 
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
@@ -39,6 +45,13 @@ public class CompleteSampleApp {
         }
 
     }
+
+    public void waitForPresenceOfText(AndroidDriver driver,String waitString) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        String xpath = "//android.widget.TextView[@text='" + waitString + "']";
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+    }
+
 
     public void waitForTextView(AndroidDriver driver, String text) {
 

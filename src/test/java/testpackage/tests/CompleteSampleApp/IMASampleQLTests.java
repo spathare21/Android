@@ -1,6 +1,5 @@
 package testpackage.tests.CompleteSampleApp;
 
-import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -9,7 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import testpackage.pageobjects.CompleteSampleApp;
-import testpackage.pageobjects.FreewheelSampleApp;
+import testpackage.pageobjects.IMASampleApp;
 import testpackage.utils.*;
 
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.util.Properties;
 /**
  * Created by Sachin on 8/2/2016.
  */
-public class Freewheel_Sample extends EventLogTest{
+public class IMASampleQLTests extends EventLogTest{
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -47,7 +46,6 @@ public class Freewheel_Sample extends EventLogTest{
     }
 
     @BeforeMethod
-
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
@@ -82,7 +80,7 @@ public class Freewheel_Sample extends EventLogTest{
     }
 
     @org.testng.annotations.Test
-    public void freewheelPreroll() throws Exception {
+    public void IMAAdRulePreroll() throws Exception{
 
         try {
             // Creating an Object of CompleSampleApp class
@@ -98,41 +96,44 @@ public class Freewheel_Sample extends EventLogTest{
             System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
+            po.clickBasedOnText(driver, "Google IMA Integration");
 
             //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel Preroll");
+            po.waitForTextView(driver, "IMA Ad-Rules Preroll");
 
-            // Select freewheel preroll asset .
-            po.clickBasedOnText(driver, "Freewheel Preroll");
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Ad-Rules Preroll");
             Thread.sleep(2000);
+
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
-
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForTextView(driver,"00:00");
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
 
+            //Clicking on play button
+            System.out.println("Now will play in normal screen");
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
 
-            System.out.println("Preroll started");
+            //Play Started Verification
             EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 1000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            po.loadingSpinner(driver);
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
+            Thread.sleep(10000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 3000);
+
             po.loadingSpinner(driver);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 50000);
-            Thread.sleep(6000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 5000);
+            Thread.sleep(5000);
 
             // Click on the web area so that player screen shows up
             po.screenTap(driver);
@@ -140,38 +141,318 @@ public class Freewheel_Sample extends EventLogTest{
 
             //pausing the video
             po.pauseInNormalScreen(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 6000);
+
+            po.loadingSpinner(driver);
+
+            po.seekVideo(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 7000);
+
+            po.loadingSpinner(driver);
+            Thread.sleep(1000);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 7000);
+
+            po.loadingSpinner(driver);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
+            Thread.sleep(2000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMAAdRulePreroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMAAdRuleMidroll() throws Exception{
+
+        try {
+            // Creating an Object of CompleSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+
+            // wait till home screen of CompleteSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+
+            // Write to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting freewheel Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Google IMA Integration");
+
+            //waiting for loading assets from Freewheel sample app
+            po.waitForTextView(driver, "IMA Ad-Rules Midroll");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Ad-Rules Midroll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            Thread.sleep(1000);
+
+            //Clicking on play button
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 45000);
+
+            Thread.sleep(5000);
+            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+            Thread.sleep(5000);
+
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            Thread.sleep(1000);
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            Thread.sleep(3000);
+
+            po.readTime(driver);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 7000);
+
+            po.loadingSpinner(driver);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
+            Thread.sleep(2000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMAAdRuleMidroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMAAdRulePostroll() throws Exception{
+
+        try {
+            // Creating an Object of CompleSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+
+            // wait till home screen of CompleteSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+
+            // Write to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting freewheel Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Google IMA Integration");
+
+            //waiting for loading assets from Freewheel sample app
+            po.waitForTextView(driver, "IMA Ad-Rules Postroll");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Ad-Rules Postroll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            Thread.sleep(1000);
+
+            //Clicking on play button
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            po.loadingSpinner(driver);
+
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 55000);
+
+            po.loadingSpinner(driver);
+            Thread.sleep(3000);
+
+            po.readTime(driver);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 10000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
+
+            po.loadingSpinner(driver);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMAAdRulePostroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMAPoddedPreroll() throws Exception{
+
+        try {
+            // Creating an Object of CompleSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+
+            // wait till home screen of CompleteSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+
+            // Write to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting freewheel Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Google IMA Integration");
+
+            //waiting for loading assets from Freewheel sample app
+            po.waitForTextView(driver, "IMA Podded Preroll");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Podded Preroll");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            Thread.sleep(1000);
+
+            //Clicking on play button
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 15000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 25000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 25000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 35000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("playStarted", " Video Started Play ", 35000);
+            Thread.sleep(7000);
+
+            po.loadingSpinner(driver);
+
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+            Thread.sleep(2000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 85000);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 75000);
             Thread.sleep(3000);
 
             po.loadingSpinner(driver);
 
             po.readTime(driver);
 
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
-            Thread.sleep(2000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
             po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 10000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
-
-
-        } catch (Exception e) {
-            System.out.println("FreeWheelPreRoll throws Exception " + e);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 120000);
+            Thread.sleep(2000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver, "FreeWheelPreRoll");
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
             Assert.assertTrue(false, "This will fail!");
         }
     }
 
     @org.testng.annotations.Test
-    public void freewheelMidroll() throws Exception {
+    public void IMAPoddedMidroll() throws Exception{
+
         try {
             // Creating an Object of CompleSampleApp class
             CompleteSampleApp po = new CompleteSampleApp();
@@ -186,28 +467,27 @@ public class Freewheel_Sample extends EventLogTest{
             System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
+            po.clickBasedOnText(driver, "Google IMA Integration");
 
             //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel Midroll");
+            po.waitForTextView(driver, "IMA Podded Midroll");
 
-            // Select freewheel midroll asset .
-            po.clickBasedOnText(driver, "Freewheel Midroll");
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Podded Midroll");
             Thread.sleep(2000);
+
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
-
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-
-            po.waitForTextView(driver,"00:00");
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
 
+            //Clicking on play button
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
 
@@ -215,483 +495,168 @@ public class Freewheel_Sample extends EventLogTest{
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-            Thread.sleep(6000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 15000);
 
             po.loadingSpinner(driver);
-
-            // Click on the web area so that player screen shows up
-            po.screenTap(driver);
-            Thread.sleep(1000);
-
-            //pausing the video
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
-            Thread.sleep(2000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
-            Thread.sleep(2000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 75000);
-            po.loadingSpinner(driver);
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 85000);
-            po.loadingSpinner(driver);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
-
-        } catch (Exception e) {
-            System.out.println("FreeWheelMidroll throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver, "Freewheel Midroll");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-    @org.testng.annotations.Test
-    public void freewheelPostroll() throws Exception {
-        try {
-            // Creating an Object of CompleSampleApp class
-            CompleteSampleApp po = new CompleteSampleApp();
-
-            // wait till home screen of CompleteSampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-
-            // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
-
-            //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel Postroll");
-
-            // Select freewheel postroll asset .
-            po.clickBasedOnText(driver, "Freewheel Postroll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForTextView(driver,"00:00");
-            Thread.sleep(1000);
-
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-            Thread.sleep(6000);
-
-            po.loadingSpinner(driver);
-
-            // Click on the web area so that player screen shows up
-            po.screenTap(driver);
-
-            //pausing the video
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
-            Thread.sleep(2000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
-            Thread.sleep(2000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
-            po.loadingSpinner(driver);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
-            po.loadingSpinner(driver);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
-
-        } catch (Exception e) {
-            System.out.println("FreeWheelPostroll throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver, "Freewheel Postroll");
-            Assert.assertTrue(false, "This will fail!");
-        }
-
-    }
-
-    @org.testng.annotations.Test
-    public void freewheelPreMidPost() throws Exception {
-        try {
-            // Creating an Object of CompleSampleApp class
-            CompleteSampleApp po = new CompleteSampleApp();
-
-            // wait till home screen of CompleteSampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-
-            // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
-
-            //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel PreMidPost");
-
-            // Select freewheel premidpost asset .
-            po.clickBasedOnText(driver, "Freewheel PreMidPost");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForTextView(driver,"00:00");
-            Thread.sleep(1000);
-
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Completed ", 40000);
+
             po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+            Thread.sleep(6000);
+
+            po.loadingSpinner(driver);
+
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 80000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 10000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 120000);
+            Thread.sleep(2000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMAPoddedMidroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMAPoddedPostroll() throws Exception{
+
+        try {
+            // Creating an Object of CompleSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+
+            // wait till home screen of CompleteSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+
+            // Write to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting freewheel Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Google IMA Integration");
+
+            //waiting for loading assets from Freewheel sample app
+            po.waitForTextView(driver, "IMA Podded Postroll");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Podded Postroll");
+            Thread.sleep(2000);
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            Thread.sleep(1000);
+
+            //Clicking on play button
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 45000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 15000);
+            Thread.sleep(6000);
+
             po.loadingSpinner(driver);
 
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 65000);
+            // Click on the web area so that player screen shows up
+            po.screenTap(driver);
+            Thread.sleep(1000);
+
+            //pausing the video
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+            Thread.sleep(2000);
+
             po.loadingSpinner(driver);
 
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 75000);
+            po.readTime(driver);
+
+            po.seekVideo(driver);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 45000);
+            Thread.sleep(3000);
+
+            po.loadingSpinner(driver);
+
+            po.readTime(driver);
+
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 10000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 85000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 95000);
+
             po.loadingSpinner(driver);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 95000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
-            po.loadingSpinner(driver);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
-        } catch (Exception e) {
-
-            System.out.println("FreeWheelPreMidPost throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver, "Freewheel PreMidPost");
-            Assert.assertTrue(false, "This will fail!");
-        }
-
-    }
-
-    @org.testng.annotations.Test
-    public void freewheelOverlay() throws Exception {
-
-        try {
-            // Creating an Object of CompleSampleApp class
-            CompleteSampleApp po = new CompleteSampleApp();
-
-            // wait till home screen of CompleteSampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-
-            // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
-
-            //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel Overlay");
-
-            // Select freewheel overlay asset .
-            po.clickBasedOnText(driver, "Freewheel Overlay");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-
-            po.waitForTextView(driver,"00:00");
-            Thread.sleep(1000);
-
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-
-            po.loadingSpinner(driver);
-            Thread.sleep(7000);
-            // Click on the web area so that player screen shows up
-            WebElement viewarea = driver.findElementByClassName("android.widget.RelativeLayout");
-            viewarea.click();
-            Thread.sleep(1000);
-
-            //pausing the video
-            po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
-            Thread.sleep(3000);
 
             po.loadingSpinner(driver);
 
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
-            Thread.sleep(2000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Completed ", 120000);
 
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
-
-
-        } catch (Exception e) {
-            System.out.println("FreeWheelOverlay throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver, "Freewheel Overlay");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-    @org.testng.annotations.Test
-    public void freewheelMultiMidroll() throws Exception {
-        try {
-            // Creating an Object of CompleSampleApp class
-            CompleteSampleApp po = new CompleteSampleApp();
-
-            // wait till home screen of CompleteSampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-
-            // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
-
-            //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel Multi Midroll");
-
-            // Select freewheel multiMidroll asset .
-            po.clickBasedOnText(driver, "Freewheel Multi Midroll");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForTextView(driver,"00:00");
-
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
-
-        } catch (Exception e) {
-
-            System.out.println("FreeWheelMultiMidroll throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver, "Freewheel Multi Midroll");
-            Assert.assertTrue(false, "This will fail!");
-
-        }
-    }
-
-    @org.testng.annotations.Test
-    public void FreeWheelPreMidPostRollOverlay() throws Exception{
-
-        try {
-            // Creating an Object of CompleSampleApp class
-            CompleteSampleApp po = new CompleteSampleApp();
-
-            // wait till home screen of CompleteSampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-
-            // Wrire to console activity name of home screen app
-            System.out.println("CompleteSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
-
-            //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel PreMidPost Overlay");
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Freewheel PreMidPost Overlay");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForTextView(driver,"00:00");
-            Thread.sleep(1000);
-
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 80000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
-
+            ev.verifyEvent("playCompleted", " Video Completed  ", 130000);
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelPreMidPostRollOverlay throws Exception "+e);
+            System.out.println("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"FreeWheelPreMidPostRollOverlay");
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
             Assert.assertTrue(false, "This will fail!");
-
         }
     }
 
     @org.testng.annotations.Test
-    public void freewheelAppicationConfiguration() throws Exception{
-        try{
+    public void IMAPoddedPreMidPost() throws Exception{
+
+        try {
             // Creating an Object of CompleSampleApp class
             CompleteSampleApp po = new CompleteSampleApp();
 
@@ -705,170 +670,353 @@ public class Freewheel_Sample extends EventLogTest{
             System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
+            po.clickBasedOnText(driver, "Google IMA Integration");
 
             //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "Freewheel Application-Configured");
+            po.waitForTextView(driver, "IMA Podded Pre-Mid-Post");
 
-            // Select freewheel application configuration asset .
-            po.clickBasedOnText(driver, "Freewheel Application-Configured");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredFreewheelPlayerActivity");
-
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.waitForTextView(driver,"00:00");
-            Thread.sleep(1000);
-
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 80000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 110000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
-
-        }
-        catch (Exception e)
-        {
-            System.out.println("FreeWheelApplication Configuration throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver, "Freewheel Application-Configured");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-    @org.testng.annotations.Test
-    public void FreeWheelCuePointsAndAdsControlOptions() throws Exception{
-
-        try {
-            // Creating an Object of CompleSampleApp class
-            CompleteSampleApp po = new CompleteSampleApp();
-
-            // wait till home screen of CompleteSampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
-
-            // Wrire to console activity name of home screen app
-            System.out.println("CompleteSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            //Selecting freewheel Sample App from Complete Sample App
-            po.clickBasedOnText(driver, "Freewheel Integration");
-
-            //waiting for loading assets from Freewheel sample app
-            po.waitForTextView(driver, "CuePoints and AdsControl Options");
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
 
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "CuePoints and AdsControl Options");
+            po.clickBasedOnText(driver, "IMA Podded Pre-Mid-Post");
             Thread.sleep(2000);
 
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OptionsFreewheelPlayerActivity");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            //Click on Video create button
-            po.clickButtons(driver,0);
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            Thread.sleep(1000);
 
-            // Wait for the video to be generated
-            po.waitForPresenceOfText(driver,"00:00");
-
-            po.loadingSpinner(driver);
-
-            // Click on video play icon after video has been generated .
-            //po.clickImagebuttons(driver,0);
+            //Clicking on play button
             po.playInNormalScreen(driver);
+            Thread.sleep(1000);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            // verify preroll
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 15000);
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Completed ", 25000);
 
             po.loadingSpinner(driver);
 
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 25000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 35000);
+
+            po.loadingSpinner(driver);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 40000);
 
             po.loadingSpinner(driver);
 
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 55000);
-
-            po.loadingSpinner(driver);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 65000);
-
-            po.loadingSpinner(driver);
-
+            // verify midroll
             ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
+            ev.verifyEvent("adCompleted", " Ad Completed ", 90000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 110000);
+
+            po.loadingSpinner(driver);
+
+            // verify postroll
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 170000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed  ", 180000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 180000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed  ", 190000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 190000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 200000);
 
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 210000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMAPoddedPreMidPost throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPost");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMASkippable() throws Exception{
+
+        try {
+            // Creating an Object of CompleSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+
+            // wait till home screen of CompleteSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+
+            // Write to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting freewheel Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Google IMA Integration");
+
+            //waiting for loading assets from Freewheel sample app
+            po.waitForTextView(driver, "IMA Skippable");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Skippable");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            Thread.sleep(1000);
+
+            //Clicking on play button
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            po.loadingSpinner(driver);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 45000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("playStarted", " Video Started Play ", 50000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
+
+            po.loadingSpinner(driver);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 90000);
+
+            po.loadingSpinner(driver);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 100000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMASkippable throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMASkippable");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMAPreMidPostSkippable() throws Exception{
+
+        try {
+            // Creating an Object of CompleSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+
+            // wait till home screen of CompleteSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+
+            // Write to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting freewheel Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Google IMA Integration");
+
+            //waiting for loading assets from Freewheel sample app
+            po.waitForTextView(driver, "IMA Pre, Mid and Post Skippable");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            Thread.sleep(1000);
+
+            //Clicking on play button
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
+            po.loadingSpinner(driver);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 35000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            po.loadingSpinner(driver);
+            // Thread.sleep(5000);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 60000);
+            po.loadingSpinner(driver);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 85000);
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 95000);
+            po.loadingSpinner(driver);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 100000);
+            Thread.sleep(2000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMAPreMidPostSkippable throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @org.testng.annotations.Test
+    public void IMAApplicationConfigured() throws Exception{
+
+        try {
+            // Creating an Object of CompleSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+
+            // wait till home screen of CompleteSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
+
+            // Write to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting freewheel Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Google IMA Integration");
+
+            //waiting for loading assets from Freewheel sample app
+            po.waitForTextView(driver, "IMA Application-Configured");
+
+            // Select one of the video HLS,MP4 etc .
+            po.clickBasedOnText(driver, "IMA Application-Configured");
+            Thread.sleep(2000);
+
+
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            po.waitForPresence(driver,"className","android.widget.ImageButton");
+
+            po.playInNormalScreen(driver);
+            Thread.sleep(1000);
+
+            po.loadingSpinner(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 10000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+
+            po.loadingSpinner(driver);
+
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
 
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelCuePointsAndAdsControlOptions throws Exception "+e);
+            System.out.println("IMAApplicationConfigured throws Exception "+e);
             e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"FreeWheelCuePointsAndAdsControlOptions");
+            ScreenshotDevice.screenshot(driver,"IMAApplicationConfigured");
             Assert.assertTrue(false, "This will fail!");
-
         }
     }
+
 
 }
 
