@@ -154,7 +154,7 @@ public class IMASampleQLTests extends EventLogTest{
             Thread.sleep(1000);
 
             po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 7000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 85000);
 
             po.loadingSpinner(driver);
 
@@ -522,7 +522,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             //pausing the video
             po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 85000);
 
             po.readTime(driver);
 
