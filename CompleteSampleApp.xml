@@ -6,6 +6,7 @@
 
             <class name="testpackage.tests.CompleteSampleApp.AdvPlaybackBasicTest"/>
             <class name="testpackage.tests.CompleteSampleApp.BasicSampleQL"/>
+            <class name="testpackage.tests.CompleteSampleApp.Freewheel_Sample"/>
 
         </classes>
     </test> <!-- AppiumTest -->

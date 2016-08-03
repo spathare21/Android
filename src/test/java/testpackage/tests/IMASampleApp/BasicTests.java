@@ -127,31 +127,35 @@ public class BasicTests extends EventLogTest{
             Thread.sleep(1000);
 
             //Clicking on play button
+            System.out.println("Now will play in normal screen");
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 1000);
 
             po.loadingSpinner(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed ", 40000);
+            ev.verifyEvent("adCompleted", " Ad Completed ", 3000);
 
             po.loadingSpinner(driver);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 50000);
-
-            po.loadingSpinner(driver);
-            Thread.sleep(7000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 5000);
+            Thread.sleep(5000);
 
             po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 6000);
 
             po.loadingSpinner(driver);
 
             po.seekVideo(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 7000);
+            Thread.sleep(3000);
+
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
 
             po.loadingSpinner(driver);
@@ -160,7 +164,7 @@ public class BasicTests extends EventLogTest{
             po.resumeInNormalScreen(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 9000);
             Thread.sleep(2000);
         }
         catch(Exception e)
@@ -172,7 +176,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
+   @org.testng.annotations.Test
     public void IMAAdRuleMidroll() throws Exception{
 
         try {
@@ -215,14 +219,14 @@ public class BasicTests extends EventLogTest{
             po.loadingSpinner(driver);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 45000);
-            po.loadingSpinner(driver);
-            ev.verifyEvent("adCompleted", " Ad Completed ", 55000);
-            po.loadingSpinner(driver);
+
+            Thread.sleep(5000);
+            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+            Thread.sleep(5000);
 
             po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
-
-            po.loadingSpinner(driver);
+            Thread.sleep(1000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
 
             po.readTime(driver);
 
@@ -950,6 +954,5 @@ public class BasicTests extends EventLogTest{
             Assert.assertTrue(false, "This will fail!");
         }
     }
-
 
 }
