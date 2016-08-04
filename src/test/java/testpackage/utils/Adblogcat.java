@@ -69,7 +69,8 @@ public class Adblogcat {
         // read the output from the command
         String sdk_version = null;
         while ((sdk_version = stdInput.readLine()) != null) {
-            System.out.println(" Android SDK Vesion is   :" + sdk_version + "\n");
+            if(!sdk_version.contains("daemon"))
+                System.out.println(" Android SDK Vesion is   :" + sdk_version + "\n");
         }
     }
 
@@ -84,7 +85,8 @@ public class Adblogcat {
         // read the output from the command
         String devicename = null;
         while ((devicename = stdInput.readLine()) != null) {
-            System.out.println(" Android Device name  is   :" + devicename + "\n");
+            if(!devicename.contains("daemon"))
+                System.out.println(" Android Device name  is   :" + devicename + "\n");
         }
     }
 

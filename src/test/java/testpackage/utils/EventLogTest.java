@@ -8,6 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.IHookCallBack;
 import org.testng.IHookable;
 import org.testng.ITestResult;
+import org.testng.annotations.BeforeSuite;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
 import java.io.File;
@@ -21,6 +22,14 @@ import java.time.Instant;
 public class EventLogTest implements IHookable {
 
     public static AndroidDriver driver;
+
+
+    @BeforeSuite
+    public void beforeSuit() throws Exception {
+        System.out.println("\n Before suit\n ");
+        Adblogcat.deviceinfo();
+        Adblogcat.androidVersion();
+    }
 
     @Override
     public void run(IHookCallBack callBack, ITestResult testResult){
