@@ -103,7 +103,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Ad-Rules Preroll");
-            Thread.sleep(2000);
+            Thread.sleep(5000);
 
 
             //verify if player was loaded
@@ -195,7 +195,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Ad-Rules Midroll");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
@@ -283,7 +283,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Ad-Rules Postroll");
-            Thread.sleep(2000);
+            Thread.sleep(5000);
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
@@ -373,7 +373,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Preroll");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
 
             //verify if player was loaded
@@ -474,7 +474,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Midroll");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
 
             //verify if player was loaded
@@ -575,7 +575,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Postroll");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
@@ -679,7 +679,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Pre-Mid-Post");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
 
             //verify if player was loaded
@@ -807,7 +807,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Skippable");
-            Thread.sleep(2000);
+            Thread.sleep(4000);
 
 
             //verify if player was loaded
@@ -887,7 +887,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
 
             //verify if player was loaded
@@ -973,7 +973,7 @@ public class IMASampleQLTests extends EventLogTest{
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Application-Configured");
-            Thread.sleep(2000);
+            Thread.sleep(4000);
 
 
             //verify if player was loaded
