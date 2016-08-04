@@ -978,7 +978,7 @@ public class BasicSampleQL extends EventLogTest {
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 400000);
         } catch (Exception e) {
             System.out.println("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();
