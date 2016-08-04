@@ -484,6 +484,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
+            Thread.sleep(5000);
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
 
