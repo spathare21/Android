@@ -1,43 +1,40 @@
-package testpackage.tests.advancePlayBackSampleApp;
+package testpackage.tests.CompleteSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import javafx.scene.layout.Priority;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import testpackage.pageobjects.advancePlayBackSampleApp;
+import testpackage.pageobjects.CompleteSampleApp;
 import testpackage.utils.*;
 
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Created by Sachin on 3/31/2016.
- */
-public class BasicTests extends EventLogTest {
+public class AdvPlaybackBasicTest extends EventLogTest {
 
 
     @BeforeClass
     public void beforeTest() throws Exception {
-        // closing all recent app from background.
-        //CloserecentApps.closeApps();
+
         System.out.println("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
-        Properties p = prop.loadProperty("advanceplaybacksampleapp.properties");
+        Properties p = prop.loadProperty("completesampleapp.properties");
 
-        //System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        //System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        //System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        //System.out.println("APK name is "+ p.getProperty("app"));
-        //System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        //System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        //System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        //System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
+        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
+        System.out.println("APK name is "+ p.getProperty("app"));
+        System.out.println("Platform under Test is "+ p.getProperty("platformName"));
+        System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
+        System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -50,8 +47,8 @@ public class BasicTests extends EventLogTest {
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
-        if (driver.currentActivity() != "com.ooyala.sample.lists.AdvancedPlaybackListActivity") {
-            driver.startActivity("com.ooyala.sample.AdvancedPlaybackSampleApp", "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+        if (driver.currentActivity() != "com.ooyala.sample.complete.MainActivity") {
+            driver.startActivity("com.ooyala.sample.CompleteSampleApp", "com.ooyala.sample.complete.MainActivity");
         }
 
         // Get Property Values
@@ -59,14 +56,6 @@ public class BasicTests extends EventLogTest {
         Properties p1 = prop1.loadProperty();
 
         System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
-
-        //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
-        //    driver.rotate(ScreenOrientation.LANDSCAPE);
-        //}
-
-        //driver.rotate(ScreenOrientation.LANDSCAPE);
-        //driver.rotate(ScreenOrientation.LANDSCAPE);
 
     }
 
@@ -80,7 +69,6 @@ public class BasicTests extends EventLogTest {
         String prop = p1.getProperty("appPackage");
         Appuninstall.uninstall(prop);
 
-
     }
 
     @AfterMethod
@@ -92,24 +80,25 @@ public class BasicTests extends EventLogTest {
 
     }
 
-    //TODO : create unique file names for snapshots taken .
     @org.testng.annotations.Test
     public void playWithIntitialTime() throws Exception {
 
         try
         {
-            // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
+            // Creating an Object of CompleteSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
+            // wait till home screen of CompleteSampleApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+           //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver,"Advanced Playback");
+
+            //waiting for loading assets from Advanced sample app
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -127,7 +116,7 @@ public class BasicTests extends EventLogTest {
             //Sleep for brief time
             Thread.sleep(3000);
 
-             //Play Started Verification
+            //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
@@ -175,18 +164,19 @@ public class BasicTests extends EventLogTest {
     public void multipleVideoPlayback() throws Exception {
 
         try {
-            // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            // Creating an Object of CompleteSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            System.out.println("CompleteSampleApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver,"Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -252,18 +242,20 @@ public class BasicTests extends EventLogTest {
     public void insertAtRunTime() throws Exception {
 
         try {
-            // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            // Creating an Object of CompleteSampleApp class
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver,"Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -324,17 +316,19 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver,"Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -396,17 +390,19 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -448,17 +444,18 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Advanced Playback");
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -506,17 +503,18 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Advanced Playback");
             po.waitForTextView(driver, "Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -565,17 +563,19 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -597,21 +597,27 @@ public class BasicTests extends EventLogTest {
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-
             Thread.sleep(5000);
+
+            po.screenTap(driver);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
 
             //clicking on InsertVastAD option , inserting VAST Ad
             po.clickOnVastAd(driver);
-
             Thread.sleep(2000);
 
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
+
             // Verifying if VAST Ad started
-            ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Vast Ad Started to Play ", 85000);
             Thread.sleep(5000);
             // Verifying if VAST Ad completed
-            ev.verifyEvent("adCompleted","Vast Ad Playback Completed",30000);
+            ev.verifyEvent("adCompleted","Vast Ad Playback Completed",85000);
             // Veirfying if video completed
-            ev.verifyEvent("playCompleted", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 120000);
 
             Thread.sleep(2000);
 
@@ -629,17 +635,19 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -661,17 +669,26 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
             Thread.sleep(5000);
 
+            po.screenTap(driver);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+
             //clicking on InsertOoyalaAD option , inserting Ooyala Ad
             po.clickOnOoyalaAd(driver);
             Thread.sleep(2000);
 
+            po.resumeVideoInNormalscreen(driver);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
+
+
             // Verifying if Ooyala Ad started
-            ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ooyala Ad Started to Play ", 85000);
             Thread.sleep(5000);
             // Verifying if Ooyala Ad completed
-            ev.verifyEvent("adCompleted","Ooyala Ad Playback Completed",30000);
+            ev.verifyEvent("adCompleted","Ooyala Ad Playback Completed",85000);
             // Veirfying if video completed
-            ev.verifyEvent("playCompleted", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 120000);
 
             Thread.sleep(2000);
 
@@ -690,17 +707,19 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-            //Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -724,10 +743,14 @@ public class BasicTests extends EventLogTest {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Main Video Started to Play ", 30000);
 
-            Thread.sleep(2000);
+            Thread.sleep(5000);
+
+            po.screenTap(driver);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
 
             po.clickOnP1(driver);
-
             // verifing that next video started to play
             ev.verifyEvent("playStarted", "Inserted video1 started to play", 50000);
 
@@ -749,17 +772,19 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            CompleteSampleApp po = new CompleteSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
-            //Pause the running of test for a brief time .
-           // Thread.sleep(3000);
+            // Wrire to console activity name of home screen app
+            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            //Selecting Adv Sample App from Complete Sample App
+            po.clickBasedOnText(driver, "Advanced Playback");
+
             po.waitForTextView(driver,"Play With InitialTime");
 
             // Select one of the video HLS,MP4 etc .
@@ -783,10 +808,14 @@ public class BasicTests extends EventLogTest {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Main Video Started to Play ", 30000);
 
-            Thread.sleep(2000);
+            Thread.sleep(5000);
+
+            po.screenTap(driver);
+
+            po.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
 
             po.clickOnP2(driver);
-
             // verifing that next video started to play
             ev.verifyEvent("playStarted", "Inserted video2 started to play", 50000);
 
@@ -801,75 +830,4 @@ public class BasicTests extends EventLogTest {
         }
 
     }
-
-
-    //@org.testng.annotations.Test
-    public void customPluginSample_Adverfication() throws Exception {
-
-        try {
-            // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "Custom Plugin Sample");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
-
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PluginPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            po.playInNormalScreen(driver);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-
-            //verifing Ad, Ad event
-            ev.verifyEvent("adPodStarted","Preroll Ad is playing",20000);
-
-            // Ad completed event verification
-            ev.verifyEvent("adPodCompleted","Preroll Ad play completed",30000);
-
-            // video playing start event verification
-            ev.verifyEvent("playStarted", " Video Started to Play ", 80000);
-
-            // Midroll Ad start event verification
-            ev.verifyEvent("adPodStarted","Midroll Ad is playing",90000);
-
-            // Midrill Ad completed Verification
-            ev.verifyEvent("adPodCompleted","Midroll Ad play completed",100000);
-
-            // Post Ad start event verification
-            ev.verifyEvent("adPodStarted","Postroll Ad is playing",120000);
-
-            // Post  Ad completed Verification
-            ev.verifyEvent("adPodCompleted","Postroll Ad play completed",130000);
-
-            ev.verifyEvent("playCompleted", "video play completed", 130000);
-
-        } catch (Exception e) {
-            System.out.println("customPluginSample_Adverfication throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"customPluginSample_Adverfication");
-            Assert.assertTrue(false, "This will fail!");
-        }
-
-    }
-
-
-
 }

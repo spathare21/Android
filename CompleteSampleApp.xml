@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default Suite" >
+    <test name="AppiumTest">
+        <classes>
+
+            <class name="testpackage.tests.CompleteSampleApp.AdvPlaybackBasicTest"/>
+            <class name="testpackage.tests.CompleteSampleApp.BasicSampleQL"/>
+            <class name="testpackage.tests.CompleteSampleApp.Freewheel_Sample"/>
+            <class name="testpackage.tests.CompleteSampleApp.IMASampleQLTests"/>
+
+        </classes>
+    </test> <!-- AppiumTest -->
+</suite> <!-- Default Suite -->

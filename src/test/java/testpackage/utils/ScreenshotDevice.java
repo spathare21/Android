@@ -13,6 +13,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import io.appium.java_client.AppiumDriver;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 public class ScreenshotDevice {
 

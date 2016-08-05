@@ -2,6 +2,7 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -15,9 +16,9 @@ import java.util.Properties;
 /**
  * Created by Sachin on 4/6/2016.
  */
-public class BasicPlayBackBasicTest2 {
+public class BasicPlayBackBasicTest2 extends EventLogTest {
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -48,7 +49,7 @@ public class BasicPlayBackBasicTest2 {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainExoPlayerActivity") {
@@ -83,15 +84,17 @@ public class BasicPlayBackBasicTest2 {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
+        Thread.sleep(5000);
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
+
         RemoveEventsLogFile.removeEventsFileLog();
-        Thread.sleep(10000);
+        Thread.sleep(5000);
 
     }
-    //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
+
     @org.testng.annotations.Test
     public void Multi_Ad() throws Exception{
         try {
@@ -180,7 +183,6 @@ public class BasicPlayBackBasicTest2 {
 
     }
 
-    //TODO FAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void VAST_3Podded() throws Exception{
         try {
@@ -267,7 +269,7 @@ public class BasicPlayBackBasicTest2 {
     }
 
 
-   @org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void VAST_AdWithIcon() throws Exception{
         try {
 
@@ -348,7 +350,7 @@ public class BasicPlayBackBasicTest2 {
 
 
    // TODO FAILING BECAUSE OF the VAST 3.0 Podded Preroll with Skippable Ad asset is not present.
-    /*@org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void VAST_Podded_Preroll_skippable() throws Exception{
         try {
 
@@ -425,11 +427,11 @@ public class BasicPlayBackBasicTest2 {
             Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
+    }
 
 
     // TODO FAILING BECAUSE OF the VAST 3.0 Skippable Ad asset is not present.
-/*    @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void VAST_Skippable_Ad() throws Exception{
         try {
 
@@ -503,10 +505,10 @@ public class BasicPlayBackBasicTest2 {
             Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
+    }
 
     //TODO getting error Pcode and Embed Code owner do not match
-    /*@org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void VAST_Skippable_Ad_Long() throws Exception{
         try {
 
@@ -584,10 +586,10 @@ public class BasicPlayBackBasicTest2 {
             Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
+    }
 
     // TODO Handle 15 minutes long video
-    /*@org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void VAST_AD_Wrapper() throws Exception{
         try {
 
@@ -661,10 +663,10 @@ public class BasicPlayBackBasicTest2 {
              Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
+    }
 
     // TODO Handle 15 minutes long video
-  /*  @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void VAMP_VastAD_PreMidPost() throws Exception{
         try {
 
@@ -749,9 +751,10 @@ public class BasicPlayBackBasicTest2 {
             Assert.assertTrue(false, "This will fail!");
         }
 
-    }*/
-         @org.testng.annotations.Test
-         public void VAST_AD_With_NewEvents() throws Exception{
+    }
+
+    @org.testng.annotations.Test
+    public void VAST_AD_With_NewEvents() throws Exception{
         try {
 
             // Creating an Object of FreeWheelSampleApp class

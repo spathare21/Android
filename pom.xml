@@ -15,7 +15,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <testng.version>6.8.8</testng.version>
+        <testng.version>6.9.10</testng.version>
         <selenium.version>2.43.0</selenium.version>
         <surefire.version>2.11</surefire.version>
         <!--<maven.compiler.version>2.3.2</maven.compiler.version>-->
@@ -51,7 +51,7 @@
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-testng-adaptor</artifactId>
-            <version>1.4.23</version>
+            <version>1.5.0.RC2</version>
         </dependency>
 
         <dependency>

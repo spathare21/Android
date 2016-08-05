@@ -2,6 +2,7 @@ package testpackage.tests.advancePlayBackSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -12,8 +13,8 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DeepTests {
-    private static AndroidDriver driver;
+public class DeepTests extends EventLogTest {
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -44,7 +45,7 @@ public class DeepTests {
     //public void beforeTest() throws Exception{
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
         if (driver.currentActivity() != "com.ooyala.sample.lists.AdvancedPlaybackListActivity") {
@@ -81,11 +82,9 @@ public class DeepTests {
     }
 
     @AfterMethod
-    //public void afterTest() throws InterruptedException, IOException {
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
-        //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 

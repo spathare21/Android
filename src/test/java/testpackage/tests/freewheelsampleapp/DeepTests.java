@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.FreewheelSampleApp;
@@ -17,9 +18,9 @@ import testpackage.utils.*;
 import java.util.Properties;
 import java.io.IOException;
 
-public class DeepTests {
+public class DeepTests extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -50,7 +51,7 @@ public class DeepTests {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
         if (driver.currentActivity() != "com.ooyala.sample.lists.FreewheelListActivity") {
@@ -86,7 +87,7 @@ public class DeepTests {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);

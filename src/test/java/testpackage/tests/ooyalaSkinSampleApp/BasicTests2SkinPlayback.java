@@ -2,6 +2,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -16,8 +17,8 @@ import java.util.Properties;
 /**
  * Created by Shivam on 25/07/16.
  */
-public class BasicTests2SkinPlayback {
-    private static AndroidDriver driver;
+public class BasicTests2SkinPlayback extends EventLogTest{
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -47,7 +48,7 @@ public class BasicTests2SkinPlayback {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainActivity") {
@@ -83,7 +84,7 @@ public class BasicTests2SkinPlayback {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);

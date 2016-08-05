@@ -7,6 +7,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
@@ -16,9 +17,9 @@ import java.util.Properties;
 import java.io.IOException;
 
 
-public class BasicTestsSkinPlayback {
+public class BasicTestsSkinPlayback extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -48,7 +49,7 @@ public class BasicTestsSkinPlayback {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainActivity") {
@@ -84,7 +85,7 @@ public class BasicTestsSkinPlayback {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -351,7 +352,12 @@ public class BasicTestsSkinPlayback {
 
             ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
+            //po.SeekOoyalaSkin(driver,0,200);
+            //ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+            //Thread.sleep(3000);
+
             Thread.sleep(5000);
+
 
             // playing video again.
             po.getPlay(driver);

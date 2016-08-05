@@ -2,6 +2,7 @@ package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -15,9 +16,9 @@ import java.util.Properties;
 /**
  * Created by Shivam on 27/05/16.
  */
-public class DeepTest4Basicplayback {
+public class DeepTest4Basicplayback extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -48,7 +49,7 @@ public class DeepTest4Basicplayback {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainExoPlayerActivity") {
@@ -84,7 +85,7 @@ public class DeepTest4Basicplayback {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -92,7 +93,6 @@ public class DeepTest4Basicplayback {
         Thread.sleep(10000);
 
     }
-
     //TODO length of video is too long.
 /*    @org.testng.annotations.Test
     public void VAST_AD_Wrapper() throws Exception{

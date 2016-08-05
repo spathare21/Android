@@ -4,6 +4,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import io.appium.java_client.android.AndroidDriver;
 import testpackage.pageobjects.ooyalaSkinSampleApp;
@@ -12,9 +13,9 @@ import testpackage.utils.*;
 import java.util.Properties;
 import java.io.IOException;
 
-public class BasicTests {
+public class BasicTests extends EventLogTest{
 
-    private static AndroidDriver driver;
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -45,7 +46,7 @@ public class BasicTests {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainActivity") {
@@ -81,7 +82,7 @@ public class BasicTests {
     }
 
     @AfterMethod
-    public void afterMethod() throws InterruptedException, IOException {
+    public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         System.out.println("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
@@ -140,6 +141,7 @@ public class BasicTests {
             Thread.sleep(5000);
 
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            Thread.sleep(5000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
@@ -583,6 +585,8 @@ public class BasicTests {
             Thread.sleep(5000);
 
             po.pauseVideo(driver);
+
+            Thread.sleep(3000);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
