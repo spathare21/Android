@@ -51,7 +51,7 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainActivity") {
