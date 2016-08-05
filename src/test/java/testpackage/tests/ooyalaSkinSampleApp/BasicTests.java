@@ -141,6 +141,7 @@ public class BasicTests extends EventLogTest{
             Thread.sleep(5000);
 
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            Thread.sleep(5000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
