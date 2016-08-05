@@ -153,10 +153,7 @@ public class BasicTests extends EventLogTest{
 
             po.seekVideo(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 7000);
-            Thread.sleep(3000);
-
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 9000);
 
             po.loadingSpinner(driver);
             Thread.sleep(3000);
