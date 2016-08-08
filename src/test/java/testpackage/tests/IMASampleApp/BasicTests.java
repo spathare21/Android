@@ -53,7 +53,7 @@ public class BasicTests extends EventLogTest{
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.lists.IMAListActivity") {
@@ -153,7 +153,10 @@ public class BasicTests extends EventLogTest{
 
             po.seekVideo(driver);
             Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 9000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 7000);
+            Thread.sleep(3000);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
 
             po.loadingSpinner(driver);
             Thread.sleep(3000);

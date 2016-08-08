@@ -50,6 +50,7 @@ public class Freewheel_Sample extends EventLogTest{
 
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
         if (driver.currentActivity() != "com.ooyala.sample.complete.MainActivity") {

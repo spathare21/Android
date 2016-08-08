@@ -49,7 +49,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainExoPlayerActivity") {
@@ -94,7 +94,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         Thread.sleep(5000);
 
     }
-    //TODO fAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
+
     @org.testng.annotations.Test
     public void Multi_Ad() throws Exception{
         try {
@@ -183,7 +183,6 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
 
     }
 
-    //TODO FAILING BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704
     @org.testng.annotations.Test
     public void VAST_3Podded() throws Exception{
         try {

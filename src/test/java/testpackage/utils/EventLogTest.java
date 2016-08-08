@@ -38,6 +38,7 @@ public class EventLogTest implements IHookable {
             try {
                 appendLogToAllure(testResult.getMethod().getMethodName());
                 screenshot(testResult.getMethod().getMethodName(),driver);
+                Adblogcat.sdkVersion(driver);
             } catch (Exception e) {
                 e.printStackTrace();
             }
