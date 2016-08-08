@@ -85,6 +85,14 @@ public class CompleteSampleApp {
 
     }
 
+    public void smallScreenTap(AndroidDriver driver, int index) throws InterruptedException{
+        System.out.println("Clicking on screen");
+        List<WebElement> smallscreenTap = driver.findElements(By.xpath("//android.view.View"));
+        System.out.printf("Size : " + smallscreenTap.size());
+        smallscreenTap.get(index).click();
+
+    }
+
     public void pauseInNormalScreen(AndroidDriver driver) {
         //playButton.click();
         System.out.println("X pauseCoordinates" + playCoordinates[0]);
@@ -171,6 +179,13 @@ public class CompleteSampleApp {
         System.out.println("clicked");
     }
 
+    public void clickOnCreateVideo(AndroidDriver driver) throws InterruptedException{
+        Thread.sleep(1000);
+        System.out.println("Clicking on Create Video button");
+        driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/setButton").click();
+        System.out.println("Player has been created");
+    }
+
     public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) {
 
         driver.scrollTo(clickText).click();
@@ -192,6 +207,41 @@ public class CompleteSampleApp {
 
         List<WebElement> radioButtons = driver.findElements(By.xpath("//android.widget.RadioButton"));
         return radioButtons.get(index).isEnabled();
+    }
+
+    public void cuepointOff (AndroidDriver driver)
+    {
+        driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/toggleButton1").click();
+        System.out.println("cue point off");
+    }
+
+    public void adControlOff    (AndroidDriver driver)
+    {
+        driver.findElement(By.id("com.ooyala.sample.OptionsSampleApp:id/toggleButton2")).click();
+        System.out.println("Ad controls off");
+    }
+
+    public void adPause (AndroidDriver driver)
+    {
+        driver.findElement(By.id("android:id/pause")).click();
+    }
+
+    public void adPlay (AndroidDriver driver)
+    {
+        driver.findElement(By.id("android:id/pause")).click();
+    }
+
+    public void clickOnViewarea(AndroidDriver driver)
+    {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String viewxpath = "//android.widget.TextView[@text='Learn More']/parent::android.widget.RelativeLayout/following-sibling::android.view.View";
+        WebElement web = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewxpath)));
+        // WebElement web = driver.findElement(By.xpath(viewxpath));
+
+        // List<WebElement> view =  driver.findElements(By.className("android.view.View"));
+        //System.out.println(">>>>>>>>>" +view);
+
+        web.click();
     }
 
 }
