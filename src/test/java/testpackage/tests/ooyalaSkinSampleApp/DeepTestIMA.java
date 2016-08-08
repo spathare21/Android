@@ -55,7 +55,7 @@ public class DeepTestIMA extends EventLogTest{
     @BeforeMethod
     public void beforeMethod() throws Exception {
         System.out.println("Executing beforeMethd \n");
-
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logPush = new PushLogFileToDevice();
         logPush.pushLogFile();
 

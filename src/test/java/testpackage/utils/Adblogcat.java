@@ -4,10 +4,14 @@ package testpackage.utils;
  * Created by bsondur on 11/16/15.
  */
 
+import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.logging.LogEntry;
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.List;
 
 
 public class Adblogcat {
@@ -69,7 +73,8 @@ public class Adblogcat {
         // read the output from the command
         String sdk_version = null;
         while ((sdk_version = stdInput.readLine()) != null) {
-            System.out.println(" Android SDK Vesion is   :" + sdk_version + "\n");
+            if(!sdk_version.contains("daemon"))
+                System.out.println(" Android SDK Vesion is   :" + sdk_version + "\n");
         }
     }
 
@@ -84,31 +89,24 @@ public class Adblogcat {
         // read the output from the command
         String devicename = null;
         while ((devicename = stdInput.readLine()) != null) {
-            System.out.println(" Android Device name  is   :" + devicename + "\n");
+            if(!devicename.contains("daemon"))
+                System.out.println(" Android Device name  is   :" + devicename + "\n");
         }
     }
 
-    /*public static void sdkVersion() throws IOException {
-        System.out.println("Here is sdk version  :--");
-        final String command = "adb logcat";
-        String[] ver = CommandLine.command(command);
-        Runtime run = Runtime.getRuntime();
-        Process pr = run.exec(ver);
-        BufferedReader stdInput = new BufferedReader(new
-                InputStreamReader(pr.getInputStream()));
+    public static void sdkVersion(AndroidDriver driver) throws IOException {
 
-        // read the output from the command
-        String line = null;
-        while ((line = stdInput.readLine()) != null) {
-            if (line.contains("Ooyala SDK Version:")) {
-                System.out.println(line);
+        List<LogEntry> logEntries = driver.manage().logs().get("logcat").getAll();
+        for (int i=0;i<logEntries.size();i++)
+        {
+            if(logEntries.get(i).toString().contains("Ooyala SDK Version:"))
+            {
+                System.out.println(logEntries.get(i).toString());
             }
-
         }
 
-        //pr.destroy();
 
-    }*/
+    }
 
 }
 

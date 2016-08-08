@@ -45,7 +45,7 @@ public class BasicSampleQL extends EventLogTest {
     //public void beforeTest() throws Exception{
     public void beforeMethod() throws Exception {
         System.out.println("beforeMethod \n");
-        //removeEventsLogFile.removeEventsFileLog(); create events file
+        driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
         if(driver.currentActivity()!= "com.ooyala.sample.complete.MainActivity") {
@@ -978,7 +978,7 @@ public class BasicSampleQL extends EventLogTest {
             po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 400000);
         } catch (Exception e) {
             System.out.println("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();
