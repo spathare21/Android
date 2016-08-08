@@ -37,7 +37,8 @@ public class ParseEventsFile {
                 if(line.contains("state: ERROR"))
                 {
                     System.out.println("App crashed");
-                    System.exit(0);
+                    org.testng.Assert.fail("App is crashed during playback");
+                    //System.exit(0);
                 }
                 if(line.contains(comp))
                 {

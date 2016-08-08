@@ -164,7 +164,7 @@ public class BasicTests extends EventLogTest{
             po.resumeInNormalScreen(driver);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 9000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
             Thread.sleep(2000);
         }
         catch(Exception e)
