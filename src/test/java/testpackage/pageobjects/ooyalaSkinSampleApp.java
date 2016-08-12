@@ -419,8 +419,9 @@ public class ooyalaSkinSampleApp {
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
         Thread.sleep(1000);
-        ele.click();
-
+        driver.tap(1,play.getX(),play.getY(),3);
+        Thread.sleep(1000);
+        driver.tap(1, play.getX(), play.getY(), 3);
     }
 
     public void upnextDis(AndroidDriver driver) throws InterruptedException {

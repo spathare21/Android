@@ -1,6 +1,7 @@
 package testpackage.utils;
 
 
+import org.junit.internal.runners.statements.Fail;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
 
@@ -12,55 +13,52 @@ import java.util.Map;
 
 public class Listeners implements  IReporter {
 
-    Map<String,String> data = new HashMap<String, String>();
+    public static Map<String,String> Testdata = new HashMap<String, String>();
 
     @Override
     public void generateReport(List<XmlSuite> xmlSuite, List<ISuite> iSuites, String s){
-        Date today = new Date();
         for(ISuite suits : iSuites)  {
             System.out.println("Suite Name : " + suits.getName());
             Map <String ,ISuiteResult>result =  suits.getResults();
             for (ISuiteResult r : result.values()) {
                 ITestContext context = r.getTestContext();
-                System.out.println("Date : " + today.toString());
-                data.put("",Integer.toString(context.getPassedTests().size()).toString());
-                System.out.println("Passed Tests : " + context.getPassedTests().size());
-                System.out.println("Failed Tests : "+ context.getFailedTests().size());
-                System.out.println("Skipped Tests : "+ context.getSkippedTests().size());
-                System.out.println("Total Test Run : " + context.getAllTestMethods().length ); //OR context.getSuite().getAllMethods().size()
-                System.out.println("Suite Test Name : " + context.getName().toString() );
                 int psize = context.getSuite().getXmlSuite().getTests().size();
+                String [] packagename = new String[psize];
                 for(int i=0 ; i< psize ; i++){
-                    System.out.println("Package Name : " + context.getSuite().getXmlSuite().getTests().get(i).getClasses().get(i).getName());
+                    packagename[i] = context.getSuite().getXmlSuite().getTests().get(i).getClasses().get(i).getName();
                 }
-            try {
-                Adblogcat.deviceinfo();
-                 Adblogcat.androidVersion();
-                }catch (Exception e){
+                setTestResult(Integer.toString(context.getPassedTests().size()),Integer.toString(context.getFailedTests().size()),Integer.toString(context.getSkippedTests().size()),Integer.toString(context.getAllTestMethods().length),context.getName(),packagename);
 
             }
-
-
-                //System.out.println("Package Name : " + context.getSuite().getXmlSuite().getTests().get(0).getClasses().get(0).getName());
-            }
-
         }
-       /* for (XmlSuite xsuite : xmlSuite){
-            System.out.println("File Name : " + xsuite.getFileName());
-        }
-*/
 
     }
 
-    public void insertData(int pass,int fail,int skip,int total,String suitename,String packagename) throws Exception
-    {
-        Date today = new Date();
-        today.toString();
-        Adblogcat.deviceinfo();
-        Adblogcat.androidVersion();
-        //Adblogcat.sdkVersion();
+    public void setTestResult(String pass, String fail, String skip, String total, String suiteName,String[]Package){
+        Testdata.put("Pass",pass);
+        Testdata.put("Fail",fail);
+        Testdata.put("Skip",skip);
+        Testdata.put("Total",total);
+        Testdata.put("SuiteName",suiteName);
+        for (int i =0 ; i< Package.length ; i++){
+            Testdata.put("Package"+i,Package[i]);
+        }
+        Testdata.put("Android Device Version",Adblogcat.deviceVersion);
+        Testdata.put("Device Name",Adblogcat.deviceName);
+        Testdata.put("SDK Version",Adblogcat.sdkVersion);
+        Testdata.put("Jenkins URL",ParseJenkinsBuild.getJenkinsBuild());
+        System.out.println("size of map : " + Testdata.size());
+        for (String key : Testdata.keySet()){
+            String value = Testdata.get(key);
+            System.out.println(key + " " + value);
+        }
 
     }
+
+    /*public static Map<String, String> getTestResult(){
+        return Testdata;
+    }*/
+
 
 
 }

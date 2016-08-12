@@ -49,9 +49,4 @@ public class ParseJenkinsBuild {
         return  jenkinsJobLink;
     }
 
-    public static void main(String args[]) {
-
-        System.out.println(ParseJenkinsBuild.getJenkinsBuild());
-    }
-
 }
