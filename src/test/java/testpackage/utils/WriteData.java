@@ -16,17 +16,10 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.*;
 import com.google.api.services.sheets.v4.Sheets;
-import com.google.gdata.client.spreadsheet.FeedURLFactory;
-import com.google.gdata.client.spreadsheet.SpreadsheetService;
-import com.google.gdata.data.spreadsheet.WorksheetEntry;
-import com.google.gdata.data.spreadsheet.WorksheetFeed;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class WriteData {
     /** Application name. */
@@ -110,34 +103,89 @@ public class WriteData {
                 .build();
     }
 
+    public static void writetosheet(Map<String,String> map)
+    {
+        try {
+            Sheets service = getSheetsService();
+            String spreadsheetId = "1oJj7IZbXhDmxlMZMAdBW9t_FJqg1uSkuxPPK2KWvJmY";
+            int num_of_sheets = service.spreadsheets().get(spreadsheetId).execute().getSheets().size();
+            for (int i = 0; i < num_of_sheets; i++) {
+                String sheetNames = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getTitle();
+                int sheet_Id = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getSheetId();
+                System.out.println("Sheet Name : " + sheetNames + ", Sheet ID : " + sheet_Id);
+            }
+
+            //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
+            //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
+            String range = "Demo!A2:E";
+            ValueRange response = service.spreadsheets().values()
+                    .get(spreadsheetId, range)
+                    .execute();
+            // Read Data From Spreadsheet
+            List<List<Object>> readvalues = response.getValues();
+            System.out.println("Number of values :" + readvalues.size());
+            // write data to spreadsheet
+
+            List<Request> requests = new ArrayList<>();
+
+            List<CellData> values = new ArrayList<>();
+
+            for (String key : map.keySet()){
+                String value = map.get(key);
+                System.out.println(key + " " + value);
+                values.add(new CellData().setUserEnteredValue(new ExtendedValue().setStringValue(value)));
+            }
+
+            requests.add(new Request()
+                    .setUpdateCells(new UpdateCellsRequest()
+                            .setStart(new GridCoordinate()
+                                    .setSheetId(180487968)
+                                    .setRowIndex(readvalues.size() + 1)
+                                    .setColumnIndex(0))
+                            .setRows(Arrays.asList(
+                                    new RowData().setValues(values)))
+                            .setFields("userEnteredValue,userEnteredFormat.backgroundColor")));
+
+            BatchUpdateSpreadsheetRequest batchUpdateRequest = new BatchUpdateSpreadsheetRequest()
+                    .setRequests(requests);
+            service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
+                    .execute();
+            System.out.println("Data written to spreadsheet");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+
     public static void main(String[] args) throws IOException {
         // Build a new authorized API client service.
         Sheets service = getSheetsService();
-
         // Prints the names and majors of students in a sample spreadsheet:
         // https://docs.google.com/spreadsheets/d/1oJj7IZbXhDmxlMZMAdBW9t_FJqg1uSkuxPPK2KWvJmY/edit#gid=0
         String spreadsheetId = "1oJj7IZbXhDmxlMZMAdBW9t_FJqg1uSkuxPPK2KWvJmY";
-        String range = "A2:E";
+
+        int num_of_sheets = service.spreadsheets().get(spreadsheetId).execute().getSheets().size();
+        //System.out.println(num_of_sheets);
+        for (int i=0;i<num_of_sheets;i++){
+            String sheetNames = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getTitle();
+            int sheet_Id = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getSheetId();
+            System.out.println("Sheet Name : " + sheetNames + ", Sheet ID : " + sheet_Id);
+        }
+
+        //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
+        //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
+
+        String range = "Demo!A2:E";
         ValueRange response = service.spreadsheets().values()
                 .get(spreadsheetId, range)
                 .execute();
 
-        System.out.println(" haslkfdns >>>>" + service.spreadsheets().sheets());
-
         // Read Data From Spreadsheet
         List<List<Object>> readvalues = response.getValues();
         System.out.println("Number of values :" + readvalues.size());
-       /* if (readvalues == null || readvalues.size() == 0) {
-            System.out.println("No data found.");
-        } else {
-            System.out.println("Name, Major");
-            for (List row : readvalues) {
-                // Print columns A and E, which correspond to indices 0 and 4.
-                if(row.isEmpty())
-                    System.out.println("empty row" + row.indexOf(""));
-                System.out.printf("%s, %s\n", row.get(0), row.get(4));
-            }
-        }*/
 
         // write data to spreadsheet
 

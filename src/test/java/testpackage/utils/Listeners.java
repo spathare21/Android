@@ -53,6 +53,8 @@ public class Listeners implements  IReporter {
             System.out.println(key + " " + value);
         }
 
+        WriteData.writetosheet(Testdata);
+
     }
 
     /*public static Map<String, String> getTestResult(){
