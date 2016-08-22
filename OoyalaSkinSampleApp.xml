@@ -4,7 +4,7 @@
     <test name="AppiumTest">
         <classes>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
-            <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
+            <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests2SkinPlayback"/>-->
