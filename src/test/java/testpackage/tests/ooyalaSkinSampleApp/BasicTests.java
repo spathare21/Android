@@ -593,7 +593,7 @@ public class BasicTests extends EventLogTest{
             Thread.sleep(3000);
 
             po.screentap(driver);
-            
+
             po.pauseVideo(driver);
 
             Thread.sleep(1000);
