@@ -224,12 +224,12 @@ public class ooyalaSkinSampleApp {
 
     public void pauseVideo(AndroidDriver driver) throws InterruptedException {
         System.out.println("moved to pause method");
-        System.out.println("play.x value is " + play.getX());
-        System.out.println("play.y value is " + play.getY());
-        Thread.sleep(2000);
-        driver.tap(1, play.getX(), play.getY(), 5);
-        Thread.sleep(2000);
-        driver.tap(1,play.getX(),play.getY(),5);
+//        System.out.println("play.x value is " + play.getX());
+//        System.out.println("play.y value is " + play.getY());
+        Thread.sleep(800);
+        driver.tap(2, play.getX(), play.getY(), 3);
+//        Thread.sleep(2000);
+//        driver.tap(2,play.getX(),play.getY(),3);
         System.out.println("clicked pause");
     }
 
@@ -313,19 +313,19 @@ public class ooyalaSkinSampleApp {
         driver.tap(1, 450, 867, 2);
     }
 
-    public void seek_video (AndroidDriver driver) throws Exception
-    {
-        System.out.println("\n---------seek video------\n");
-        pauseVideo(driver);
-        List<WebElement>  l = driver.findElements(By.className("android.view.View"));
-        System.out.println("size of view : " + l.size());
-        Point p = l.get(2).getLocation();
-        System.out.println("locatation of scrubber pointer is :" + p.getX() + " " + p.getY());
-        System.out.println(" Seeking -------------------------  ");
-        driver.swipe(p.getX() + 20, p.getY(), p.getX() + 100, p.getY(), 3);
-        driver.tap(1,658,700,2);
-        getPlay(driver);
-    }
+//    public void seek_video (AndroidDriver driver) throws Exception
+//    {
+//        System.out.println("\n---------seek video------\n");
+//        pauseVideo(driver);
+//        List<WebElement>  l = driver.findElements(By.className("android.view.View"));
+//        System.out.println("size of view : " + l.size());
+//        Point p = l.get(2).getLocation();
+//        System.out.println("locatation of scrubber pointer is :" + p.getX() + " " + p.getY());
+//        System.out.println(" Seeking -------------------------  ");
+//        driver.swipe(p.getX() + 20, p.getY(), p.getX() + 100, p.getY(), 3);
+//        driver.tap(1,658,700,2);
+//        getPlay(driver);
+//    }
 
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
 
@@ -367,10 +367,9 @@ public class ooyalaSkinSampleApp {
 
 
     public void screentap(AndroidDriver driver) throws InterruptedException {
-        //System.out.println("in screen tapped method");
         Thread.sleep(1000);
         driver.tap(1, play.getX(), play.getY(), 2);
-        //System.out.println("out of the screen tapped method");
+
     }
 
 
@@ -418,10 +417,10 @@ public class ooyalaSkinSampleApp {
         play= ele.getLocation();
         System.out.println("play.x value is " + play.getX());
         System.out.println("play.y value is " + play.getY());
-        Thread.sleep(1000);
-        driver.tap(1,play.getX(),play.getY(),5);
-        Thread.sleep(1000);
-        driver.tap(1, play.getX(), play.getY(),5);
+        Thread.sleep(2000);
+        driver.tap(3,play.getX(),play.getY(),7);
+        //Thread.sleep(1000);
+        //driver.tap(1, play.getX(), play.getY(),5);
     }
 
     public void upnextDis(AndroidDriver driver) throws InterruptedException {

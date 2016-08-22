@@ -147,6 +147,8 @@ public class BasicTests extends EventLogTest{
 
             Thread.sleep(5000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -155,7 +157,7 @@ public class BasicTests extends EventLogTest{
 
             po.seek_video(driver,40);
 
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
 
             Thread.sleep(5000);
             po.getPlay(driver);
@@ -226,7 +228,9 @@ public class BasicTests extends EventLogTest{
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            Thread.sleep(5000);
+            Thread.sleep(3000);
+
+            po.screentap(driver);
 
             po.pauseVideo(driver);
 
@@ -315,6 +319,8 @@ public class BasicTests extends EventLogTest{
 
             Thread.sleep(5000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 80000);
@@ -322,7 +328,8 @@ public class BasicTests extends EventLogTest{
             Thread.sleep(1000);
 
             po.seek_video(driver,40);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 80000);
 
             Thread.sleep(5000);
 
@@ -404,7 +411,9 @@ public class BasicTests extends EventLogTest{
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            Thread.sleep(5000);
+            Thread.sleep(3000);
+
+            po.screentap(driver);
 
             po.pauseVideo(driver);
 
@@ -581,8 +590,10 @@ public class BasicTests extends EventLogTest{
             //Wait for Ad to complete and verify the adCompleted event .
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
 
-            Thread.sleep(5000);
+            Thread.sleep(3000);
 
+            po.screentap(driver);
+            
             po.pauseVideo(driver);
 
             Thread.sleep(1000);
