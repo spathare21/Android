@@ -155,6 +155,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -248,6 +249,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -341,6 +343,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -434,6 +437,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -546,6 +550,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -650,6 +655,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -754,6 +760,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -858,6 +865,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -962,6 +970,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -1076,6 +1085,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -1205,6 +1215,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
