@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" >
-    <test name="AppiumTest">
+    <test name="NielsenSampleApp">
         <classes>
-
-
-
             <class name="testpackage.tests.NielsenSampleApp.BasicTest"/>
-            <!--<class name="testpackage.tests.advancePlayBackSampleApp.DeepTests"/>-->
-
 
         </classes>
     </test> <!-- AppiumTest -->
