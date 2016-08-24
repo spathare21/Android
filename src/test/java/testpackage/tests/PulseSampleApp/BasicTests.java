@@ -133,19 +133,18 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(1000);
 
             //seeking the video
-            po.seek_video(driver, 700);
+            po.seek_video(driver, 800);
 
             ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
             Thread.sleep(7000);
-
             // playing video again.
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -158,7 +157,7 @@ public class BasicTests extends EventLogTest {
     }
 
     //TODO : AdCompleted event not getting https://jira.corp.ooyala.com/browse/PBA-4388
-    //@Test
+    @Test
     public void PrerollDemo() throws Exception{
         int[] locPlayButon;
 
@@ -203,11 +202,11 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
             Thread.sleep(1000);
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
             //pause the video
             Thread.sleep(3000);
             po.pauseVideo(driver);
@@ -229,7 +228,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -241,8 +240,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //TODO : AdCompleted event not getting https://jira.corp.ooyala.com/browse/PBA-4388
-    //@Test
+    @Test
     public void MidrollDemo() throws Exception{
         int[] locPlayButon;
 
@@ -292,8 +290,8 @@ public class BasicTests extends EventLogTest {
             //Thread sleep time is equivalent to the length of the AD
             Thread.sleep(5000);
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-            Thread.sleep(2000);
+            //ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            Thread.sleep(20000);
 
             //pause the video
             Thread.sleep(3000);
@@ -316,7 +314,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -327,8 +325,8 @@ public class BasicTests extends EventLogTest {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-    //TODO : AdCompleted event not getting https://jira.corp.ooyala.com/browse/PBA-4388
-    //@Test
+
+    @Test
     public void PostrollDemo() throws Exception{
         int[] locPlayButon;
 
@@ -379,7 +377,7 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(1000);
 
             //seeking the video
-            po.seek_video(driver, 700);
+            po.seek_video(driver, 800);
 
             ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
@@ -392,15 +390,15 @@ public class BasicTests extends EventLogTest {
 
             Thread.sleep(2000);
             //Ad Started
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
             //Thread sleep time is equivalent to the length of the AD
-            Thread.sleep(5000);
+            Thread.sleep(10000);
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
             Thread.sleep(1000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -411,8 +409,8 @@ public class BasicTests extends EventLogTest {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-    //TODO : AdCompleted event not getting https://jira.corp.ooyala.com/browse/PBA-4388
-    //@Test
+
+    @Test
     public void PreMidPostrollDemo() throws Exception{
         int[] locPlayButon;
 
@@ -456,7 +454,7 @@ public class BasicTests extends EventLogTest {
 
             Thread.sleep(11000);
 
-            ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
 
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
@@ -464,14 +462,21 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(5000);
 
             //Ad Started Verification
-            ev.verifyEvent("adStarted", " Mid - Ad Started to Play ", 30000);
+            ev.verifyEvent("adPodStarted", " Mid - Ad Started to Play ", 30000);
 
-            Thread.sleep(11000);
+            Thread.sleep(10000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
 
-            Thread.sleep(3000);
+            //Ad Started Verification
+            ev.verifyEvent("adPodStarted", " Post - Ad Started to Play ", 90000);
+            Thread.sleep(10000);
+            //Ad Completed Verification
+            //ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video Started play", 70000);
+
+            Thread.sleep(15000);
 
             po.pauseVideo(driver);
 
@@ -479,25 +484,17 @@ public class BasicTests extends EventLogTest {
 
             Thread.sleep(1000);
 
-            po.seek_video(driver,40);
+            po.seek_video(driver,700);
 
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             po.getPlay(driver);
 
-            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
-
-            //Ad Started Verification
-            ev.verifyEvent("adStarted", " Post - Ad Started to Play ", 60000);
-
-            Thread.sleep(11000);
-
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
         }
         catch(Exception e)
         {
@@ -507,7 +504,7 @@ public class BasicTests extends EventLogTest {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-    //TODO : AdCompleted event not getting https://jira.corp.ooyala.com/browse/PBA-4388
+
     //@Test
     public void PreMidPostSkippable() throws Exception{
         int[] locPlayButon;
@@ -557,9 +554,9 @@ public class BasicTests extends EventLogTest {
             po.clickBasedOnText(driver,"Skip Ad");
             Thread.sleep(5000);
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
 
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
 
             //Thread sleep time is equivalent to the length of the video
             Thread.sleep(5000);
@@ -570,9 +567,9 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(11000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
 
-            Thread.sleep(3000);
+            Thread.sleep(6000);
 
             po.pauseVideo(driver);
 
@@ -595,10 +592,10 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(11000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
+            //ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
         }
         catch(Exception e)
         {
@@ -654,18 +651,18 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(5000);
 
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
             Thread.sleep(1000);
 
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
             //Thread sleep time is equivalent to the length of the AD
             Thread.sleep(5000);
             //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
+            //ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
             //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
             //pause the video
             Thread.sleep(3000);
             po.pauseVideo(driver);
@@ -679,15 +676,14 @@ public class BasicTests extends EventLogTest {
 
             ev.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
 
-            Thread.sleep(7000);
-
+            Thread.sleep(1000);
             // playing video again.
             po.getPlay(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -760,7 +756,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)

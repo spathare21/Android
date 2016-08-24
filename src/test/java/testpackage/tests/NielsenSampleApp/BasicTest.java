@@ -141,7 +141,6 @@ public class BasicTest extends EventLogTest {
         }
     }
 
-
     @org.testng.annotations.Test
     public static void iDTravelEast ()throws  Exception {
         try {
@@ -375,7 +374,6 @@ public class BasicTest extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed  ", 120000);
             Thread.sleep(2000);
 
-
         }
         catch (Exception e)
         {
@@ -474,8 +472,6 @@ public class BasicTest extends EventLogTest {
             Thread.sleep(2000);
             NS.resumeInNormalScreen(driver);
             e.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
-
-
 
         }
         catch (Exception e)
