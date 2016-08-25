@@ -390,7 +390,7 @@ public class BasicTests extends EventLogTest {
 
             Thread.sleep(2000);
             //Ad Started
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 150000);
             //Thread sleep time is equivalent to the length of the AD
             Thread.sleep(10000);
             //Ad Completed Verification
@@ -493,7 +493,7 @@ public class BasicTests extends EventLogTest {
 
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 70000);
 
-            ev.verifyEvent("adPodStarted", "Post - Ad  Started to Play ", 90000);
+            ev.verifyEvent("adPodStarted", "Post - Ad  Started to Play ", 150000);
             //Ad Completed Verification
             //ev.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
 
