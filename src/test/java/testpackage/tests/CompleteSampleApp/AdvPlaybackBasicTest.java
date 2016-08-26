@@ -120,34 +120,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("playCompleted", "video play completed",150000);
-
-            po.playInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
-            Thread.sleep(7000);
-
-            po.screenTap(driver);
-            Thread.sleep(1000);
-
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
-
-            po.readTime(driver);
-            Thread.sleep(1000);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 75000);
-            Thread.sleep(3000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-            Thread.sleep(1000);
-
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
-
-            ev.verifyEvent("playCompleted", "video play completed",150000);
+            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",150000);
 
         }
         catch (Exception e) {
