@@ -120,7 +120,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",60000);
+            ev.verifyEvent("playCompleted", "video play completed",150000);
 
             po.playInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
@@ -147,8 +147,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",150000);
-
+            ev.verifyEvent("playCompleted", "video play completed",150000);
 
         }
         catch (Exception e) {
