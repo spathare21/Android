@@ -2,10 +2,7 @@ package testpackage.tests.CompleteSampleApp;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 import testpackage.pageobjects.CompleteSampleApp;
 import testpackage.utils.*;
 
@@ -77,7 +74,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void CuePointsAndAdsControlOptions() throws Exception {
 
         try {
@@ -132,7 +129,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             ev.verifyEvent("playStarted", " Video Started Playing ", 36000);
             Thread.sleep(5000);
 
-            po.smallScreenTap(driver,2);
+            po.smallScreenTap(driver,0);
 
             po.pauseInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
@@ -176,7 +173,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void preload_PromoImage_options() throws Exception {
 
         try {
@@ -229,7 +226,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             ev.verifyEvent("playStarted", " Video Started Playing ", 36000);
             Thread.sleep(5000);
 
-            po.smallScreenTap(driver,2);
+            po.smallScreenTap(driver,0);
 
             po.pauseInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
@@ -272,7 +269,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void preload_promo_IntialTime() throws Exception {
 
         try {
@@ -309,38 +306,19 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             po.clickOnCreateVideo(driver);
 
             //Wait for the video to be generated
-            po.waitForPresenceOfText(driver, "00:00");
+            //po.waitForPresenceOfText(driver, "00:00");
 
             // Click on video play icon after video has been generated .
-            po.playInNormalScreen(driver);
+            //po.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",60000);
-            Thread.sleep(5000);
+            ev.verifyEvent("seekCompleted", "video starting from predefined intial time",60000);
+            Thread.sleep(2000);
 
-            po.smallScreenTap(driver,2);
-
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 75000);
-            Thread.sleep(3000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-            Thread.sleep(1000);
-
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video has been resumed ", 80000);
-
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",150000);
 
         } catch (Exception e) {
             System.out.println("preload_promo_IntialTime throws Exception " + e);
@@ -352,7 +330,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void timeout_Options() throws Exception {
 
         try {
@@ -406,7 +384,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             ev.verifyEvent("playStarted", " Video Started Playing ", 36000);
             Thread.sleep(5000);
 
-            po.smallScreenTap(driver,2);
+            po.smallScreenTap(driver,0);
 
             po.pauseInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
@@ -450,7 +428,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void server_side_TvRating() throws Exception {
 
         try {
@@ -523,7 +501,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void tv_rating_config() throws Exception {
 
         try {
@@ -572,7 +550,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
             Thread.sleep(5000);
 
-            po.smallScreenTap(driver,2);
+            po.smallScreenTap(driver,0);
             Thread.sleep(1000);
 
             po.pauseInNormalScreen(driver);

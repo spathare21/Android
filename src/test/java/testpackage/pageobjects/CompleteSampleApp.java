@@ -65,11 +65,10 @@ public class CompleteSampleApp {
         int[] play = new int[2];
         Thread.sleep(5000);
         List<WebElement> imageButtons = driver.findElementsByClassName("android.widget.ImageButton");
-        System.out.printf("Size : " + imageButtons.size());
+        System.out.println("\nSize : " + imageButtons.size());
         if (imageButtons.size() > 0) {
             play[0] = imageButtons.get(0).getLocation().getX();
             play[1] = imageButtons.get(0).getLocation().getY();
-
             playCoordinates[0] = play[0] + imageButtons.get(0).getSize().getWidth() / 2;
             playCoordinates[1] = play[1] + imageButtons.get(0).getSize().getHeight() / 2;
             System.out.println("X playCoordinates" + playCoordinates[0]);
@@ -88,16 +87,17 @@ public class CompleteSampleApp {
     public void smallScreenTap(AndroidDriver driver, int index) throws InterruptedException{
         System.out.println("Clicking on screen");
         List<WebElement> smallscreenTap = driver.findElements(By.xpath("//android.view.View"));
-        System.out.printf("Size : " + smallscreenTap.size());
+        System.out.println("Size : " + smallscreenTap.size());
         smallscreenTap.get(index).click();
 
     }
 
     public void pauseInNormalScreen(AndroidDriver driver) {
         //playButton.click();
-        System.out.println("X pauseCoordinates" + playCoordinates[0]);
-        System.out.println("Y pauseCoordinates" + playCoordinates[1]);
+        System.out.println("X pauseCoordinates : " + playCoordinates[0]);
+        System.out.println("Y pauseCoordinates : " + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
+        System.out.println("Video paused");
     }
 
     public void readTime(AndroidDriver driver) {
