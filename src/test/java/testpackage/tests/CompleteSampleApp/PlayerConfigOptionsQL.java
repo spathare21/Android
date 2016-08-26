@@ -489,7 +489,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
             System.out.println("server_side_TvRating throws Exception " + e);
