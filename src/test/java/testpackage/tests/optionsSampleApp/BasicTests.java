@@ -288,7 +288,7 @@ public class BasicTests extends EventLogTest {
 
             ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",60000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
             System.out.println("preload_promo_IntialTime throws Exception " + e);
@@ -334,7 +334,7 @@ public class BasicTests extends EventLogTest {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
             System.out.println("server_side_TvRating throws Exception " + e);
@@ -436,7 +436,7 @@ public class BasicTests extends EventLogTest {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
             System.out.println("present_video_view_sharing_options throws Exception " + e);

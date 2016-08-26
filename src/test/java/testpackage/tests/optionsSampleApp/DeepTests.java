@@ -945,7 +945,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("stateChanged - state: PLAYING","Video has been start playing again",35000);
 
             // verify that video playback is completed
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
             System.out.println("ServersideTVRatings throws Exception " + e);
@@ -1247,7 +1247,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("stateChanged - state: PLAYING","Video has been start playing again",35000);
 
             // verify that video playback is completed
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
             System.out.println("present_video_view_sharing_options throws Exception " + e);
