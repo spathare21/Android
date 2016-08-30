@@ -18,7 +18,7 @@ public class Listeners implements  IReporter {
     @Override
     public void generateReport(List<XmlSuite> xmlSuite, List<ISuite> iSuites, String s){
         for(ISuite suits : iSuites)  {
-            System.out.println("Suite Name : " + suits.getName());
+            //System.out.println("Suite Name : " + suits.getName());
             Map <String ,ISuiteResult>result =  suits.getResults();
             for (ISuiteResult r : result.values()) {
                 ITestContext context = r.getTestContext();
@@ -47,10 +47,11 @@ public class Listeners implements  IReporter {
         Testdata.put("Device Name",Adblogcat.deviceName);
         Testdata.put("SDK Version",Adblogcat.sdkVersion);
         Testdata.put("Jenkins URL",ParseJenkinsBuild.getJenkinsBuild());
+        Testdata.put("Jenkins Report URL","http://jenkins-master1.services.ooyala.net:8080/job/appium-android-test-2-dev/"+ParseJenkinsBuild.buildNumber+"/allure/#/");
         System.out.println("size of map : " + Testdata.size());
         for (String key : Testdata.keySet()){
             String value = Testdata.get(key);
-            System.out.println(key + " " + value);
+            //System.out.println(key + " " + value);
         }
 
         WriteData.writetosheet(Testdata);

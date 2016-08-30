@@ -79,7 +79,7 @@ public class WriteData {
                             .setAccessType("offline")
                             .build();
             Credential credential = new AuthorizationCodeInstalledApp(
-                    flow, new LocalServerReceiver()).authorize("user");
+                    flow, new LocalServerReceiver()).authorize("sachin.pathare@forgeahead.io");
             System.out.println(
                     "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
             return credential;
