@@ -155,6 +155,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -174,7 +175,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -248,6 +249,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -267,7 +269,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 250000);
 
         }
         catch(Exception e)
@@ -341,6 +343,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -360,7 +363,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 250000);
 
         }
         catch(Exception e)
@@ -434,6 +437,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -453,7 +457,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 90000);
+            ev.verifyEvent("Notification Received: playCompleted - state: INIT", " Video Completed Play ", 250000);
 
         }
         catch(Exception e)
@@ -546,6 +550,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -565,7 +570,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -650,6 +655,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -669,7 +675,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -754,6 +760,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -773,7 +780,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -858,6 +865,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -877,7 +885,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 250000);
 
         }
         catch(Exception e)
@@ -962,6 +970,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -991,7 +1000,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
 
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 120000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 250000);
 
         }
         catch(Exception e)
@@ -1076,6 +1085,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
@@ -1111,7 +1121,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
 
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 45000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
 
         }
         catch(Exception e)
@@ -1205,6 +1215,7 @@ public class BasicTests2SkinPlayback extends EventLogTest{
             //pause the video
             Thread.sleep(2000);
             //pausing the video.
+            po.screentap(driver);
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);

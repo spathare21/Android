@@ -174,7 +174,7 @@ public class DeepTests4 extends EventLogTest{
             Thread.sleep(2000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted - state: LOADING", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
             System.out.println("FWPreroll_learnmore throws Exception " + e);

@@ -215,7 +215,7 @@ public class DeepTests extends EventLogTest {
             //ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",60000);
 
             // Verifying Play complete event
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         }
         catch (Exception e) {
@@ -456,7 +456,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready to play 2nd Video", 30000);
 
             // video completed event verification.
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
             Thread.sleep(50000);
 
         } catch (Exception e) {
@@ -609,7 +609,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("adCompleted", "Vast Ad is Completed", 30000);
             Thread.sleep(2000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
             System.out.println(" insertAdAtRunTime throws Exception " + e);
@@ -751,7 +751,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("stateChanged - state: PLAYING", "Played video 2", 30000);
             Thread.sleep(3000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically throws Exception " + e);
@@ -898,7 +898,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(1000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 200000);
+            ev.verifyEvent("playCompleted", "video play completed", 200000);
 
         } catch (Exception e) {
             System.out.println(" customPluginSample throws Exception " + e);
@@ -971,7 +971,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("stateChanged - state: READY", "Now player is ready", 30000);
             Thread.sleep(1000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
             System.out.println("customControls throws Exception " + e);
@@ -1022,7 +1022,7 @@ public class DeepTests extends EventLogTest {
             po.overlay(driver);
             Thread.sleep(1000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
             System.out.println("customOverlay throws Exception \n" + e);
@@ -1153,7 +1153,7 @@ public class DeepTests extends EventLogTest {
             //ev.verifyEvent("seekCompleted - state: PLAYING", "video starting from predefined intial time",60000);
 
             // Verifying Play complete event
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",90000);
+            ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
             System.out.println("unbundled throws Exception " + e);

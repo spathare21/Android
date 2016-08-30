@@ -16,6 +16,10 @@ import java.util.List;
 
 public class Adblogcat {
 
+    public static String deviceVersion;
+    public static String deviceName;
+    public static String sdkVersion;
+
     public static void captureLogcatEvents() throws IOException, InterruptedException {
 
 
@@ -73,8 +77,10 @@ public class Adblogcat {
         // read the output from the command
         String sdk_version = null;
         while ((sdk_version = stdInput.readLine()) != null) {
-            if(!sdk_version.contains("daemon"))
+            if(!sdk_version.contains("daemon")) {
                 System.out.println(" Android SDK Vesion is   :" + sdk_version + "\n");
+                deviceVersion = sdk_version;
+            }
         }
     }
 
@@ -89,8 +95,10 @@ public class Adblogcat {
         // read the output from the command
         String devicename = null;
         while ((devicename = stdInput.readLine()) != null) {
-            if(!devicename.contains("daemon"))
+            if(!devicename.contains("daemon")) {
                 System.out.println(" Android Device name  is   :" + devicename + "\n");
+                deviceName = devicename;
+            }
         }
     }
 
@@ -102,6 +110,7 @@ public class Adblogcat {
             if(logEntries.get(i).toString().contains("Ooyala SDK Version:"))
             {
                 System.out.println(logEntries.get(i).toString());
+                sdkVersion = logEntries.get(i).toString();
             }
         }
 

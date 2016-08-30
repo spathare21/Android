@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" >
-    <test name="AppiumTest">
+    <!--<listeners>
+            <listener class-name="testpackage.utils.Listeners">
+            </listener>
+    </listeners>-->
+    <test name="ExoPlayerSampleAppQuickLookTest">
+
         <classes>
 
-
-
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
+           <!-- <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->
            <!-- <class name="testpackage.tests.exoPlayerSampleApp.DeepTestIMA"/>
             <class name="testpackage.tests.exoPlayerSampleApp.DeepTestsFW"/>
             <class name="testpackage.tests.exoPlayerSampleApp.DeepBasicPlayback"/>
@@ -18,7 +21,6 @@
             <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTest4Basicplayback"/>-->
 
 
-
         </classes>
-    </test> <!-- AppiumTest -->
-</suite> <!-- Default Suite -->
+    </test>
+</suite>

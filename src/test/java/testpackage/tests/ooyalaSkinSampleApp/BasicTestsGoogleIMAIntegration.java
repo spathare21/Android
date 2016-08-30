@@ -172,6 +172,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
             //pause the video
             Thread.sleep(3000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
@@ -279,6 +281,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
 
             Thread.sleep(3000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 60000);
@@ -368,6 +372,7 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             Thread.sleep(3000);
+            po.screentap(driver);
 
             po.pauseVideo(driver);
 
@@ -482,6 +487,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
 
             Thread.sleep(3000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
@@ -590,6 +597,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
 
             Thread.sleep(3000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
@@ -677,6 +686,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
             Thread.sleep(3000);
+
+            po.screentap(driver);
 
             po.pauseVideo(driver);
 
@@ -834,6 +845,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
 
             Thread.sleep(3000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 60000);
@@ -959,6 +972,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
 
             Thread.sleep(3000);
 
+            po.screentap(driver);
+
             po.pauseVideo(driver);
 
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
@@ -1078,6 +1093,8 @@ public class BasicTestsGoogleIMAIntegration extends EventLogTest{
             ev.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
 
             Thread.sleep(3000);
+
+            po.screentap(driver);
 
             po.pauseVideo(driver);
 

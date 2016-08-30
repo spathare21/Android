@@ -8,6 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.IHookCallBack;
 import org.testng.IHookable;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
@@ -30,6 +31,12 @@ public class EventLogTest implements IHookable {
         Adblogcat.deviceinfo();
         Adblogcat.androidVersion();
     }
+
+    @AfterSuite
+    public void afterSuite(){
+        System.out.println("\n after suite\n");
+    }
+
 
     @Override
     public void run(IHookCallBack callBack, ITestResult testResult){

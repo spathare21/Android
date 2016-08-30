@@ -131,35 +131,7 @@ public class BasicTests extends EventLogTest {
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",60000);
-
-            po.playInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
-            Thread.sleep(7000);
-
-            po.screenTap(driver);
-            Thread.sleep(1000);
-
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
-
-            po.readTime(driver);
-            Thread.sleep(1000);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 75000);
-            Thread.sleep(3000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-            Thread.sleep(1000);
-
-            po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 80000);
-
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed",150000);
-
+            ev.verifyEvent("playCompleted", "video play completed",60000);
 
         }
         catch (Exception e) {
@@ -237,7 +209,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent(" playStarted - state: READY", "2nd video start playing in queue",90000);
             Thread.sleep(30000);
             // video completed event verification.
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 130000);
+            ev.verifyEvent("playCompleted", "video play completed", 130000);
 
         } catch (Exception e) {
             System.out.println("multipleVideoPlayback throws Exception " + e);
@@ -308,7 +280,7 @@ public class BasicTests extends EventLogTest {
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
             Thread.sleep(20000);
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 95000);
+            ev.verifyEvent("playCompleted", "video play completed", 95000);
 
         } catch (Exception e) {
             System.out.println("insertAtRunTime throws Exception " + e);
@@ -379,7 +351,7 @@ public class BasicTests extends EventLogTest {
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 55000);
             Thread.sleep(20000);
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 95000);
+            ev.verifyEvent("playCompleted", "video play completed", 95000);
 
 
         } catch (Exception e) {
@@ -432,7 +404,7 @@ public class BasicTests extends EventLogTest {
             po.loadingSpinner(driver);
             Thread.sleep(60000);
             po.loadingSpinner(driver);
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 120000);
+            ev.verifyEvent("playCompleted", "video play completed", 120000);
 
         } catch (Exception e) {
             System.out.println("customPluginSample throws Exception " + e);
@@ -490,7 +462,7 @@ public class BasicTests extends EventLogTest {
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
             System.out.println("customControls throws Exception " + e);
@@ -549,7 +521,7 @@ public class BasicTests extends EventLogTest {
             po.resumeVideoInNormalscreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
-            ev.verifyEvent("playCompleted - state: LOADING", "video play completed", 90000);
+            ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
             System.out.println("customOverlay throws Exception " + e);

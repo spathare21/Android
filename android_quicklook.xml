@@ -1,26 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" >
-    <test name="AppiumTest">
+    <!--<listeners>
+            <listener class-name="testpackage.utils.Listeners">
+            </listener>
+    </listeners>-->
+    <test name="Android Quick Looks">
         <classes>
 
 
+            <!-- BasicPlayback sample app!-->
             <class name="testpackage.tests.basicplaybacksampleapp.BasicTests"/>
+
+            <!-- FW sample app!-->
             <class name="testpackage.tests.freewheelsampleapp.BasicTests"/>
             <!--<class name="testpackage.tests.optionsSampleApp.BasicTests"/>-->
+
+            <!-- IMA sample app!-->
             <class name="testpackage.tests.IMASampleApp.BasicTests"/>
+
+
+            <!-- AdvancedPlayback sample app!-->
             <class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>
 
+            <!-- Skin sample app!-->
 
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
 
 
+            <!-- ExpPlayer sample app!-->
             <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
+
+            <!-- Nielsen sample app!-->
+            <class name="testpackage.tests.NielsenSampleApp.BasicTest"/>
+
+            <!-- Pulse sample app!-->
+            <class name="testpackage.tests.PulseSampleApp.BasicTests"/>
+            
+            <!-- complete sample app!-->
+            <class name="testpackage.tests.CompleteSampleApp.AdvPlaybackBasicTest"/>
+            <class name="testpackage.tests.CompleteSampleApp.BasicSampleQL"/>
+            <class name="testpackage.tests.CompleteSampleApp.Freewheel_Sample"/>
+            <class name="testpackage.tests.CompleteSampleApp.IMASampleQLTests"/>
+            <class name="testpackage.tests.CompleteSampleApp.PlayerConfigOptionsQL"/>
+
+
 
         </classes>
     </test> <!-- AppiumTest -->
