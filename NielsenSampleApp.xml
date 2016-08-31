@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" >
-    <!--<listeners>
+    <listeners>
             <listener class-name="testpackage.utils.Listeners">
             </listener>
-    </listeners>-->
+    </listeners>
     <test name="NielsenSampleApp">
         <classes>
             <class name="testpackage.tests.NielsenSampleApp.BasicTest"/>
