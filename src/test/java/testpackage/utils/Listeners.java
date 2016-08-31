@@ -5,6 +5,7 @@ import org.junit.internal.runners.statements.Fail;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,9 @@ public class Listeners implements  IReporter {
     }
 
     public void setTestResult(String pass, String fail, String skip, String total, String suiteName,String[]Package){
+        Date date = new Date();
+        String CurrntDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        Testdata.put("Date",CurrntDate);
         Testdata.put("Pass",pass);
         Testdata.put("Fail",fail);
         Testdata.put("Skip",skip);
