@@ -113,6 +113,8 @@ public class Adblogcat {
                 sdkVersion = logEntries.get(i).toString();
                 String[] version = sdkVersion.split(":");
                 sdkVersion = version[6];
+                if(version.length>6)
+                    sdkVersion = version[6];
 
             }
         }
