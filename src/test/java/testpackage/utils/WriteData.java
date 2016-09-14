@@ -117,13 +117,13 @@ public class WriteData {
 
             //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
             //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
-            String range = "Demo!A2:E";
+            String range = "SDK_Release_Reports!A2:E";
             ValueRange response = service.spreadsheets().values()
                     .get(spreadsheetId, range)
                     .execute();
             // Read Data From Spreadsheet
             List<List<Object>> readvalues = response.getValues();
-            System.out.println("Number of values :" + readvalues.size());
+            System.out.println("Number of values in sheet :" + readvalues.size());
             // write data to spreadsheet
 
             List<Request> requests = new ArrayList<>();
@@ -132,14 +132,14 @@ public class WriteData {
 
             for (String key : map.keySet()){
                 String value = map.get(key);
-                System.out.println(key + " " + value);
+                System.out.println(key + " : " + value);
                 values.add(new CellData().setUserEnteredValue(new ExtendedValue().setStringValue(value)));
             }
 
             requests.add(new Request()
                     .setUpdateCells(new UpdateCellsRequest()
                             .setStart(new GridCoordinate()
-                                    .setSheetId(180487968)
+                                    .setSheetId(660618606)
                                     .setRowIndex(readvalues.size() + 1)
                                     .setColumnIndex(0))
                             .setRows(Arrays.asList(
