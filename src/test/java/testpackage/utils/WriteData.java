@@ -103,7 +103,7 @@ public class WriteData {
                 .build();
     }
 
-    public static void writetosheet(Map<String,String> map)
+    public static void writetosheet(LinkedHashMap<String,String> map)
     {
         try {
             Sheets service = getSheetsService();
@@ -178,7 +178,7 @@ public class WriteData {
         //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
         //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
 
-        String range = "Demo!A2:E";
+        String range = "SDK_Release_Reports!A2:E";
         ValueRange response = service.spreadsheets().values()
                 .get(spreadsheetId, range)
                 .execute();

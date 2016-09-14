@@ -405,7 +405,7 @@ public class BasicTests extends EventLogTest {
             po.loadingSpinner(driver);
             Thread.sleep(60000);
             po.loadingSpinner(driver);
-            ev.verifyEvent("playCompleted", "video play completed", 120000);
+            ev.verifyEvent("playCompleted", "video play completed", 150000);
 
         } catch (Exception e) {
             System.out.println("customPluginSample throws Exception " + e);
