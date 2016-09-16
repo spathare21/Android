@@ -280,7 +280,7 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(7000);
 
             // Click on video play icon after video has been generated .
-            po.clickImagebuttons(driver, 0);
+           // po.clickImagebuttons(driver, 0);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
