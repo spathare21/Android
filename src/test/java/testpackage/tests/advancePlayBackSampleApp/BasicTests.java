@@ -144,7 +144,7 @@ public class BasicTests extends EventLogTest {
     }
 
     //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527
-    //@org.testng.annotations.Test
+    @org.testng.annotations.Test
     public void multipleVideoPlayback() throws Exception {
 
         try {
@@ -658,8 +658,8 @@ public class BasicTests extends EventLogTest {
 
     }
 
-    //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527
-    //@org.testng.annotations.Test
+    //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527 : Resolved
+    @org.testng.annotations.Test
     public void changeVideoProgramatically_P1() throws Exception {
 
         try {
@@ -718,8 +718,8 @@ public class BasicTests extends EventLogTest {
 
     }
 
-    //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527
-    //@org.testng.annotations.Test
+    //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527 : Resolved
+    @org.testng.annotations.Test
     public void changeVideoProgramatically_P2() throws Exception {
 
         try {
