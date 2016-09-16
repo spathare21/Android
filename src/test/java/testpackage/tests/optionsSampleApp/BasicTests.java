@@ -402,7 +402,7 @@ public class BasicTests extends EventLogTest {
         }
 
     }
-
+    
     @org.testng.annotations.Test
     public void present_video_view_sharing_options() throws Exception {
 
@@ -685,7 +685,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void CuePointsAndAdsControlOptions_adControlsOff() throws Exception{
         try {
             // Creating an Object of optionsSampleApp class
