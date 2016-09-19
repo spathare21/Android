@@ -132,6 +132,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
     }
 
+    //TODO Asset is failing becasue of PBA-4592
     @org.testng.annotations.Test
     public void multipleVideoPlayback() throws Exception {
 
@@ -192,7 +193,7 @@ public class AdvPlaybackBasicTest extends EventLogTest {
 
             //po.playInNormalScreen(driver);
             po.resumeVideoInNormalscreen(driver);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 90000);
             Thread.sleep(30000);
 
             //2nd video start playing in queue

@@ -86,9 +86,7 @@ public class CompleteSampleApp {
 
     public void smallScreenTap(AndroidDriver driver, int index) throws InterruptedException{
         System.out.println("Clicking on screen");
-        List<WebElement> smallscreenTap = driver.findElements(By.xpath("//android.view.View"));
-        System.out.println("Size : " + smallscreenTap.size());
-        smallscreenTap.get(index).click();
+        driver.tap(1,playCoordinates[0], playCoordinates[1], 2);
 
     }
 

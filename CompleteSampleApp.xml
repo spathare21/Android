@@ -9,9 +9,9 @@
         <classes>
 
             <class name="testpackage.tests.CompleteSampleApp.AdvPlaybackBasicTest"/>
-            <class name="testpackage.tests.CompleteSampleApp.BasicSampleQL"/>
-            <class name="testpackage.tests.CompleteSampleApp.Freewheel_Sample"/>
-            <class name="testpackage.tests.CompleteSampleApp.IMASampleQLTests"/>
+            <!--<class name="testpackage.tests.CompleteSampleApp.BasicSampleQL"/>-->
+            <!--<class name="testpackage.tests.CompleteSampleApp.Freewheel_Sample"/>-->
+            <!--<class name="testpackage.tests.CompleteSampleApp.IMASampleQLTests"/>-->
             <class name="testpackage.tests.CompleteSampleApp.PlayerConfigOptionsQL"/>
 
         </classes>
