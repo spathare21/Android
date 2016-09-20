@@ -117,7 +117,7 @@ public class WriteData {
 
             //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
             //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
-            String range = "SDK_Release_Reports!A2:E";
+            String range = "SDK-Release-Reports!A2:E";
             ValueRange response = service.spreadsheets().values()
                     .get(spreadsheetId, range)
                     .execute();
@@ -139,7 +139,7 @@ public class WriteData {
             requests.add(new Request()
                     .setUpdateCells(new UpdateCellsRequest()
                             .setStart(new GridCoordinate()
-                                    .setSheetId(660618606)
+                                    .setSheetId(957530095)
                                     .setRowIndex(readvalues.size() + 1)
                                     .setColumnIndex(0))
                             .setRows(Arrays.asList(
@@ -178,7 +178,7 @@ public class WriteData {
         //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
         //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
 
-        String range = "SDK_Release_Reports!A2:E";
+        String range = "SDK-Release-Reports!A2:E";
         ValueRange response = service.spreadsheets().values()
                 .get(spreadsheetId, range)
                 .execute();
@@ -201,7 +201,7 @@ public class WriteData {
         requests.add(new Request()
                 .setUpdateCells(new UpdateCellsRequest()
                         .setStart(new GridCoordinate()
-                                .setSheetId(180487968)
+                                .setSheetId(957530095)
                                 .setRowIndex(readvalues.size()+1)
                                 .setColumnIndex(0))
                         .setRows(Arrays.asList(
