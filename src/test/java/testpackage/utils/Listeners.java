@@ -5,20 +5,19 @@ import org.junit.internal.runners.statements.Fail;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class Listeners implements  IReporter {
 
-    public static Map<String,String> Testdata = new HashMap<String, String>();
+    public static LinkedHashMap<String,String> Testdata  =
+            new LinkedHashMap<String,String>();
 
     @Override
     public void generateReport(List<XmlSuite> xmlSuite, List<ISuite> iSuites, String s){
         for(ISuite suits : iSuites)  {
-            System.out.println("Suite Name : " + suits.getName());
+            //System.out.println("Suite Name : " + suits.getName());
             Map <String ,ISuiteResult>result =  suits.getResults();
             for (ISuiteResult r : result.values()) {
                 ITestContext context = r.getTestContext();
@@ -35,22 +34,26 @@ public class Listeners implements  IReporter {
     }
 
     public void setTestResult(String pass, String fail, String skip, String total, String suiteName,String[]Package){
-        Testdata.put("Pass",pass);
-        Testdata.put("Fail",fail);
-        Testdata.put("Skip",skip);
-        Testdata.put("Total",total);
+        Date date = new Date();
+        String CurrntDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        Testdata.put("SDK Version",Adblogcat.sdkVersion);
+        Testdata.put("Date",CurrntDate);
         Testdata.put("SuiteName",suiteName);
         for (int i =0 ; i< Package.length ; i++){
             Testdata.put("Package"+i,Package[i]);
         }
-        Testdata.put("Android Device Version",Adblogcat.deviceVersion);
         Testdata.put("Device Name",Adblogcat.deviceName);
-        Testdata.put("SDK Version",Adblogcat.sdkVersion);
+        Testdata.put("Android Device Version",Adblogcat.deviceVersion);
         Testdata.put("Jenkins URL",ParseJenkinsBuild.getJenkinsBuild());
+        Testdata.put("Jenkins Report URL","http://jenkins-master1.services.ooyala.net:8080/job/appium-android-test-2-dev/"+ParseJenkinsBuild.buildNumber+"/allure/#/");
+        Testdata.put("Total",total);
+        Testdata.put("Pass",pass);
+        Testdata.put("Fail",fail);
+        Testdata.put("Skip",skip);
         System.out.println("size of map : " + Testdata.size());
         for (String key : Testdata.keySet()){
             String value = Testdata.get(key);
-            System.out.println(key + " " + value);
+            //System.out.println(key + " " + value);
         }
 
         WriteData.writetosheet(Testdata);

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" >
-    <!--<listeners>
+    <listeners>
             <listener class-name="testpackage.utils.Listeners">
             </listener>
-    </listeners>-->
+    </listeners>
     <test name="Android Quick Looks">
         <classes>
 
@@ -37,17 +37,17 @@
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
 
             <!-- Nielsen sample app!-->
-            <class name="testpackage.tests.NielsenSampleApp.BasicTest"/>
+           <!-- <class name="testpackage.tests.NielsenSampleApp.BasicTest"/>-->
 
             <!-- Pulse sample app!-->
-            <class name="testpackage.tests.PulseSampleApp.BasicTests"/>
+           <!-- <class name="testpackage.tests.PulseSampleApp.BasicTests"/>-->
             
             <!-- complete sample app!-->
-            <class name="testpackage.tests.CompleteSampleApp.AdvPlaybackBasicTest"/>
+           <!-- <class name="testpackage.tests.CompleteSampleApp.AdvPlaybackBasicTest"/>
             <class name="testpackage.tests.CompleteSampleApp.BasicSampleQL"/>
             <class name="testpackage.tests.CompleteSampleApp.Freewheel_Sample"/>
             <class name="testpackage.tests.CompleteSampleApp.IMASampleQLTests"/>
-            <class name="testpackage.tests.CompleteSampleApp.PlayerConfigOptionsQL"/>
+            <class name="testpackage.tests.CompleteSampleApp.PlayerConfigOptionsQL"/>-->
 
 
 

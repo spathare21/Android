@@ -143,6 +143,7 @@ public class BasicTests extends EventLogTest {
 
     }
 
+    //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527
     @org.testng.annotations.Test
     public void multipleVideoPlayback() throws Exception {
 
@@ -404,7 +405,7 @@ public class BasicTests extends EventLogTest {
             po.loadingSpinner(driver);
             Thread.sleep(60000);
             po.loadingSpinner(driver);
-            ev.verifyEvent("playCompleted", "video play completed", 120000);
+            ev.verifyEvent("playCompleted", "video play completed", 150000);
 
         } catch (Exception e) {
             System.out.println("customPluginSample throws Exception " + e);
@@ -657,6 +658,7 @@ public class BasicTests extends EventLogTest {
 
     }
 
+    //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527 : Resolved
     @org.testng.annotations.Test
     public void changeVideoProgramatically_P1() throws Exception {
 
@@ -716,6 +718,7 @@ public class BasicTests extends EventLogTest {
 
     }
 
+    //TODO : Issue https://jira.corp.ooyala.com:8443/browse/PBA-4527 : Resolved
     @org.testng.annotations.Test
     public void changeVideoProgramatically_P2() throws Exception {
 

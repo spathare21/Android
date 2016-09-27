@@ -280,7 +280,7 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(7000);
 
             // Click on video play icon after video has been generated .
-            po.clickImagebuttons(driver, 0);
+           // po.clickImagebuttons(driver, 0);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -402,7 +402,7 @@ public class BasicTests extends EventLogTest {
         }
 
     }
-
+    
     @org.testng.annotations.Test
     public void present_video_view_sharing_options() throws Exception {
 
@@ -685,7 +685,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void CuePointsAndAdsControlOptions_adControlsOff() throws Exception{
         try {
             // Creating an Object of optionsSampleApp class
