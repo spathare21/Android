@@ -24,17 +24,16 @@
             <class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>
 
             <!-- Skin sample app!-->
-            <!--
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
-            <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
+            <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
 
 
-            <!-- ExpPlayer sample app!--><!--
+            <!-- ExpPlayer sample app!-->
             <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
 
             <!-- Nielsen sample app!-->
             <!--<class name="testpackage.tests.NielsenSampleApp.BasicTest"/>-->
