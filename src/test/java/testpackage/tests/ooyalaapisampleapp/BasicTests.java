@@ -56,7 +56,7 @@ public class BasicTests extends EventLogTest {
         Thread.sleep(10000);
     }
 
-    //@Test
+    @Test
     public void ooyalaEverywhere() throws Exception{
 
         try {
@@ -179,7 +179,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void rethinkVideo() throws Exception{
 
         try {
@@ -240,7 +240,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void telegraphMediaGroup() throws Exception{
 
         try {
