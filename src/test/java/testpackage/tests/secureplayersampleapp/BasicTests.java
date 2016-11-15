@@ -52,7 +52,7 @@ public class BasicTests extends EventLogTest {
         RemoveEventsLogFile.removeEventsFileLog();
     }
 
-    @Test
+    //@Test
     public void ooyalaIngestedPlayreadySmoothVod() throws Exception{
 
         try {
@@ -107,7 +107,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void playreadyHLSVodWithClosedCaptions() throws Exception{
 
         try {
@@ -174,7 +174,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void microsoftIngestedPlayreadySmoothVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -228,7 +228,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void microsoftIngestedClearSmoothVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -283,7 +283,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void ooyalaIngestedClearHLSVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -338,7 +338,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void ooyalaSampleEncryptedHlsVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -414,27 +414,27 @@ public class BasicTests extends EventLogTest {
             po.waitForTextView(driver,"00:00");
             //play the video in normal screen
             po.playInNormalScreen(driver);
-            //Play Started event Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted - state: READY", " Video Started to Play ", 40000);
             //handle the loading spinner
             po.loadingSpinner(driver);
-            //pause the running of the script for brief time
-            Thread.sleep(3000);
+            //Play Started event Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //pause the running of the script for brief moment
+            Thread.sleep(2000);
             //Pausing Video in Normal screen.
             po.pauseInNormalScreen(driver);
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
-            // seek the video
+            ev.verifyEvent("stateChanged - state: PAUSED", "Playing Video Was Paused ", 30000);
+            // seek the video playback
             po.seekVideo(driver);
-            //verify the seek completed event
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+            // verify the seek completed event
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
             //handle the loading spinner
             po.loadingSpinner(driver);
-            //resume the video playback
+            //resume the playback in normal screen
             po.resumeInNormalScreen(driver);
             //verify the playing event
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video Started to Play ", 45000);
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
         }
@@ -446,7 +446,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void visualOnConfigurationOptions() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -499,7 +499,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void playreadyHlsWithOoyalaPlayerToken() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
