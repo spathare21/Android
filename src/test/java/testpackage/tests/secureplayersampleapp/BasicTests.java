@@ -52,7 +52,7 @@ public class BasicTests extends EventLogTest {
         RemoveEventsLogFile.removeEventsFileLog();
     }
 
-    //@Test
+    @Test
     public void ooyalaIngestedPlayreadySmoothVod() throws Exception{
 
         try {
@@ -107,7 +107,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void playreadyHLSVodWithClosedCaptions() throws Exception{
 
         try {
@@ -174,7 +174,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void microsoftIngestedPlayreadySmoothVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -228,7 +228,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void microsoftIngestedClearSmoothVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -283,7 +283,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void ooyalaIngestedClearHLSVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -338,7 +338,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void ooyalaSampleEncryptedHlsVod() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -419,6 +419,8 @@ public class BasicTests extends EventLogTest {
             //Play Started event Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //handle loading spinner
+            po.loadingSpinner(driver);
             //pause the running of the script for brief moment
             Thread.sleep(2000);
             //Pausing Video in Normal screen.
@@ -446,7 +448,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void visualOnConfigurationOptions() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
@@ -499,7 +501,7 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-    //@Test
+    @Test
     public void playreadyHlsWithOoyalaPlayerToken() throws Exception{
         try {
             // Creating an Object of SecurePlayerSampleApp class
