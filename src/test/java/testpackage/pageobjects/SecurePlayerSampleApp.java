@@ -78,6 +78,11 @@ public class SecurePlayerSampleApp {
         viewarea.click();
     }
 
+    public void tap(AndroidDriver driver)
+    {
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 4);
+    }
+
     public void playInNormalScreen(AndroidDriver driver) {
         int[] play = new int[2];
         List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));

@@ -81,10 +81,11 @@ public class BasicTests extends EventLogTest {
             EventVerification ev = new EventVerification();
             //verify play event
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
-            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
             //pause the running of the script for brief time
-            Thread.sleep(3000);
-            //Pausing Video in Normal screen.
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
@@ -128,27 +129,27 @@ public class BasicTests extends EventLogTest {
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the start screen to appear
-            po.waitForTextView(driver,"00:00");
+            po.waitForTextView(driver, "00:00");
             //play in the asset in normal screen
             po.playInNormalScreen(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
-            //handle the loading spinner
-            po.loadingSpinner(driver);
             //pause the running of the script for brief time
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
             // click on cc button
-            po.clickImagebuttons(driver,(2-1));
+            po.clickImagebuttons(driver, (2 - 1));
             // wait for languages to appear
             po.waitForTextView(driver,"Languages");
-            po.clickRadiobuttons(driver,(7-1));
+            po.clickRadiobuttons(driver, (7 - 1));
             //Checking the redio button and applying the assertion
-            Assert.assertTrue(po.radioButtonChecked(driver,(7-1)));
+            Assert.assertTrue(po.radioButtonChecked(driver, (7 - 1)));
             // closed Captions event verification
             ev.verifyEvent("closedCaptionsLanguageChanged", " CC of the Video Was Changed ", 30000);
             // come back to video playback
@@ -170,6 +171,63 @@ public class BasicTests extends EventLogTest {
             System.out.println("Playready HLS VOD with Closed Captions  throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"playreadyHLSVodWithClosedCaptions");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @Test
+    public void prePersonalize() throws Exception{
+        try {
+            // Creating an Object of SecurePlayerSampleApp class
+            SecurePlayerSampleApp po = new SecurePlayerSampleApp();
+            // wait till home screen of SecurePlayerSampleApp is opened
+            po.waitForAppHomeScreen(driver);
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.SecurePlayerListActivity");
+            // Wrire to console activity name of home screen app
+            System.out.println("Secure Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Select one of the video.
+            po.clickBasedOnText(driver, "Pre-Personalize");
+            //verify if player was loaded
+            po.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.SecurePlayerPrePersonalizedPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            //wait for the start screen to appear
+            po.waitForTextView(driver,"00:00");
+            //play the video in normal screen
+            po.playInNormalScreen(driver);
+            //handle the loading spinner
+            po.loadingSpinner(driver);
+            //Play Started event Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            //pause the running of the script for brief time
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
+            po.pauseInNormalScreen(driver);
+            // Pause state verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
+            // seek the video playback
+            po.seekVideo(driver);
+            // verify the seek completed event
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
+            //handle the loading spinner
+            po.loadingSpinner(driver);
+            //resume the playback in normal screen
+            po.resumeInNormalScreen(driver);
+            //verify the playing event
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video Started to Play ", 45000);
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
+        }
+        catch(Exception e){
+            System.out.println("Pre-Personalize  throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"prePersonalize");
             Assert.assertTrue(false, "This will fail!");
         }
     }
@@ -387,63 +445,6 @@ public class BasicTests extends EventLogTest {
             System.out.println("ooyalaSampleEncryptedHlsVod  throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"ooyalaSampleEncryptedHlsVod");
-            Assert.assertTrue(false, "This will fail!");
-        }
-    }
-
-    @Test
-    public void prePersonalize() throws Exception{
-        try {
-            // Creating an Object of SecurePlayerSampleApp class
-            SecurePlayerSampleApp po = new SecurePlayerSampleApp();
-            // wait till home screen of SecurePlayerSampleApp is opened
-            po.waitForAppHomeScreen(driver);
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.SecurePlayerListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("Secure Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-            // Select one of the video.
-            po.clickBasedOnText(driver, "Pre-Personalize");
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.SecurePlayerPrePersonalizedPlayerActivity");
-            // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            //wait for the start screen to appear
-            po.waitForTextView(driver,"00:00");
-            //play the video in normal screen
-            po.playInNormalScreen(driver);
-            //handle the loading spinner
-            po.loadingSpinner(driver);
-            //Play Started event Verification
-            EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            //handle loading spinner
-            po.loadingSpinner(driver);
-            //pause the running of the script for brief moment
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
-            po.pauseInNormalScreen(driver);
-            // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", "Playing Video Was Paused ", 30000);
-            // seek the video playback
-            po.seekVideo(driver);
-            // verify the seek completed event
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            //handle the loading spinner
-            po.loadingSpinner(driver);
-            //resume the playback in normal screen
-            po.resumeInNormalScreen(driver);
-            //verify the playing event
-            ev.verifyEvent("stateChanged - state: PLAYING", "Video Started to Play ", 45000);
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
-        }
-        catch(Exception e){
-            System.out.println("Pre-Personalize  throws Exception "+e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"prePersonalize");
             Assert.assertTrue(false, "This will fail!");
         }
     }
