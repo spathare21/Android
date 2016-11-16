@@ -132,8 +132,10 @@ public class BasicTests extends EventLogTest {
             po.waitForTextView(driver, "00:00");
             //play in the asset in normal screen
             po.playInNormalScreen(driver);
-            //Play Started event Verification
+            //handle the loading spinner
+            po.loadingSpinner(driver);
             EventVerification ev = new EventVerification();
+            //verify play event
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
             //pause the running of the script for brief time
             Thread.sleep(5000);
@@ -259,13 +261,15 @@ public class BasicTests extends EventLogTest {
             po.loadingSpinner(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            //pause the running of the script for brief time.
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            //pause the running of the script for brief time
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
             //seek the video
             po.seekVideo(driver);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
@@ -313,13 +317,15 @@ public class BasicTests extends EventLogTest {
             po.loadingSpinner(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
             //pause the running of the script for brief time
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
             // seek the video
             po.seekVideo(driver);
             // verify the seek completed event
@@ -368,13 +374,15 @@ public class BasicTests extends EventLogTest {
             po.loadingSpinner(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            //pause the running of the script for brief moment
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            //pause the running of the script for brief time
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", "Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
             // seek the video playback
             po.seekVideo(driver);
             // verify the seek completed event
@@ -424,9 +432,11 @@ public class BasicTests extends EventLogTest {
             EventVerification ev = new EventVerification();
             //verify play event
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
-            //pause the running of the script for brief time.
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
+            //pause the running of the script for brief time
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
@@ -474,13 +484,15 @@ public class BasicTests extends EventLogTest {
             po.playInNormalScreen(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
             //pause the running of the script for brief time
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
             //seek the video
             po.seekVideo(driver);
             //verify the seek completed event
@@ -527,13 +539,15 @@ public class BasicTests extends EventLogTest {
             po.playInNormalScreen(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
             //pause the running of the script for brief time
-            Thread.sleep(2000);
-            //Pausing Video in Normal screen.
+            Thread.sleep(5000);
+            // Tapping video for activate the controls.
+            po.tap(driver);
+            // Pausing video in normal screem
             po.pauseInNormalScreen(driver);
             // Pause state verification
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 30000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 50000);
             //seek the video
             po.getXYSeekBarAndSeek(driver,20,400);
             //verify the seek completed event
