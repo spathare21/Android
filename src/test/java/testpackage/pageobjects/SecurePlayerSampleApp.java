@@ -18,7 +18,7 @@ public class SecurePlayerSampleApp {
         */
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 40);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.
                 xpath("//android.widget.TextView[@text='Ooyala-Ingested Playready Smooth VOD']")));
 
