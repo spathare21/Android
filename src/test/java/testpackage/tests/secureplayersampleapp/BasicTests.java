@@ -482,6 +482,7 @@ public class BasicTests extends EventLogTest {
             po.waitForTextView(driver,"00:00");
             //play the video in normal screen
             po.playInNormalScreen(driver);
+            po.loadingSpinner(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
@@ -537,6 +538,7 @@ public class BasicTests extends EventLogTest {
             po.waitForTextView(driver,"00:00");
             //play the video in normal screen
             po.playInNormalScreen(driver);
+            po.loadingSpinner(driver);
             //Play Started event Verification
             EventVerification ev = new EventVerification();
             ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
