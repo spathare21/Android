@@ -125,9 +125,6 @@ import java.util.Properties;
             // Verifying event that seek has been done.
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 
-            // verifying that buffer has been done.
-            ev.verifyEvent("bufferChanged", "Video has been buffered",40000);
-
             // Starting video playback again
             po.resumeInNormalScreen(driver);
             // Verifying that playback has been started.
@@ -191,8 +188,6 @@ import java.util.Properties;
             po.seekVideo(driver);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
 
-            ev.verifyEvent("bufferChanged", "Video has been buffered",40000);
-
             po.resumeInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
 
@@ -253,8 +248,6 @@ import java.util.Properties;
 
             po.seekVideo(driver);
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-
-            ev.verifyEvent("bufferChanged", "Video has been buffered",40000);
 
             po.resumeInNormalScreen(driver);
             ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 45000);
@@ -342,8 +335,6 @@ import java.util.Properties;
             po.seekVideo(driver);
              // Verifying that video has been seeked by event.
             ev.verifyEvent("seekCompleted","Playing Video was Seeked" ,30000);
-            ev.verifyEvent("bufferChanged", "Video has been buffered",40000);
-
             // Tap coordinates again to play
             po.resumeInNormalScreen(driver);
              // Verifying that video has been started playing from the pause state.
@@ -416,8 +407,6 @@ import java.util.Properties;
 
             // Verifying the event that video has been seekeed
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            ev.verifyEvent("bufferChanged", "Video has been buffered",40000);
-
             // After seeking the video, resuming it from the pause state.
             po.playInNormalScreen(driver);
             // Verifying that video has been start playing again from the pause mode.
@@ -485,8 +474,6 @@ import java.util.Properties;
 
             // Verifying the event that video has been seekeed
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            ev.verifyEvent("bufferChanged", "Video has been buffered",40000);
-
             // After seeking the video, resuming it from the pause state.
             po.playInNormalScreen(driver);
             // Verifying that video has been start playing again from the pause mode.
@@ -561,7 +548,6 @@ import java.util.Properties;
 
             // Verifying the event that video has been seekeed
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 30000);
-            ev.verifyEvent("bufferChanged", "Video has been buffered",40000);
 
             // After seeking the video, resuming it from the pause state.
             po.playInNormalScreen(driver);
