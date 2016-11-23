@@ -51,7 +51,7 @@ public class BasicTests extends EventLogTest {
 
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
-        // Waiting for all the events from sdk to come in .
+        // removing the events log file after test is completed.
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
     }
@@ -60,11 +60,10 @@ public class BasicTests extends EventLogTest {
     public void ooyalaEverywhere() throws Exception{
 
         try {
-            // Creating an Object of BasicPlaybackSampleApp class
+            // Creating an Object of OoyalaApiSampleApp class
             OoyalaApiSampleApp po = new OoyalaApiSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
+            // wait till home screen of OoyalaApiBackApp is opened
             po.waitForAppHomeScreen(driver);
-
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, p.get("appActivityName").toString());
             // Wrire to console activity name of home screen app
@@ -74,7 +73,7 @@ public class BasicTests extends EventLogTest {
             //click on display main list
             po.clickBasedOnText(driver, "ContentTree for Channel");
             Thread.sleep(2000);
-            // Assert if current activity is Freewheel list activity
+            // Assert if current activity is ChannelContentTreePlayerActivity
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChannelContentTreePlayerActivity");
             // wait for app to load
             po.waitForTextView(driver,"Ooyala Everywhere");
@@ -122,9 +121,9 @@ public class BasicTests extends EventLogTest {
     public void ooyalaSocial() throws Exception{
 
         try {
-            // Creating an Object of BasicPlaybackSampleApp class
+            // Creating an Object of OoyalaApiSampleApp class
             OoyalaApiSampleApp po = new OoyalaApiSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
+            // wait till home screen of OoyalaApiBackApp is opened
             po.waitForAppHomeScreen(driver);
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaAPIListActivity");
@@ -135,7 +134,7 @@ public class BasicTests extends EventLogTest {
             //click on display main list
             po.clickBasedOnText(driver, "ContentTree for Channel");
             Thread.sleep(2000);
-            // Assert if current activity is Freewheel list activity
+            // Assert if current activity is ChannelContentTreePlayerActivity
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChannelContentTreePlayerActivity");
             //wait for app to load
             po.waitForTextView(driver,"Ooyala Social");
@@ -183,9 +182,9 @@ public class BasicTests extends EventLogTest {
     public void rethinkVideo() throws Exception{
 
         try {
-            // Creating an Object of BasicPlaybackSampleApp class
+            // Creating an Object of OoyalaApiSampleApp class
             OoyalaApiSampleApp po = new OoyalaApiSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
+            // wait till home screen of OoyalaApiBackApp is opened
             po.waitForAppHomeScreen(driver);
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaAPIListActivity");
@@ -196,7 +195,7 @@ public class BasicTests extends EventLogTest {
             //click on display main list
             po.clickBasedOnText(driver, "ContentTree for Channel");
             Thread.sleep(2000);
-            // Assert if current activity is Freewheel list activity
+            // Assert if current activity is ChannelContentTreePlayerActivity
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChannelContentTreePlayerActivity");
             //wait for the asset list to load
             po.waitForTextView(driver,"Rethink Video");
@@ -244,9 +243,9 @@ public class BasicTests extends EventLogTest {
     public void telegraphMediaGroup() throws Exception{
 
         try {
-            // Creating an Object of BasicPlaybackSampleApp class
+            // Creating an Object of OoyalaApiSampleApp class
             OoyalaApiSampleApp po = new OoyalaApiSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
+            // wait till home screen of OoyalaApiBackApp is opened
             po.waitForAppHomeScreen(driver);
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OoyalaAPIListActivity");
@@ -257,7 +256,7 @@ public class BasicTests extends EventLogTest {
             //click on display main list
             po.clickBasedOnText(driver, "ContentTree for Channel");
             Thread.sleep(2000);
-            // Assert if current activity is Freewheel list activity
+            // Assert if current activity is ChannelContentTreePlayerActivity
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChannelContentTreePlayerActivity");
             //wait for the assets list to display
             po.waitForTextView(driver,"Telegraph Media Group");
