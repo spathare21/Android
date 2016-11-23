@@ -9,5 +9,5 @@
         <classes>
             <class name="testpackage.tests.npawsampleapp.BasicTests"/>
         </classes>
-    </test> <!-- AppiumTest -->
-</suite> <!-- Default Suite -->
+    </test>
+</suite>
