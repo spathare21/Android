@@ -33,10 +33,8 @@ public class exoPlayerSampleApp {
     }
 
     public void clickBasedOnText(AndroidDriver driver, String clickText) {
-
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
         clickTextField.click();
-
     }
 
     public void waitForPresence(AndroidDriver driver, String typeOf, String waitString) {
@@ -44,7 +42,6 @@ public class exoPlayerSampleApp {
         if (typeOf == "className") {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.className(waitString)));
         }
-
     }
 
     public void clickButtons(AndroidDriver driver, int index) {
@@ -71,7 +68,6 @@ public class exoPlayerSampleApp {
 
     public void skipAd(AndroidDriver driver) throws InterruptedException {
         System.out.println("in skip ad");
-
         driver.findElementByXPath("//android.widget.TextView[@name='Skip Ad']").click();
                 // driver.tap(1,585,1524,2);
     }
@@ -81,7 +77,6 @@ public class exoPlayerSampleApp {
     }
 
     public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) {
-
         driver.scrollTo(clickText).click();
     }
 
@@ -89,14 +84,11 @@ public class exoPlayerSampleApp {
     public void replayVideo(AndroidDriver driver) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         String path = "//android.widget.TextView[@text='c']";
-
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         replay = ele.getLocation();
         System.out.println("replay.x value is " + replay.getX());
         System.out.println("replay.y value is " + replay.getY());
-
         Thread.sleep(2000);
-
         // more button location
         WebElement button = driver.findElement(By.xpath("//android.widget.TextView[@text='f']"));
         more = button.getLocation();
@@ -196,7 +188,6 @@ public class exoPlayerSampleApp {
         driver.findElement(By.xpath("//android.view.View[@index='2']")).click();
         Thread.sleep(5000);
         driver.navigate().back();
-
         System.out.println();
 
     }
@@ -211,7 +202,6 @@ public class exoPlayerSampleApp {
 
     public  void pauseVideo(AndroidDriver driver) throws InterruptedException {
         System.out.println("moved to pause method");
-
         System.out.println("replay.x value is "+replay.getX());
         System.out.println("replay.x value is "+replay.getY());
         driver.tap(1,replay.getX(),replay.getY(),2);
@@ -291,12 +281,38 @@ public class exoPlayerSampleApp {
         driver.tap(1,play.getX(),play.getY(),2);
     }
 
-    public void seek_video (AndroidDriver driver)
+    public void seek_video (AndroidDriver driver,int time) throws Exception {
+        try {
+            List<WebElement> views = driver.findElements(By.className("android.view.ViewGroup"));
+            System.out.println("number of views present are : " + views.size());
+            Point p = views.get(6).getLocation();
+            driver.swipe(p.getX(), p.getY(), p.getX() + time, p.getY(), 5);
+        } catch (Exception e) {
+            List<WebElement> views = driver.findElements(By.className("android.view.View"));
+            System.out.println("number of views present are : " + views.size());
+            Point p1 = views.get(6).getLocation();
+            driver.swipe(p1.getX(), p1.getY(), p1.getX() + time, p1.getY(), 5);
+        }
+    }
 
-    {
-        WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
-        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>"+element);
-
+    public void loadingSpinner(AndroidDriver driver) {
+        int i = 0;
+        try {
+            while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
+                //System.out.println("Handling Loading Spinner");
+                if (i<20){
+                    System.out.println("Handling Loading Spinner");
+                    Thread.sleep(1000);
+                    i++;
+                }
+                else{
+                    System.out.println("Loading spinner occured more than "+i+" seconds");
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
@@ -331,7 +347,6 @@ public class exoPlayerSampleApp {
 
     public void screentap(AndroidDriver driver) throws InterruptedException {
         System.out.println("in screen tapped method");
-        Thread.sleep(1500);
         driver.tap(1,replay.getX(),replay.getY(),2);
         System.out.println("out of the screen tapped method");
     }
@@ -382,17 +397,13 @@ public class exoPlayerSampleApp {
     }
 
     public void screentapping(AndroidDriver driver) throws InterruptedException{
-        System.out.println("Tapping using Play coordinates");
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.tap(1,play.getX(),play.getY(),2);
-        System.out.println("Tapped on screen");
     }
 
     public void pausingVideo(AndroidDriver driver) throws InterruptedException{
-        System.out.println("Pausing Video using play coordinate");
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.tap(1,play.getX(),play.getY(),2);
-        System.out.println("Paused Video using play coordinates");
     }
 
     public void discoveryTray(AndroidDriver driver) throws InterruptedException{
