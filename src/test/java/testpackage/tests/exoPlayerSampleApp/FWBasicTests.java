@@ -76,7 +76,7 @@ public class FWBasicTests extends EventLogTest{
         }
 
 
-         @org.testng.annotations.Test
+        @org.testng.annotations.Test
         public void FreeWheelIntegrationPreRoll() throws Exception{
 
             try {
@@ -235,7 +235,6 @@ public class FWBasicTests extends EventLogTest{
 
     }
 
-
         @org.testng.annotations.Test
         public void FreeWheelIntegrationPostroll() throws Exception {
 
@@ -314,7 +313,6 @@ public class FWBasicTests extends EventLogTest{
             }
 
         }
-
 
         @org.testng.annotations.Test
         public void FreeWheelIntegrationPreMidPostroll() throws Exception {
@@ -402,8 +400,7 @@ public class FWBasicTests extends EventLogTest{
             }
 
         }
-
-        //@org.testng.annotations.Test
+        @org.testng.annotations.Test
         public void FreeWheelIntegrationOverlay() throws Exception {
 
             try {
@@ -444,20 +441,18 @@ public class FWBasicTests extends EventLogTest{
                 po.waitForPresenceOfText(driver, "h");
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver, "h");
-
+                po.getPlay(driver);
 
                 //Play Started Verification
                 EventVerification ev = new EventVerification();
 
                 //Wait for video to start and verify the playStarted event .
-                ev.verifyEvent("playStarted", " Video Started Play ", 50000);
-                Thread.sleep(5000);
+                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
                 po.verifyOverlay(driver);
 
                 //Wait for video to finish and verify the playCompleted event .
-                ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
 
             } catch (Exception e) {
@@ -469,7 +464,7 @@ public class FWBasicTests extends EventLogTest{
 
         }
 
-       // @org.testng.annotations.Test
+        @org.testng.annotations.Test
         public void FreeWheelIntegrationMultiMidroll() throws Exception {
 
             try {
@@ -519,18 +514,34 @@ public class FWBasicTests extends EventLogTest{
                 //Wait for video to start and verify the playStarted event .
                 ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+                Thread.sleep(2000);
+
+                po.screentapping(driver);
+
+                po.pausingVideo(driver);
+
+                ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+                po.seek_video(driver,100);
+                ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 45000);
+                po.loadingSpinner(driver);
+                po.getPlay(driver);
+                ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 50000);
+
+
                 //Wait for Ad to start and verify the adStarted event .
-                ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-
-                //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+                //Wait for Ad to complete and verify the adCompleted event .
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 55000);
+
+
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 55000);
+
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 65000);
 
                 //Wait for video to finish and verify the playCompleted event .
-                ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
             } catch (Exception e) {
                 System.out.println("FreeWheelIntegrationMultiMidroll throws Exception " + e);
@@ -541,7 +552,7 @@ public class FWBasicTests extends EventLogTest{
 
         }
 
-      //  @org.testng.annotations.Test
+        @org.testng.annotations.Test
         public void FreeWheelIntegrationPreMidPostroll_overlay() throws Exception {
 
             try {
@@ -582,7 +593,7 @@ public class FWBasicTests extends EventLogTest{
                 po.waitForPresenceOfText(driver, "h");
 
                 //Clicking on Play button in Ooyala Skin
-                po.clickBasedOnText(driver, "h");
+                po.getPlay(driver);
 
 
                 //Play Started Verification
@@ -594,24 +605,36 @@ public class FWBasicTests extends EventLogTest{
 
 
                 //Wait for video to start and verify the playStarted event .
-                ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-                Thread.sleep(3000);
+                ev.verifyEvent("playStarted", " Video Started Play ", 35000);
 
                 po.verifyOverlay(driver);
 
                 //Wait for Ad to start and verify the adStarted event .
-                ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
-
-                //Wait for Ad to complete and verify the adCompleted event .
-                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
                 ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
-                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+                //Wait for Ad to complete and verify the adCompleted event .
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 55000);
+
+                Thread.sleep(2000);
+
+                po.screentapping(driver);
+
+                po.pausingVideo(driver);
+
+                ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 55000);
+
+                po.seek_video(driver,100);
+                ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
+                po.loadingSpinner(driver);
+                po.getPlay(driver);
+                ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 65000);
+
+                ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
+
+                ev.verifyEvent("adCompleted", " Ad Playback Completed ", 75000);
 
                 //Wait for video to finish and verify the playCompleted event .
-                ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+                ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
 
             } catch (Exception e) {
