@@ -121,7 +121,6 @@ public class BasicPlayBackBasicTests extends EventLogTest{
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
                 Thread.sleep(2000);
-
             }
 
             po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
@@ -147,19 +146,29 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Timeout for the duration of the video
-            Thread.sleep(30000);
+            Thread.sleep(2000);
+
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -225,19 +234,29 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Timeout for the duration of the video
-            Thread.sleep(30000);
+            Thread.sleep(2000);
+
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -304,17 +323,30 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
-            //Ad Started Verification
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Timeout for the duration of the video
-            Thread.sleep(30000);
+            Thread.sleep(2000);
+
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -381,14 +413,30 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
-            //Ad Started Verification
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-           //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            Thread.sleep(2000);
+
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -401,7 +449,7 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
     }
 
-    @org.testng.annotations.Test
+    //@org.testng.annotations.Test
     public void VOD_CC() throws Exception{
         try {
 
@@ -527,21 +575,32 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
-
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            // Ad playback has been completed.
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(2000);
+
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
         }
         catch(Exception e)
@@ -606,23 +665,33 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+            Thread.sleep(2000);
 
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
-
-            //Ad Completed Verification
+            // Ad playback has been completed.
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
@@ -635,7 +704,6 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
     }
 
-    //TODO Fails because of https://jira.corp.ooyala.com/browse/PBA-3730 issue resolved
     @org.testng.annotations.Test
     public void VAST2_Postroll() throws Exception{
         try {
@@ -688,22 +756,34 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 40000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+            Thread.sleep(2000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+            po.screentapping(driver);
 
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
+            // Ad playback has been completed.
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+
 
         }
         catch(Exception e)
@@ -770,20 +850,33 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             //Clicking on Play button in Ooyala Skin
             po.clickBasedOnText(driver,"h");
 
-            //Events Verification
+            //Clicking on Play button in Ooyala Skin
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
-
-            //Ad Started Verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            // Ad playback has been completed.
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            Thread.sleep(2000);
+
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 49000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
         }
         catch(Exception e)
@@ -796,7 +889,6 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
     }
 
-    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704 issue resolved
     @org.testng.annotations.Test
     public void ooyalaAd_Preroll() throws Exception{
         try {
@@ -849,21 +941,32 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            // Ad playback has been completed.
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 50000);
+            Thread.sleep(2000);
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 60000);
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 70000);
 
         }
         catch(Exception e)
@@ -876,7 +979,6 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
     }
 
-    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704 issue resolved
     @org.testng.annotations.Test
     public void ooyalaAd_Midroll() throws Exception{
         try {
@@ -929,18 +1031,29 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+            Thread.sleep(2000);
+
+            po.screentapping(driver);
+
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
-
-            //Ad Completed Verification
+            // Ad playback has been completed.
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -957,7 +1070,6 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
     }
 
-    //TODO : FAILS BECAUSE OF https://jira.corp.ooyala.com/browse/PBA-3704 issue resolved
     @org.testng.annotations.Test
     public void ooyalaAd_Postroll() throws Exception{
         try {
@@ -1010,22 +1122,33 @@ public class BasicPlayBackBasicTests extends EventLogTest{
 
 
             //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-
-            //Ad Started Verification
+            po.getPlay(driver);
+            //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Play Started
-            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
+            Thread.sleep(2000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 41000);
+            po.screentapping(driver);
 
-            //Ad Completed Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+            po.pausingVideo(driver);
+
+            ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+
+            po.seek_video(driver,100);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+            po.loadingSpinner(driver);
+            po.getPlay(driver);
+            ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
+
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
+            // Ad playback has been completed.
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         }
         catch(Exception e)
