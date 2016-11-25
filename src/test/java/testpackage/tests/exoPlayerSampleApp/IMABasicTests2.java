@@ -201,7 +201,7 @@ public class IMABasicTests2 extends EventLogTest {
             System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video as IMA Non Ad-Rules Midroll.
-            po.clickBasedOnText(driver, "IMA Non Ad-Rules Midroll");
+            po.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Midroll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -306,7 +306,7 @@ public class IMABasicTests2 extends EventLogTest {
             System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video as IMA Non Ad-Rules Postroll
-            po.clickBasedOnText(driver, "IMA Non Ad-Rules Postroll");
+            po.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Postroll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -411,7 +411,7 @@ public class IMABasicTests2 extends EventLogTest {
             System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video IMA Non Ad-Rules Pre-Mid-Mid-post
-            po.clickBasedOnText(driver, "IMA Non Ad-Rules Pre-Mid-Mid-Post");
+            po.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Pre-Mid-Mid-Post");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -536,7 +536,7 @@ public class IMABasicTests2 extends EventLogTest {
             System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video No Ads.
-            po.clickBasedOnText(driver, "No Ads");
+            po.clickBasedOnTextScrollTo(driver, "No Ads");
             Thread.sleep(2000);
 
             //verify if player was loaded
