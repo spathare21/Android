@@ -417,4 +417,17 @@ public class exoPlayerSampleApp {
         discoveryclose.click();
         System.out.println("Discovery tray closed");
     }
+
+    public void checkPlayButton(AndroidDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        String path  = "//android.widget.TextView[@text='h']";
+        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        if(ele.isDisplayed()) {
+            System.out.println("Play button is clickable");
+        }
+        else {
+            System.out.println("Play button is not clickable, hence tapping on the screen");
+            driver.tap(1,play.getX(),play.getY(),2);
+        }
+    }
 }

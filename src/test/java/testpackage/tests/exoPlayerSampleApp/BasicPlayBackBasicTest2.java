@@ -118,6 +118,8 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
@@ -127,7 +129,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Ad playback has been completed event verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -201,15 +203,17 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
             //ad started event verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
             //Ad Completed event Verification
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
+            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 90000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e)
         {
@@ -285,7 +289,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e)
         {
@@ -356,12 +360,14 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 70000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -433,12 +439,14 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 70000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -447,7 +455,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void VAST_AD_Wrapper() throws Exception{
         try {
             // Creating an Object of ExoPlayerSampleApp class
@@ -508,12 +516,14 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 70000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -584,6 +594,8 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
@@ -597,7 +609,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             //Ad Completed event Verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -629,6 +641,8 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
                 driver.navigate().back();
                 Thread.sleep(2000);
             }
+            //wait for the assets to load properly
+            po.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
@@ -667,6 +681,8 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
@@ -743,12 +759,14 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -821,7 +839,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
         }
         catch(Exception e){
             e.printStackTrace();

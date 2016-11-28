@@ -22,6 +22,7 @@ public class BasicPlayBackBasicTests extends EventLogTest{
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
         Thread.sleep(2000);
     }
+
     @BeforeMethod
     public void beforeMethod() throws Exception {
         //push the log file to the device
@@ -35,6 +36,7 @@ public class BasicPlayBackBasicTests extends EventLogTest{
         //display the screen mode to the console
         System.out.println(" Screen Mode "+ p.getProperty("ScreenMode"));
     }
+
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
         //close the app
@@ -47,12 +49,14 @@ public class BasicPlayBackBasicTests extends EventLogTest{
         //uninstall the app
         Appuninstall.uninstall(prop);
     }
+
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // remove or delete the log file from the device
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
     }
+
     @Test
     public void AspectRatio() throws Exception{
         try {
@@ -241,8 +245,6 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             //wait for the presence of start screen
             po.waitForPresenceOfText(driver,"h");
             //Clicking on Play button
-            po.clickBasedOnText(driver,"h");
-            //Clicking on Play button in Ooyala Skin
             po.getPlay(driver);
             //creating object of EventVerification Class
             EventVerification ev = new EventVerification();
@@ -269,14 +271,13 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e){
-            System.out.println("HLS throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"HLS");
             Assert.assertTrue(false, "This will fail!");
         }
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void encrypted_HLS() throws Exception{
         try {
             // Creating an Object of ExoPlayerSampleApp class
@@ -316,9 +317,7 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             po.waitForPresenceOfText(driver,"h");
-            //Clicking on Play button in Ooyala Skin
-            po.clickBasedOnText(driver,"h");
-            //Clicking on Play button in Ooyala Skin
+            //Clicking on Play button
             po.getPlay(driver);
             //creating object of EventVerification Class
             EventVerification ev = new EventVerification();
@@ -623,8 +622,6 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             //wait for the presence of start screen
             po.waitForPresenceOfText(driver,"h");
             //Clicking on Play button
-            po.clickBasedOnText(driver,"h");
-            //Clicking on Play button
             po.getPlay(driver);
             //creating object of EventVerification Class
             EventVerification ev = new EventVerification();
@@ -661,7 +658,7 @@ public class BasicPlayBackBasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void ooyalaAd_Preroll() throws Exception{
         try {
             // Creating an Object of ExoPlayerSampleApp class
@@ -958,7 +955,7 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
         }
         catch(Exception e){
             e.printStackTrace();
