@@ -452,12 +452,10 @@ public class IMABasicTests2 extends EventLogTest {
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
 
             //seek video in normal screen
-            po.seek_video(driver,100);
+            po.seek_video(driver,70);
 
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
-
-            ev.verifyEvent("bufferingCompleted","Buffered has been completed",50000);
 
             //resume the video playback in normal screen
             po.getPlay(driver);
@@ -493,7 +491,7 @@ public class IMABasicTests2 extends EventLogTest {
         }
     }
 
-    @Test
+    //@Test
     public void noAds() throws Exception{
         try {
 
