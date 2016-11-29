@@ -98,7 +98,7 @@ public class IMABasicTests2 extends EventLogTest {
             System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video IMA Non Ad-Rules Preroll.
-            po.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Preroll");
+            po.clickBasedOnTextScrollTo(driver, "IMA Ad-Rules Preroll");
             Thread.sleep(2000);
 
             //verify if player was loaded
@@ -402,7 +402,7 @@ public class IMABasicTests2 extends EventLogTest {
             }
 
             //wait for the assets to load properly
-            po.waitForPresenceOfText(driver,"IMA Non Ad-Rules Pre-Mid-Mid-Post");
+            po.waitForPresenceOfText(driver,"IMA Non Ad-Rules Preroll");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
@@ -457,8 +457,7 @@ public class IMABasicTests2 extends EventLogTest {
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
-            //handling the loading spinner
-            po.loadingSpinner(driver);
+            ev.verifyEvent("bufferingCompleted","Buffered has been completed",50000);
 
             //resume the video playback in normal screen
             po.getPlay(driver);
@@ -571,7 +570,7 @@ public class IMABasicTests2 extends EventLogTest {
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
             //seek the video in normal screen
-            po.seek_video(driver,940);
+            po.seek_video(driver,1090);
 
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
