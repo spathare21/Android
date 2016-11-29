@@ -419,9 +419,8 @@ public class exoPlayerSampleApp {
     }
 
     public void checkPlayButton(AndroidDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='h']";
-        WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+        WebElement ele = driver.findElementByXPath(path);
         if(ele.isDisplayed()) {
             System.out.println("Play button is clickable");
         }

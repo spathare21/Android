@@ -1018,17 +1018,19 @@ public class BasicPlayBackBasicTests extends EventLogTest{
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
             //seek video in normal screen
-            po.seek_video(driver,940);
+            po.seek_video(driver,1090);
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
             po.loadingSpinner(driver);
+            //check whether play button is visible or not
+            po.checkPlayButton(driver);
             //resume playback in normal screen
             po.getPlay(driver);
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
         }
         catch(Exception e){
             e.printStackTrace();
