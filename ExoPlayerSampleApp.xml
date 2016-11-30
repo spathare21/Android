@@ -9,10 +9,10 @@
 
         <classes>
 
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>-->
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>-->
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>-->
-            <!--<class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests2"/>
            <!-- <class name="testpackage.tests.exoPlayerSampleApp.DeepTestIMA"/>
             <class name="testpackage.tests.exoPlayerSampleApp.DeepTestsFW"/>
