@@ -16,12 +16,16 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.*;
 import com.google.api.services.sheets.v4.Sheets;
+import org.apache.log4j.Logger;
+import testpackage.tests.ooyalaSkinSampleApp.BasicTests;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
 public class WriteData {
+    final static Logger logger = Logger.getLogger(WriteData.class);
     /** Application name. */
     private static final String APPLICATION_NAME =
             "Google Sheets API Java Quickstart";
@@ -80,7 +84,7 @@ public class WriteData {
                             .build();
             Credential credential = new AuthorizationCodeInstalledApp(
                     flow, new LocalServerReceiver()).authorize("sachin.pathare@forgeahead.io");
-            System.out.println(
+            logger.info(
                     "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
             return credential;
         }
@@ -112,27 +116,25 @@ public class WriteData {
             for (int i = 0; i < num_of_sheets; i++) {
                 String sheetNames = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getTitle();
                 int sheet_Id = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getSheetId();
-                System.out.println("Sheet Name : " + sheetNames + ", Sheet ID : " + sheet_Id);
+                logger.info("Sheet Name : " + sheetNames + ", Sheet ID : " + sheet_Id);
             }
-
-            //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
-            //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
             String range = "SDK-Release-Reports!A2:E";
             ValueRange response = service.spreadsheets().values()
                     .get(spreadsheetId, range)
                     .execute();
+
             // Read Data From Spreadsheet
             List<List<Object>> readvalues = response.getValues();
-            System.out.println("Number of values in sheet :" + readvalues.size());
-            // write data to spreadsheet
+            logger.info("Number of values in sheet :" + readvalues.size());
 
+            // write data to spreadsheet
             List<Request> requests = new ArrayList<>();
 
             List<CellData> values = new ArrayList<>();
 
             for (String key : map.keySet()){
                 String value = map.get(key);
-                System.out.println(key + " : " + value);
+                logger.debug(key + " : " + value);
                 values.add(new CellData().setUserEnteredValue(new ExtendedValue().setStringValue(value)));
             }
 
@@ -150,7 +152,7 @@ public class WriteData {
                     .setRequests(requests);
             service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
                     .execute();
-            System.out.println("Data written to spreadsheet");
+            logger.info("Data written to spreadsheet");
         }
         catch (Exception e){
             e.printStackTrace();
@@ -168,15 +170,12 @@ public class WriteData {
         String spreadsheetId = "1oJj7IZbXhDmxlMZMAdBW9t_FJqg1uSkuxPPK2KWvJmY";
 
         int num_of_sheets = service.spreadsheets().get(spreadsheetId).execute().getSheets().size();
-        //System.out.println(num_of_sheets);
+
         for (int i=0;i<num_of_sheets;i++){
             String sheetNames = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getTitle();
             int sheet_Id = service.spreadsheets().get(spreadsheetId).execute().getSheets().get(i).getProperties().getSheetId();
-            System.out.println("Sheet Name : " + sheetNames + ", Sheet ID : " + sheet_Id);
+            logger.info("Sheet Name : " + sheetNames + ", Sheet ID : " + sheet_Id);
         }
-
-        //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(0).getProperties().clone().setTitle("First sheet");
-        //service.spreadsheets().get(spreadsheetId).execute().getSheets().get(1).getProperties().clone().setIndex(12345).setTitle("foo").setSheetId(212121).setSheetType("GRID")
 
         String range = "SDK-Release-Reports!A2:E";
         ValueRange response = service.spreadsheets().values()
@@ -185,10 +184,9 @@ public class WriteData {
 
         // Read Data From Spreadsheet
         List<List<Object>> readvalues = response.getValues();
-        System.out.println("Number of values :" + readvalues.size());
+        logger.info("Number of values :" + readvalues.size());
 
         // write data to spreadsheet
-
         List<Request> requests = new ArrayList<>();
 
         List<CellData> values = new ArrayList<>();
@@ -213,7 +211,7 @@ public class WriteData {
         service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
                 .execute();
 
-        System.out.println("Data written to spreadsheet");
+        logger.info("Data written to spreadsheet");
 
     }
 

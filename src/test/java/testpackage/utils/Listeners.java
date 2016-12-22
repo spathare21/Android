@@ -1,6 +1,7 @@
 package testpackage.utils;
 
 
+import org.apache.log4j.Logger;
 import org.junit.internal.runners.statements.Fail;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
@@ -10,6 +11,7 @@ import java.util.*;
 
 
 public class Listeners implements  IReporter {
+    final static Logger logger = Logger.getLogger(Listeners.class);
 
     public static LinkedHashMap<String,String> Testdata  =
             new LinkedHashMap<String,String>();
@@ -17,7 +19,7 @@ public class Listeners implements  IReporter {
     @Override
     public void generateReport(List<XmlSuite> xmlSuite, List<ISuite> iSuites, String s){
         for(ISuite suits : iSuites)  {
-            //System.out.println("Suite Name : " + suits.getName());
+            //logger.debug("Suite Name : " + suits.getName());
             Map <String ,ISuiteResult>result =  suits.getResults();
             for (ISuiteResult r : result.values()) {
                 ITestContext context = r.getTestContext();
@@ -27,10 +29,8 @@ public class Listeners implements  IReporter {
                     packagename[i] = context.getSuite().getXmlSuite().getTests().get(i).getClasses().get(i).getName();
                 }
                 setTestResult(Integer.toString(context.getPassedTests().size()),Integer.toString(context.getFailedTests().size()),Integer.toString(context.getSkippedTests().size()),Integer.toString(context.getAllTestMethods().length),context.getName(),packagename);
-
             }
         }
-
     }
 
     public void setTestResult(String pass, String fail, String skip, String total, String suiteName,String[]Package){
@@ -50,20 +50,12 @@ public class Listeners implements  IReporter {
         Testdata.put("Pass",pass);
         Testdata.put("Fail",fail);
         Testdata.put("Skip",skip);
-        System.out.println("size of map : " + Testdata.size());
+        logger.debug("size of map : " + Testdata.size());
         for (String key : Testdata.keySet()){
             String value = Testdata.get(key);
-            //System.out.println(key + " " + value);
+            //logger.debug(key + " " + value);
         }
 
         WriteData.writetosheet(Testdata);
-
     }
-
-    /*public static Map<String, String> getTestResult(){
-        return Testdata;
-    }*/
-
-
-
 }
