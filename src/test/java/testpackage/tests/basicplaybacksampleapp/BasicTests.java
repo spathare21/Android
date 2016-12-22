@@ -2,23 +2,23 @@ package testpackage.tests.basicplaybacksampleapp; /**
  * Created by bsondur on 11/16/15.
  */
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.WebElement;
+
+import org.apache.log4j.Logger;
+
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import io.appium.java_client.android.AndroidDriver;
-import ru.yandex.qatools.allure.annotations.Attachment;
+
 import testpackage.pageobjects.BasicPlaybackSampleApp;
 import testpackage.utils.*;
 
-import java.io.File;
+
 import java.util.Properties;
 import java.io.IOException;
 
 
 public class BasicTests extends EventLogTest {
+    final static Logger logger = Logger.getLogger(BasicTests.class);
 
 
 
@@ -29,21 +29,21 @@ public class BasicTests extends EventLogTest {
         // closing all recent app from background.
         CloserecentApps.closeApps();
 
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p=prop.loadProperty();
 
-        //System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        //System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        //System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        //System.out.println("APK name is "+ p.getProperty("app"));
-        //System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        //System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        //System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        //System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        //logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        //logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        //logger.debug("Path where APK is stored"+ p.getProperty("appDir"));
+        //logger.debug("APK name is "+ p.getProperty("app"));
+        //logger.debug("Platform under Test is "+ p.getProperty("platformName"));
+        //logger.debug("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        //logger.debug("Package Name of the App is "+ p.getProperty("appPackage"));
+        //logger.debug("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -53,7 +53,7 @@ public class BasicTests extends EventLogTest {
     @BeforeMethod
     //public void beforeTest() throws Exception{
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -65,10 +65,10 @@ public class BasicTests extends EventLogTest {
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1=prop1.loadProperty();
 
-        System.out.println(" Screen Mode "+ p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode "+ p1.getProperty("ScreenMode"));
 
         //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
+        //    logger.info("Inside landscape Mode ");
         //    driver.rotate(ScreenOrientation.LANDSCAPE);
         //}
 
@@ -79,7 +79,7 @@ public class BasicTests extends EventLogTest {
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -93,7 +93,7 @@ public class BasicTests extends EventLogTest {
     //public void afterTest() throws InterruptedException, IOException {
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
@@ -112,7 +112,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -126,7 +126,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
@@ -169,7 +169,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println(" AspectRatioTest throws Exception "+e);
+            logger.error(" AspectRatioTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"AspectRatioTest");
             Assert.assertTrue(false, "This will fail!");
@@ -189,7 +189,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -203,7 +203,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
@@ -248,7 +248,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println(" HLSVideoTest throws Exception "+e);
+            logger.error(" HLSVideoTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"HLSVideoTest");
             Assert.assertTrue(false, "This will fail!");
@@ -267,7 +267,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -281,7 +281,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
@@ -324,7 +324,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("MP4VideoTest thows Exception "+e);
+            logger.error("MP4VideoTest thows Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"MP4VideoTest");
             Assert.assertTrue(false, "This will fail!");
@@ -343,7 +343,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -358,7 +358,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
@@ -420,7 +420,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VODwithCCTest throws Exception \n"+e);
+            logger.error("VODwithCCTest throws Exception \n"+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VODwithCCTest");
             Assert.assertTrue(false, "This will fail!");
@@ -439,7 +439,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -454,7 +454,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -508,7 +508,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VASTAdPreRollTest throws Exception "+e);
+            logger.error("VASTAdPreRollTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VASTAdPreRollTest");
             Assert.assertTrue(false, "This will fail!");
@@ -527,7 +527,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -542,7 +542,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -570,7 +570,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VASTADMidRollTest throws Exception "+e);
+            logger.error("VASTADMidRollTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VASTADMidRollTest");
             Assert.assertTrue(false, "This will fail!");
@@ -589,7 +589,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -603,7 +603,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -621,7 +621,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VASTAdWrapperTest throws Exception "+e);
+            logger.error("VASTAdWrapperTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VASTAdWrapperTest");
             Assert.assertTrue(false, "This will fail!");
@@ -640,7 +640,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -655,7 +655,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
             Thread.sleep(1000);
@@ -687,7 +687,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("OoyalaAdPreRollTest throws Exception "+e);
+            logger.error("OoyalaAdPreRollTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"OoyalaAdPreRollTest");
             Assert.assertTrue(false, "This will fail!");
@@ -706,7 +706,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -721,7 +721,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -749,7 +749,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("OoyalaADMidRollTest throws Exception "+e);
+            logger.error("OoyalaADMidRollTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"OoyalaADMidRollTest");
             Assert.assertTrue(false, "This will fail!");
@@ -768,7 +768,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -783,7 +783,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -815,7 +815,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("OoyalaADPostRollTest throws Exception "+e);
+            logger.error("OoyalaADPostRollTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"OoyalaADPostRollTest");
             Assert.assertTrue(false, "This will fail!");
@@ -834,7 +834,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -849,7 +849,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -880,7 +880,7 @@ public class BasicTests extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VASTADPostRollTest throws Exception "+e);
+            logger.error("VASTADPostRollTest throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
             Assert.assertTrue(false, "This will fail!");
@@ -899,7 +899,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("BasicPlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -914,7 +914,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.BasicPlaybackVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -954,7 +954,7 @@ public class BasicTests extends EventLogTest {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 300000);
         } catch (Exception e) {
-            System.out.println("VASTADPostRollTest throws Exception " + e);
+            logger.error("VASTADPostRollTest throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VASTADPostRollTest");
             Assert.assertTrue(false, "This will fail!");
