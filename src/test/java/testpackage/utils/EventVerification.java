@@ -40,7 +40,6 @@ public class EventVerification {
 
             if (status == true) {
                 logger.info(consoleMessage);
-                logger.info("\n");
             }
         }
         if(!status){
