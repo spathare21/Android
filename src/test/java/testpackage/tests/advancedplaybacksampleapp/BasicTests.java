@@ -405,10 +405,6 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.resumeVideoInNormalscreen(driver);
             //Verifying playing event to confirm that video is resumed
             eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
-            //Clicking on play button to resume the playback
-            advancedPlaybackSampleApp.resumeVideoInNormalscreen(driver);
-            //Verifying playing event to confirm that video is resumed
-            eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
             // video completed event verification.
             eventVerification.verifyEvent("playCompleted", "video play completed", 100000);
         } catch (Exception e) {
