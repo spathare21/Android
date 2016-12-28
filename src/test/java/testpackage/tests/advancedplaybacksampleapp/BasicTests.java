@@ -1,13 +1,9 @@
 package testpackage.tests.advancePlayBackSampleApp;
 
-import io.appium.java_client.android.AndroidDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import testpackage.pageobjects.advancePlayBackSampleApp;
+import org.testng.annotations.*;
+import testpackage.pageobjects.AdvancedPlaybackSampleApp;
 import testpackage.utils.*;
 
 import java.io.IOException;
@@ -93,13 +89,13 @@ public class BasicTests extends EventLogTest {
     }
 
     //TODO : create unique file names for snapshots taken .
-    @org.testng.annotations.Test
+    @Test
     public void playWithIntitialTime() throws Exception {
 
         try
         {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -149,7 +145,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -226,7 +222,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -297,7 +293,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -369,7 +365,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -421,7 +417,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -479,7 +475,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -538,7 +534,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -602,7 +598,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -664,7 +660,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -724,7 +720,7 @@ public class BasicTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -777,13 +773,12 @@ public class BasicTests extends EventLogTest {
 
     }
 
-
     //@org.testng.annotations.Test
     public void customPluginSample_Adverfication() throws Exception {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 

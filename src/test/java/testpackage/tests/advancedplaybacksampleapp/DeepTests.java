@@ -1,13 +1,12 @@
 package testpackage.tests.advancePlayBackSampleApp;
 
-import io.appium.java_client.android.AndroidDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import testpackage.pageobjects.advancePlayBackSampleApp;
+import testpackage.pageobjects.AdvancedPlaybackSampleApp;
 import testpackage.utils.*;
 
 import java.io.IOException;
@@ -96,7 +95,7 @@ public class DeepTests extends EventLogTest {
         try
         {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -233,7 +232,7 @@ public class DeepTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -472,7 +471,7 @@ public class DeepTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -625,7 +624,7 @@ public class DeepTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -766,7 +765,7 @@ public class DeepTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -913,7 +912,7 @@ public class DeepTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -987,7 +986,7 @@ public class DeepTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 
@@ -1037,7 +1036,7 @@ public class DeepTests extends EventLogTest {
 
         try {
             // Creating an Object of BasicPlaybackSampleApp class
-            advancePlayBackSampleApp po = new advancePlayBackSampleApp();
+            AdvancedPlaybackSampleApp po = new AdvancedPlaybackSampleApp();
             // wait till home screen of basicPlayBackApp is opened
             po.waitForAppHomeScreen(driver);
 

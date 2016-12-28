@@ -7,13 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import testpackage.utils.CommandLine;
-
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by Sachin on 3/31/2016.
- */
 public class advancePlayBackSampleApp {
     int[] playCoordinates = new int[2];
 

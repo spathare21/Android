@@ -39,7 +39,7 @@
              <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
 	        <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>-->
             <!--<class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>-->
-            <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
+            <!--<class name="testpackage.tests.advancedplaybacksampleappp.BasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>-->
@@ -49,7 +49,7 @@
         <!-- <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
 	        <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
-            &lt;!&ndash;<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>&ndash;&gt;
+            &lt;!&ndash;<class name="testpackage.tests.advancedplaybacksampleappp.BasicTests"/>&ndash;&gt;
             <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
@@ -58,7 +58,7 @@
              <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
 	        <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsSkinPlayback"/>
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTestsGoogleIMAIntegration"/>
-            <!--<class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>-->
+            <!--<class name="testpackage.tests.advancedplaybacksampleappp.BasicTests"/>-->
             <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
