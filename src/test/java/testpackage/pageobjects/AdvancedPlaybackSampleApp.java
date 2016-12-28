@@ -1,73 +1,74 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import testpackage.utils.CommandLine;
 import java.io.IOException;
 import java.util.List;
 
-public class advancePlayBackSampleApp {
+public class AdvancedPlaybackSampleApp {
+
+    //WebElement playButton;
     int[] playCoordinates = new int[2];
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
-
+        //waiting for homescreen to load specific text to ensure homescreen is loaded
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.
                 xpath("//android.widget.TextView[@text='Play With InitialTime']")));
-
     }
 
     public void assertCurrentActivityAgainst(AndroidDriver driver, String activityName) {
-
+        //Verifying correct current activity is loading
         Assert.assertEquals(driver.currentActivity(), activityName);
     }
 
     public void clickBasedOnText(AndroidDriver driver, String clickText) {
-
+        //Selecting the asset based on displayed text
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
         clickTextField.click();
     }
 
     public void waitForPresence(AndroidDriver driver, String typeOf, String waitString) {
+        //Waiting for presence of specific element using classname
         WebDriverWait wait = new WebDriverWait(driver, 30);
         if (typeOf == "className") {
             wait.until(ExpectedConditions.presenceOfElementLocated(By.className(waitString)));
-
         }
-
     }
 
     public void waitForTextView(AndroidDriver driver, String text) {
-
+        //waiting for text to appear
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.
                 xpath("//android.widget.TextView[@text='" + text + "']")));
-
     }
 
     public void clickOnVastAd(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+        //Inserting Vast Ad in video
         System.out.println("in vast ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleLeftButton").click();
         System.out.println("clicked");
     }
 
+    //TODO: Need to delete this after refactoring code of Deeplook
     public void playVideo(AndroidDriver driver) throws InterruptedException {
+        //Clicking on play button
         Thread.sleep(2000);
         driver.findElementByXPath("//android.widget.ImageButton[@index='0']").click();
-
     }
 
+    //TODO: Need to delete this after refactoring code of Deeplook
     public void pauseVideo(AndroidDriver driver) throws InterruptedException {
+        //clicking on pasue button using dimensions
         Thread.sleep(2000);
         System.out.println("Pausing the Video");
         // Tap coordinates to pause
         String dimensions = driver.manage().window().getSize().toString();
-        //System.out.println(" Dimensions are "+dimensions);
         String[] dimensionsarray = dimensions.split(",");
         int length = dimensionsarray[1].length();
         String ydimensions = dimensionsarray[1].substring(0, length - 1);
@@ -77,19 +78,18 @@ public class advancePlayBackSampleApp {
     }
 
     public void getBackFromRecentApp(AndroidDriver driver) throws InterruptedException, IOException {
-
         String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
         String[] final_command = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
         System.out.println("showing recent app screen");
-        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        //Clicking on system ui to get back the sample app
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();
         System.out.println("back to SDK");
     }
 
     public void powerKeyClick(AndroidDriver driver) throws InterruptedException, IOException {
-
         driver.sendKeyEvent(26); // key 26 is used to lock the screen
         System.out.println("key sent");
         System.out.println("screen lock");
@@ -106,14 +106,14 @@ public class advancePlayBackSampleApp {
     }
 
     public void clickOnOoyalaAd(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+        //Inserting Ooyala Ads in Video
         System.out.println("in Ooyala ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleRightButton").click();
         System.out.println("clicked");
     }
 
     public void clickOnP1(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+        //Playing video one to change video programatically
         System.out.println("in Video1 ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleLeftButton").click();
         System.out.println("clicked");
@@ -121,7 +121,7 @@ public class advancePlayBackSampleApp {
     }
 
     public void clickOnP2(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+        //Playing video two to change video programatically
         System.out.println("in Video2 ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleRightButton").click();
         System.out.println("clicked");
@@ -129,13 +129,13 @@ public class advancePlayBackSampleApp {
     }
 
     public void clickFullScreen(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+        //going to full screen
         System.out.println("Clicking on full screen button");
         driver.findElementByXPath("//android.widget.ImageButton[@index='2']").click();
     }
 
     public void clickNormalScreen(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+        //Coming back to normal screen from fullscreen
         System.out.println("Clicking on normal screen button");
         WebElement frameLayout = driver.findElement(By.id("content"));
         List<WebElement> layout = frameLayout.findElements(By.className("android.widget.LinearLayout"));
@@ -144,6 +144,7 @@ public class advancePlayBackSampleApp {
         System.out.println("Clicked");
     }
 
+    //Todo: Need to implement this in Deeplook
     public void backSeekInFullScreen(AndroidDriver driver) throws InterruptedException {
         System.out.println("Clicking on Back seek button");
         WebElement layout = driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
@@ -152,6 +153,7 @@ public class advancePlayBackSampleApp {
         System.out.println("Back seek button clicked");
     }
 
+    //Todo: Need to implement this in Deeplook
     public void playVideoFullScreen(AndroidDriver driver) throws InterruptedException {
         System.out.println("Clicking on play button in full screen");
         WebElement layout = driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
@@ -160,6 +162,7 @@ public class advancePlayBackSampleApp {
         System.out.println("Play button clicked");
     }
 
+    //Todo: Need to implement this in Deeplook
     public void pauseVideoFullScreen(AndroidDriver driver) throws InterruptedException {
         //  Thread.sleep(2000);
         System.out.println("Pausing the Video in Full Screen");
@@ -173,8 +176,8 @@ public class advancePlayBackSampleApp {
         driver.tap(1, 600, (ydimensionsInt - 100), 2);
     }
 
+    //TODO: Need to delete this after refactoring code of Deeplook
     public void pauseSmallPlayer(AndroidDriver driver) throws InterruptedException {
-        // Thread.sleep(2000);
         System.out.println("Pausing the Video");
         //Pausing Video
         String dimensions = driver.manage().window().getSize().toString();
@@ -187,6 +190,7 @@ public class advancePlayBackSampleApp {
 
     }
 
+    //TODO: Need to delete this after refactoring code of Deeplook
     public void customControlPlayButton(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         System.out.println("Playing Paused Video");
@@ -208,6 +212,7 @@ public class advancePlayBackSampleApp {
         driver.tap(1, buttonxdimentions, buttonydimentions, 2);
     }
 
+    //TODO: Need to delete this after refactoring code of Deeplook
     public void customControlPauseButton(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
         System.out.println("Clicking on Pause Video");
@@ -230,36 +235,38 @@ public class advancePlayBackSampleApp {
     }
 
     public void overlay(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+        //Checking if overlay is displaying
         System.out.println("Check Overlay Present or not");
         WebElement overlay1 = driver.findElement(By.xpath("//android.widget.TextView[@text='This is an overlay']"));
         Assert.assertEquals(true, overlay1.isDisplayed());
         System.out.println("Overlay  diplayed");
     }
 
+    //TODO: Need to delete this after refactoring code of Deeplook
     public void clickBasedOnIndex(AndroidDriver driver, String clickIndex) {
         WebElement clickIndexField = driver.findElement(By.xpath("//android.widget.ListView/android.widget.TextView[@index='" + clickIndex + "']"));
         clickIndexField.click();
     }
 
     public void screenTap(AndroidDriver driver) throws InterruptedException {
+        //Checking if control bar is displaying
         boolean isElement1Present = true;
         try {
-            WebElement scrubberBar = driver.findElementByXPath("//android.widget.SeekBar");
-            Thread.sleep(1000);
+            driver.findElementByXPath("//android.widget.SeekBar");
             System.out.println("The scrubber bar is displaying");
 
         } catch (org.openqa.selenium.NoSuchElementException e) {
             isElement1Present = false;
         }
-
         if (isElement1Present == false) {
+            //clicking on screen to make control bar visible again
             WebElement screentap = driver.findElementByXPath("//android.view.View");
             screentap.click();
             System.out.println("Scrubber bar is displaying after click");
         }
     }
 
+    //Todo: Need to implement this in Deeplook
     public void seekVideoFullscreen(AndroidDriver driver) {
         WebElement seekBarField = driver.findElementByClassName("//android.widget.SeekBar");
         int seekBarFieldWidth = seekBarField.getLocation().getX();
@@ -274,15 +281,15 @@ public class advancePlayBackSampleApp {
     }
 
     public void playInNormalScreen(AndroidDriver driver) throws Exception {
+        //Clicking on play button
         int[] play = new int[2];
-        Thread.sleep(5000);
         List<WebElement> imageButtons = driver.findElementsByClassName("android.widget.ImageButton");
-        ;
         System.out.printf("Size : " + imageButtons.size());
         if (imageButtons.size() > 0) {
+            //Getting Coordinates of play button
             play[0] = imageButtons.get(0).getLocation().getX();
             play[1] = imageButtons.get(0).getLocation().getY();
-
+            //Getting center of play button
             playCoordinates[0] = play[0] + imageButtons.get(0).getSize().getWidth() / 2;
             playCoordinates[1] = play[1] + imageButtons.get(0).getSize().getHeight() / 2;
             System.out.println("X playCoordinates" + playCoordinates[0]);
@@ -292,7 +299,7 @@ public class advancePlayBackSampleApp {
     }
 
     public void pauseInNormalScreen(AndroidDriver driver) {
-        //playButton.click();
+        //clicking on play button to pause video
         System.out.println("X pauseCoordinates" + playCoordinates[0]);
         System.out.println("Y pauseCoordinates" + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
@@ -300,7 +307,7 @@ public class advancePlayBackSampleApp {
 
     public void seekVideo(AndroidDriver driver) {
         WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
-
+        //Getting scrubber bar's height and width
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
         System.out.println(" Dimensions bounds value is :-" + seekBarFieldHeigth);
@@ -308,10 +315,12 @@ public class advancePlayBackSampleApp {
         System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
         System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
         System.out.println(" Seeking -------------------------  ");
+        //seeking the video
         driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
     }
 
     public void readTime(AndroidDriver driver) {
+        // Read playback time
         List<WebElement> startTime = driver.findElementsByClassName("android.widget.TextView");
         System.out.println("Size:" + startTime.size());
         if (startTime.size() > 0) {
@@ -321,16 +330,17 @@ public class advancePlayBackSampleApp {
     }
 
     public void resumeVideoInNormalscreen(AndroidDriver driver) {
+        //Clicking on play button to resume the video
         System.out.println("X resumeCoordinates" + playCoordinates[0]);
         System.out.println("Y resumeCoordinates" + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
     }
 
     public void loadingSpinner(AndroidDriver driver) {
+        //Handing wait on occurrence of loading spinner
         int i = 0;
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
-                //System.out.println("Handling Loading Spinner");
                 if (i<10){
                     System.out.println("Handling Loading Spinner");
                     Thread.sleep(1000);
@@ -340,7 +350,6 @@ public class advancePlayBackSampleApp {
                     System.out.println("Loading spinner occured more than "+i+" seconds");
                     break;
                 }
-
             }
         } catch (Exception e) {
             e.getMessage();

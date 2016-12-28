@@ -1,4 +1,4 @@
-package testpackage.tests.advancePlayBackSampleApp;
+package testpackage.tests.advancedplaybacksampleapp;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -24,7 +24,7 @@ public class DeepTests extends EventLogTest {
         System.out.println(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
-        Properties p = prop.loadProperty("advanceplaybacksampleapp.properties");
+        Properties p = prop.loadProperty("advancedplaybacksampleapp.properties");
 
         System.out.println("Device id from properties file " + p.getProperty("deviceName"));
         System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
