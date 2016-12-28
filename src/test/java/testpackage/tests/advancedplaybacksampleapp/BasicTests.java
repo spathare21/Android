@@ -391,6 +391,20 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.pauseInNormalScreen(driver);
             //Verifying pause event after video is paused
             eventVerification.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
+            //Read the time when video is paused
+            advancedPlaybackSampleApp.readTime(driver);
+            //Seek the video to specific location
+            advancedPlaybackSampleApp.seekVideo(driver);
+            //Verifying seek completed event after completion of seek
+            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
+            //Handing occurrence of loading spinner
+            advancedPlaybackSampleApp.loadingSpinner(driver);
+            //Verifying the current time of scrubber pointer
+            advancedPlaybackSampleApp.readTime(driver);
+            //Clicking on play button to resume the playback
+            advancedPlaybackSampleApp.resumeVideoInNormalscreen(driver);
+            //Verifying playing event to confirm that video is resumed
+            eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
             //Clicking on play button to resume the playback
             advancedPlaybackSampleApp.resumeVideoInNormalscreen(driver);
             //Verifying playing event to confirm that video is resumed
