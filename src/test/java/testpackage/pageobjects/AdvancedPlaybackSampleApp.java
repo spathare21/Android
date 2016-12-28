@@ -283,6 +283,7 @@ public class AdvancedPlaybackSampleApp {
     public void playInNormalScreen(AndroidDriver driver) throws Exception {
         //Clicking on play button
         int[] play = new int[2];
+        Thread.sleep(2000);
         List<WebElement> imageButtons = driver.findElementsByClassName("android.widget.ImageButton");
         System.out.printf("Size : " + imageButtons.size());
         if (imageButtons.size() > 0) {

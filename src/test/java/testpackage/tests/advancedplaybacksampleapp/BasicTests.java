@@ -14,8 +14,6 @@ public class BasicTests extends EventLogTest {
     Properties properties;
     // Creating an Object of AdvancedPlaybackSampleApp pageobject class
     AdvancedPlaybackSampleApp advancedPlaybackSampleApp = new AdvancedPlaybackSampleApp();
-    //Creating an object of EventVerification class
-    EventVerification eventVerification = new EventVerification();
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -48,15 +46,14 @@ public class BasicTests extends EventLogTest {
         driver.closeApp();
         //end the driver session
         driver.quit();
-        //Uninstalling the app
-        String prop = properties.getProperty("appPackage");
-        Appuninstall.uninstall(prop);
     }
 
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         //Removing the events log file after test is completed for single asset.
         RemoveEventsLogFile.removeEventsFileLog();
+        //Waiting to remove log file.
+        Thread.sleep(10000);
     }
 
     @Test
@@ -80,10 +77,13 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Play Started Verification
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Play completed event verification
-            eventVerification.verifyEvent("playCompleted", "video play completed",60000);
+            eventVerification.verifyEvent("playCompleted", "video play completed",70000);
         }
         catch (Exception e) {
             System.out.println("playWithIntitialTime throws Exception " + e);
@@ -110,13 +110,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.MultipleVideosPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event for 1st video
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Tapping on screen to display control bar
@@ -142,7 +145,7 @@ public class BasicTests extends EventLogTest {
             //2nd video start playing in queue
             eventVerification.verifyEvent(" playStarted - state: READY", "2nd video start playing in queue",90000);
             // video completed event verification.
-            eventVerification.verifyEvent("playCompleted", "video play completed", 130000);
+            eventVerification.verifyEvent("playCompleted", "video play completed", 150000);
         } catch (Exception e) {
             System.out.println("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
@@ -168,13 +171,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Tapping on screen to display control bar
@@ -182,13 +188,13 @@ public class BasicTests extends EventLogTest {
             // clicking on pause button to pause the video
             advancedPlaybackSampleApp.pauseInNormalScreen(driver);
             //Verifying pause event after video is paused
-            eventVerification.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+            eventVerification.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
             //Read the time when video is paused
             advancedPlaybackSampleApp.readTime(driver);
             //Seek the video to specific location
             advancedPlaybackSampleApp.seekVideo(driver);
             //Verifying seek completed event after completion of seek
-            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked ", 75000);
+            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
             //Handing occurrence of loading spinner
             advancedPlaybackSampleApp.loadingSpinner(driver);
             //Verifying the current time of scrubber pointer
@@ -196,9 +202,9 @@ public class BasicTests extends EventLogTest {
             //Clicking on play button to resume the playback
             advancedPlaybackSampleApp.resumeVideoInNormalscreen(driver);
             //Verifying playing event to confirm that video is resumed
-            eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
+            eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 60000);
             // video completed event verification.
-            eventVerification.verifyEvent("playCompleted", "video play completed", 95000);
+            eventVerification.verifyEvent("playCompleted", "video play completed", 120000);
         } catch (Exception e) {
             System.out.println("insertAtRunTime throws Exception " + e);
             e.printStackTrace();
@@ -224,13 +230,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Tapping on screen to display control bar
@@ -254,7 +263,7 @@ public class BasicTests extends EventLogTest {
             //Verifying playing event to confirm that video is resumed
             eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
             // video completed event verification.
-            eventVerification.verifyEvent("playCompleted", "video play completed", 95000);
+            eventVerification.verifyEvent("playCompleted", "video play completed", 120000);
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
@@ -280,17 +289,20 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PluginPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             advancedPlaybackSampleApp.loadingSpinner(driver);
-            eventVerification.verifyEvent("playCompleted", "video play completed",250000 );
+            eventVerification.verifyEvent("playCompleted", "video play completed",300000);
         } catch (Exception e) {
             System.out.println("customPluginSample throws Exception " + e);
             e.printStackTrace();
@@ -316,17 +328,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomControlsPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            // Waiting to display start screen of video
-            advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
+            Thread.sleep(2000);
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            //Tapping on screen to display control bar
-            advancedPlaybackSampleApp.screenTap(driver);
             // clicking on pause button to pause the video
             advancedPlaybackSampleApp.pauseInNormalScreen(driver);
             //Verifying pause event after video is paused
@@ -336,7 +347,7 @@ public class BasicTests extends EventLogTest {
             //Verifying playing event to confirm that video is resumed
             eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
             // video completed event verification.
-            eventVerification.verifyEvent("playCompleted", "video play completed", 95000);
+            eventVerification.verifyEvent("playCompleted", "video play completed", 120000);
         } catch (Exception e) {
             System.out.println("customControls throws Exception " + e);
             e.printStackTrace();
@@ -362,13 +373,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomOverlayPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Tapping on screen to display control bar
@@ -376,13 +390,13 @@ public class BasicTests extends EventLogTest {
             // clicking on pause button to pause the video
             advancedPlaybackSampleApp.pauseInNormalScreen(driver);
             //Verifying pause event after video is paused
-            eventVerification.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+            eventVerification.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 40000);
             //Clicking on play button to resume the playback
             advancedPlaybackSampleApp.resumeVideoInNormalscreen(driver);
             //Verifying playing event to confirm that video is resumed
             eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
             // video completed event verification.
-            eventVerification.verifyEvent("playCompleted", "video play completed", 95000);
+            eventVerification.verifyEvent("playCompleted", "video play completed", 100000);
         } catch (Exception e) {
             System.out.println("customOverlay throws Exception " + e);
             e.printStackTrace();
@@ -408,13 +422,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //clicking on InsertVastAD option , inserting VAST Ad
@@ -424,7 +441,7 @@ public class BasicTests extends EventLogTest {
             // Verifying if VAST Ad completed
             eventVerification.verifyEvent("adCompleted","Vast Ad Playback Completed",30000);
             // Veirfying if video completed
-            eventVerification.verifyEvent("playCompleted", "video play completed", 90000);
+            eventVerification.verifyEvent("playCompleted", "video play completed", 120000);
         } catch (Exception e) {
             System.out.println("insertAtRunTime_VastAd throws Exception " + e);
             e.printStackTrace();
@@ -450,13 +467,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //clicking on InsertOoyalaAD option , inserting Ooyala Ad
@@ -466,7 +486,7 @@ public class BasicTests extends EventLogTest {
             // Verifying if Ooyala Ad completed
             eventVerification.verifyEvent("adCompleted","Ooyala Ad Playback Completed",30000);
             // Veirfying if video completed
-            eventVerification.verifyEvent("playCompleted", "video play completed", 90000);
+            eventVerification.verifyEvent("playCompleted", "video play completed", 120000);
         } catch (Exception e) {
             System.out.println("insertAtRunTime_VastAd Exception " + e);
             e.printStackTrace();
@@ -492,13 +512,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Inserting Video 1 to play
@@ -506,7 +529,7 @@ public class BasicTests extends EventLogTest {
             // verifing that next video started to play
             eventVerification.verifyEvent("playStarted", "Inserted video1 started to play", 50000);
             //Next video play completed.
-            eventVerification.verifyEvent("playCompleted", "Inserted video1 ended play", 90000);
+            eventVerification.verifyEvent("playCompleted", "Inserted video1 ended play", 120000);
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically_P1 Exception " + e);
             e.printStackTrace();
@@ -532,21 +555,24 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Inserting Video 1 to play
             advancedPlaybackSampleApp.clickOnP2(driver);
             // verifing that next video started to play
-            eventVerification.verifyEvent("playStarted", "Inserted video1 started to play", 50000);
+            eventVerification.verifyEvent("playStarted", "Inserted video2 started to play", 50000);
             //Next video play completed.
-            eventVerification.verifyEvent("playCompleted", "Inserted video1 ended play", 90000);
+            eventVerification.verifyEvent("playCompleted", "Inserted video2 ended play", 120000);
         } catch (Exception e) {
             System.out.println("changeVideoProgramatically_P2 throws Exception " + e);
             e.printStackTrace();
@@ -572,13 +598,16 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PluginPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             // Waiting to display start screen of video
             advancedPlaybackSampleApp.waitForTextView(driver, "00:00");
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //verifing Ad, Ad event
             eventVerification.verifyEvent("adPodStarted","Preroll Ad is playing",20000);
             // Ad completed event verification
@@ -620,11 +649,14 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             System.out.println("after wait for presence");
-            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
+            advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NotificationsPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            Thread.sleep(1000);
             //click on play button to start playback of video
             advancedPlaybackSampleApp.playInNormalScreen(driver);
+            //Creating an object of EventVerification class
+            EventVerification eventVerification = new EventVerification();
             //Play Started Verification
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             //Tapping on screen to display control bar
@@ -648,7 +680,7 @@ public class BasicTests extends EventLogTest {
             //Verifying playing event to confirm that video is resumed
             eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
             //Play completed event verification
-            eventVerification.verifyEvent("playCompleted", "video play completed",95000);
+            eventVerification.verifyEvent("playCompleted", "video play completed",120000);
         }catch (Exception e){
 
         }
