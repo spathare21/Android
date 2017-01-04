@@ -1,19 +1,10 @@
 package testpackage.tests.IMASampleApp;
 
-/**
- * Created by dulari on 3/14/16.
- */
-
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import io.appium.java_client.android.AndroidDriver;
-import testpackage.pageobjects.FreewheelSampleApp;
 import testpackage.pageobjects.IMASampleApp;
 import testpackage.utils.*;
-//import testpackage.utils.JIRAUtils;
-
-
 import java.util.Properties;
 import java.io.IOException;
 
@@ -21,13 +12,13 @@ import java.io.IOException;
 
 public class BasicTests extends EventLogTest{
 
+    IMASampleApp imaSampleApp = new IMASampleApp();
 
 
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
         CloserecentApps.closeApps();
-
 
         System.out.println("BeforeTest \n");
 
@@ -65,15 +56,6 @@ public class BasicTests extends EventLogTest{
         Properties p1=prop1.loadProperty();
 
         System.out.println(" Screen Mode "+ p1.getProperty("ScreenMode"));
-
-        //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
-        //    driver.rotate(ScreenOrientation.LANDSCAPE);
-        //}
-
-        //driver.rotate(ScreenOrientation.LANDSCAPE);
-        //driver.rotate(ScreenOrientation.LANDSCAPE);
-
     }
 
     @AfterClass
@@ -94,76 +76,64 @@ public class BasicTests extends EventLogTest{
 
     }
 
-   @org.testng.annotations.Test
-    public void IMAAdRulePreroll() throws Exception{
-
+    @Test
+    public void imaAdRulePreroll() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
             // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Ad-Rules Preroll");
-            Thread.sleep(2000);
-
+            imaSampleApp.clickBasedOnText(driver, "IMA Ad-Rules Preroll");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
-
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
             //Clicking on play button
             System.out.println("Now will play in normal screen");
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
-            //Play Started Verification
+            //ad Started Verification
             EventVerification ev = new EventVerification();
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 1000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
 
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 3000);
-
-            po.loadingSpinner(driver);
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 30000);
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 5000);
-            Thread.sleep(5000);
-
-            po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 6000);
-
-            po.loadingSpinner(driver);
-
-            po.seekVideo(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 9000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
             Thread.sleep(3000);
 
-            po.loadingSpinner(driver);
-            Thread.sleep(3000);
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
 
-            po.resumeInNormalScreen(driver);
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
+
+            // Resuing the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
-            Thread.sleep(2000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
         }
         catch(Exception e)
         {
@@ -174,74 +144,73 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-   @org.testng.annotations.Test
-    public void IMAAdRuleMidroll() throws Exception{
-
+    @Test
+    public void imaAdRuleMidroll() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Ad-Rules Midroll");
-            Thread.sleep(2000);
+            // Selecting IMA Ad rules pre roll asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Ad-Rules Midroll");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
-            //Play Started Verification
+            //playStarted event verification
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-            po.loadingSpinner(driver);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 45000);
-
-            Thread.sleep(5000);
-            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
-            Thread.sleep(5000);
-
-            po.pauseInNormalScreen(driver);
-            Thread.sleep(1000);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
-            po.loadingSpinner(driver);
+            // Sleep for 3 second
             Thread.sleep(3000);
 
-            po.readTime(driver);
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            // pause event verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
 
-            po.resumeInNormalScreen(driver);
+            // Reading the pause time
+            imaSampleApp.readTime(driver);
 
-            po.loadingSpinner(driver);
+            // seeking the video
+            imaSampleApp.seekVideo(driver);
+            //Seek event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            //Handling the loading spinner if displayes
+            imaSampleApp.loadingSpinner(driver);
+
+            //Reading the time after seek the video
+            imaSampleApp.readTime(driver);
+
+            //Starting playback again, after pause and seek
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",60000);
+
+            //Midroll ad playback started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 75000);
+
+            //Ad playback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
-            Thread.sleep(2000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
         }
         catch(Exception e)
         {
@@ -252,74 +221,71 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
-    public void IMAAdRulePostroll() throws Exception{
-
+    @Test
+    public void imaAdRulePostroll() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Ad-Rules Postroll");
-            Thread.sleep(2000);
-
+            // Selecting the IMA Postroll asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Ad-Rules Postroll");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 10000);
 
-            po.loadingSpinner(driver);
-
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 55000);
-
-            po.loadingSpinner(driver);
+            // Sleep for 3 second before clicking on pause button
             Thread.sleep(3000);
 
-            po.readTime(driver);
+            //Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Pause event verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 25000);
 
-            po.resumeInNormalScreen(driver);
+            //Reading the time at the time of pause of video
+            imaSampleApp.readTime(driver);
 
+            //Seeking the video
+            imaSampleApp.seekVideo(driver);
+            //Seek Completed event verification after seek the video
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 55000);
+
+            //Handling the loading spinner if it displays after the seek
+            imaSampleApp.loadingSpinner(driver);
+
+            //Reading the time after pause and seek the video
+            imaSampleApp.readTime(driver);
+
+            //Resuming the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            // Postroll ad playback started event verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
-            po.loadingSpinner(driver);
 
+            //Postroll ad playback completed event verification
             ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
-
-            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
@@ -333,86 +299,72 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
-    public void IMAPoddedPreroll() throws Exception{
-
+    @Test
+    public void imaPoddedPreroll() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Podded Preroll");
-            Thread.sleep(2000);
-
+            // Selecting the IMA Podded Preroll asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Podded Preroll");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
+            // Preroll adplayback start event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
+
+            // Preroll adplayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 20000);
+
+            // Preroll adplayback start event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ",20000);
+
+            // Preroll adplayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 30000);
+
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 15000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 25000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 25000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 35000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("playStarted", " Video Started Play ", 35000);
-            Thread.sleep(7000);
-
-            po.loadingSpinner(driver);
-
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 75000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
             Thread.sleep(3000);
 
-            po.loadingSpinner(driver);
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
 
-            po.readTime(driver);
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
 
-            po.resumeInNormalScreen(driver);
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
+
+            // Resuming the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 120000);
-            Thread.sleep(2000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
         }
         catch(Exception e)
         {
@@ -423,86 +375,75 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void IMAPoddedMidroll() throws Exception{
-
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Podded Midroll");
-            Thread.sleep(2000);
-
+            // Selecting IMA Podded Midroll asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Podded Midroll");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 15000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 40000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
-            Thread.sleep(6000);
-
-            po.loadingSpinner(driver);
-
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 65000);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 80000);
+            //Sleep for 3 second before click on pause button
             Thread.sleep(3000);
 
-            po.loadingSpinner(driver);
+            //clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            // verifying the pause event after click on pause button
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+            // Readin the time after pasue the video
+            imaSampleApp.readTime(driver);
 
-            po.readTime(driver);
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // Verifying the seek completed event after seek the video
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
-            po.resumeInNormalScreen(driver);
+            //Handling the loading spinner after seek the video, If displayed
+            imaSampleApp.loadingSpinner(driver);
+
+            // Reading the time after pause and seek the video
+            imaSampleApp.readTime(driver);
+
+            // Resuming the playback after seek the video
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",60000);
+
+            // Midroll adplayback completed event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 65000);
+            // Midroll adplayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 75000);
+
+            // Midroll adplayback start event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 75000);
+            // Midroll adplayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 85000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 120000);
-            Thread.sleep(2000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
         }
         catch(Exception e)
         {
@@ -513,89 +454,77 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-   @org.testng.annotations.Test
-    public void IMAPoddedPostroll() throws Exception{
+    @Test
+    public void imaPoddedPostroll() throws Exception{
 
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Podded Postroll");
-            Thread.sleep(2000);
+            // Selecting the IMA Podded Postroll asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Podded Postroll");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 15000);
-            Thread.sleep(6000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            po.loadingSpinner(driver);
-
-            po.pauseInNormalScreen(driver);
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
-            Thread.sleep(2000);
-
-            po.loadingSpinner(driver);
-
-            po.readTime(driver);
-
-            po.seekVideo(driver);
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 45000);
+            // 3 Second sleep before clicking on pause button
             Thread.sleep(3000);
 
-            po.loadingSpinner(driver);
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            // Video playback pause event verification
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
 
-            po.readTime(driver);
+            //Reading the time after pause the video
+            imaSampleApp.readTime(driver);
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // After seek the video verifying the seek completed event
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 55000);
 
-            po.resumeInNormalScreen(driver);
+            // Handling the loading spinner after seek the video, If Displayed
+            imaSampleApp.loadingSpinner(driver);
+            // Reading the time after seek the video
+            imaSampleApp.readTime(driver);
 
-            po.loadingSpinner(driver);
+            // Resuming the playback after pause and seek functionality
+            imaSampleApp.resumeInNormalScreen(driver);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 85000);
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
 
-            po.loadingSpinner(driver);
+            // Postroll adplayback start event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            // Postroll adplayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed ", 95000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 95000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 120000);
-
-            po.loadingSpinner(driver);
+            // Postroll adplayback start event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+            // Postroll adplayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 130000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
         }
         catch(Exception e)
         {
@@ -606,120 +535,111 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
-    public void IMAPoddedPreMidPost() throws Exception{
-
+    @Test
+    public void imaPoddedPreMidPost() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Podded Pre-Mid-Post");
-            Thread.sleep(2000);
-
+            // Selecting the IMA Podded PreMidPost roll asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Podded Pre-Mid-Post");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            // verify preroll
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 15000);
+            // verify preroll adStarted event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
 
-            po.loadingSpinner(driver);
+            // verify preroll adCompleted event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 20000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed ", 25000);
+            // verify preroll adStarted event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
 
-            po.loadingSpinner(driver);
+            // verify preroll adCompleted event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 30000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 25000);
+            // verify preroll adStarted event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 35000);
-
-            po.loadingSpinner(driver);
+            // verify preroll adCompleted event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 40000);
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 40000);
+            Thread.sleep(3000);
 
-            po.loadingSpinner(driver);
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 45000);
 
-            // verify midroll
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
+
+            // Resuing the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            // verify Midroll adStarted event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
+
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 70000);
+
+            // verify Midroll adStarted event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
+
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 80000);
+
+            // verify Midroll adStarted event verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
 
-            po.loadingSpinner(driver);
-
+            // Ad completed event verification
             ev.verifyEvent("adCompleted", " Ad Completed ", 90000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
-
-            po.loadingSpinner(driver);
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 100000);
 
-            po.loadingSpinner(driver);
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed ", 110000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 120000);
 
-            po.loadingSpinner(driver);
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 130000);
 
-            // verify postroll
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 170000);
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 140000);
 
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed  ", 180000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 180000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed  ", 190000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 190000);
-
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 200000);
-
-            po.loadingSpinner(driver);
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 150000);
 
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed  ", 210000);
+            ev.verifyEvent("playCompleted", " Video Completed  ", 160000);
         }
         catch(Exception e)
         {
@@ -730,69 +650,69 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
-    public void IMASkippable() throws Exception{
-
+    @Test
+    public void imaSkippable() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Skippable");
-            Thread.sleep(2000);
-
+            // Selecting the IMA Skippable asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Skippable");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
+            //Preroll ad Playback started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
+
+            //Preroll adplayback event completed verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 30000);
+
             //Wait for video to start and verify the playStarted event .
-
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            po.loadingSpinner(driver);
-            // Thread.sleep(5000);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 45000);
-
-            po.loadingSpinner(driver);
-
             ev.verifyEvent("playStarted", " Video Started Play ", 50000);
 
-            po.loadingSpinner(driver);
+            Thread.sleep(3000);
 
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
+
+            // Resuing the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+            // Postroll adPlayback started event verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
 
-            po.loadingSpinner(driver);
-            // Thread.sleep(5000);
-
+            //Postroll adplayback completed event verification
             ev.verifyEvent("adCompleted", " Ad Completed ", 90000);
-
-            po.loadingSpinner(driver);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed  ", 100000);
@@ -806,78 +726,78 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
-    public void IMAPreMidPostSkippable() throws Exception{
-
+    @Test
+    public void imaPreMidPostSkippable() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
-            Thread.sleep(2000);
-
+            // Selecting the IMA PreMidPost skippable asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
-            Thread.sleep(1000);
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
             //Clicking on play button
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
+            //Verifying Preroll AdPlayback Started
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
+
+            // Preroll Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 30000);
+
             //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            Thread.sleep(3000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 20000);
-            po.loadingSpinner(driver);
-            // Thread.sleep(5000);
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed ", 35000);
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
 
-            po.loadingSpinner(driver);
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
 
-            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
+            // Resuing the playback
+            imaSampleApp.resumeInNormalScreen(driver);
 
-            po.loadingSpinner(driver);
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-            po.loadingSpinner(driver);
-            // Thread.sleep(5000);
+            // midroll adplayback started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
 
-            ev.verifyEvent("adCompleted", " Ad Completed ", 60000);
-            po.loadingSpinner(driver);
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 70000);
 
-            po.loadingSpinner(driver);
+            //Postroll ad playback event started verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 85000);
-            po.loadingSpinner(driver);
-
-            ev.verifyEvent("adCompleted", " Ad Completed ", 95000);
-            po.loadingSpinner(driver);
+            // Postroll Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 90000);
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed  ", 100000);
-            Thread.sleep(2000);
         }
         catch(Exception e)
         {
@@ -888,59 +808,72 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @org.testng.annotations.Test
-    public void IMAApplicationConfigured() throws Exception{
-
+    @Test
+    public void imaApplicationConfigured() throws Exception{
         try {
-            // Creating an Object of IMA class
-            IMASampleApp po = new IMASampleApp();
             // wait till home screen of IMASampleApp is opened
-            po.waitForAppHomeScreen(driver);
-
+            imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Wrire to console activity name of home screen app
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "IMA Application-Configured");
-            Thread.sleep(2000);
-
+            // Selecting the IMA Application configured asset
+            imaSampleApp.clickBasedOnText(driver, "IMA Application-Configured");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredIMAPlayerActivity");
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredIMAPlayerActivity");
             // Print to console output current player activity
             System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            po.waitForPresence(driver,"className","android.widget.ImageButton");
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
-            po.playInNormalScreen(driver);
-            Thread.sleep(1000);
-
-            po.loadingSpinner(driver);
+            //Clicking on the playbutton
+            imaSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 10000);
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
 
-            po.loadingSpinner(driver);
+            // 3 Second sleep before click on pause button
+            Thread.sleep(3000);
 
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 35000);
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
 
-            po.loadingSpinner(driver);
+            // Reading the time after pause the video
+            imaSampleApp.readTime(driver);
 
-            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            //Verifying the seek completed event after seek the video.
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
 
-            po.loadingSpinner(driver);
+            // Handling the loading spinner after seek the video, If displayed
+            imaSampleApp.loadingSpinner(driver);
 
+            //Reading the time after pause and seek the video
+            imaSampleApp.readTime(driver);
+
+            // Resuming the video
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            //Verifying the Ad playback event started
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 55000);
+
+            // adCompleted event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 65000);
+
+            //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
 
         }
@@ -952,5 +885,472 @@ public class BasicTests extends EventLogTest{
             Assert.assertTrue(false, "This will fail!");
         }
     }
+
+    @Test
+    public void imaNo_AdRules() throws Exception{
+        try {
+            // wait till home screen of IMASampleApp is opened
+            imaSampleApp.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Selecting the No Ads Asset
+            imaSampleApp.clickBasedOnTextScrollTo(driver, "No Ads");
+
+            //verify if player was loaded
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
+            //Clicking on play button
+            System.out.println("Now will play in normal screen");
+            imaSampleApp.playInNormalScreen(driver);
+
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            Thread.sleep(3000);
+
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+
+            // Seeking the video
+            imaSampleApp.seekVideoForLong(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
+
+            // Resuing the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("imaNon_AdRules throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"imaNon_AdRules");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @Test
+    public void ima_NonAdRulePreroll() throws Exception{
+        try {
+            // wait till home screen of IMASampleApp is opened
+            imaSampleApp.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Selecting the IMA Non AdRules Preroll
+            imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Preroll");
+
+            //verify if player was loaded
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
+            //Clicking on play button
+            System.out.println("Now will play in normal screen");
+            imaSampleApp.playInNormalScreen(driver);
+
+            //ad Started Verification
+            EventVerification ev = new EventVerification();
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
+
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 30000);
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+            Thread.sleep(3000);
+
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
+
+            // Resuing the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("ima_NonAdRulePreroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"ima_NonAdRulePreroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @Test
+    public void ima_NonAdRuleMidroll() throws Exception{
+        try {
+            // wait till home screen of IMASampleApp is opened
+            imaSampleApp.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Selecting the IMA Non AdRules Midroll asset
+            imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Midroll");
+
+            //verify if player was loaded
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
+
+            //Clicking on play button
+            imaSampleApp.playInNormalScreen(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            Thread.sleep(3000);
+
+            imaSampleApp.pauseInNormalScreen(driver);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+
+            imaSampleApp.readTime(driver);
+
+            imaSampleApp.seekVideo(driver);
+            // Verifying the seek completed event
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
+
+            // handling the loading spinner after seek the video if it displayed
+            imaSampleApp.loadingSpinner(driver);
+
+
+            // Reading the time after pause and seek the video
+            imaSampleApp.readTime(driver);
+
+            // Resuming the playback after pause and seek the video
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+
+            // Midroll adPlayback Started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 45000);
+
+            // midroll adplayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 90000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("ima_NonAdRuleMidroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"ima_NonAdRuleMidroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @Test
+    public void ima_NonAdRulePostroll() throws Exception{
+        try {
+            // wait till home screen of IMASampleApp is opened
+            imaSampleApp.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+
+            // Selecting the IMA non Ad Rules Postroll asset
+            imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Postroll");
+
+            //verify if player was loaded
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
+            //Clicking on play button
+            imaSampleApp.playInNormalScreen(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            Thread.sleep(3000);
+
+            //Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            // Verifying the pause event after pause the video
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+
+            //Reading the time after pause the video
+            imaSampleApp.readTime(driver);
+
+            //Seeking the video after pasue
+            imaSampleApp.seekVideo(driver);
+            // Verifying the seek event
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 55000);
+
+            // Handling the loading spinner after seek the video
+            imaSampleApp.loadingSpinner(driver);
+
+            // Reading the time after pause and seek the video
+            imaSampleApp.readTime(driver);
+
+            // Resuming the playback after seek and pause
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            // Postroll Adplayback started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 90000);
+
+            //Postroll adPlayback completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 100000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 150000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("ima_NonAdRulePostroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"ima_NonAdRulePostroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @Test
+    public void ima_NonAdRuleQuadMidroll() throws Exception{
+        try {
+            // wait till home screen of IMASampleApp is opened
+            imaSampleApp.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Selecting the IMA Non AdRules Quad midroll asset.
+            imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Quad Midroll");
+
+            //verify if player was loaded
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
+
+            //Clicking on play button
+            imaSampleApp.playInNormalScreen(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            Thread.sleep(3000);
+
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Pause event verificaion
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 40000);
+
+            //Reading the time when clicking on pause button
+            imaSampleApp.readTime(driver);
+
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            //SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+
+            //handling the loading spinner if displays, After seek the video
+            imaSampleApp.loadingSpinner(driver);
+
+            //Reading the time after the seek the video
+            imaSampleApp.readTime(driver);
+
+            //Starting the playback after pause and seek the video
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            // 1st adPlayback started out of 4 quad midroll
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 45000);
+
+            // 1st adPlayback completed out of 4 quad midroll
+            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+
+            // 2st adPlayback started out of 4 quad midroll
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 55000);
+
+            // 2st adPlayback completed out of 4 quad midroll
+            ev.verifyEvent("adCompleted", " Ad Completed ", 60000);
+
+            // 3st adPlayback started out of 4 quad midroll
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 65000);
+
+            // 3st adPlayback completed out of 4 quad midroll
+            ev.verifyEvent("adCompleted", " Ad Completed ", 70000);
+
+            // 4st adPlayback started out of 4 quad midroll
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 75000);
+
+            // 4st adPlayback completed out of 4 quad midroll
+            ev.verifyEvent("adCompleted", " Ad Completed ", 80000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 120000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("IMA Non Ad-Rules Quad Midroll throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"IMA Non Ad-Rules Quad Midroll");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
+    @Test
+    public void ima_NonPreMidMidPost() throws Exception{
+        try {
+            // wait till home screen of IMASampleApp is opened
+            imaSampleApp.waitForAppHomeScreen(driver);
+
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            // Write to console activity name of home screen app
+            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Select one of the video HLS,MP4 etc .
+            imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Pre-Mid-Mid-Post");
+
+            //verify if player was loaded
+            imaSampleApp.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            // Print to console output current player activity
+            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
+
+            //Clicking on play button
+            imaSampleApp.playInNormalScreen(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            // adPlayback started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 10000);
+
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 30000);
+
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
+            Thread.sleep(3000);
+
+            // Clicking on pause button
+            imaSampleApp.pauseInNormalScreen(driver);
+            //Verifying pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+
+            // Seeking the video
+            imaSampleApp.seekVideo(driver);
+            // SeekCompleted event verification
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+
+            // If loading spinner is displaying then handling it.
+            imaSampleApp.loadingSpinner(driver);
+
+            // Resuing the playback
+            imaSampleApp.resumeInNormalScreen(driver);
+
+            //Video resumed event verification
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
+
+            // Midroll ad started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
+
+            // Midroll Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 65000);
+
+            // 2Midroll Ad Started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 70000);
+
+            // 2MidrollAd completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 75000);
+
+            //Postroll adPlayback event started verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
+
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 90000);
+
+            //Wait for video to finish and verify the playCompleted event .
+            ev.verifyEvent("playCompleted", " Video Completed  ", 100000);
+        }
+        catch(Exception e)
+        {
+            System.out.println("ima_NonPreMidMidPost throws Exception "+e);
+            e.printStackTrace();
+            ScreenshotDevice.screenshot(driver,"ima_NonPreMidMidPost");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
+
 
 }

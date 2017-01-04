@@ -28,6 +28,7 @@ public class IMASampleApp {
     //WebElement playButton;
     int[] playCoordinates= new int[2];
 
+    // Waiting for Home screen appear.
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -36,13 +37,21 @@ public class IMASampleApp {
 
     }
 
+    // Click on test with scroll
+    public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) throws InterruptedException {
+        Thread.sleep(2000);
+        driver.scrollTo(clickText).click();
+    }
+
+    // Assertion for check the app activity. 
     public void assertCurrentActivityAgainst(AndroidDriver driver, String activityName) {
 
         Assert.assertEquals(driver.currentActivity(), activityName);
     }
 
-    public void clickBasedOnText(AndroidDriver driver, String clickText) {
+    public void clickBasedOnText(AndroidDriver driver, String clickText) throws InterruptedException {
 
+        Thread.sleep(2000);
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
         clickTextField.click();
 
@@ -57,7 +66,6 @@ public class IMASampleApp {
     }
 
     public void clickButtons(AndroidDriver driver, int index) {
-
         List<WebElement> buttons = driver.findElements(By.xpath("//android.widget.Button"));
         buttons.get(index).click();
     }
@@ -68,29 +76,26 @@ public class IMASampleApp {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
+    // Not in use, later on For deepdive
     public void clickImagebuttons(AndroidDriver driver, int index) {
 
         List<WebElement> imageButtons = driver.findElements(By.xpath("//android.widget.ImageButton"));
         imageButtons.get(index).click();
     }
 
-    public void clickLearnMore(AndroidDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.TextView[@text='Learn More']")));
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Learn More']")).click();
-
-    }
+    // For Deepdive,
     public void adPause (AndroidDriver driver)
     {
         driver.findElement(By.id("android:id/pause")).click();
     }
 
+    // For Deepdive,
     public void adPlay (AndroidDriver driver)
     {
         driver.findElement(By.id("android:id/pause")).click();
     }
 
-
+    // For Deepdive,
     public void getBackFromRecentApp (AndroidDriver driver) throws InterruptedException, IOException {
 
 
@@ -104,8 +109,8 @@ public class IMASampleApp {
         System.out.println("back to SDK");
     }
 
+    // For Deepdive,
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException, IOException {
-
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
         System.out.println("key sent");
         System.out.println("screen lock");
@@ -122,51 +127,29 @@ public class IMASampleApp {
         Thread.sleep(2000);
     }
 
-
-    public void videoPlay (AndroidDriver driver)
-    {
+    // For deepdive test
+    public void videoPlay (AndroidDriver driver) {
         driver.findElement(By.xpath("//android.widget.ImageButton[@index ='0']")).click();
     }
 
+    // For Deepdive test,
     public void getXYSeekBarAndSeek(AndroidDriver driver, int widthOffSet1, int widthOffSet2) {
         WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
-
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
         System.out.println(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
     }
 
-
-    public void clickOnViewarea(AndroidDriver driver)
-    {
-        WebDriverWait wait = new WebDriverWait(driver,30);
-        String viewxpath = "//android.widget.TextView[@text='Learn More']/parent::android.widget.RelativeLayout/following-sibling::android.view.View";
-        WebElement web = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewxpath)));
-        // WebElement web = driver.findElement(By.xpath(viewxpath));
-
-        // List<WebElement> view =  driver.findElements(By.className("android.view.View"));
-        //System.out.println(">>>>>>>>>" +view);
-
-        web.click();
-    }
-
-    public  void click_LearnMore(AndroidDriver driver)
-    {
+    // For click on learn more button
+    public  void click_LearnMore(AndroidDriver driver) {
         String l_xpath = "//android.view.View[@index='0']/parend::android.webkit.WebView[@index='0']";
         WebElement ele = driver.findElement(By.xpath(l_xpath));
         ele.click();
     }
 
-//   // public void ad_Play(AndroidDriver driver)
-//    {
-//        driver.findE
-//    }
-
-    public void skip_Button(AndroidDriver driver)
-    {
+    // For click on skip button, for skip the adplayback
+    public void skip_Button(AndroidDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver,30);
         System.out.println("in skip Ad");
         WebElement ele = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//android.widget.Button[@content-desc='Skip Ad']"))));
@@ -175,31 +158,23 @@ public class IMASampleApp {
         ele.click();
     }
 
-    public void playInNormalScreen(AndroidDriver driver)
-    {
-      /*  WebElement element = driver.findElement(By.xpath("//android.widget.FrameLayout[@index= '0']"));
-        List<WebElement> play = element.findElements(By.className("android.widget.ImageButton"));
-        playButton = play.get(0);
-        System.out.println("Play:"+playButton);
-        playButton.click();*/
+    // Play the video in normal size player
+    public void playInNormalScreen(AndroidDriver driver){
         int[] play = new int[2];
         List<WebElement> imageButtons = driver.findElements(By.className("android.widget.ImageButton"));
         WebElement button = imageButtons.get(0);
         Assert.assertEquals(true, button.isDisplayed());
         play[0]=imageButtons.get(0).getLocation().getX();
         play[1]=imageButtons.get(0).getLocation().getY();
-
         playCoordinates[0]=play[0]+imageButtons.get(0).getSize().getWidth()/2 ;
         playCoordinates[1]=play[1]+imageButtons.get(0).getSize().getHeight()/2 ;
         System.out.println("X playCoordinates"+playCoordinates[0]);
         System.out.println("Y playCoordinates"+playCoordinates[1]);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
-
     }
 
+    // Pause the video in normal screen player
     public void pauseInNormalScreen(AndroidDriver driver) throws InterruptedException {
-        //playButton.click();
-        // Click on the web area so that player screen shows up
         WebElement viewarea = driver.findElementByClassName("android.view.View");
         viewarea.click();
         Thread.sleep(1000);
@@ -208,15 +183,16 @@ public class IMASampleApp {
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
+    // After pause the video, resume the playback in normal screen player
     public void resumeInNormalScreen(AndroidDriver driver){
         System.out.println("X resumeCoordinates"+playCoordinates[0]);
         System.out.println("Y resumerCoordinates"+playCoordinates[1]);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
+    // For seek the video
     public void seekVideo(AndroidDriver driver){
         WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
-
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
         System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
@@ -226,11 +202,12 @@ public class IMASampleApp {
         System.out.println(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
     }
+
+    // For handling the loading spinner
     public void loadingSpinner(AndroidDriver driver) {
         int i = 0;
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
-                //System.out.println("Handling Loading Spinner");
                 if (i<10){
                     System.out.println("Handling Loading Spinner");
                     Thread.sleep(1000);
@@ -255,14 +232,24 @@ public class IMASampleApp {
             System.out.println("The Start time of video is:" + startTimetext);
         }
     }
-
+    // For wait particular ant test
     public void waitForTextView(AndroidDriver driver, String text) {
-
         WebDriverWait wait = new WebDriverWait(driver, 50);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.
                 xpath("//android.widget.TextView[@text='" + text + "']")));
-
     }
 
+    // For seek the video for more time
+    public void seekVideoForLong(AndroidDriver driver){
+        WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
+        int seekBarFieldWidth = seekBarField.getLocation().getX();
+        int seekBarFieldHeigth = seekBarField.getLocation().getY();
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
+        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
+        System.out.println(" Seeking -------------------------  ");
+        driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 700, seekBarFieldHeigth, 3);
+    }
 
 }
