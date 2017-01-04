@@ -13,6 +13,10 @@ import java.io.IOException;
 public class BasicTests extends EventLogTest{
 
     IMASampleApp imaSampleApp = new IMASampleApp();
+    //creating the object of loadpropertyvalues class
+    LoadPropertyValues prop = new LoadPropertyValues();
+    //creating the object of properties class
+    Properties p;
 
 
     @BeforeClass
@@ -24,8 +28,8 @@ public class BasicTests extends EventLogTest{
 
         System.out.println(System.getProperty("user.dir"));
         // Get Property Values
-        LoadPropertyValues prop = new LoadPropertyValues();
-        Properties p=prop.loadProperty("IMASampleapp.properties");
+        
+        p=prop.loadProperty("IMASampleapp.properties");
 
         System.out.println("Device id from properties file " + p.getProperty("deviceName"));
         System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
@@ -52,10 +56,8 @@ public class BasicTests extends EventLogTest{
         }
 
         // Get Property Values
-        LoadPropertyValues prop1 = new LoadPropertyValues();
-        Properties p1=prop1.loadProperty();
-
-        System.out.println(" Screen Mode "+ p1.getProperty("ScreenMode"));
+        p=prop.loadProperty();
+        System.out.println(" Screen Mode "+ p.getProperty("ScreenMode"));
     }
 
     @AfterClass
@@ -76,7 +78,7 @@ public class BasicTests extends EventLogTest{
 
     }
 
-    @Test
+    //@Test
     public void imaAdRulePreroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -144,7 +146,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaAdRuleMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -221,7 +223,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaAdRulePostroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -299,7 +301,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaPoddedPreroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -375,7 +377,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void IMAPoddedMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -454,7 +456,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaPoddedPostroll() throws Exception{
 
         try {
@@ -535,7 +537,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaPoddedPreMidPost() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -650,7 +652,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaSkippable() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -729,7 +731,7 @@ public class BasicTests extends EventLogTest{
     @Test
     public void imaPreMidPostSkippable() throws Exception{
         try {
-            // wait till home screen of IMASampleApp is opened
+            // wait till home screen of imaSampleApp is opened
             imaSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
@@ -737,7 +739,7 @@ public class BasicTests extends EventLogTest{
             // Write to console activity name of home screen app
             System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            // Selecting the IMA PreMidPost skippable asset
+            // Selecting the IMA PreMidPost skipable asset
             imaSampleApp.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
 
             //verify if player was loaded
@@ -763,17 +765,24 @@ public class BasicTests extends EventLogTest{
 
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+
+            // midroll adplayback started event verification
+            ev.verifyEvent("adStarted", " Ad Started to Play ", 40000);
+
+            // Ad completed event verification
+            ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
+
             Thread.sleep(3000);
 
             // Clicking on pause button
             imaSampleApp.pauseInNormalScreen(driver);
             //Verifying pause event
-            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 35000);
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 55000);
 
             // Seeking the video
             imaSampleApp.seekVideo(driver);
             // SeekCompleted event verification
-            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 40000);
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 60000);
 
             // If loading spinner is displaying then handling it.
             imaSampleApp.loadingSpinner(driver);
@@ -782,13 +791,7 @@ public class BasicTests extends EventLogTest{
             imaSampleApp.resumeInNormalScreen(driver);
 
             //Video resumed event verification
-            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",50000);
-
-            // midroll adplayback started event verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 60000);
-
-            // Ad completed event verification
-            ev.verifyEvent("adCompleted", " Ad Completed ", 70000);
+            ev.verifyEvent("stateChanged - state: PLAYING", "Video resumed",70000);
 
             //Postroll ad playback event started verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 80000);
@@ -808,7 +811,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaApplicationConfigured() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -886,7 +889,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void imaNo_AdRules() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -949,7 +952,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void ima_NonAdRulePreroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1017,7 +1020,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void ima_NonAdRuleMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1092,7 +1095,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void ima_NonAdRulePostroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1169,7 +1172,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void ima_NonAdRuleQuadMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1263,7 +1266,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    @Test
+    //@Test
     public void ima_NonPreMidMidPost() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
