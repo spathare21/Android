@@ -78,7 +78,7 @@ public class BasicTests extends EventLogTest{
 
     }
 
-    //@Test
+    @Test
     public void imaAdRulePreroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -146,7 +146,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaAdRuleMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -223,7 +223,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaAdRulePostroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -301,7 +301,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaPoddedPreroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -377,7 +377,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void IMAPoddedMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -456,7 +456,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaPoddedPostroll() throws Exception{
 
         try {
@@ -537,7 +537,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaPoddedPreMidPost() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -652,7 +652,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaSkippable() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -811,7 +811,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaApplicationConfigured() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -889,7 +889,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void imaNo_AdRules() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -952,7 +952,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void ima_NonAdRulePreroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1020,7 +1020,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void ima_NonAdRuleMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1095,7 +1095,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void ima_NonAdRulePostroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1172,7 +1172,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void ima_NonAdRuleQuadMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1266,7 +1266,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void ima_NonPreMidMidPost() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
