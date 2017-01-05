@@ -690,7 +690,7 @@ public class BasicTests extends EventLogTest{
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 50000);
 
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
             // Clicking on pause button
             imaSampleApp.pauseInNormalScreen(driver);
@@ -772,7 +772,7 @@ public class BasicTests extends EventLogTest{
             // Ad completed event verification
             ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
 
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
             // Clicking on pause button
             imaSampleApp.pauseInNormalScreen(driver);
