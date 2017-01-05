@@ -71,7 +71,7 @@ import java.io.IOException;
         Thread.sleep(10000);
     }
 
-    @Test
+//    @Test
     public void freeWheelPreRoll() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -140,7 +140,7 @@ import java.io.IOException;
         }
     }
 
-    @Test
+//    @Test
     public void freeWheelMidRoll() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -206,7 +206,7 @@ import java.io.IOException;
         }
     }
 
-    @Test
+  //  @Test
     public void freeWheelPostRoll() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -276,7 +276,7 @@ import java.io.IOException;
         }
     }
 
-    @Test
+   // @Test
     public void freeWheelPreMidPostRoll() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -359,7 +359,7 @@ import java.io.IOException;
         }
     }
 
-    @Test
+    //@Test
     public void freeWheelOverlay() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -423,7 +423,7 @@ import java.io.IOException;
         }
     }
     
-    @Test
+    //@Test
     public void freeWheelMultiMidRoll() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -499,7 +499,7 @@ import java.io.IOException;
         }
     }
 
-    @Test
+   // @Test
     public void freeWheelPreMidPostRollOverlay() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -579,7 +579,7 @@ import java.io.IOException;
         }
     }
     
-    @Test
+   // @Test
     public void freeWheelApplicationConfigured() throws Exception{
         try {
             // wait till home screen of basicPlayBackApp is opened
@@ -701,7 +701,7 @@ import java.io.IOException;
             ev.verifyEvent("playStarted", " Video Started Play ", 40000);
             Thread.sleep(4000);
             //pausing the video
-            freewheelSampleApp.pauseInNormalScreen(driver);
+            freewheelSampleApp.pauseSmallplayer(driver);
             //Verifying the pause event
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
             //Reading the time after pause the video

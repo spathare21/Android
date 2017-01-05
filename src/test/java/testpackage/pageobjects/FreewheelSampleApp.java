@@ -176,9 +176,18 @@ public class FreewheelSampleApp {
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
+    // For AdsCotrol and cuepoint asset
+    public void pauseSmallplayer(AndroidDriver driver) throws InterruptedException {
+        Thread.sleep(1000);
+        System.out.println("X pauseCoordinates"+playCoordinates[0]);
+        System.out.println("Y pauseCoordinates"+playCoordinates[1]);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+        Thread.sleep(1000);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
     // For resume the playback after pause
     public void resumeInNormalScreen(AndroidDriver driver){
-        //playButton.click();
         System.out.println("X resumeCoordinates"+playCoordinates[0]);
         System.out.println("Y resumeCoordinates"+playCoordinates[1]);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
