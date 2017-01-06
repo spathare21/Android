@@ -376,7 +376,7 @@ public class BasicTests extends EventLogTest {
             optionsSampleApp.readTime(driver);
 
             //Seeking the video
-            optionsSampleApp.seekVideoForLong(driver);
+            optionsSampleApp.seekVideo(driver);
 
             // After seek the video, Verifying the seek completed event
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
