@@ -1,6 +1,7 @@
 package testpackage.tests.advancePlayBackSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -18,26 +19,28 @@ import java.util.Properties;
  */
 public class BasicTests extends EventLogTest {
 
+    final static Logger logger = Logger.getLogger(BasicTests.class);
 
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
         //CloserecentApps.closeApps();
-        System.out.println("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.info("BeforeTest \n");
+
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p = prop.loadProperty("advanceplaybacksampleapp.properties");
 
-        //System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        //System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        //System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        //System.out.println("APK name is "+ p.getProperty("app"));
-        //System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        //System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        //System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        //System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        //logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        //logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        //logger.debug("Path where APK is stored"+ p.getProperty("appDir"));
+        //logger.debug("APK name is "+ p.getProperty("app"));
+        //logger.debug("Platform under Test is "+ p.getProperty("platformName"));
+        //logger.debug("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        //logger.debug("Package Name of the App is "+ p.getProperty("appPackage"));
+        //logger.debug("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -46,7 +49,7 @@ public class BasicTests extends EventLogTest {
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -58,10 +61,10 @@ public class BasicTests extends EventLogTest {
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1 = prop1.loadProperty();
 
-        System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode " + p1.getProperty("ScreenMode"));
 
         //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
+        //    logger.info("Inside landscape Mode ");
         //    driver.rotate(ScreenOrientation.LANDSCAPE);
         //}
 
@@ -72,7 +75,7 @@ public class BasicTests extends EventLogTest {
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -86,7 +89,7 @@ public class BasicTests extends EventLogTest {
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
@@ -106,7 +109,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -119,11 +122,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PlayWithInitialTimePlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //Sleep for brief time
             Thread.sleep(3000);
 
@@ -135,7 +138,7 @@ public class BasicTests extends EventLogTest {
 
         }
         catch (Exception e) {
-            System.out.println("playWithIntitialTime throws Exception " + e);
+            logger.error("playWithIntitialTime throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"playWithIntitialTime");
             Assert.assertTrue(false, "This will fail!");
@@ -156,7 +159,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -169,11 +172,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.MultipleVideosPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver, "00:00");
 
@@ -213,7 +216,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed", 130000);
 
         } catch (Exception e) {
-            System.out.println("multipleVideoPlayback throws Exception " + e);
+            logger.error("multipleVideoPlayback throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"multipleVideoPlayback");
             Assert.assertTrue(false, "This will fail!");
@@ -233,7 +236,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -246,11 +249,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -284,7 +287,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed", 95000);
 
         } catch (Exception e) {
-            System.out.println("insertAtRunTime throws Exception " + e);
+            logger.error("insertAtRunTime throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"insertAtRunTime");
             Assert.assertTrue(false, "This will fail!");
@@ -304,7 +307,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -317,11 +320,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -356,7 +359,7 @@ public class BasicTests extends EventLogTest {
 
 
         } catch (Exception e) {
-            System.out.println("changeVideoProgramatically throws Exception " + e);
+            logger.error("changeVideoProgramatically throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"changeVideoProgramatically");
             Assert.assertTrue(false, "This will fail!");
@@ -376,7 +379,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -389,11 +392,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PluginPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -408,7 +411,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed", 150000);
 
         } catch (Exception e) {
-            System.out.println("customPluginSample throws Exception " + e);
+            logger.error("customPluginSample throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"customPluginSample");
             Assert.assertTrue(false, "This will fail!");
@@ -428,7 +431,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -441,11 +444,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomControlsPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             Thread.sleep(3000);
 
             po.playInNormalScreen(driver);
@@ -466,7 +469,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println("customControls throws Exception " + e);
+            logger.error("customControls throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"customControls");
             Assert.assertTrue(false, "This will fail!");
@@ -486,7 +489,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -499,11 +502,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomOverlayPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -525,7 +528,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed", 90000);
 
         } catch (Exception e) {
-            System.out.println("customOverlay throws Exception " + e);
+            logger.error("customOverlay throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"customOverlay");
             Assert.assertTrue(false, "This will fail!");
@@ -545,7 +548,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -558,11 +561,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             po.waitForTextView(driver,"00:00");
 
             po.playInNormalScreen(driver);
@@ -589,7 +592,7 @@ public class BasicTests extends EventLogTest {
             Thread.sleep(2000);
 
         } catch (Exception e) {
-            System.out.println("insertAtRunTime_VastAd throws Exception " + e);
+            logger.error("insertAtRunTime_VastAd throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
             Assert.assertTrue(false, "This will fail!");
@@ -609,7 +612,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -622,11 +625,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.InsertAdPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             po.waitForTextView(driver,"00:00");
             po.playInNormalScreen(driver);
             //Play Started Verification
@@ -650,7 +653,7 @@ public class BasicTests extends EventLogTest {
 
 
         } catch (Exception e) {
-            System.out.println("insertAtRunTime_VastAd Exception " + e);
+            logger.error("insertAtRunTime_VastAd Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"insertAtRunTime_VastAd");
             Assert.assertTrue(false, "This will fail!");
@@ -671,7 +674,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             //Thread.sleep(3000);
@@ -684,11 +687,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -710,7 +713,7 @@ public class BasicTests extends EventLogTest {
 
 
         } catch (Exception e) {
-            System.out.println("changeVideoProgramatically_P1 Exception " + e);
+            logger.error("changeVideoProgramatically_P1 Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P1");
             Assert.assertTrue(false, "This will fail!");
@@ -731,7 +734,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
            // Thread.sleep(3000);
@@ -744,11 +747,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ChangeVideoPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -769,7 +772,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "Inserted video2 ended play", 90000);
 
         } catch (Exception e) {
-            System.out.println("changeVideoProgramatically_P2 throws Exception " + e);
+            logger.error("changeVideoProgramatically_P2 throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"changeVideoProgramatically_P2");
             Assert.assertTrue(false, "This will fail!");
@@ -790,7 +793,7 @@ public class BasicTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -802,11 +805,11 @@ public class BasicTests extends EventLogTest {
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
-            System.out.println("after wait for presence");
+            logger.info("after wait for presence");
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PluginPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.playInNormalScreen(driver);
 
@@ -837,7 +840,7 @@ public class BasicTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed", 130000);
 
         } catch (Exception e) {
-            System.out.println("customPluginSample_Adverfication throws Exception " + e);
+            logger.error("customPluginSample_Adverfication throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"customPluginSample_Adverfication");
             Assert.assertTrue(false, "This will fail!");

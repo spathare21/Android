@@ -1,5 +1,6 @@
 package testpackage.utils;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Assert.*;
 
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
  * Created by bsondur on 11/24/15.
  */
 public class ParseEventsFile {
+    final static Logger logger = Logger.getLogger(ParseEventsFile.class);
     
 
     public int latestCount(String line){
@@ -36,7 +38,7 @@ public class ParseEventsFile {
                 //System.out.println(line);
                 if(line.contains("state: ERROR"))
                 {
-                    System.out.println("App crashed");
+                    logger.fatal("App crashed");
                     org.testng.Assert.fail("App is crashed during playback");
                     //System.exit(0);
                 }
@@ -44,24 +46,20 @@ public class ParseEventsFile {
                 {
                   if (latestCount(line)>count) {
 
-                        System.out.println("Event Recieved From SDK AND Sample App :- " + line);
+                        logger.debug("Event Recieved From SDK AND Sample App :- " + line);
                         count=latestCount(line);
                         return count;
                     }
                     
                 }
                 line = buf.readLine();
-
             }
-
         }
         catch (Exception e)
         {
-            System.out.println("Exception " + e);
+            logger.error("Exception " + e);
             e.printStackTrace();
         }
-
         return -1;
     }
-
 }

@@ -1,6 +1,7 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.apache.xpath.operations.And;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 public class exoPlayerSampleApp {
     Point replay, more, close_button, share_asset, discovery_button, cc_button, volume_button, enablecc_button,play;
+    final static Logger logger = Logger.getLogger(exoPlayerSampleApp.class);
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -64,13 +66,13 @@ public class exoPlayerSampleApp {
     public void verifyOverlay(AndroidDriver driver) {
         WebElement element = driver.findElement(By.xpath("//android.view.View[@index = '0']"));
         if (element.isDisplayed()) {
-            System.out.println("overlay displayed");
+            logger.info("overlay displayed");
             Assert.assertEquals(true, element.isDisplayed());
         }
     }
 
     public void skipAd(AndroidDriver driver) throws InterruptedException {
-        System.out.println("in skip ad");
+        logger.info("in skip ad");
 
         driver.findElementByXPath("//android.widget.TextView[@name='Skip Ad']").click();
                 // driver.tap(1,585,1524,2);
@@ -92,56 +94,56 @@ public class exoPlayerSampleApp {
 
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         replay = ele.getLocation();
-        System.out.println("replay.x value is " + replay.getX());
-        System.out.println("replay.y value is " + replay.getY());
+        logger.info("replay.x value is " + replay.getX());
+        logger.info("replay.y value is " + replay.getY());
 
         Thread.sleep(2000);
 
         // more button location
         WebElement button = driver.findElement(By.xpath("//android.widget.TextView[@text='f']"));
         more = button.getLocation();
-        System.out.printf("more button's X  cordinates" + more.getX());
-        System.out.printf("more button's y  cordinates" + more.getY());
+        logger.info("more button's X  cordinates" + more.getX());
+        logger.info("more button's y  cordinates" + more.getY());
         driver.tap(1, more.getX(), more.getY(), 2);
 
         Thread.sleep(2000);
         // click on close button
         WebElement close = driver.findElement(By.xpath("//android.widget.TextView[@text='e']"));
         close_button = close.getLocation();
-        System.out.printf("close button's X  cordinates" + close_button.getX());
-        System.out.printf("close button's y  cordinates" + close_button.getY());
+        logger.info("close button's X  cordinates" + close_button.getX());
+        logger.info("close button's y  cordinates" + close_button.getY());
 //       // driver.tap(1,close_button.getX(),close_button.getY(),2);
 
         Thread.sleep(2000);
         // shareAsset button location
         WebElement share = driver.findElement(By.xpath("//android.widget.TextView[@text='o']"));
         share_asset = share.getLocation();
-        System.out.printf("share button's X  cordinates" + share_asset.getX());
-        System.out.printf("share button's y  cordinates" + share_asset.getY());
+        logger.info("share button's X  cordinates" + share_asset.getX());
+        logger.info("share button's y  cordinates" + share_asset.getY());
         driver.tap(1, share_asset.getX(), share_asset.getY(), 2);
         Thread.sleep(5000);
-        System.out.println("clicked on shared button");
+        logger.info("clicked on shared button");
 
         Thread.sleep(2000);
 
-        System.out.println("Clicking on back button to close share options");
+        logger.info("Clicking on back button to close share options");
         driver.navigate().back();
-        System.out.println("Clicked");
+        logger.info("Clicked");
 
         Thread.sleep(2000);
         // Discovery button lcoation
         WebElement discovery = driver.findElementByXPath("//android.widget.TextView[@text='l']");
         discovery_button = discovery.getLocation();
-        System.out.printf("discovery button's X  cordinates" + discovery_button.getX());
-        System.out.printf("discovery button's y  cordinates" + discovery_button.getY());
+        logger.info("discovery button's X  cordinates" + discovery_button.getX());
+        logger.info("discovery button's y  cordinates" + discovery_button.getY());
 
         Thread.sleep(2000);
 
         //CC button location
         WebElement CC = driver.findElementByXPath("//android.widget.TextView[@text='k']");
         cc_button = CC.getLocation();
-        System.out.printf("CC button's X  cordinates" + cc_button.getX());
-        System.out.printf(" CC bbutton's y  cordinates" + cc_button.getY());
+        logger.info("CC button's X  cordinates" + cc_button.getX());
+        logger.info(" CC bbutton's y  cordinates" + cc_button.getY());
         driver.tap(1, cc_button.getX(), cc_button.getY(), 2);
         Thread.sleep(2000);
 
@@ -149,17 +151,17 @@ public class exoPlayerSampleApp {
 
         WebElement enablecc = driver.findElementByXPath("//android.widget.Switch[@index='4']");
         enablecc_button = enablecc.getLocation();
-        System.out.printf("enablecc button's X  cordinates" + enablecc_button.getX());
-        System.out.printf(" enablecc button's y  cordinates" + enablecc_button.getY());
+        logger.info("enablecc button's X  cordinates" + enablecc_button.getX());
+        logger.info(" enablecc button's y  cordinates" + enablecc_button.getY());
 
 
         Thread.sleep(2000);
         driver.tap(1, close_button.getX(), close_button.getY(), 2);
-        System.out.println("CC option closed");
+        logger.info("CC option closed");
 
         Thread.sleep(2000);
         driver.tap(1, close_button.getX(), close_button.getY(), 2);
-        System.out.println("more option closed");
+        logger.info("more option closed");
 
         Thread.sleep(2000);
 
@@ -169,8 +171,8 @@ public class exoPlayerSampleApp {
         try{
             WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='b']");
             volume_button = volume.getLocation();
-            System.out.printf("volume button's X  cordinates" + volume_button.getX());
-            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            logger.info("volume button's X  cordinates" + volume_button.getX());
+            logger.info(" volume button's y  cordinates" + volume_button.getY());
             Thread.sleep(1000);
 
         }catch (org.openqa.selenium.NoSuchElementException e){
@@ -180,14 +182,14 @@ public class exoPlayerSampleApp {
         if(isElement1Present == false) {
             WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='p']");
             volume_button = volume.getLocation();
-            System.out.printf("volume button's X  cordinates" + volume_button.getX());
-            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            logger.info("volume button's X  cordinates" + volume_button.getX());
+            logger.info(" volume button's y  cordinates" + volume_button.getY());
             Thread.sleep(1000);
         }
 
         Thread.sleep(1000);
 
-        System.out.println("printed all the locations");
+        logger.info("printed all the locations");
 
         ele.click();
     }
@@ -197,40 +199,38 @@ public class exoPlayerSampleApp {
         Thread.sleep(5000);
         driver.navigate().back();
 
-        System.out.println();
-
     }
 
     public void learnMore(AndroidDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='Learn More']";
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
-        System.out.println("Learn more displayed");
+        logger.info("Learn more displayed");
         //ele.click();
     }
 
     public  void pauseVideo(AndroidDriver driver) throws InterruptedException {
-        System.out.println("moved to pause method");
+        logger.info("moved to pause method");
 
-        System.out.println("replay.x value is "+replay.getX());
-        System.out.println("replay.x value is "+replay.getY());
+        logger.info("replay.x value is "+replay.getX());
+        logger.info("replay.x value is "+replay.getY());
         driver.tap(1,replay.getX(),replay.getY(),2);
-        System.out.println("clicked pause");
+        logger.info("clicked pause");
 
 
     }
 
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
-        System.out.println("in more method");
+        logger.info("in more method");
 //        String more_button = "//android.view.View[@index='7']";
 //       WebElement ele = driver.findElement(By.xpath(more_button));
         driver.findElement(By.xpath("//android.widget.TextView[@text='f']"));
-//        System.out.println(button.getLocation());
+//        logger.info(button.getLocation());
         // button.click();
         Thread.sleep(2000);
-        System.out.printf("more button's X  cordinates" +more.getX());
-        System.out.printf("more button's y  cordinates" +more.getY());
+        logger.info("more button's X  cordinates" +more.getX());
+        logger.info("more button's y  cordinates" +more.getY());
         driver.tap(1,more.getX(),more.getY()+54,2);
 
     }
@@ -269,7 +269,7 @@ public class exoPlayerSampleApp {
 
     public void enableCC (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println("in enable CC method");
+        logger.info("in enable CC method");
         driver.findElementByXPath("//android.widget.Switch[@index='4']");
         driver.tap(1,enablecc_button.getX(),enablecc_button.getY(),2);
 
@@ -295,7 +295,7 @@ public class exoPlayerSampleApp {
 
     {
         WebElement element=   driver.findElement(By.xpath("android.widget.TextView[@text='\uF111']"));
-        System.out.println("element>>>>>>>>>>>>>>>>>>>>>>>"+element);
+        logger.info("element>>>>>>>>>>>>>>>>>>>>>>>"+element);
 
     }
 
@@ -307,16 +307,16 @@ public class exoPlayerSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
-        System.out.println("showing recent app screen");
+        logger.info("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
-        System.out.println("back to SDK");
+        logger.info("back to SDK");
     }
 
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException,IOException {
 
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
-        System.out.println("key sent");
-        System.out.println("screen lock");
+        logger.info("key sent");
+        logger.info("screen lock");
         Thread.sleep(2000);
         driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
         String command = "adb shell input keyevent KEYCODE_WAKEUP";
@@ -324,33 +324,33 @@ public class exoPlayerSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
-        System.out.println("showing screen unlock");
-        System.out.println("Back to Sample App screen ");
+        logger.info("showing screen unlock");
+        logger.info("Back to Sample App screen ");
         Thread.sleep(2000);
     }
 
     public void screentap(AndroidDriver driver) throws InterruptedException {
-        System.out.println("in screen tapped method");
+        logger.info("in screen tapped method");
         Thread.sleep(1500);
         driver.tap(1,replay.getX(),replay.getY(),2);
-        System.out.println("out of the screen tapped method");
+        logger.info("out of the screen tapped method");
     }
 
     public void overlay (AndroidDriver driver)
     {
-        System.out.println("in overlay method");
+        logger.info("in overlay method");
         WebElement ele = driver.findElement(By.xpath("//android.view.View[@content-desc='1?s=g002&n=380912%3B380912&t=1461829324669617003&f=&r=380912&adid=6772707&reid=3129141&arid=0&auid=&cn=defaultClick&et=c&_cc=&tpos=0&sr=0&cr=']"));
         if (ele.isDisplayed())
         {
-            System.out.println("overlay displayed");
+            logger.info("overlay displayed");
 
         }
         else
-            System.out.println("not diplayed failed ");
+            logger.info("not diplayed failed ");
     }
 
     public void discoverUpNext (AndroidDriver driver) throws InterruptedException {
-        //System.out.println("Discovery up next banner displayed");
+        //logger.info("Discovery up next banner displayed");
        //  List<WebElement> list = driver.findElementsByXPath("//android.widget.FrameLayout[@resource-id='com.ooyala.sample.SkinCompleteSampleApp:id/ooyalaSkin']");
        // List<WebElement> list1 = list.get(0).findElements(By.className("android.view.View"));
         WebDriverWait wait = new WebDriverWait(driver,80);
@@ -359,15 +359,15 @@ public class exoPlayerSampleApp {
         Assert.assertEquals(true, ele.isDisplayed());
         if (ele.isDisplayed())
         {
-            System.out.println("Discovery is displayed");
+            logger.info("Discovery is displayed");
             Thread.sleep(1000);
             WebElement discoveryclose = driver.findElement(By.xpath("//android.widget.TextView[@text='e']"));
             discoveryclose.click();
-            System.out.println("Discovery is closed");
+            logger.info("Discovery is closed");
 
         }
         else
-            System.out.println("not displayed failed ");
+            logger.info("not displayed failed ");
     }
 
     public void getPlay (AndroidDriver driver) throws InterruptedException {
@@ -375,34 +375,34 @@ public class exoPlayerSampleApp {
         String path  = "//android.widget.TextView[@text='h']";
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         play= ele.getLocation();
-        System.out.println("play.x value is " + play.getX());
-        System.out.println("play.y value is " + play.getY());
+        logger.info("play.x value is " + play.getX());
+        logger.info("play.y value is " + play.getY());
         Thread.sleep(1000);
         driver.tap(1, play.getX(),play.getY(),2);
     }
 
     public void screentapping(AndroidDriver driver) throws InterruptedException{
-        System.out.println("Tapping using Play coordinates");
+        logger.info("Tapping using Play coordinates");
         Thread.sleep(1000);
         driver.tap(1,play.getX(),play.getY(),2);
-        System.out.println("Tapped on screen");
+        logger.info("Tapped on screen");
     }
 
     public void pausingVideo(AndroidDriver driver) throws InterruptedException{
-        System.out.println("Pausing Video using play coordinate");
+        logger.info("Pausing Video using play coordinate");
         Thread.sleep(1000);
         driver.tap(1,play.getX(),play.getY(),2);
-        System.out.println("Paused Video using play coordinates");
+        logger.info("Paused Video using play coordinates");
     }
 
     public void discoveryTray(AndroidDriver driver) throws InterruptedException{
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path = "//android.widget.TextView[@text='Discovery']";
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
-        System.out.println("Discovery tray displayed");
+        logger.info("Discovery tray displayed");
         Assert.assertEquals(true, ele.isDisplayed());
         WebElement discoveryclose = driver.findElement(By.xpath("//android.widget.TextView[@text='e']"));
         discoveryclose.click();
-        System.out.println("Discovery tray closed");
+        logger.info("Discovery tray closed");
     }
 }

@@ -1,6 +1,7 @@
 package testpackage.tests.NielsenSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -9,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import testpackage.pageobjects.NeilsenSampleApp;
+import testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2;
 import testpackage.utils.*;
 
 import java.awt.*;
@@ -19,6 +21,7 @@ import java.util.Properties;
  * Created by Sachin on 8/5/2016.
  */
 public class BasicTest extends EventLogTest {
+    final static Logger logger = Logger.getLogger(BasicTest.class);
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -26,20 +29,20 @@ public class BasicTest extends EventLogTest {
         CloserecentApps.closeApps();
 
 
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
         System.out.println(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p = prop.loadProperty("NielsenSampleApp.properties");
-        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored" + p.getProperty("appDir"));
-        System.out.println("APK name is " + p.getProperty("appValue"));
-        System.out.println("Platform under Test is " + p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is " + p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is " + p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is " + p.getProperty("appActivity"));
+        logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored" + p.getProperty("appDir"));
+        logger.debug("APK name is " + p.getProperty("appValue"));
+        logger.debug("Platform under Test is " + p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is " + p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is " + p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is " + p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -50,7 +53,7 @@ public class BasicTest extends EventLogTest {
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         //removeEventsLogFile.removeEventsFileLog(); create events file
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -62,12 +65,12 @@ public class BasicTest extends EventLogTest {
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1=prop1.loadProperty();
 
-        System.out.println(" Screen Mode "+ p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode "+ p1.getProperty("ScreenMode"));
 
     }
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
 
@@ -76,7 +79,7 @@ public class BasicTest extends EventLogTest {
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
@@ -92,7 +95,7 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.NielsenListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -107,11 +110,11 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NielsenDefaultPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             NS.waitForPresence(driver, "className", "android.widget.ImageButton");
             Thread.sleep(1000);
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
            NS.playInNormalScreen(driver);
             Thread.sleep(1000);
             EventVerification e = new EventVerification();
@@ -123,7 +126,7 @@ public class BasicTest extends EventLogTest {
             Thread.sleep(6000);
             e.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 9000);
             NS.seekVideo(driver);
-            System.out.println("Hi..");
+            logger.info("Hi..");
             e.verifyEvent("bufferingStarted" ," Playing Video was Seeked " , 15000);
             NS.loadingSpinner(driver);
             Thread.sleep(1000);
@@ -133,7 +136,7 @@ public class BasicTest extends EventLogTest {
         }
         catch (Exception e)
         {
-            System.out.println("ID3-Demo throws Exception "+e);
+            logger.error("ID3-Demo throws Exception "+e);
             e.printStackTrace();
             //ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -149,7 +152,7 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             Ns.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.NielsenListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -164,11 +167,11 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             Ns.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NielsenDefaultPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             Ns.waitForPresence(driver, "className", "android.widget.ImageButton");
             Thread.sleep(1000);
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             Ns.playInNormalScreen(driver);
             Thread.sleep(1000);
             EventVerification e = new EventVerification();
@@ -179,7 +182,7 @@ public class BasicTest extends EventLogTest {
             Thread.sleep(6000);
             e.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 9000);
             NS.seekVideo(driver);
-            System.out.println("Hi..");
+            logger.info("Hi..");
             e.verifyEvent("bufferingStarted" ," Playing Video was Seeked " , 15000);
             NS.loadingSpinner(driver);
             Thread.sleep(1000);
@@ -188,7 +191,7 @@ public class BasicTest extends EventLogTest {
 
         }catch (Exception e)
         {
-            System.out.println("ID3-TravelEast throws Exception "+e);
+            logger.error("ID3-TravelEast throws Exception "+e);
             e.printStackTrace();
             //ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -204,7 +207,7 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.NielsenListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -219,11 +222,11 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NielsenDefaultPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             NS.waitForPresence(driver, "className", "android.widget.ImageButton");
             Thread.sleep(1000);
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             NS.playInNormalScreen(driver);
             Thread.sleep(1000);
             EventVerification e = new EventVerification();
@@ -234,7 +237,7 @@ public class BasicTest extends EventLogTest {
             Thread.sleep(6000);
             e.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 9000);
             NS.seekVideo(driver);
-            System.out.println("Hi..");
+            logger.info("Hi..");
             e.verifyEvent("bufferingStarted" ," Playing Video was Seeked " , 15000);
             NS.loadingSpinner(driver);
             Thread.sleep(1000);
@@ -243,7 +246,7 @@ public class BasicTest extends EventLogTest {
 
         }catch (Exception e)
         {
-            System.out.println("CMS-Demo throws Exception "+e);
+            logger.error("CMS-Demo throws Exception "+e);
             e.printStackTrace();
             //ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -258,7 +261,7 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.NielsenListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -273,11 +276,11 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NielsenDefaultPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             NS.waitForPresence(driver, "className", "android.widget.ImageButton");
             Thread.sleep(1000);
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             NS.playInNormalScreen(driver);
             Thread.sleep(1000);
             EventVerification e = new EventVerification();
@@ -289,7 +292,7 @@ public class BasicTest extends EventLogTest {
             Thread.sleep(6000);
             e.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 9000);
             NS.seekVideo(driver);
-            System.out.println("Hi..");
+            logger.info("Hi..");
             e.verifyEvent("bufferingStarted" ," Playing Video was Seeked " , 15000);
             NS.loadingSpinner(driver);
             Thread.sleep(1000);
@@ -299,7 +302,7 @@ public class BasicTest extends EventLogTest {
 
         }catch (Exception e)
         {
-            System.out.println("CMS-NoAds throws Exception "+e);
+            logger.error("CMS-NoAds throws Exception "+e);
             e.printStackTrace();
             //ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -314,7 +317,7 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.NielsenListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -327,11 +330,11 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NielsenDefaultPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             NS.waitForPresence(driver, "className", "android.widget.ImageButton");
             Thread.sleep(1000);
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             NS.playInNormalScreen(driver);
             Thread.sleep(1000);
             EventVerification ev = new EventVerification();
@@ -359,7 +362,7 @@ public class BasicTest extends EventLogTest {
             Thread.sleep(6000);
             e.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 9000);
             NS.seekVideo(driver);
-            System.out.println("Hi..");
+            logger.info("Hi..");
             e.verifyEvent("bufferingStarted" ," Playing Video was Seeked " , 15000);
             NS.loadingSpinner(driver);
             Thread.sleep(1000);
@@ -377,7 +380,7 @@ public class BasicTest extends EventLogTest {
         }
         catch (Exception e)
         {
-            System.out.println("CMS-WithAds throws Exception "+e);
+            logger.error("CMS-WithAds throws Exception "+e);
             e.printStackTrace();
             //ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -393,7 +396,7 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.NielsenListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -406,11 +409,11 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NielsenDefaultPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             NS.waitForPresence(driver, "className", "android.widget.ImageButton");
             Thread.sleep(1000);
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             NS.playInNormalScreen(driver);
             Thread.sleep(1000);
             EventVerification e = new EventVerification();
@@ -426,7 +429,7 @@ public class BasicTest extends EventLogTest {
         }
         catch (Exception e)
         {
-            System.out.println("CMS-Live throws Exception "+e);
+            logger.error("CMS-Live throws Exception "+e);
             e.printStackTrace();
             //ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -444,7 +447,7 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.NielsenListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("NielsenSamppApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -457,11 +460,11 @@ public class BasicTest extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             NS.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.NielsenDefaultPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             NS.waitForPresence(driver, "className", "android.widget.ImageButton");
             Thread.sleep(1000);
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             NS.playInNormalScreen(driver);
             Thread.sleep(1000);
             EventVerification e = new EventVerification();
@@ -476,7 +479,7 @@ public class BasicTest extends EventLogTest {
         }
         catch (Exception e)
         {
-            System.out.println("ID3-Live throws Exception "+e);
+            logger.error("ID3-Live throws Exception "+e);
             e.printStackTrace();
             //ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");

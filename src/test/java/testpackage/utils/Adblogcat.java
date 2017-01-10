@@ -5,6 +5,7 @@ package testpackage.utils;
  */
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.logging.LogEntry;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.List;
 
 
 public class Adblogcat {
-
+    final static Logger logger = Logger.getLogger(Adblogcat.class);
     public static String deviceVersion;
     public static String deviceName;
     public static String sdkVersion;
@@ -51,16 +52,16 @@ public class Adblogcat {
 
                     strout.append(date.toString());
 
-                    System.out.println(strout);
+                    logger.info(strout);
 
                     //return true;
                 }
-                //System.out.println(line);
+                //logger.info(line);
                 //line = buf.readLine();
                 //}
             }
         } catch (Exception e) {
-            System.out.println("Exception " + e);
+            logger.error("Exception " + e);
             e.printStackTrace();
         }
     }
@@ -78,7 +79,7 @@ public class Adblogcat {
         String sdk_version = null;
         while ((sdk_version = stdInput.readLine()) != null) {
             if(!sdk_version.contains("daemon")) {
-                System.out.println(" Android SDK Vesion is   :" + sdk_version + "\n");
+                logger.info(" Android SDK Vesion is   :" + sdk_version + "\n");
                 deviceVersion = sdk_version;
             }
         }
@@ -96,7 +97,7 @@ public class Adblogcat {
         String devicename = null;
         while ((devicename = stdInput.readLine()) != null) {
             if(!devicename.contains("daemon")) {
-                System.out.println(" Android Device name  is   :" + devicename + "\n");
+                logger.info(" Android Device name  is   :" + devicename + "\n");
                 deviceName = devicename;
             }
         }
@@ -109,17 +110,13 @@ public class Adblogcat {
         {
             if(logEntries.get(i).toString().contains("Ooyala SDK Version:"))
             {
-                System.out.println(logEntries.get(i).toString());
+                logger.info(logEntries.get(i).toString());
                 sdkVersion = logEntries.get(i).toString();
                 String[] version = sdkVersion.split(":");
                 if(version.length>6)
                     sdkVersion = version[6];
-
             }
         }
-
-
     }
-
 }
 

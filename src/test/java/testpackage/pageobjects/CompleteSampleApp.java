@@ -1,6 +1,7 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class CompleteSampleApp {
     int[] playCoordinates = new int[2];
+    final static Logger logger = Logger.getLogger(CompleteSampleApp.class);
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -65,14 +67,14 @@ public class CompleteSampleApp {
         int[] play = new int[2];
         Thread.sleep(5000);
         List<WebElement> imageButtons = driver.findElementsByClassName("android.widget.ImageButton");
-        System.out.println("\nSize : " + imageButtons.size());
+        logger.info("\nSize : " + imageButtons.size());
         if (imageButtons.size() > 0) {
             play[0] = imageButtons.get(0).getLocation().getX();
             play[1] = imageButtons.get(0).getLocation().getY();
             playCoordinates[0] = play[0] + imageButtons.get(0).getSize().getWidth() / 2;
             playCoordinates[1] = play[1] + imageButtons.get(0).getSize().getHeight() / 2;
-            System.out.println("X playCoordinates" + playCoordinates[0]);
-            System.out.println("Y playCoordinates" + playCoordinates[1]);
+            logger.info("X playCoordinates" + playCoordinates[0]);
+            logger.info("Y playCoordinates" + playCoordinates[1]);
             driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
         }
     }
@@ -80,30 +82,30 @@ public class CompleteSampleApp {
     public void screenTap(AndroidDriver driver) throws InterruptedException {
             WebElement screentap = driver.findElementByXPath("//android.view.View");
             screentap.click();
-            System.out.println("Scrubber bar is displaying after click");
+            logger.info("Scrubber bar is displaying after click");
 
     }
 
     public void smallScreenTap(AndroidDriver driver, int index) throws InterruptedException{
-        System.out.println("Clicking on screen");
+        logger.info("Clicking on screen");
         driver.tap(1,playCoordinates[0], playCoordinates[1], 2);
 
     }
 
     public void pauseInNormalScreen(AndroidDriver driver) {
         //playButton.click();
-        System.out.println("X pauseCoordinates : " + playCoordinates[0]);
-        System.out.println("Y pauseCoordinates : " + playCoordinates[1]);
+        logger.info("X pauseCoordinates : " + playCoordinates[0]);
+        logger.info("Y pauseCoordinates : " + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
-        System.out.println("Video paused");
+        logger.info("Video paused");
     }
 
     public void readTime(AndroidDriver driver) {
         List<WebElement> startTime = driver.findElementsByClassName("android.widget.TextView");
-        System.out.println("Size:" + startTime.size());
+        logger.info("Size:" + startTime.size());
         if (startTime.size() > 0) {
             String startTimetext = startTime.get(1).getText();
-            System.out.println("The Start time of video is:" + startTimetext);
+            logger.info("The Start time of video is:" + startTimetext);
         }
     }
 
@@ -112,11 +114,11 @@ public class CompleteSampleApp {
 
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldHeigth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldWidth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
-        System.out.println(" Seeking -------------------------  ");
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldHeigth);
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldWidth);
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
+        logger.info(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
     }
 
@@ -124,14 +126,14 @@ public class CompleteSampleApp {
         int i = 0;
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
-                //System.out.println("Handling Loading Spinner");
+                //logger.info("Handling Loading Spinner");
                 if (i<25){
-                    System.out.println("Handling Loading Spinner");
+                    logger.info("Handling Loading Spinner");
                     Thread.sleep(1000);
                     i++;
                 }
                 else{
-                    System.out.println("Loading spinner occured more than "+i+" seconds");
+                    logger.info("Loading spinner occured more than "+i+" seconds");
                     break;
                 }
 
@@ -142,46 +144,46 @@ public class CompleteSampleApp {
     }
 
     public void resumeVideoInNormalscreen(AndroidDriver driver) {
-        System.out.println("X resumeCoordinates" + playCoordinates[0]);
-        System.out.println("Y resumeCoordinates" + playCoordinates[1]);
+        logger.info("X resumeCoordinates" + playCoordinates[0]);
+        logger.info("Y resumeCoordinates" + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
     }
 
     public void clickOnOoyalaAd(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
-        System.out.println("in Ooyala ad");
+        logger.info("in Ooyala ad");
         driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleRightButton").click();
-        System.out.println("clicked");
+        logger.info("clicked");
     }
 
     public void clickOnP1(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
-        System.out.println("in Video1 ad");
+        logger.info("in Video1 ad");
         driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleLeftButton").click();
-        System.out.println("clicked");
+        logger.info("clicked");
 
     }
 
     public void clickOnP2(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
-        System.out.println("in Video2 ad");
+        logger.info("in Video2 ad");
         driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleRightButton").click();
-        System.out.println("clicked");
+        logger.info("clicked");
 
     }
 
     public void clickOnVastAd(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(1000);
-        System.out.println("in vast ad");
+        logger.info("in vast ad");
         driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/doubleLeftButton").click();
-        System.out.println("clicked");
+        logger.info("clicked");
     }
 
     public void clickOnCreateVideo(AndroidDriver driver) throws InterruptedException{
         Thread.sleep(1000);
-        System.out.println("Clicking on Create Video button");
+        logger.info("Clicking on Create Video button");
         driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/setButton").click();
-        System.out.println("Player has been created");
+        logger.info("Player has been created");
     }
 
     public void clickBasedOnTextScrollTo(AndroidDriver driver, String clickText) {
@@ -210,13 +212,13 @@ public class CompleteSampleApp {
     public void cuepointOff (AndroidDriver driver)
     {
         driver.findElementById("com.ooyala.sample.CompleteSampleApp:id/toggleButton1").click();
-        System.out.println("cue point off");
+        logger.info("cue point off");
     }
 
     public void adControlOff    (AndroidDriver driver)
     {
         driver.findElement(By.id("com.ooyala.sample.OptionsSampleApp:id/toggleButton2")).click();
-        System.out.println("Ad controls off");
+        logger.info("Ad controls off");
     }
 
     public void adPause (AndroidDriver driver)
@@ -237,7 +239,7 @@ public class CompleteSampleApp {
         // WebElement web = driver.findElement(By.xpath(viewxpath));
 
         // List<WebElement> view =  driver.findElements(By.className("android.view.View"));
-        //System.out.println(">>>>>>>>>" +view);
+        //logger.info(">>>>>>>>>" +view);
 
         web.click();
     }
