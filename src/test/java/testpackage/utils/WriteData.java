@@ -17,7 +17,6 @@ import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.*;
 import com.google.api.services.sheets.v4.Sheets;
 import org.apache.log4j.Logger;
-import testpackage.tests.ooyalaSkinSampleApp.BasicTests;
 
 import java.io.IOException;
 import java.io.InputStream;

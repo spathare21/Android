@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import ru.yandex.qatools.allure.annotations.Attachment;
 
 import io.appium.java_client.AppiumDriver;
 

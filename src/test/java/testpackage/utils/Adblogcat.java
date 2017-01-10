@@ -79,7 +79,7 @@ public class Adblogcat {
         String sdk_version = null;
         while ((sdk_version = stdInput.readLine()) != null) {
             if(!sdk_version.contains("daemon")) {
-                logger.debug(" Android SDK Vesion is   :" + sdk_version + "\n");
+                logger.info(" Android SDK Vesion is   :" + sdk_version + "\n");
                 deviceVersion = sdk_version;
             }
         }
@@ -97,7 +97,7 @@ public class Adblogcat {
         String devicename = null;
         while ((devicename = stdInput.readLine()) != null) {
             if(!devicename.contains("daemon")) {
-                logger.debug(" Android Device name  is   :" + devicename + "\n");
+                logger.info(" Android Device name  is   :" + devicename + "\n");
                 deviceName = devicename;
             }
         }
@@ -110,7 +110,7 @@ public class Adblogcat {
         {
             if(logEntries.get(i).toString().contains("Ooyala SDK Version:"))
             {
-                logger.debug(logEntries.get(i).toString());
+                logger.info(logEntries.get(i).toString());
                 sdkVersion = logEntries.get(i).toString();
                 String[] version = sdkVersion.split(":");
                 if(version.length>6)
