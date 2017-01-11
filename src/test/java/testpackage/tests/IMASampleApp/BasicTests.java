@@ -1,5 +1,6 @@
 package testpackage.tests.IMASampleApp;
 
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -11,34 +12,33 @@ import java.io.IOException;
 
 
 public class BasicTests extends EventLogTest{
-
     IMASampleApp imaSampleApp = new IMASampleApp();
     //creating the object of loadpropertyvalues class
     LoadPropertyValues prop = new LoadPropertyValues();
     //creating the object of properties class
     Properties p;
-
+    final static Logger logger = Logger.getLogger(BasicTests.class);
 
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
         CloserecentApps.closeApps();
 
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         
         p=prop.loadProperty("IMASampleapp.properties");
 
-        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        System.out.println("APK name is "+ p.getProperty("appValue"));
-        System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored"+ p.getProperty("appDir"));
+        logger.debug("APK name is "+ p.getProperty("appValue"));
+        logger.debug("Platform under Test is "+ p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is "+ p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -47,7 +47,7 @@ public class BasicTests extends EventLogTest{
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -57,21 +57,20 @@ public class BasicTests extends EventLogTest{
 
         // Get Property Values
         p=prop.loadProperty();
-        System.out.println(" Screen Mode "+ p.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode "+ p.getProperty("ScreenMode"));
     }
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
-
     }
 
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
@@ -87,9 +86,9 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            // Select one of the video HLS,MP4 etc .
+            // Selecting IMA Preroll asset
             imaSampleApp.clickBasedOnText(driver, "IMA Ad-Rules Preroll");
 
             //verify if player was loaded
@@ -97,11 +96,12 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
             //Clicking on play button
-            System.out.println("Now will play in normal screen");
+
+            logger.info("Now will play in normal screen");
             imaSampleApp.playInNormalScreen(driver);
 
             //ad Started Verification
@@ -139,14 +139,13 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAAdRulePreroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAAdRulePreroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
         }
     }
 
-    @Test
+   /* @Test
     public void imaAdRuleMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -155,7 +154,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting IMA Ad rules pre roll asset
             imaSampleApp.clickBasedOnText(driver, "IMA Ad-Rules Midroll");
@@ -165,7 +164,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -216,8 +215,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAAdRuleMidroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAAdRuleMidroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -231,8 +229,9 @@ public class BasicTests extends EventLogTest{
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Postroll asset
             imaSampleApp.clickBasedOnText(driver, "IMA Ad-Rules Postroll");
@@ -242,7 +241,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -294,8 +293,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAAdRulePostroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAAdRulePostroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -310,7 +308,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Podded Preroll asset
             imaSampleApp.clickBasedOnText(driver, "IMA Podded Preroll");
@@ -320,7 +318,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -370,7 +368,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedPreroll throws Exception "+e);
+            logger.error("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -386,7 +384,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting IMA Podded Midroll asset
             imaSampleApp.clickBasedOnText(driver, "IMA Podded Midroll");
@@ -396,7 +394,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -449,8 +447,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedMidroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAPoddedPreroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -466,7 +463,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Podded Postroll asset
             imaSampleApp.clickBasedOnText(driver, "IMA Podded Postroll");
@@ -476,7 +473,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -530,7 +527,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedPostroll throws Exception "+e);
+            logger.error("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
             Assert.assertTrue(false, "This will fail!");
@@ -546,7 +543,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Podded PreMidPost roll asset
             imaSampleApp.clickBasedOnText(driver, "IMA Podded Pre-Mid-Post");
@@ -556,7 +553,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -645,8 +642,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedPreMidPost throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAPoddedMidroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPost");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -660,8 +656,9 @@ public class BasicTests extends EventLogTest{
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Skippable asset
             imaSampleApp.clickBasedOnText(driver, "IMA Skippable");
@@ -671,7 +668,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -721,7 +718,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMASkippable throws Exception "+e);
+            logger.error("IMASkippable throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMASkippable");
             Assert.assertTrue(false, "This will fail!");
@@ -737,7 +734,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA PreMidPost skipable asset
             imaSampleApp.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
@@ -747,7 +744,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -804,8 +801,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPreMidPostSkippable throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAPoddedPostroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -820,7 +816,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Application configured asset
             imaSampleApp.clickBasedOnText(driver, "IMA Application-Configured");
@@ -830,7 +826,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -882,7 +878,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAApplicationConfigured throws Exception "+e);
+            logger.error("IMAApplicationConfigured throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAApplicationConfigured");
             Assert.assertTrue(false, "This will fail!");
@@ -898,7 +894,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the No Ads Asset
             imaSampleApp.clickBasedOnTextScrollTo(driver, "No Ads");
@@ -908,11 +904,11 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
             //Clicking on play button
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             imaSampleApp.playInNormalScreen(driver);
 
             EventVerification ev = new EventVerification();
@@ -945,7 +941,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("imaNon_AdRules throws Exception "+e);
+            logger.error("imaNon_AdRules throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"imaNon_AdRules");
             Assert.assertTrue(false, "This will fail!");
@@ -961,7 +957,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Non AdRules Preroll
             imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Preroll");
@@ -971,11 +967,11 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
             //Clicking on play button
-            System.out.println("Now will play in normal screen");
+            logger.debug("Now will play in normal screen");
             imaSampleApp.playInNormalScreen(driver);
 
             //ad Started Verification
@@ -1013,8 +1009,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("ima_NonAdRulePreroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("ima_NonAdRulePreroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"ima_NonAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -1029,7 +1024,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Non AdRules Midroll asset
             imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Midroll");
@@ -1039,7 +1034,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -1088,8 +1083,7 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("ima_NonAdRuleMidroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAPoddedPreMidPost throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"ima_NonAdRuleMidroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -1104,8 +1098,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA non Ad Rules Postroll asset
             imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Postroll");
@@ -1115,7 +1108,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
             //Clicking on play button
@@ -1165,12 +1158,11 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("ima_NonAdRulePostroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMASkippable throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"ima_NonAdRulePostroll");
             Assert.assertTrue(false, "This will fail!");
         }
-    }
+    }*/
 
     @Test
     public void ima_NonAdRuleQuadMidroll() throws Exception{
@@ -1180,8 +1172,8 @@ public class BasicTests extends EventLogTest{
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Wrire to console activity name of home screen app
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the IMA Non AdRules Quad midroll asset.
             imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Quad Midroll");
@@ -1191,7 +1183,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -1259,14 +1251,13 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMA Non Ad-Rules Quad Midroll throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAPreMidPostSkippable throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMA Non Ad-Rules Quad Midroll");
             Assert.assertTrue(false, "This will fail!");
         }
     }
 
-    @Test
+    //@Test
     public void ima_NonPreMidMidPost() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -1274,8 +1265,8 @@ public class BasicTests extends EventLogTest{
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
-            // Write to console activity name of home screen app
-            System.out.println("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Wrire to console activity name of home screen app
+            logger.debug("IMASample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             imaSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Pre-Mid-Mid-Post");
@@ -1285,7 +1276,7 @@ public class BasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             imaSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             imaSampleApp.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -1348,12 +1339,9 @@ public class BasicTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("ima_NonPreMidMidPost throws Exception "+e);
-            e.printStackTrace();
+            logger.error("IMAApplicationConfigured throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"ima_NonPreMidMidPost");
             Assert.assertTrue(false, "This will fail!");
         }
     }
-
-
 }

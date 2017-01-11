@@ -1,6 +1,7 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,7 @@ import java.util.List;
  * Created by Sachin on 4/11/2016.
  */
 public class optionsSampleApp {
+    final static Logger logger = Logger.getLogger(optionsSampleApp.class);
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -66,7 +68,7 @@ public class optionsSampleApp {
 
     public void pauseSmallPlayer (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println("Pausing the Video");
+        logger.info("Pausing the Video");
         //Pausing Video
         String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray=dimensions.split(",");
@@ -84,10 +86,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String alignTopString =  driver.findElement(By.name("CuePoints Off")).getText();
-        System.out.println(alignTopString);
+        logger.info(alignTopString);
 
         if(alignTopString=="CuePoints Off"){
-            System.out.println("CuePoints Off Button Found");
+            logger.info("CuePoints Off Button Found");
         }
     }
 
@@ -98,10 +100,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String alignTopString =  driver.findElement(By.name("AdsControls Off")).getText();
-        System.out.println(alignTopString);
+        logger.info(alignTopString);
 
         if(alignTopString=="AdControls Off"){
-            System.out.println("AdsControls Off Button Found");
+            logger.info("AdsControls Off Button Found");
         }
     }
 
@@ -112,10 +114,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String alignTopString =  driver.findElement(By.name("CuePoints On")).getText();
-        System.out.println(alignTopString);
+        logger.info(alignTopString);
 
         if(alignTopString=="CuePoints On"){
-            System.out.println("CuePoints On Button Found");
+            logger.info("CuePoints On Button Found");
         }
     }
 
@@ -126,10 +128,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String alignTopString =  driver.findElement(By.name("Align Top")).getText();
-        System.out.println(alignTopString);
+        logger.info(alignTopString);
 
         if(alignTopString=="Align Top"){
-            System.out.println("Align Top Button Found");
+            logger.info("Align Top Button Found");
         }
     }
 
@@ -140,10 +142,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String alignTopString =  driver.findElement(By.name("Align Left")).getText();
-        System.out.println(alignTopString);
+        logger.info(alignTopString);
 
         if(alignTopString=="Align Left"){
-            System.out.println("Align Left Button Found");
+            logger.info("Align Left Button Found");
         }
     }
 
@@ -154,10 +156,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String alignTopString =  driver.findElement(By.name("Align Bottom")).getText();
-        System.out.println(alignTopString);
+        logger.info(alignTopString);
 
         if(alignTopString=="Align Bottom"){
-            System.out.println("Align Left Button Found");
+            logger.info("Align Left Button Found");
         }
     }
 
@@ -168,10 +170,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String preloadOnString =  driver.findElement(By.name("Preload Off")).getText();
-        System.out.println(preloadOnString);
+        logger.info(preloadOnString);
 
         if(preloadOnString=="Preload Off"){
-            System.out.println("Preload Off Button Found");
+            logger.info("Preload Off Button Found");
         }
     }
 
@@ -182,10 +184,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String promoImageonString =  driver.findElement(By.name("Show PromoImage Off")).getText();
-        System.out.println(promoImageonString);
+        logger.info(promoImageonString);
 
         if(promoImageonString=="Show PromoImage Off"){
-            System.out.println("Show PromoImage Off Button Found");
+            logger.info("Show PromoImage Off Button Found");
         }
     }
 
@@ -196,10 +198,10 @@ public class optionsSampleApp {
         Thread.sleep(2000);
 
         String preloadOffString =  driver.findElement(By.name("Preload On")).getText();
-        System.out.println(preloadOffString);
+        logger.info(preloadOffString);
 
         if(preloadOffString=="Preload On"){
-            System.out.println("Preload On Button Found");
+            logger.info("Preload On Button Found");
         }
     }
 
@@ -211,7 +213,7 @@ public class optionsSampleApp {
         // WebElement web = driver.findElement(By.xpath(viewxpath));
 
         // List<WebElement> view =  driver.findElements(By.className("android.view.View"));
-        //System.out.println(">>>>>>>>>" +view);
+        //logger.info(">>>>>>>>>" +view);
 
         web.click();
     }
@@ -219,13 +221,13 @@ public class optionsSampleApp {
     public void cuepointOff (AndroidDriver driver)
     {
         driver.findElement(By.id("com.ooyala.sample.OptionsSampleApp:id/toggleButton1")).click();
-        System.out.println("cue point off");
+        logger.info("cue point off");
     }
 
     public void adControlOff    (AndroidDriver driver)
     {
         driver.findElement(By.id("com.ooyala.sample.OptionsSampleApp:id/toggleButton2")).click();
-        System.out.println("Ad controls off");
+        logger.info("Ad controls off");
     }
 
     public void adPause (AndroidDriver driver)
@@ -241,8 +243,8 @@ public class optionsSampleApp {
     public void powerKeyClick (AndroidDriver driver) throws InterruptedException, IOException {
 
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
-        System.out.println("key sent");
-        System.out.println("screen lock");
+        logger.info("key sent");
+        logger.info("screen lock");
         Thread.sleep(5000);
         //driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
         String command = "adb shell am start -n io.appium.unlock/.Unlock";
@@ -250,9 +252,9 @@ public class optionsSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
-        System.out.println("showing screen unlock");
+        logger.info("showing screen unlock");
         driver.navigate().back();
-        System.out.println("Back to Sample App screen ");
+        logger.info("Back to Sample App screen ");
         Thread.sleep(2000);
     }
 
@@ -261,9 +263,9 @@ public class optionsSampleApp {
 
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
-        //System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
-        System.out.println(" Seeking -------------------------  ");
+        //logger.info(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        //logger.info(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        logger.info(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
     }
 
@@ -279,8 +281,8 @@ public class optionsSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
-        System.out.println("showing recent app screen");
+        logger.info("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
-        System.out.println("back to SDK");
+        logger.info("back to SDK");
     }
 }

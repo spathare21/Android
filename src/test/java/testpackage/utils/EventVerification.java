@@ -1,5 +1,6 @@
 package testpackage.utils;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 
 /**
@@ -8,6 +9,7 @@ import org.junit.Assert;
 
 //TODO:  add timeout variable to function signature
 public class EventVerification {
+    final static Logger logger = Logger.getLogger(EventVerification.class);
     
     private int count ;
 
@@ -37,8 +39,7 @@ public class EventVerification {
             }            
 
             if (status == true) {
-                System.out.println(consoleMessage);
-                System.out.println("\n");
+                logger.info(consoleMessage);
             }
         }
         if(!status){

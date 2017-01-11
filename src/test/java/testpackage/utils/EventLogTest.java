@@ -3,6 +3,7 @@ package testpackage.utils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.IHookCallBack;
@@ -21,20 +22,21 @@ import java.time.Instant;
 
 
 public class EventLogTest implements IHookable {
+    final static Logger logger = Logger.getLogger(EventLogTest.class);
 
     public static AndroidDriver driver;
 
 
     @BeforeSuite
     public void beforeSuit() throws Exception {
-        System.out.println("\n Before suit\n ");
+        logger.info("\n Before suit\n ");
         Adblogcat.deviceinfo();
         Adblogcat.androidVersion();
     }
 
     @AfterSuite
     public void afterSuite(){
-        System.out.println("\n after suite\n");
+        logger.info("\n after suite\n");
     }
 
 
@@ -56,7 +58,7 @@ public class EventLogTest implements IHookable {
         try {
             String filename = storeLogFile(fname);
             File logfilename = new File(filename);
-            System.out.println("attach loggile "+ logfilename + " to allure");
+            logger.debug("attach loggile "+ logfilename + " to allure");
             Thread.sleep(5000);
             return FileUtils.readFileToByteArray(logfilename);
         } catch (IOException ignored) {
@@ -68,7 +70,7 @@ public class EventLogTest implements IHookable {
     {
         String filePath = null;
         try{
-            System.out.println("\n Storing logfile to machine \n");
+            logger.info("\n Storing logfile to machine \n");
             String currentDir = System.getProperty("user.dir");
             String filename = logfilename + "_" + Instant.now().toEpochMilli();
             String logspath = currentDir + "/res/snapshot/"+filename;
@@ -81,7 +83,7 @@ public class EventLogTest implements IHookable {
         }
         catch(Exception e)
         {
-            System.out.println("Unable to store log file as Exception is  : "+e);
+            logger.error("Unable to store log file as Exception is  : "+e);
             e.printStackTrace();
         }
         return filePath;
@@ -103,7 +105,7 @@ public class EventLogTest implements IHookable {
         }
         catch(Exception e)
         {
-            System.out.println("Exception while taking screenshot : " + e.getMessage());
+            logger.error("Exception while taking screenshot : " + e.getMessage());
         }
         return new byte[0];
     }

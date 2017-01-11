@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidDriver;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -19,6 +20,7 @@ import testpackage.pageobjects.ooyalaSkinSampleApp;
 import testpackage.utils.*;
 
 public class DeepTestIMA extends EventLogTest{
+    final static Logger logger = Logger.getLogger(DeepTestIMA.class);
 
 
 
@@ -28,21 +30,21 @@ public class DeepTestIMA extends EventLogTest{
         //Closing all Recently App
         CloserecentApps.closeApps();
 
-        System.out.println("Executing class beforeTest \n");
-        System.out.println(System.getProperty("user.dir"));
+        logger.info("Executing class beforeTest \n");
+        logger.debug(System.getProperty("user.dir"));
 
         //Get property values
         LoadPropertyValues propValue = new LoadPropertyValues();
         Properties p = propValue.loadProperty("ooyalaSkinSampleApp.properties");
 
-        System.out.println("Device id from properties file: " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file: " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored" + p.getProperty("appDir"));
-        System.out.println("APK name is " + p.getProperty("app"));
-        System.out.println("Platform under Test is " + p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is " + p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is " + p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is " + p.getProperty("appActivity"));
+        logger.debug("Device id from properties file: " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file: " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored" + p.getProperty("appDir"));
+        logger.debug("APK name is " + p.getProperty("app"));
+        logger.debug("Platform under Test is " + p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is " + p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is " + p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is " + p.getProperty("appActivity"));
 
         //Setting up the Andriod driver
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
@@ -54,7 +56,7 @@ public class DeepTestIMA extends EventLogTest{
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("Executing beforeMethd \n");
+        logger.info("Executing beforeMethd \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logPush = new PushLogFileToDevice();
         logPush.pushLogFile();
@@ -67,12 +69,12 @@ public class DeepTestIMA extends EventLogTest{
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p1 = prop.loadProperty();
 
-        System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode " + p1.getProperty("ScreenMode"));
     }
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         Thread.sleep(5000);
         driver.quit();
@@ -87,7 +89,7 @@ public class DeepTestIMA extends EventLogTest{
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
@@ -108,7 +110,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -116,7 +118,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -129,7 +131,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Ad-Rules Preroll");
@@ -141,7 +143,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -220,7 +222,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -231,7 +233,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -240,21 +242,21 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
             //viewarea.click();
             Thread.sleep(1000);
@@ -279,7 +281,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
 
         } catch (Exception e) {
-            System.out.println("GoogleIMAIntegrationIMAAdRulesPreroll throws Exception " + e);
+            logger.error("GoogleIMAIntegrationIMAAdRulesPreroll throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -300,7 +302,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -308,7 +310,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -321,7 +323,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Ad-Rules Midroll");
@@ -332,7 +334,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -405,7 +407,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -414,7 +416,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -423,21 +425,21 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             viewarea.click();
             Thread.sleep(1000);
 
@@ -463,7 +465,7 @@ public class DeepTestIMA extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("GoogleIMAIntegrationIMAAdRulesMidroll throws Exception "+e);
+            logger.error("GoogleIMAIntegrationIMAAdRulesMidroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesMidroll");
             Assert.assertTrue(false, "This will fail!");
@@ -484,7 +486,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -492,7 +494,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -505,7 +507,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Ad-Rules Postroll");
@@ -516,7 +518,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -592,7 +594,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -601,7 +603,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -610,7 +612,7 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
@@ -618,14 +620,14 @@ public class DeepTestIMA extends EventLogTest{
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
           // viewarea.click();
             Thread.sleep(1000);
@@ -654,7 +656,7 @@ public class DeepTestIMA extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("GoogleIMAIntegrationIMAAdRulesPostroll throws Exception "+e);
+            logger.error("GoogleIMAIntegrationIMAAdRulesPostroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAAdRulesPostroll");
             Assert.assertTrue(false, "This will fail!");
@@ -675,7 +677,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -683,7 +685,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -696,7 +698,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Preroll");
@@ -707,7 +709,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -789,7 +791,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -798,7 +800,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -807,21 +809,21 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
             //viewarea.click();
             Thread.sleep(1000);
@@ -847,7 +849,7 @@ public class DeepTestIMA extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("GoogleIMAIntegrationIMAPoddedPreroll throws Exception "+e);
+            logger.error("GoogleIMAIntegrationIMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -868,7 +870,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -876,7 +878,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -889,7 +891,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Midroll");
@@ -900,7 +902,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -986,7 +988,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -995,7 +997,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -1004,21 +1006,21 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
             // viewarea.click();
             Thread.sleep(1000);
@@ -1044,7 +1046,7 @@ public class DeepTestIMA extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("GoogleIMAIntegrationIMAPoddedMidroll throws Exception "+e);
+            logger.error("GoogleIMAIntegrationIMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedMidroll");
             Assert.assertTrue(false, "This will fail!");
@@ -1065,7 +1067,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -1073,7 +1075,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -1086,7 +1088,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Postroll");
@@ -1097,7 +1099,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -1180,7 +1182,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -1189,7 +1191,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -1198,21 +1200,21 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
             //viewarea.click();
             Thread.sleep(1000);
@@ -1243,7 +1245,7 @@ public class DeepTestIMA extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("GoogleIMAIntegrationIMAPoddedPostroll throws Exception "+e);
+            logger.error("GoogleIMAIntegrationIMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPostroll");
             Assert.assertTrue(false, "This will fail!");
@@ -1264,7 +1266,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -1272,7 +1274,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -1285,7 +1287,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Podded Pre-Mid-Post");
@@ -1296,7 +1298,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -1434,7 +1436,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -1443,7 +1445,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -1452,21 +1454,21 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
            // viewarea.click();
             Thread.sleep(1000);
@@ -1493,7 +1495,7 @@ public class DeepTestIMA extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("GoogleIMAIntegrationIMAPoddedPreMidPostroll throws Exception "+e);
+            logger.error("GoogleIMAIntegrationIMAPoddedPreMidPostroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPoddedPreMidPostroll");
             Assert.assertTrue(false, "This will fail!");
@@ -1514,7 +1516,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -1522,7 +1524,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -1534,20 +1536,20 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Skippable");
             Thread.sleep(2000);
 
-            System.out.println("<<<<<<<<<<<<<<<<Clicked on IMA Skippable>>>>>>>>>>>>>>>>>");
+            logger.info("<<<<<<<<<<<<<<<<Clicked on IMA Skippable>>>>>>>>>>>>>>>>>");
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.info("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -1623,7 +1625,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -1632,7 +1634,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 70000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -1641,21 +1643,21 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
             Thread.sleep(5000);
 
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
            // viewarea.click();
             Thread.sleep(1000);
@@ -1671,7 +1673,7 @@ public class DeepTestIMA extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("GoogleIMAIntegrationIMASkippable throws Exception "+e);
+            logger.error("GoogleIMAIntegrationIMASkippable throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMASkippable");
             Assert.assertTrue(false, "This will fail!");
@@ -1692,7 +1694,7 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -1700,7 +1702,7 @@ public class DeepTestIMA extends EventLogTest{
             po.clickBasedOnText(driver, "Google IMA Integration");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -1713,20 +1715,20 @@ public class DeepTestIMA extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnText(driver, "IMA Pre, Mid and Post Skippable");
             Thread.sleep(2000);
 
-            System.out.println("<<<<<<<<<<<<<<<<Clicked on IMA Pre, Mid and Post Skippable>>>>>>>>>>>>>>>>>");
+            logger.info("<<<<<<<<<<<<<<<<Clicked on IMA Pre, Mid and Post Skippable>>>>>>>>>>>>>>>>>");
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -1824,7 +1826,7 @@ public class DeepTestIMA extends EventLogTest{
             // clicking on Share button
             po.shareAsset(driver);
 
-            System.out.println("clicked on share button");
+            logger.info("clicked on share button");
 
             Thread.sleep(2000);
 
@@ -1833,7 +1835,7 @@ public class DeepTestIMA extends EventLogTest{
             ev.verifyEvent("state: READY", " Mail sent, Back to SDK ", 90000);
             Thread.sleep(2000);
 
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickOnDiscovery(driver);
 
             Thread.sleep(2000);
@@ -1842,7 +1844,7 @@ public class DeepTestIMA extends EventLogTest{
 
             Thread.sleep(2000);
 
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickOnCC(driver);
 
             Thread.sleep(2000);
@@ -1850,14 +1852,14 @@ public class DeepTestIMA extends EventLogTest{
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closing CC Menu");
+            logger.info("Closing CC Menu");
 
             po.clickOnCloseButton(driver);
             Thread.sleep(2000);
-            System.out.println("Closed option menu");
+            logger.info("Closed option menu");
 
             Thread.sleep(5000);
-            System.out.println("Clicking on view area to play");
+            logger.info("Clicking on view area to play");
             po.screentap(driver);
             //viewarea.click();
             Thread.sleep(1000);
@@ -1885,7 +1887,7 @@ public class DeepTestIMA extends EventLogTest{
 
 
         } catch (Exception e) {
-            System.out.println("GoogleIMAIntegrationIMAPreMidPostSkippable throws Exception " + e);
+            logger.error("GoogleIMAIntegrationIMAPreMidPostSkippable throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"GoogleIMAIntegrationIMAPreMidPostSkippable");
             Assert.assertTrue(false, "This will fail!");
