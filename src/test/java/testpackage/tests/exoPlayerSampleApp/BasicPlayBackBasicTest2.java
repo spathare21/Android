@@ -1,6 +1,7 @@
 package testpackage.tests.exoPlayerSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -18,28 +19,28 @@ import java.util.Properties;
  */
 public class BasicPlayBackBasicTest2 extends EventLogTest {
 
-
+    final static Logger logger = Logger.getLogger(BasicPlayBackBasicTest2.class);
 
     @BeforeClass
     public void beforeTest() throws Exception {
 
         // closing all recent app from background.
         CloserecentApps.closeApps();
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p=prop.loadProperty("exoPlayerSampleApp.properties");
 
-        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        System.out.println("APK name is "+ p.getProperty("app"));
-        System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored"+ p.getProperty("appDir"));
+        logger.debug("APK name is "+ p.getProperty("app"));
+        logger.debug("Platform under Test is "+ p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is "+ p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -48,7 +49,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -60,10 +61,10 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1=prop1.loadProperty();
 
-        System.out.println(" Screen Mode "+ p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode "+ p1.getProperty("ScreenMode"));
 
         //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
+        //    logger.info("Inside landscape Mode ");
         //    driver.rotate(ScreenOrientation.LANDSCAPE);
         //}
 
@@ -73,7 +74,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
     }
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -87,7 +88,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         Thread.sleep(5000);
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
 
         RemoveEventsLogFile.removeEventsFileLog();
@@ -108,7 +109,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -117,7 +118,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -128,7 +129,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
 
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
 
             // Select one of the video HLS,MP4 etc .
@@ -144,7 +145,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -175,7 +176,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("Multi_Ad Exception "+e);
+            logger.error("Multi_Ad Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"Multi_Ad");
             Assert.assertTrue(false, "This will fail!");
@@ -196,7 +197,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -205,7 +206,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -217,7 +218,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VAST 3.0 2 Podded Ad");
@@ -229,7 +230,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -260,7 +261,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VAST_3Podded Exception "+e);
+            logger.error("VAST_3Podded Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAST_3Podded");
             Assert.assertTrue(false, "This will fail!");
@@ -282,7 +283,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -291,7 +292,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -303,7 +304,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad With Icon");
@@ -315,7 +316,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -340,7 +341,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VAST_AdWithIcon throws Exception "+e);
+            logger.error("VAST_AdWithIcon throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAST_AdWithIcon");
             Assert.assertTrue(false, "This will fail!");
@@ -363,7 +364,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -372,7 +373,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -384,7 +385,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Podded Preroll with Skippable Ad");
@@ -396,7 +397,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -421,7 +422,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VAST_Podded_Preroll_skippable throws Exception "+e);
+            logger.error("VAST_Podded_Preroll_skippable throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAST_Podded_Preroll_skippable");
             Assert.assertTrue(false, "This will fail!");
@@ -444,7 +445,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -453,7 +454,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -465,7 +466,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad");
@@ -477,7 +478,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -499,7 +500,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VAST_Skippable_Ad throws Exception "+e);
+            logger.error("VAST_Skippable_Ad throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAST_Skippable_Ad");
             Assert.assertTrue(false, "This will fail!");
@@ -521,7 +522,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -530,7 +531,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -542,7 +543,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad Long");
@@ -554,7 +555,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -580,7 +581,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VAST_Skippable_Ad_Long throws Exception "+e);
+            logger.error("VAST_Skippable_Ad_Long throws Exception "+e);
              e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAST_Skippable_Ad_Long");
             Assert.assertTrue(false, "This will fail!");
@@ -602,7 +603,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -611,7 +612,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -623,7 +624,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad Wrapper");
@@ -635,7 +636,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -657,7 +658,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VAST_AD_Wrapper throws Exception "+e);
+            logger.error("VAST_AD_Wrapper throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAST_AD_Wrapper");
              Assert.assertTrue(false, "This will fail!");
@@ -679,7 +680,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -688,7 +689,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -700,7 +701,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VMAP PreMidPost Single");
@@ -712,7 +713,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver,"h");
 
@@ -745,7 +746,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VAMP_VastAD_PreMidPost throws Exception "+e);
+            logger.error("VAMP_VastAD_PreMidPost throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAMP_VastAD_PreMidPost");
             Assert.assertTrue(false, "This will fail!");
@@ -765,7 +766,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -773,7 +774,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -786,20 +787,20 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad With All Of The New Events");
             Thread.sleep(2000);
 
-            System.out.println("<<<<<Clicked on VAST 3.0 Ad With All Of The New Events Video>>>>>>");
+            logger.info("<<<<<Clicked on VAST 3.0 Ad With All Of The New Events Video>>>>>>");
 
             //verify if player was loaded
             po.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -826,12 +827,12 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
             Thread.sleep(1000);
 
-            System.out.println("<<<<<<<<<<<<<<Completed VAST 3.0 Ad With All Of The New Events Asset playback>>>>>>>>>>>>>");
+            logger.info("<<<<<<<<<<<<<<Completed VAST 3.0 Ad With All Of The New Events Asset playback>>>>>>>>>>>>>");
 
         }
         catch(Exception e)
         {
-            System.out.println("VAST_AD_With_NewEvents Exception "+e);
+            logger.error("VAST_AD_With_NewEvents Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAST_AD_With_NewEvents");
             Assert.assertTrue(false, "This will fail!");
@@ -852,7 +853,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -861,7 +862,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             po.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -873,7 +874,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             po.clickBasedOnTextScrollTo(driver, "VMAP PreMidPost Single");
@@ -885,7 +886,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -938,7 +939,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 200000);
 
         } catch (Exception e) {
-            System.out.println("VMAP_PreMidPostSingle throws Exception " + e);
+            logger.error("VMAP_PreMidPostSingle throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VMAP_PreMidPostSingle");
             Assert.assertTrue(false, "This will fail!");

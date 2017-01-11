@@ -1,5 +1,7 @@
 package testpackage.tests.freewheelsampleapp;
 
+
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -8,7 +10,9 @@ import testpackage.utils.*;
 import java.util.Properties;
 import java.io.IOException;
 
+
     public class BasicTests extends EventLogTest{
+    final static Logger logger = Logger.getLogger(BasicTests.class);
 
     FreewheelSampleApp freewheelSampleApp = new FreewheelSampleApp();
     LoadPropertyValues prop = new LoadPropertyValues();
@@ -16,20 +20,21 @@ import java.io.IOException;
 
     @BeforeClass
     public void beforeTest() throws Exception {
-        System.out.println("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.info("BeforeTest \n");
+
+        logger.info(System.getProperty("user.dir"));
         // Get Property Values
         p=prop.loadProperty("freewheelsampleapp.properties");
 
-        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        System.out.println("APK name is "+ p.getProperty("app"));
-        System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored"+ p.getProperty("appDir"));
+        logger.debug("APK name is "+ p.getProperty("app"));
+        logger.debug("Platform under Test is "+ p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is "+ p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -38,7 +43,7 @@ import java.io.IOException;
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush=new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -46,13 +51,14 @@ import java.io.IOException;
             driver.startActivity("com.ooyala.sample.FreewheelSampleApp","com.ooyala.sample.lists.FreewheelListActivity");
         }
         // Get Property Values
-        p =prop.loadProperty();
-        System.out.println(" Screen Mode "+ p.getProperty("ScreenMode"));
+        p=prop.loadProperty();
+
+        logger.debug(" Screen Mode "+ p.getProperty("ScreenMode"));
     }
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -65,7 +71,7 @@ import java.io.IOException;
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
@@ -79,8 +85,8 @@ import java.io.IOException;
 
             // Assert if current activity is indeed equal to the activity name of app home screen
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Write to console activity name of home screen app
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting the FW Preroll asset
             freewheelSampleApp.clickBasedOnText(driver, "Freewheel Preroll");
@@ -90,7 +96,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
 
@@ -132,7 +138,7 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelPreRoll throws Exception "+e);
+            logger.error("FreeWheelPreRoll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelPreRoll");
             Assert.assertTrue(false, "This will fail!");
@@ -151,6 +157,10 @@ import java.io.IOException;
             // Write to console activity name of home screen app
             System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
+            freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+            // Wrire to console activity name of home screen app
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
             // Selecting FW Midroll asset
             freewheelSampleApp.clickBasedOnText(driver, "Freewheel Midroll");
 
@@ -159,7 +169,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
             //clicking on playbutton
@@ -199,7 +209,7 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelMidRoll throws Exception "+e);
+            logger.error("FreeWheelMidRoll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelMidRoll");
             Assert.assertTrue(false, "This will fail!");
@@ -213,16 +223,17 @@ import java.io.IOException;
             freewheelSampleApp.waitForAppHomeScreen(driver);
             // Assert if current activity is indeed equal to the activity name of app home screen
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-            // Selecting the FW Postroll asset
+            // Write to console activity name of home screen app
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Selecting FW Postroll asset
             freewheelSampleApp.clickBasedOnText(driver, "Freewheel Postroll");
             //verify if player was loaded
             freewheelSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
 
@@ -268,7 +279,7 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelPostRoll throws Exception "+e);
+            logger.error("FreeWheelPostRoll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelPostRoll");
             Assert.assertTrue(false, "This will fail!");
@@ -294,7 +305,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
             //Clicking on play button
@@ -351,7 +362,7 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelPreMidPostRoll throws Exception "+e);
+            logger.error("FreeWheelPreMidPostRoll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelPreMidPostRoll");
             Assert.assertTrue(false, "This will fail!");
@@ -365,9 +376,10 @@ import java.io.IOException;
             // wait till home screen of basicPlayBackApp is opened
             freewheelSampleApp.waitForAppHomeScreen(driver);
             // Assert if current activity is indeed equal to the activity name of app home screen
+
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-            // Write to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Wrire to console activity name of home screen app
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting FW Overlay asset
             freewheelSampleApp.clickBasedOnText(driver, "Freewheel Overlay");
@@ -377,7 +389,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
             // String the playback by click on play button
@@ -415,14 +427,14 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelOverlay throws Exception "+e);
+            logger.error("FreeWheelOverlay throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelOverlay");
             Assert.assertTrue(false, "This will fail!");
 
         }
     }
-    
+
     @Test
     public void freeWheelMultiMidRoll() throws Exception{
         try {
@@ -432,7 +444,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of app home screen
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
             // Write to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting FW MultiMidroll asset
             freewheelSampleApp.clickBasedOnText(driver, "Freewheel Multi Midroll");
@@ -441,7 +453,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
 
@@ -492,7 +504,7 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelMultiMidRoll throws Exception "+e);
+            logger.error("FreeWheelMultiMidRoll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelMultiMidRoll");
             Assert.assertTrue(false, "This will fail!");
@@ -506,9 +518,10 @@ import java.io.IOException;
             freewheelSampleApp.waitForAppHomeScreen(driver);
             // Assert if current activity is indeed equal to the activity name of app home screen
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
-            // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-            // Selecting FW PreMidPost Overlay asset
+            // Write to console activity name of home screen app
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+
+            // Selecting FW PreMidPost roll overlay roll asset
             freewheelSampleApp.clickBasedOnText(driver, "Freewheel PreMidPost Overlay");
 
             //verify if player was loaded
@@ -516,10 +529,11 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
 
+            // Clicking on play button on normal screen.
             freewheelSampleApp.playInNormalScreen(driver);
 
             //Play Started Verification
@@ -572,13 +586,13 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelPreMidPostRollOverlay throws Exception "+e);
+            logger.error("FreeWheelPreMidPostRollOverlay throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelPreMidPostRollOverlay");
             Assert.assertTrue(false, "This will fail!");
         }
     }
-    
+
     @Test
     public void freeWheelApplicationConfigured() throws Exception{
         try {
@@ -588,16 +602,17 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of app home screen
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
             // Write to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-            // Selecting FW Application configured asset
-            freewheelSampleApp.clickBasedOnText(driver, "Freewheel Application-Configured");
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
+
+            // Select one of the video HLS,MP4 etc .
+            freewheelSampleApp.clickBasedOnText(driver, "Freewheel Application-Configured");
             //verify if player was loaded
             freewheelSampleApp.waitForPresence(driver, "className", "android.view.View");
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             freewheelSampleApp.waitForTextView(driver,"00:00");
             //Clicking on play button
@@ -605,9 +620,9 @@ import java.io.IOException;
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-            //Adplayback start event verification
+            //Ad playback start event verification
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-            //Adplayback start event verification
+            //Ad playback start event verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             freewheelSampleApp.loadingSpinner(driver);
 
@@ -621,7 +636,6 @@ import java.io.IOException;
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 75000);
 
             Thread.sleep(4000);
-
             //pausing the video
             freewheelSampleApp.pauseInNormalScreen(driver);
             //Verifying the pause event
@@ -653,7 +667,7 @@ import java.io.IOException;
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelApplicationConfigured throws Exception "+e);
+            logger.error("FreeWheelApplicationConfigured throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelApplicationConfigured");
             Assert.assertTrue(false, "This will fail!");
@@ -669,7 +683,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of app home screen
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
             // Write to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Selecting FW cue Point and Ads control asset
             freewheelSampleApp.clickBasedOnText(driver, "CuePoints and AdsControl Options");
@@ -679,7 +693,7 @@ import java.io.IOException;
             // Assert if current activity is indeed equal to the activity name of the video player
             freewheelSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OptionsFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Click on Video create button
             freewheelSampleApp.clickButtons(driver,0);
@@ -701,7 +715,7 @@ import java.io.IOException;
             ev.verifyEvent("playStarted", " Video Started Play ", 40000);
             Thread.sleep(4000);
             //pausing the video
-            freewheelSampleApp.pauseSmallplayer(driver);
+            freewheelSampleApp.pauseInNormalScreen(driver);
             //Verifying the pause event
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
             //Reading the time after pause the video
@@ -735,16 +749,13 @@ import java.io.IOException;
 
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 100000);
-
         }
         catch(Exception e)
         {
-            System.out.println("FreeWheelCuePointsAndAdsControlOptions throws Exception "+e);
+            logger.error("FreeWheelCuePointsAndAdsControlOptions throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelCuePointsAndAdsControlOptions");
             Assert.assertTrue(false, "This will fail!");
-
         }
     }
-
 }

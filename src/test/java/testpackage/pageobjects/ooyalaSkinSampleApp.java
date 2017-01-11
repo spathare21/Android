@@ -5,6 +5,7 @@ package testpackage.pageobjects;
  */
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ooyalaSkinSampleApp {
 
     Point replay,more,close_button,share_asset,discovery_button,cc_button,volume_button,enablecc_button,play, PlayEle ;
+    final static Logger logger = Logger.getLogger(ooyalaSkinSampleApp.class);
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -37,8 +39,8 @@ public class ooyalaSkinSampleApp {
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
         loc[0] = clickTextField.getLocation().getX();
         loc[1] = clickTextField.getLocation().getY();
-        System.out.println(" X coordinate of the Text " + clickTextField.getLocation().getX());
-        System.out.println(" Y coordinate of the Text" + clickTextField.getLocation().getY());
+        logger.info(" X coordinate of the Text " + clickTextField.getLocation().getX());
+        logger.info(" Y coordinate of the Text" + clickTextField.getLocation().getY());
         return loc;
     }
 
@@ -46,12 +48,12 @@ public class ooyalaSkinSampleApp {
 
         //List<WebElement> viewGroups = driver.findElements(By.xpath("//android.view.ViewGroup"));
         List<WebElement> viewGroups = driver.findElements(By.xpath("//android.view.View"));
-        System.out.println("Loc of Seek Bar Cue Point - X " + viewGroups.get(7).getLocation().getX());
-        System.out.println("Loc of Seek Bar Cue Point - Y " + viewGroups.get(7).getLocation().getY());
+        logger.info("Loc of Seek Bar Cue Point - X " + viewGroups.get(7).getLocation().getX());
+        logger.info("Loc of Seek Bar Cue Point - Y " + viewGroups.get(7).getLocation().getY());
 
         int seekBarFieldWidth = viewGroups.get(7).getLocation().getX();
         int seekBarFieldHeigth = viewGroups.get(7).getLocation().getY();
-        System.out.println(" Seeking -------------------------  ");
+        logger.info(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + widthOffSet1, seekBarFieldHeigth, seekBarFieldWidth + widthOffSet2, seekBarFieldHeigth, 3);
 
     }
@@ -60,8 +62,8 @@ public class ooyalaSkinSampleApp {
 
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
         PlayEle = clickTextField.getLocation();
-//        System.out.println("x cordinate is " +PlayEle.getX());
-//        System.out.println("x cordinate is " +PlayEle.getY());
+//        logger.info("x cordinate is " +PlayEle.getX());
+//        logger.info("x cordinate is " +PlayEle.getY());
         clickTextField.click();
 
     }
@@ -84,12 +86,12 @@ public class ooyalaSkinSampleApp {
     public void seek_video (AndroidDriver driver,int time) throws Exception {
         try {
             List<WebElement> views = driver.findElements(By.className("android.view.ViewGroup"));
-            System.out.println("number of views present are : " + views.size());
+            logger.info("number of views present are : " + views.size());
             Point p = views.get(6).getLocation();
             driver.swipe(p.getX(), p.getY(), p.getX() + time, p.getY(), 5);
         } catch (Exception e) {
             List<WebElement> views = driver.findElements(By.className("android.view.View"));
-            System.out.println("number of views present are : " + views.size());
+            logger.info("number of views present are : " + views.size());
 //            Point p = views.get(6).getLocation();
 //            driver.swipe(p.getX(), p.getY(), p.getX() + time, p.getY(), 5);
 //
@@ -105,58 +107,58 @@ public class ooyalaSkinSampleApp {
 
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         replay = ele.getLocation();
-        System.out.println("replay.x value is " + replay.getX());
-        System.out.println("replay.y value is " + replay.getY());
+        logger.info("replay.x value is " + replay.getX());
+        logger.info("replay.y value is " + replay.getY());
 
         Thread.sleep(2000);
 
         // more button location
         WebElement button = driver.findElement(By.xpath("//android.widget.TextView[@text='f']"));
         more = button.getLocation();
-        System.out.printf("more button's X  cordinates" + more.getX());
-        System.out.printf("more button's y  cordinates" + more.getY());
+        logger.info("more button's X  cordinates" + more.getX());
+        logger.info("more button's y  cordinates" + more.getY());
         driver.tap(1, more.getX(), more.getY(), 2);
 
         Thread.sleep(2000);
         // click on close button
         WebElement close = driver.findElement(By.xpath("//android.widget.TextView[@text='e']"));
         close_button = close.getLocation();
-        System.out.printf("close button's X  cordinates" + close_button.getX());
-        System.out.printf("close button's y  cordinates" + close_button.getY());
+        logger.info("close button's X  cordinates" + close_button.getX());
+        logger.info("close button's y  cordinates" + close_button.getY());
 //       // driver.tap(1,close_button.getX(),close_button.getY(),2);
 
         Thread.sleep(2000);
         // shareAsset button location
         WebElement share = driver.findElement(By.xpath("//android.widget.TextView[@text='o']"));
         share_asset = share.getLocation();
-        System.out.printf("share button's X  cordinates" + share_asset.getX());
-        System.out.printf("share button's y  cordinates" + share_asset.getY());
+        logger.info("share button's X  cordinates" + share_asset.getX());
+        logger.info("share button's y  cordinates" + share_asset.getY());
         driver.tap(1, share_asset.getX(), share_asset.getY(), 2);
         Thread.sleep(5000);
-        System.out.println("clicked on shared button");
+        logger.info("clicked on shared button");
 
         Thread.sleep(2000);
 
-        System.out.println("clicking on back button");
+        logger.info("clicking on back button");
 
         //    driver.tap(1,0,75,2);
         driver.navigate().back();
-        System.out.println("Going back to option screen");
+        logger.info("Going back to option screen");
 
         Thread.sleep(2000);
         // Discovery button lcoation
         WebElement discovery = driver.findElementByXPath("//android.widget.TextView[@text='l']");
         discovery_button = discovery.getLocation();
-        System.out.printf("discovery button's X  cordinates" + discovery_button.getX());
-        System.out.printf("discovery button's y  cordinates" + discovery_button.getY());
+        logger.info("discovery button's X  cordinates" + discovery_button.getX());
+        logger.info("discovery button's y  cordinates" + discovery_button.getY());
 
         Thread.sleep(2000);
 
         //CC button location
         WebElement CC = driver.findElementByXPath("//android.widget.TextView[@text='k']");
         cc_button = CC.getLocation();
-        System.out.printf("CC button's X  cordinates" + cc_button.getX());
-        System.out.printf(" CC bbutton's y  cordinates" + cc_button.getY());
+        logger.info("CC button's X  cordinates" + cc_button.getX());
+        logger.info(" CC bbutton's y  cordinates" + cc_button.getY());
         driver.tap(1, cc_button.getX(), cc_button.getY(), 2);
         Thread.sleep(2000);
 
@@ -164,17 +166,17 @@ public class ooyalaSkinSampleApp {
 
         WebElement enablecc = driver.findElementByXPath("//android.widget.Switch[@index='4']");
         enablecc_button = enablecc.getLocation();
-        System.out.printf("enablecc button's X  cordinates" + enablecc_button.getX());
-        System.out.printf(" enablecc button's y  cordinates" + enablecc_button.getY());
+        logger.info("enablecc button's X  cordinates" + enablecc_button.getX());
+        logger.info(" enablecc button's y  cordinates" + enablecc_button.getY());
 
 
         Thread.sleep(2000);
         driver.tap(1, close_button.getX(), close_button.getY(), 2);
-        System.out.println("CC option closed");
+        logger.info("CC option closed");
 
         Thread.sleep(2000);
         driver.tap(1, close_button.getX(), close_button.getY(), 2);
-        System.out.println("more option closed");
+        logger.info("more option closed");
 
         Thread.sleep(2000);
 
@@ -184,8 +186,8 @@ public class ooyalaSkinSampleApp {
         try{
             WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='b']");
             volume_button = volume.getLocation();
-            System.out.printf("volume button's X  cordinates" + volume_button.getX());
-            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            logger.info("volume button's X  cordinates" + volume_button.getX());
+            logger.info(" volume button's y  cordinates" + volume_button.getY());
             Thread.sleep(1000);
 
         }catch (org.openqa.selenium.NoSuchElementException e){
@@ -195,12 +197,12 @@ public class ooyalaSkinSampleApp {
         if(isElement1Present == false) {
             WebElement volume = driver.findElementByXPath("//android.widget.TextView[@text='p']");
             volume_button = volume.getLocation();
-            System.out.printf("volume button's X  cordinates" + volume_button.getX());
-            System.out.printf(" volume button's y  cordinates" + volume_button.getY());
+            logger.info("volume button's X  cordinates" + volume_button.getX());
+            logger.info(" volume button's y  cordinates" + volume_button.getY());
             Thread.sleep(1000);
         }
 
-        System.out.println("printed all the locations");
+        logger.info("printed all the locations");
 
         ele.click();
     }
@@ -210,40 +212,38 @@ public class ooyalaSkinSampleApp {
         Thread.sleep(5000);
         driver.navigate().back();
 
-        System.out.println();
-
     }
 
     public void learnMore(AndroidDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         String path = "//android.widget.TextView[@text='Learn More']";
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
-        System.out.println("Learn more displayed");
+        logger.info("Learn more displayed");
         //ele.click();
     }
 
     public void pauseVideo(AndroidDriver driver) throws InterruptedException {
-        System.out.println("moved to pause method");
-//        System.out.println("play.x value is " + play.getX());
-//        System.out.println("play.y value is " + play.getY());
+        logger.info("moved to pause method");
+//        logger.info("play.x value is " + play.getX());
+//        logger.info("play.y value is " + play.getY());
         Thread.sleep(800);
         driver.tap(2, play.getX(), play.getY(), 3);
 //        Thread.sleep(2000);
 //        driver.tap(2,play.getX(),play.getY(),3);
-        System.out.println("clicked pause");
+        logger.info("clicked pause");
     }
 
 
     public void moreButton(AndroidDriver driver) throws InterruptedException {
-        System.out.println("in more method");
+        logger.info("in more method");
 //        String more_button = "//android.view.View[@index='7']";
 //       WebElement ele = driver.findElement(By.xpath(more_button));
          driver.findElement(By.xpath("//android.widget.TextView[@text='f']"));
-//        System.out.println(button.getLocation());
+//        logger.info(button.getLocation());
        // button.click();
         Thread.sleep(2000);
-        System.out.printf("more button's X  cordinates" +more.getX());
-        System.out.printf("more button's y  cordinates" +more.getY());
+        logger.info("more button's X  cordinates" +more.getX());
+        logger.info("more button's y  cordinates" +more.getY());
         driver.tap(1, more.getX(), more.getY() + 54, 2);
 
     }
@@ -282,7 +282,7 @@ public class ooyalaSkinSampleApp {
 
     public void enableCC (AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println("in enable CC method");
+        logger.info("in enable CC method");
         driver.findElementByXPath("//android.widget.Switch[@index='4']");
         driver.tap(1, enablecc_button.getX(), enablecc_button.getY(), 2);
 
@@ -298,30 +298,22 @@ public class ooyalaSkinSampleApp {
     }
 
     public void playVideo (AndroidDriver driver) throws InterruptedException {
-        System.out.println("Clicking on Play button");
+        logger.info("Clicking on Play button");
         Thread.sleep(2000);
-        // driver.tap(1,450,867,2);
-        /*String dimensions = driver.manage().window().getSize().toString();
-        String[] dimensionsarray=dimensions.split(",");
-        int length = dimensionsarray[1].length();
-        String ydimensions = dimensionsarray[1].substring(0,length-1);
-        String ydimensionstrimmed=ydimensions.trim();
-        int ydimensionsInt= Integer.parseInt(ydimensionstrimmed);
-        driver.tap(1, 500 , (ydimensionsInt-821), 2);*/
         driver.tap(1, play.getX(), play.getY(), 2);
-        System.out.println("Clicked on Play button");
+        logger.info("Clicked on Play button");
         driver.tap(1, 450, 867, 2);
     }
 
 //    public void seek_video (AndroidDriver driver) throws Exception
 //    {
-//        System.out.println("\n---------seek video------\n");
+//        logger.info("\n---------seek video------\n");
 //        pauseVideo(driver);
 //        List<WebElement>  l = driver.findElements(By.className("android.view.View"));
-//        System.out.println("size of view : " + l.size());
+//        logger.info("size of view : " + l.size());
 //        Point p = l.get(2).getLocation();
-//        System.out.println("locatation of scrubber pointer is :" + p.getX() + " " + p.getY());
-//        System.out.println(" Seeking -------------------------  ");
+//        logger.info("locatation of scrubber pointer is :" + p.getX() + " " + p.getY());
+//        logger.info(" Seeking -------------------------  ");
 //        driver.swipe(p.getX() + 20, p.getY(), p.getX() + 100, p.getY(), 3);
 //        driver.tap(1,658,700,2);
 //        getPlay(driver);
@@ -334,15 +326,15 @@ public class ooyalaSkinSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(2000);
-        System.out.println("showing recent app screen");
+        logger.info("showing recent app screen");
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
-        System.out.println("back to SDK");
+        logger.info("back to SDK");
 
         /*driver.sendKeyEvent(187);   //key 187 is used to go on recent app
-        System.out.println("key sent");
+        logger.info("key sent");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
-        System.out.println("back to SDK");*/
+        logger.info("back to SDK");*/
     }
 
 
@@ -351,8 +343,8 @@ public class ooyalaSkinSampleApp {
 
         //driver.lockScreen(5);
         driver.sendKeyEvent(26);            // key 26 is used to lock the screen
-        System.out.println("key sent");
-        System.out.println("screen lock");
+        logger.info("key sent");
+        logger.info("screen lock");
         Thread.sleep(2000);
         driver.sendKeyEvent(82);            // key 82 is used to unlock the screen
         String command = "adb shell input keyevent KEYCODE_WAKEUP";
@@ -360,8 +352,8 @@ public class ooyalaSkinSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(1000);
-        System.out.println("showing screen unlock");
-        System.out.println("Back to Sample App screen ");
+        logger.info("showing screen unlock");
+        logger.info("Back to Sample App screen ");
         Thread.sleep(1000);
     }
 
@@ -374,7 +366,7 @@ public class ooyalaSkinSampleApp {
 
 
     public void overlay (AndroidDriver driver) throws Exception {
-        System.out.println("in overlay method");
+        logger.info("in overlay method");
         pauseVideo(driver);
         driver.tap(1,658,700,2);
         Thread.sleep(2000);
@@ -383,13 +375,13 @@ public class ooyalaSkinSampleApp {
         over =   ele.isDisplayed();
         if (over)
         {
-            System.out.println("over value is" +over);
+            logger.info("over value is" +over);
             Assert.assertTrue(over);
-            System.out.println("Overlay displayed, Assertion pass");
+            logger.info("Overlay displayed, Assertion pass");
         }
         else
         {
-            System.out.println("Overlay NOt displayed");
+            logger.info("Overlay NOt displayed");
             Assert.assertTrue(over);
         }
         driver.tap(1,658,700,2);
@@ -401,7 +393,7 @@ public class ooyalaSkinSampleApp {
         WebDriverWait wait = new WebDriverWait(driver,30);
         String path  = "//android.widget.TextView[@text='Discovery']";
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
-        System.out.println("Discovery displayed");
+        logger.info("Discovery displayed");
         //ele.click();
     }
 
@@ -415,8 +407,8 @@ public class ooyalaSkinSampleApp {
         String path  = "//android.widget.TextView[@text='h']";
         WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
         play= ele.getLocation();
-        System.out.println("play.x value is " + play.getX());
-        System.out.println("play.y value is " + play.getY());
+        logger.info("play.x value is " + play.getX());
+        logger.info("play.y value is " + play.getY());
         Thread.sleep(2000);
         driver.tap(3,play.getX(),play.getY(),7);
         //Thread.sleep(1000);
@@ -429,36 +421,36 @@ public class ooyalaSkinSampleApp {
         while (flag) {
             l = driver.findElementsByClassName("android.widget.ImageView");
             l.size();
-            System.out.println("size of it is " + l.size());
+            logger.info("size of it is " + l.size());
             ;
             if (l.size() == 2) {
-                //System.out.println("inside while wait.. " + l.get(1).isDisplayed());
-                System.out.println("Waiting for discovery");
+                //logger.info("inside while wait.. " + l.get(1).isDisplayed());
+                logger.info("Waiting for discovery");
                 flag = false;
             }
         }
-        System.out.println("Up-Next Discovery displayed");
-        System.out.println("Closing the discovery");
+        logger.info("Up-Next Discovery displayed");
+        logger.info("Closing the discovery");
         boolean flag2 = true;
 
         while (driver.findElementByXPath("//android.widget.TextView[@text='e']").isDisplayed()) {
             flag2 = driver.findElementByXPath("//android.widget.TextView[@text='e']").isDisplayed();
-            System.out.println("value of flag2 is " + flag2);
+            logger.info("value of flag2 is " + flag2);
 
             driver.findElementByXPath("//android.widget.TextView[@text='e']").click();
-            System.out.println("up-next discovery closed");
+            logger.info("up-next discovery closed");
 
         }
         int n = driver.findElementsByClassName("android.widget.ImageView").size();
-        System.out.println("value of n is " +n);
+        logger.info("value of n is " +n);
         if (n == 1) {
 
             Assert.assertTrue(flag2);
-            System.out.println("AssertPass, Up-Next Discovery closed");
+            logger.info("AssertPass, Up-Next Discovery closed");
             flag2 = false;
         } else {
             Assert.assertTrue(flag2);
-            System.out.println("Assert Failed, Up-Next discovery closed");
+            logger.info("Assert Failed, Up-Next discovery closed");
         }
     }
 
