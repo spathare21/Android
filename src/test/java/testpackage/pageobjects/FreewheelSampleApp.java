@@ -162,6 +162,16 @@ public class FreewheelSampleApp {
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
+    // For pause the video
+    public void pauseInSmallScreen(AndroidDriver driver) throws InterruptedException {
+        Thread.sleep(1000);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+        logger.info("X pauseCoordinates"+playCoordinates[0]);
+        logger.info("Y pauseCoordinates"+playCoordinates[1]);
+        Thread.sleep(1000);
+        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
+    }
+
     // For resume the playback after pause
     public void resumeInNormalScreen(AndroidDriver driver){
         logger.info("X resumeCoordinates"+playCoordinates[0]);

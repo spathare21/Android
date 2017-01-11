@@ -715,7 +715,7 @@ import java.io.IOException;
             ev.verifyEvent("playStarted", " Video Started Play ", 40000);
             Thread.sleep(4000);
             //pausing the video
-            freewheelSampleApp.pauseInNormalScreen(driver);
+            freewheelSampleApp.pauseInSmallScreen(driver);
             //Verifying the pause event
             ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
             //Reading the time after pause the video
