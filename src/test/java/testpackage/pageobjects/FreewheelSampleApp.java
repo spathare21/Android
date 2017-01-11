@@ -154,10 +154,10 @@ public class FreewheelSampleApp {
 
     // For pause the video
     public void pauseInNormalScreen(AndroidDriver driver) throws InterruptedException {
-        Thread.sleep(2000);
+        WebElement viewarea = driver.findElementByClassName("android.view.View");
+        viewarea.click();
         logger.info("X pauseCoordinates"+playCoordinates[0]);
         logger.info("Y pauseCoordinates"+playCoordinates[1]);
-        driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
         Thread.sleep(1000);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
