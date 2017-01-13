@@ -49,7 +49,7 @@
             <!--<class name="testpackage.tests.NielsenSampleApp.BasicTest"/>-->
 
             <!-- Pulse sample app!-->
-            <!--<class name="testpackage.tests.PulseSampleApp.BasicTests"/>-->
+            <!--<class name="testpackage.tests.pulsesampleapp.BasicTests"/>-->
             
             <!-- complete sample app!-->
            <!-- <class name="testpackage.tests.CompleteSampleApp.AdvPlaybackBasicTest"/>
