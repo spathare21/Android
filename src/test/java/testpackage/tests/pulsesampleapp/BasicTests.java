@@ -6,7 +6,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import testpackage.pageobjects.PulseSampleApp;
 import testpackage.utils.*;
-
 import java.io.IOException;
 import java.util.Properties;
 
@@ -44,12 +43,11 @@ public class BasicTests extends EventLogTest {
     @BeforeMethod
     public void beforeMethod() throws Exception {
         logger.info("beforeMethod \n");
-        driver.manage().logs().get("logcat");
         //push the log file to device
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
         if (driver.currentActivity() != "com.ooyala.sample.lists.PulseListActivity") {
-            driver.startActivity("com.ooyala.sample.pulsesampleapp", "com.ooyala.sample.lists.PulseListActivity");
+            driver.startActivity("com.ooyala.sample.PulseSampleApp", "com.ooyala.sample.lists.PulseListActivity");
         }
     }
 
@@ -72,7 +70,7 @@ public class BasicTests extends EventLogTest {
     }
 
     @Test
-    public void NoAds() throws Exception{
+    public void noAds() throws Exception{
         try {
             // Wait till home screen of PulseSampleApp is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -101,7 +99,7 @@ public class BasicTests extends EventLogTest {
             //Verification of Paused event
             eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
             //seeking the video
-            pulseSampleApp.seek_video(driver, 800);
+            pulseSampleApp.seek_video(driver, 900);
             // Verifing seek complete event
             eventVerification.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
             // resume the playback of video
@@ -120,7 +118,7 @@ public class BasicTests extends EventLogTest {
     }
 
     @Test
-    public void PrerollDemo() throws Exception{
+    public void prerollDemo() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -146,6 +144,10 @@ public class BasicTests extends EventLogTest {
             eventVerification.verifyEvent("adStarted", " Ad Started to Play ", 30000);
             //Ad Completed event Verification
             eventVerification.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
+            //Ad Started event Verification
+            eventVerification.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            //Ad Completed event Verification
+            eventVerification.verifyEvent("adCompleted", " Ad Playback Completed ", 40000);
             //Play Started event Verification
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 60000);
             //pausing the video by clicking on pause button
@@ -153,12 +155,12 @@ public class BasicTests extends EventLogTest {
             // Verifing Paused event
             eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
             //seeking the video
-            pulseSampleApp.seek_video(driver, 700);
+            pulseSampleApp.seek_video(driver, 800);
             // Verifing Seek completed issue
             eventVerification.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
             // Resume the playback of video
             pulseSampleApp.getPlay(driver);
-            // Verifing the playing video
+            // Verifying the playing video
             eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
             //Wait for video to finish and verify the playCompleted event .
             eventVerification.verifyEvent("playCompleted", " Video Completed Play ", 150000);
@@ -172,7 +174,7 @@ public class BasicTests extends EventLogTest {
     }
 
     @Test
-    public void MidrollDemo() throws Exception{
+    public void midrollDemo() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -190,30 +192,42 @@ public class BasicTests extends EventLogTest {
             logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             // Waiting for Playbutton to appear on screen
             pulseSampleApp.waitForPresenceOfText(driver,"h");
-            //Clicking on Play button in Pulse
+            //clicking on playbutton
             pulseSampleApp.getPlay(driver);
-            // creating object of Event verification class
+            // Creating object of Event Verification class
             EventVerification eventVerification = new EventVerification();
-            //Verifying Play started event
-            eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
-            //Verifying Ad started Event
-            eventVerification.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-            //Verifying Ad Completed Event
-            eventVerification.verifyEvent("adCompleted", " Ad Playback Completed ", 60000);
-            // Clicking on pause button to pause playing video
+            // Play started event verification
+            eventVerification.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 60000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 65000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 70000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 80000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 85000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 95000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 95000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 100000);
+            // clicking on pause button
             pulseSampleApp.pauseVideo(driver);
-            // Verifying Paused Event
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-            //Seeking the video
-            pulseSampleApp.seek_video(driver, 700);
-            // Verifying seek complete event
-            eventVerification.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-            // resuming the playback of video
+            // Verifying Paused event
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 140000);
+            //Seeking the video to specific location
+            pulseSampleApp.seek_video(driver,800);
+            //Verification of seek event
+            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked " , 150000);
+            //resume the playback of video
             pulseSampleApp.getPlay(driver);
-            // Verifying playing event
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+            //Verification of Playing event
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 170000);
             //Wait for video to finish and verify the playCompleted event .
-            eventVerification.verifyEvent("playCompleted", " Video Completed Play ", 150000);
+            eventVerification.verifyEvent("playCompleted", " Video Completed Play ", 250000);
         }
         catch(Exception e)
         {
@@ -224,7 +238,7 @@ public class BasicTests extends EventLogTest {
     }
 
     @Test
-    public void PostrollDemo() throws Exception{
+    public void postrollDemo() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -253,13 +267,17 @@ public class BasicTests extends EventLogTest {
             // Verifing Paused event
             eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
             //seeking the video
-            pulseSampleApp.seek_video(driver, 700);
+            pulseSampleApp.seek_video(driver, 800);
             // Verifing Seek completed issue
             eventVerification.verifyEvent("seekCompleted", " Video seeking completed ", 50000);
             // Resume the playback of video
             pulseSampleApp.getPlay(driver);
             // Verifing the playing video
             eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
+            //Verifying Ad started Event
+            eventVerification.verifyEvent("adStarted", " Ad Started to Play ", 70000);
+            //Verifying Ad Completed Event
+            eventVerification.verifyEvent("adCompleted", " Ad Playback Completed ", 80000);
             //Verifying Ad started Event
             eventVerification.verifyEvent("adStarted", " Ad Started to Play ", 70000);
             //Verifying Ad Completed Event
@@ -276,7 +294,7 @@ public class BasicTests extends EventLogTest {
     }
 
     @Test
-    public void PreMidPostrollDemo() throws Exception{
+    public void preMidPostrollDemo() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -299,37 +317,43 @@ public class BasicTests extends EventLogTest {
             // Creating object of Event Verification class
             EventVerification eventVerification = new EventVerification();
             //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 30000);
+            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 10000);
             // Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 45000);
+            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 20000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 20000);
+            // Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
             // Play started event verification
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 50000);
             //Ad Started Verification
-            eventVerification.verifyEvent("adPodStarted", " Mid - Ad Started to Play ", 70000);
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 60000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 65000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 70000);
             //Ad Completed Verification
             eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 80000);
             //Ad Started Verification
-            eventVerification.verifyEvent("adPodStarted", "Second Mid - Ad  Started to Play ", 100000);
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 85000);
             //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 110000);
-            // Video playing event verification
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video Started play", 70000);
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 95000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 95000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 100000);
             // clicking on pause button
             pulseSampleApp.pauseVideo(driver);
             // Verifying Paused event
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 140000);
             //Seeking the video to specific location
-            pulseSampleApp.seek_video(driver,700);
+            pulseSampleApp.seek_video(driver,800);
             //Verification of seek event
-            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
+            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked " , 150000);
             //resume the playback of video
             pulseSampleApp.getPlay(driver);
             //Verification of Playing event
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 70000);
-            //Ad started verification
-            eventVerification.verifyEvent("adPodStarted", "Post - Ad  Started to Play ", 150000);
-            //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 170000);
             //Wait for video to finish and verify the playCompleted event .
             eventVerification.verifyEvent("playCompleted", " Video Completed Play ", 250000);
         }
@@ -342,7 +366,7 @@ public class BasicTests extends EventLogTest {
     }
 
     @Test
-    public void PreMidPostSkippable() throws Exception{
+    public void preMidPostSkippable() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -360,47 +384,48 @@ public class BasicTests extends EventLogTest {
             logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             // Waiting for Play button
             pulseSampleApp.waitForPresenceOfText(driver,"h");
-            //Clicking on Play button in Pulse
+            //Clicking on Play button
             pulseSampleApp.getPlay(driver);
-            //Creating Object for Eventverification class
+            // Creating object of Event Verification class
             EventVerification eventVerification = new EventVerification();
             //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 30000);
-            // Clicking on skip button
-            String skiptext="Skip Ad";
-            driver.findElementByAndroidUIAutomator("new UiSelector().textContains(\""+skiptext+"\")");
-            pulseSampleApp.clickBasedOnText(driver,"Skip Ad");
-            Thread.sleep(5000);
-            //Ad Completed Verification
+            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 10000);
+            // Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 20000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 20000);
+            // Ad Completed Verification
             eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
-            //Verification of Play start event
-            eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
+            // Play started event verification
+            eventVerification.verifyEvent("playStarted", " Video Started to Play ", 50000);
             //Ad Started Verification
-            eventVerification.verifyEvent("adPodStarted", " Mid - Ad Started to Play ", 30000);
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 60000);
             //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 30000);
+            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 65000);
             //Ad Started Verification
-            eventVerification.verifyEvent("adPodStarted", "Second Mid - Ad  Started to Play ", 90000);
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 70000);
             //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
-            //Verification of Playing event
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video Started play", 70000);
-            // Clicking on pause button
+            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 80000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 85000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 95000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 95000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 100000);
+            // clicking on pause button
             pulseSampleApp.pauseVideo(driver);
-            // Verification of Paused event
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
-            // Seek the video to specific location
-            pulseSampleApp.seek_video(driver, 700);
-            // Verification of seekcomplete event
-            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked ", 50000);
-            // Resume the playback of paused video
+            // Verifying Paused event
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 140000);
+            //Seeking the video to specific location
+            pulseSampleApp.seek_video(driver,800);
+            //Verification of seek event
+            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked " , 150000);
+            //resume the playback of video
             pulseSampleApp.getPlay(driver);
-            // verification of playing event
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING", "Video resumed", 70000);
-            //Ad started verification
-            eventVerification.verifyEvent("adPodStarted", "Post - Ad  Started to Play ", 90000);
-            //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 60000);
+            //Verification of Playing event
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 170000);
             //Wait for video to finish and verify the playCompleted event .
             eventVerification.verifyEvent("playCompleted", " Video Completed Play ", 250000);
         }
@@ -413,7 +438,7 @@ public class BasicTests extends EventLogTest {
     }
 
     @Test
-    public void FrequencyCappingDemo() throws Exception{
+    public void frequencyCappingDemo() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -431,30 +456,50 @@ public class BasicTests extends EventLogTest {
             logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             // Wait for Play buttomn to display
             pulseSampleApp.waitForPresenceOfText(driver,"h");
-            //Clicking on Play button in Pulse
+            //Clicking on Play button
             pulseSampleApp.getPlay(driver);
-            // Creating object of event verification class
+            // Creating object of Event Verification class
             EventVerification eventVerification = new EventVerification();
-            // Ad verification
-            eventVerification.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 10000);
+            // Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 20000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 20000);
+            // Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
+            // Play started event verification
+            eventVerification.verifyEvent("playStarted", " Video Started to Play ", 50000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 60000);
             //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Ad Playback Completed ", 30000);
-            //Play Started
-            eventVerification.verifyEvent("playStarted", " Video Started to Play ", 60000);
-            // click on pause button
+            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 65000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 70000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 80000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 85000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 95000);
+            //Ad Started Verification
+            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 95000);
+            //Ad Completed Verification
+            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 100000);
+            // clicking on pause button
             pulseSampleApp.pauseVideo(driver);
-            // Paused event verification
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
-            //seeking the video
-            pulseSampleApp.seek_video(driver, 700);
-            //Seek complete event verification
-            eventVerification.verifyEvent("seekCompleted", " Video seeking completed ", 70000);
-            // playing video again.
+            // Verifying Paused event
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 140000);
+            //Seeking the video to specific location
+            pulseSampleApp.seek_video(driver,800);
+            //Verification of seek event
+            eventVerification.verifyEvent("seekCompleted", " Playing Video was Seeked " , 150000);
+            //resume the playback of video
             pulseSampleApp.getPlay(driver);
-            // Playing event verification
-            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
+            //Verification of Playing event
+            eventVerification.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 170000);
             //Wait for video to finish and verify the playCompleted event .
-            eventVerification.verifyEvent("playCompleted", " Video Completed Play ", 150000);
+            eventVerification.verifyEvent("playCompleted", " Video Completed Play ", 250000);
         }
         catch(Exception e)
         {
@@ -467,7 +512,7 @@ public class BasicTests extends EventLogTest {
 
     //TODO: Find work around for AdError assets
     //@Test
-    public void PrerolldemoAdFileInvalid() throws Exception{
+    public void prerolldemoAdFileInvalid() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -516,7 +561,7 @@ public class BasicTests extends EventLogTest {
 
     //TODO: Find work around for AdError assets
     //@Test
-    public void PrerolldemoAdtimeout() throws Exception{
+    public void prerolldemoAdtimeout() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);
@@ -565,7 +610,7 @@ public class BasicTests extends EventLogTest {
 
     //TODO: Find work around for AdError assets
     //@Test
-    public void PrerolldemoAdFile404() throws Exception{
+    public void prerolldemoAdFile404() throws Exception{
         try {
             // wait till home screen of Pulse is opened
             pulseSampleApp.waitForAppHomeScreen(driver);

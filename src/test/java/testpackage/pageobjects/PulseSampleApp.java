@@ -3,15 +3,11 @@ package testpackage.pageobjects;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import testpackage.utils.CommandLine;
-
-import java.io.IOException;
 import java.util.List;
 
 public class PulseSampleApp {
@@ -71,10 +67,10 @@ public class PulseSampleApp {
         logger.info("moved to pause method");
         logger.info("play.x value is " + play.getX());
         logger.info("play.y value is " + play.getY());
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.tap(1, play.getX(), play.getY(), 5);
         //Clicking on screen to display pause button
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         //Clicking on Pause button to pause video
         driver.tap(1,play.getX(),play.getY(),5);
         logger.info("clicked pause");
