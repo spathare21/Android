@@ -145,7 +145,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-   /* @Test
+    @Test
     public void imaAdRuleMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
@@ -376,7 +376,7 @@ public class BasicTests extends EventLogTest{
     }
 
     @Test
-    public void IMAPoddedMidroll() throws Exception{
+    public void imaPoddedMidroll() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
             imaSampleApp.waitForAppHomeScreen(driver);
@@ -1162,7 +1162,7 @@ public class BasicTests extends EventLogTest{
             ScreenshotDevice.screenshot(driver,"ima_NonAdRulePostroll");
             Assert.assertTrue(false, "This will fail!");
         }
-    }*/
+    }
 
     @Test
     public void ima_NonAdRuleQuadMidroll() throws Exception{
@@ -1228,22 +1228,22 @@ public class BasicTests extends EventLogTest{
             // 1st adPlayback completed out of 4 quad midroll
             ev.verifyEvent("adCompleted", " Ad Completed ", 50000);
 
-            // 2st adPlayback started out of 4 quad midroll
+            // 2nd adPlayback started out of 4 quad midroll
             ev.verifyEvent("adStarted", " Ad Started to Play ", 55000);
 
-            // 2st adPlayback completed out of 4 quad midroll
+            // 2nd adPlayback completed out of 4 quad midroll
             ev.verifyEvent("adCompleted", " Ad Completed ", 60000);
 
-            // 3st adPlayback started out of 4 quad midroll
+            // 3rd adPlayback started out of 4 quad midroll
             ev.verifyEvent("adStarted", " Ad Started to Play ", 65000);
 
-            // 3st adPlayback completed out of 4 quad midroll
+            // 3rd adPlayback completed out of 4 quad midroll
             ev.verifyEvent("adCompleted", " Ad Completed ", 70000);
 
-            // 4st adPlayback started out of 4 quad midroll
+            // 4th adPlayback started out of 4 quad midroll
             ev.verifyEvent("adStarted", " Ad Started to Play ", 75000);
 
-            // 4st adPlayback completed out of 4 quad midroll
+            // 4th adPlayback completed out of 4 quad midroll
             ev.verifyEvent("adCompleted", " Ad Completed ", 80000);
 
             //Wait for video to finish and verify the playCompleted event .
@@ -1257,7 +1257,7 @@ public class BasicTests extends EventLogTest{
         }
     }
 
-    //@Test
+    @Test
     public void ima_NonPreMidMidPost() throws Exception{
         try {
             // wait till home screen of IMASampleApp is opened
