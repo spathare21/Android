@@ -460,32 +460,8 @@ public class BasicTests extends EventLogTest {
             pulseSampleApp.getPlay(driver);
             // Creating object of Event Verification class
             EventVerification eventVerification = new EventVerification();
-            //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 10000);
-            // Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 20000);
-            //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Pre - Ad Started to Play ", 20000);
-            // Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Pre - Ad Playback Completed ", 30000);
             // Play started event verification
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 50000);
-            //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 60000);
-            //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 65000);
-            //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Mid - Ad Started to Play ", 70000);
-            //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Mid - Ad Playback Completed ", 80000);
-            //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 85000);
-            //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 95000);
-            //Ad Started Verification
-            eventVerification.verifyEvent("adStarted", " Post - Ad Started to Play ", 95000);
-            //Ad Completed Verification
-            eventVerification.verifyEvent("adCompleted", " Post - Ad Playback Completed ", 100000);
             // clicking on pause button
             pulseSampleApp.pauseVideo(driver);
             // Verifying Paused event
