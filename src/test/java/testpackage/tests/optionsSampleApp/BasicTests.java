@@ -16,7 +16,6 @@ public class BasicTests extends EventLogTest {
     LoadPropertyValues prop = new LoadPropertyValues();
     Properties p ;
 
-
     final static Logger logger = Logger.getLogger(BasicTests.class);
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -27,7 +26,6 @@ public class BasicTests extends EventLogTest {
         logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         p = prop.loadProperty("optionsSampleApp.properties");
-
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
         Thread.sleep(2000);
@@ -52,19 +50,15 @@ public class BasicTests extends EventLogTest {
         logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
-        LoadPropertyValues prop1 = new LoadPropertyValues();
-        Properties p1 = prop1.loadProperty();
-        String prop = p1.getProperty("appPackage");
+        p = prop.loadProperty();
+        String prop = p.getProperty("appPackage");
         Appuninstall.uninstall(prop);
-
     }
-
     @AfterMethod
     //public void afterTest() throws InterruptedException, IOException {
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
         logger.info("AfterMethod \n");
-        //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
@@ -394,38 +388,64 @@ public class BasicTests extends EventLogTest {
         }
     }
 
-//    //@Test
-//    public void prevent_video_view_sharing_options() throws Exception {
-//        try {
-//            // wait till home screen of basicPlayBackApp is opened
-//            optionsSampleApp.waitForAppHomeScreen(driver);
-//            // Assert if current activity is indeed equal to the activity name of app home screen
-//            optionsSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
-//            // Write to console activity name of home screen app
-//            logger.debug("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-//
-//            //verify if player was loaded
-//            po.waitForPresence(driver, "className", "android.view.View");
-//            // Assert if current activity is indeed equal to the activity name of the video player
-//            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreventVideoViewSharingPlayerActivity");
-//            // Print to console output current player activity
-//            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-//
-//            //Play Started Verification
-//            EventVerification ev = new EventVerification();
-//            ev.verifyEvent("playStarted", " Video Started to Play ", 30000);
-//
-//            ev.verifyEvent("playCompleted", "video play completed",90000);
-//
-//        } catch (Exception e) {
-//            logger.error("present_video_view_sharing_options throws Exception " + e);
-//            e.printStackTrace();
-//            ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
-//            Assert.assertTrue(false, "This will fail!");
-//        }
-//
-//
-//    }
+    @Test
+    public void prevent_video_view_sharing_options() throws Exception {
+        try {
+            // wait till home screen of basicPlayBackApp is opened
+            optionsSampleApp.waitForAppHomeScreen(driver);
+            // Assert if current activity is indeed equal to the activity name of app home screen
+            optionsSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
+            // Write to console activity name of home screen app
+            logger.debug("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Selecting IQ Configuration asset
+            optionsSampleApp.clickBasedOnText(driver, "Prevent Video View Sharing Option");
+            //verify if player was loaded
+            optionsSampleApp.waitForPresence(driver, "className", "android.view.View");
+            // Assert if current activity is indeed equal to the activity name of the video player
+            optionsSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreventVideoViewSharingPlayerActivity");
+            // Print to console output current player activity
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+
+            // Wait for the video to be generated
+            optionsSampleApp.waitForPresenceOfText(driver, "00:00");
+
+            // Click on video play icon after video has been generated .
+            optionsSampleApp.playInNormalScreen(driver);
+
+            //Play Started Verification
+            EventVerification ev = new EventVerification();
+
+            //Wait for video to start and verify the playStarted event .
+            ev.verifyEvent("playStarted", " Video Started Play ", 40000);
+            Thread.sleep(4000);
+            //pausing the video
+            optionsSampleApp.pauseInNormalScreen(driver);
+            //Verifying the pause event
+            ev.verifyEvent("stateChanged - state: PAUSED", " Playing Video Was Paused ", 60000);
+            //Reading the time after pause the video
+            optionsSampleApp.readTime(driver);
+
+            //Seeking the video
+            optionsSampleApp.seekVideoForLong(driver);
+            // After seek the video, Verifying the seek completed event
+            ev.verifyEvent("seekCompleted", " Playing Video was Seeked ", 65000);
+            //Handling the loading spinner after seek the video, If displayed
+            optionsSampleApp.loadingSpinner(driver);
+
+            // Reading the time after pause and seek the video
+            optionsSampleApp.readTime(driver);
+            //Resuming the video after pause and seek function
+            optionsSampleApp.resumeInNormalScreen(driver);
+            //Verifying the video playback resuming event
+            ev.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
+            // Video playback completed event verification
+            ev.verifyEvent("playCompleted", "video play completed",90000);
+        } catch (Exception e) {
+            logger.error("present_video_view_sharing_options throws Exception " + e);
+            ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
+            Assert.assertTrue(false, "This will fail!");
+        }
+    }
 
     @Test
     public void timeout_Options() throws Exception {
@@ -527,8 +547,6 @@ public class BasicTests extends EventLogTest {
             // Print to console output current player activity
             logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            //Click on Video create button
-            optionsSampleApp.clickButtons(driver, 0);
             // Wait for the video to be generated
             optionsSampleApp.waitForPresenceOfText(driver, "00:00");
 
