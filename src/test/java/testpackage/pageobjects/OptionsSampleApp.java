@@ -125,7 +125,7 @@ public class OptionsSampleApp {
         logger.info(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
         logger.info(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
         logger.info(" Seeking -------------------------  ");
-        driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 700, seekBarFieldHeigth, 3);
+        driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 600, seekBarFieldHeigth, 3);
     }
 
     //For read the time on player
