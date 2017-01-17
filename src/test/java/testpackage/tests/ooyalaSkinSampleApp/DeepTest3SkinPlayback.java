@@ -7,6 +7,7 @@ package testpackage.tests.ooyalaSkinSampleApp;
 
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -19,6 +20,7 @@ import testpackage.utils.*;
 import java.io.IOException;
 import java.util.Properties;
 public class DeepTest3SkinPlayback extends EventLogTest{
+    final static Logger logger = Logger.getLogger(DeepTest3SkinPlayback.class);
 
 
 
@@ -28,21 +30,21 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
         // closing all recent app from background.
         //CloserecentApps.closeApps();
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p = prop.loadProperty("ooyalaSkinSampleApp.properties");
 
-        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored" + p.getProperty("appDir"));
-        System.out.println("APK name is " + p.getProperty("app"));
-        System.out.println("Platform under Test is " + p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is " + p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is " + p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is " + p.getProperty("appActivity"));
+        logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored" + p.getProperty("appDir"));
+        logger.debug("APK name is " + p.getProperty("app"));
+        logger.debug("Platform under Test is " + p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is " + p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is " + p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is " + p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -51,7 +53,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -63,10 +65,10 @@ public class DeepTest3SkinPlayback extends EventLogTest{
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1 = prop1.loadProperty();
 
-        System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode " + p1.getProperty("ScreenMode"));
 
         //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
+        //    logger.info("Inside landscape Mode ");
         //    driver.rotate(ScreenOrientation.LANDSCAPE);
         //}
 
@@ -77,7 +79,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         Thread.sleep(5000);
         driver.quit();
@@ -92,7 +94,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
@@ -115,7 +117,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -123,7 +125,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             po.clickBasedOnText(driver, "Skin Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -142,7 +144,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -227,7 +229,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking on Discovery
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickBasedOnText(driver, "l");
             Thread.sleep(2000);
 
@@ -236,7 +238,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking CC button
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickBasedOnText(driver, "k");
             Thread.sleep(2000);
 
@@ -262,7 +264,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
 
         } catch (Exception e) {
-            System.out.println("VastPoddedAd throws Exception " + e);
+            logger.error("VastPoddedAd throws Exception " + e);
              e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VastPoddedAd");
             Assert.assertTrue(false, "This will fail!");
@@ -287,7 +289,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -295,7 +297,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             po.clickBasedOnText(driver, "Skin Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -314,7 +316,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -392,7 +394,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking on Discovery
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickBasedOnText(driver, "l");
             Thread.sleep(2000);
 
@@ -401,7 +403,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking CC button
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickBasedOnText(driver, "k");
             Thread.sleep(2000);
 
@@ -427,7 +429,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
 
         } catch (Exception e) {
-            System.out.println("VastAdWtihNewEvents throws Exception " + e);
+            logger.error("VastAdWtihNewEvents throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VastAdWtihNewEvents");
             Assert.assertTrue(false, "This will fail!");
@@ -452,7 +454,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -460,7 +462,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             po.clickBasedOnText(driver, "Skin Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -479,7 +481,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -557,7 +559,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking on Discovery
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickBasedOnText(driver, "l");
             Thread.sleep(2000);
 
@@ -566,7 +568,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking CC button
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickBasedOnText(driver, "k");
             Thread.sleep(2000);
 
@@ -592,7 +594,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
 
         } catch (Exception e) {
-            System.out.println("VastAdWithIcon throws Exception " + e);
+            logger.error("VastAdWithIcon throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VastAdWithIcon");
             Assert.assertTrue(false, "This will fail!");
@@ -617,7 +619,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -625,7 +627,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             po.clickBasedOnText(driver, "Skin Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -644,7 +646,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -713,7 +715,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking on Discovery
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickBasedOnText(driver, "l");
             Thread.sleep(2000);
 
@@ -722,7 +724,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking CC button
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickBasedOnText(driver, "k");
             Thread.sleep(2000);
 
@@ -748,7 +750,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
 
         } catch (Exception e) {
-            System.out.println("VastSkippableAd throws Exception " + e);
+            logger.error("VastSkippableAd throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VastSkippableAd");
             Assert.assertTrue(false, "This will fail!");
@@ -773,7 +775,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -781,7 +783,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             po.clickBasedOnText(driver, "Skin Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -800,7 +802,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -886,7 +888,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking on Discovery
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickBasedOnText(driver, "l");
             Thread.sleep(2000);
 
@@ -895,7 +897,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking CC button
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickBasedOnText(driver, "k");
             Thread.sleep(2000);
 
@@ -921,7 +923,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
 
         } catch (Exception e) {
-            System.out.println("VastSkippableAdLong throws Exception " + e);
+            logger.error("VastSkippableAdLong throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VastSkippableAdLong");
             Assert.assertTrue(false, "This will fail!");
@@ -947,7 +949,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -955,7 +957,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             po.clickBasedOnText(driver, "Skin Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name" + driver.currentActivity());
+            logger.debug(" Print current activity name" + driver.currentActivity());
             if (driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")) {
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -974,7 +976,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresenceOfText(driver, "h");
 
@@ -1061,7 +1063,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking on Discovery
-            System.out.println("clicking on discovery");
+            logger.info("clicking on discovery");
             po.clickBasedOnText(driver, "l");
             Thread.sleep(2000);
 
@@ -1070,7 +1072,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
             Thread.sleep(2000);
 
             //Clicking CC button
-            System.out.println("clicking on CC");
+            logger.info("clicking on CC");
             po.clickBasedOnText(driver, "k");
             Thread.sleep(2000);
 
@@ -1136,7 +1138,7 @@ public class DeepTest3SkinPlayback extends EventLogTest{
 
 
         } catch (Exception e) {
-            System.out.println("VAMPPreMidPostSingle throws Exception " + e);
+            logger.error("VAMPPreMidPostSingle throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VAMPPreMidPostSingle");
             Assert.assertTrue(false, "This will fail!");

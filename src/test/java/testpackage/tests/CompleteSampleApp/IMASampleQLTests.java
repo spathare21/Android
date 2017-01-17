@@ -1,5 +1,6 @@
 package testpackage.tests.CompleteSampleApp;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -20,24 +21,26 @@ import java.util.Properties;
  */
 public class IMASampleQLTests extends EventLogTest{
 
+    final static Logger logger = Logger.getLogger(IMASampleQLTests.class);
+
     @BeforeClass
     public void beforeTest() throws Exception {
         {
-            System.out.println("BeforeTest \n");
+            logger.info("BeforeTest \n");
 
-            System.out.println(System.getProperty("user.dir"));
+            logger.debug(System.getProperty("user.dir"));
             // Get Property Values
             LoadPropertyValues prop = new LoadPropertyValues();
             Properties p = prop.loadProperty("completesampleapp.properties");
 
-            System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-            System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-            System.out.println("Path where APK is stored" + p.getProperty("appDir"));
-            System.out.println("APK name is " + p.getProperty("app"));
-            System.out.println("Platform under Test is " + p.getProperty("platformName"));
-            System.out.println("Mobile OS Version is " + p.getProperty("OSVERSION"));
-            System.out.println("Package Name of the App is " + p.getProperty("appPackage"));
-            System.out.println("Activity Name of the App is " + p.getProperty("appActivity"));
+            logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+            logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+            logger.debug("Path where APK is stored" + p.getProperty("appDir"));
+            logger.debug("APK name is " + p.getProperty("app"));
+            logger.debug("Platform under Test is " + p.getProperty("platformName"));
+            logger.debug("Mobile OS Version is " + p.getProperty("OSVERSION"));
+            logger.debug("Package Name of the App is " + p.getProperty("appPackage"));
+            logger.debug("Activity Name of the App is " + p.getProperty("appActivity"));
 
             SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
             driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -47,7 +50,7 @@ public class IMASampleQLTests extends EventLogTest{
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -58,12 +61,12 @@ public class IMASampleQLTests extends EventLogTest{
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1 = prop1.loadProperty();
 
-        System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode " + p1.getProperty("ScreenMode"));
     }
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -75,7 +78,7 @@ public class IMASampleQLTests extends EventLogTest{
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
     }
@@ -94,7 +97,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -112,13 +115,13 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
 
             //Clicking on play button
-            System.out.println("Now will play in normal screen");
+            logger.info("Now will play in normal screen");
             po.playInNormalScreen(driver);
             Thread.sleep(1000);
 
@@ -165,7 +168,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAAdRulePreroll throws Exception "+e);
+            logger.error("IMAAdRulePreroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAAdRulePreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -186,7 +189,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -203,7 +206,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -253,7 +256,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAAdRuleMidroll throws Exception "+e);
+            logger.error("IMAAdRuleMidroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAAdRuleMidroll");
             Assert.assertTrue(false, "This will fail!");
@@ -274,7 +277,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -291,7 +294,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -343,7 +346,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAAdRulePostroll throws Exception "+e);
+            logger.error("IMAAdRulePostroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAAdRulePostroll");
             Assert.assertTrue(false, "This will fail!");
@@ -364,7 +367,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -382,7 +385,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -444,7 +447,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedPreroll throws Exception "+e);
+            logger.error("IMAPoddedPreroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreroll");
             Assert.assertTrue(false, "This will fail!");
@@ -465,7 +468,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -483,7 +486,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             Thread.sleep(5000);
             po.waitForPresence(driver,"className","android.widget.ImageButton");
@@ -545,7 +548,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedMidroll throws Exception "+e);
+            logger.error("IMAPoddedMidroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAPoddedMidroll");
             Assert.assertTrue(false, "This will fail!");
@@ -566,7 +569,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -583,7 +586,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -648,7 +651,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedPostroll throws Exception "+e);
+            logger.error("IMAPoddedPostroll throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAPoddedPostroll");
             Assert.assertTrue(false, "This will fail!");
@@ -669,7 +672,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -688,7 +691,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -777,7 +780,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPoddedPreMidPost throws Exception "+e);
+            logger.error("IMAPoddedPreMidPost throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAPoddedPreMidPost");
             Assert.assertTrue(false, "This will fail!");
@@ -798,7 +801,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -816,7 +819,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -857,7 +860,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMASkippable throws Exception "+e);
+            logger.error("IMASkippable throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMASkippable");
             Assert.assertTrue(false, "This will fail!");
@@ -878,7 +881,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -896,7 +899,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
             Thread.sleep(1000);
@@ -943,7 +946,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAPreMidPostSkippable throws Exception "+e);
+            logger.error("IMAPreMidPostSkippable throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAPreMidPostSkippable");
             Assert.assertTrue(false, "This will fail!");
@@ -964,7 +967,7 @@ public class IMASampleQLTests extends EventLogTest{
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Write to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Selecting freewheel Sample App from Complete Sample App
             po.clickBasedOnText(driver, "Google IMA Integration");
@@ -982,7 +985,7 @@ public class IMASampleQLTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomConfiguredIMAPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForPresence(driver,"className","android.widget.ImageButton");
 
@@ -1012,7 +1015,7 @@ public class IMASampleQLTests extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("IMAApplicationConfigured throws Exception "+e);
+            logger.error("IMAApplicationConfigured throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"IMAApplicationConfigured");
             Assert.assertTrue(false, "This will fail!");
