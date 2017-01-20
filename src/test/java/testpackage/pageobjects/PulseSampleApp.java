@@ -41,6 +41,7 @@ public class PulseSampleApp {
         }
     }
 
+    // Wait to any specific text
     public void waitForPresenceOfText(AndroidDriver driver, String waitString) {
         //Waiting for presence of specific element using Text
         WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -48,6 +49,7 @@ public class PulseSampleApp {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
     }
 
+    // For seek the video
     public void seek_video (AndroidDriver driver,int time) throws Exception {
         try {
             //Seeking the Video
@@ -63,6 +65,7 @@ public class PulseSampleApp {
         }
     }
 
+    // For click on pause button
     public void pauseVideo(AndroidDriver driver) throws InterruptedException {
         logger.info("moved to pause method");
         logger.info("play.x value is " + play.getX());
@@ -76,6 +79,7 @@ public class PulseSampleApp {
         logger.info("clicked pause");
     }
 
+    // For play the video
     public void getPlay (AndroidDriver driver) throws Exception {
         //Click on Play button to play video
         WebDriverWait wait = new WebDriverWait(driver,30);
