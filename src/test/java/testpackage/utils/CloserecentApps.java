@@ -1,14 +1,15 @@
 package testpackage.utils;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
-/**
- * Created by Sachin on 4/22/2016.
- */
+
 public class CloserecentApps {
+    final static Logger logger = Logger.getLogger(CloserecentApps.class);
 
     public static void closeApps() throws IOException, InterruptedException {
-        System.out.println("in Closing all recent apps");
+        logger.info("in Closing all recent apps");
         final String command = "adb shell input keyevent KEYCODE_APP_SWITCH";
         String[] APP_SWITCHER = CommandLine.command(command);
         Runtime run = Runtime.getRuntime();
@@ -26,13 +27,12 @@ public class CloserecentApps {
         String[] Del_app = CommandLine.command(DEL);
         Runtime run4 = Runtime.getRuntime();
 
-        for(i=0;i<=30;i++)
+        for(i=0;i<=10;i++)
         {
             Process pr4 = run4.exec(Del_app);
             Thread.sleep(1000);
         }
-
-        System.out.println("closed all app in background");
+        logger.info("closed all app in background");
 
 
     }

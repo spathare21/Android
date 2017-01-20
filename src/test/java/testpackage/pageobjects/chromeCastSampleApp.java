@@ -1,6 +1,7 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public class chromeCastSampleApp {
     int[] playCoordinates = new int[2];
+    final static Logger logger = Logger.getLogger(chromeCastSampleApp.class);
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -67,36 +69,36 @@ public class chromeCastSampleApp {
         int[] play = new int[2];
         Thread.sleep(5000);
         List<WebElement> imageButtons = driver.findElementsByClassName("android.widget.ImageButton");
-        System.out.printf("Size : " + imageButtons.size());
+        logger.info("Size : " + imageButtons.size());
         if (imageButtons.size() > 0) {
             play[0] = imageButtons.get(1).getLocation().getX();
             play[1] = imageButtons.get(1).getLocation().getY();
 
             playCoordinates[0] = play[0] + imageButtons.get(0).getSize().getWidth() / 2;
             playCoordinates[1] = play[1] + imageButtons.get(0).getSize().getHeight() / 2;
-            System.out.println("X playCoordinates" + playCoordinates[0]);
-            System.out.println("Y playCoordinates" + playCoordinates[1]);
+            logger.info("X playCoordinates" + playCoordinates[0]);
+            logger.info("Y playCoordinates" + playCoordinates[1]);
 
         }
     }
 
     public void pauseInNormalScreen(AndroidDriver driver) {
         //playButton.click();
-        System.out.println("X pauseCoordinates" + playCoordinates[0]);
-        System.out.println("Y pauseCoordinates" + playCoordinates[1]);
+        logger.info("X pauseCoordinates" + playCoordinates[0]);
+        logger.info("Y pauseCoordinates" + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 3);
     }
 
     public void resumeFromPauseToPlayVideoInNormalscreen(AndroidDriver driver) {
-        System.out.println("X resumeCoordinates" + playCoordinates[0]);
-        System.out.println("Y resumeCoordinates" + playCoordinates[1]);
+        logger.info("X resumeCoordinates" + playCoordinates[0]);
+        logger.info("Y resumeCoordinates" + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
     }
 
     public void screenTap(AndroidDriver driver) throws InterruptedException {
         WebElement screentap = driver.findElementByXPath("//android.view.View");
         screentap.click();
-        System.out.println("Scrubber bar is displaying after click");
+        logger.info("Scrubber bar is displaying after click");
 
     }
 
@@ -105,21 +107,21 @@ public class chromeCastSampleApp {
 
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldHeigth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldWidth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
-        System.out.println(" Seeking -------------------------  ");
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldHeigth);
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldWidth);
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
+        logger.info(" Seeking -------------------------  ");
         //driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + (seekBarField.getSize().getWidth()-100), seekBarFieldHeigth, 5);
         driver.swipe(seekBarFieldWidth + diff1, seekBarFieldHeigth, seekBarFieldWidth + (seekBarField.getSize().getWidth()-diff2), seekBarFieldHeigth, 5);
     }
 
     public void readTime(AndroidDriver driver) {
         List<WebElement> startTime = driver.findElementsByClassName("android.widget.TextView");
-        System.out.println("Size:" + startTime.size());
+        logger.info("Size:" + startTime.size());
         if (startTime.size() > 0) {
             String startTimetext = startTime.get(4).getText();
-            System.out.println("The Start time of video is:" + startTimetext);
+            logger.info("The Start time of video is:" + startTimetext);
         }
     }
 

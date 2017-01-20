@@ -1,6 +1,7 @@
 package testpackage.tests.optionsSampleApp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -18,6 +19,7 @@ import java.util.Properties;
  * Created by Rohan R on 4/29/2016.
  */
 public class DeepTests extends EventLogTest {
+    final static Logger logger = Logger.getLogger(DeepTests.class);
 
 
 
@@ -25,21 +27,21 @@ public class DeepTests extends EventLogTest {
     public void beforeTest() throws Exception {
         // closing all recent app from background.
         CloserecentApps.closeApps();
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p = prop.loadProperty("optionsSampleApp.properties");
 
-        //System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        //System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        //System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        //System.out.println("APK name is "+ p.getProperty("app"));
-        //System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        //System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        //System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        //System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        //logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        //logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        //logger.debug("Path where APK is stored"+ p.getProperty("appDir"));
+        //logger.debug("APK name is "+ p.getProperty("app"));
+        //logger.debug("Platform under Test is "+ p.getProperty("platformName"));
+        //logger.debug("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        //logger.debug("Package Name of the App is "+ p.getProperty("appPackage"));
+        //logger.debug("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -49,7 +51,7 @@ public class DeepTests extends EventLogTest {
     @BeforeMethod
     //public void beforeTest() throws Exception{
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -61,10 +63,10 @@ public class DeepTests extends EventLogTest {
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1 = prop1.loadProperty();
 
-        System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode " + p1.getProperty("ScreenMode"));
 
         //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
+        //    logger.info("Inside landscape Mode ");
         //    driver.rotate(ScreenOrientation.LANDSCAPE);
         //}
 
@@ -75,7 +77,7 @@ public class DeepTests extends EventLogTest {
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -96,7 +98,7 @@ public class DeepTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
 
@@ -109,18 +111,18 @@ public class DeepTests extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CuePointsOptionsFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             // CuePoints On + AdControls On Test case.
 
             //Click on Video create button
             po.clickButtons(driver, 0);
-            System.out.println("Creating Video to Play");
+            logger.info("Creating Video to Play");
 
             // Wait for the video to be generated
             po.waitForPresenceOfText(driver, "00:00");
             Thread.sleep(2000);
-            System.out.println("Initial Time is 00:00");
+            logger.info("Initial Time is 00:00");
 
             // Click on video play icon after video has been generated .
             po.clickImagebuttons(driver, 0);
@@ -331,7 +333,7 @@ public class DeepTests extends EventLogTest {
             Thread.sleep(2000);
 
         } catch (Exception e) {
-            System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
+            logger.error("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
             Assert.assertTrue(false, "This will fail!");
@@ -353,7 +355,7 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
 
             // Wrire to console activity name of home screen app
-            System.out.println("Preload and PromoImage Options. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Preload and PromoImage Options. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -371,9 +373,9 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreloadOptionsPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            System.out.println("Preload On + Show Promoimage On test started");
+            logger.info("Preload On + Show Promoimage On test started");
 
             //Click on Video create button
             po.clickButtons(driver, 0);
@@ -445,13 +447,13 @@ public class DeepTests extends EventLogTest {
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-            System.out.println("Preload On + Show Promoimage On test completed");
+            logger.debug("Preload On + Show Promoimage On test completed");
 
             Thread.sleep(2000);
 
             // Preload Off + Show Promoimage On
             // Click on Preload On button
-            System.out.println("Preload Off + Show Promoimage On test started");
+            logger.debug("Preload Off + Show Promoimage On test started");
 
             //Click onPreload On button
             po.clickOnPreloadOn(driver);
@@ -520,13 +522,13 @@ public class DeepTests extends EventLogTest {
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-            System.out.println("Preload Off + Show Promoimage On completed");
+            logger.debug("Preload Off + Show Promoimage On completed");
 
             Thread.sleep(3000);
 
             // Preload Off + Show Promoimage off
             // Click on align bottom button
-            System.out.println("Preload Off + Show Promoimage off test started");
+            logger.debug("Preload Off + Show Promoimage off test started");
 
             Thread.sleep(2000);
 
@@ -585,13 +587,13 @@ public class DeepTests extends EventLogTest {
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-            System.out.println("Preload Off + Show Promoimage off test completed");
+            logger.debug("Preload Off + Show Promoimage off test completed");
 
             Thread.sleep(3000);
 
             // Preload On + Show Promoimage off
             // Click on align bottom button
-            System.out.println("Preload On + Show Promoimage off test started");
+            logger.debug("Preload On + Show Promoimage off test started");
 
             //Click on PreloadOff button
             po.clickOnPreloadOff(driver);
@@ -653,7 +655,7 @@ public class DeepTests extends EventLogTest {
             Thread.sleep(3000);
 
         } catch (Exception e) {
-            System.out.println("Preload_and_PromoImage_Options throws Exception " + e);
+            logger.info("Preload_and_PromoImage_Options throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"Preload_and_PromoImage_Options");
             Assert.assertTrue(false, "This will fail!");
@@ -675,7 +677,7 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
 
             // Wrire to console activity name of home screen app
-            System.out.println("Preload and Promo Options with Initial Time. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Preload and Promo Options with Initial Time. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -693,9 +695,9 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreloadWithInitTimePlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            System.out.println("Preload On + Show Promoimage On test started");
+            logger.debug("Preload On + Show Promoimage On test started");
 
             //Click on Video create button
             po.clickButtons(driver, 0);
@@ -729,13 +731,13 @@ public class DeepTests extends EventLogTest {
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-            System.out.println("Preload On + Show Promoimage On test completed");
+            logger.debug("Preload On + Show Promoimage On test completed");
 
             Thread.sleep(2000);
 
             // Preload Off + Show Promoimage On
             // Click on Preload On button
-            System.out.println("Preload Off + Show Promoimage On test started");
+            logger.debug("Preload Off + Show Promoimage On test started");
 
             //Click onPreload On button
             po.clickOnPreloadOn(driver);
@@ -771,13 +773,13 @@ public class DeepTests extends EventLogTest {
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-            System.out.println("Preload Off + Show Promoimage On completed");
+            logger.info("Preload Off + Show Promoimage On completed");
 
             Thread.sleep(3000);
 
             // Preload Off + Show Promoimage off
             // Click on align bottom button
-            System.out.println("Preload Off + Show Promoimage off test started");
+            logger.info("Preload Off + Show Promoimage off test started");
 
             Thread.sleep(2000);
 
@@ -813,13 +815,13 @@ public class DeepTests extends EventLogTest {
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-            System.out.println("Preload Off + Show Promoimage off test completed");
+            logger.info("Preload Off + Show Promoimage off test completed");
 
             Thread.sleep(3000);
 
             // Preload On + Show Promoimage off
             // Click on align bottom button
-            System.out.println("Preload On + Show Promoimage off test started");
+            logger.info("Preload On + Show Promoimage off test started");
 
             //Click on PreloadOff button
             po.clickOnPreloadOff(driver);
@@ -855,12 +857,12 @@ public class DeepTests extends EventLogTest {
             //Wait for Video to complete and verify the playCompleted event.
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
-            System.out.println("Preload On + Show Promoimage off test completed");
+            logger.info("Preload On + Show Promoimage off test completed");
 
             Thread.sleep(3000);
 
     } catch (Exception e) {
-        System.out.println("Preload_and_Promo_Options_With_Initial_Time throws Exception " + e);
+        logger.error("Preload_and_Promo_Options_With_Initial_Time throws Exception " + e);
         e.printStackTrace();
         ScreenshotDevice.screenshot(driver,"Preload_and_Promo_Options_With_Initial_Time");
         Assert.assertTrue(false, "This will fail!");
@@ -881,7 +883,7 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
 
             // Wrire to console activity name of home screen app
-            System.out.println("Server-side TV Ratings. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Server-side TV Ratings. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -897,7 +899,7 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ServerConfiguredTVRatingsPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -911,7 +913,7 @@ public class DeepTests extends EventLogTest {
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
 
-            //System.out.println(" Dimensions are "+dimensions);
+            //logger.info(" Dimensions are "+dimensions);
             String[] dimensionsarray = dimensions.split(",");
             int length = dimensionsarray[1].length();
             String ydimensions = dimensionsarray[1].substring(0, length - 1);
@@ -948,7 +950,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println("ServersideTVRatings throws Exception " + e);
+            logger.error("ServersideTVRatings throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"ServersideTVRatings");
             Assert.assertTrue(false, "This will fail!");
@@ -970,7 +972,7 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
 
             // Wrire to console activity name of home screen app
-            System.out.println("TV Ratings Configuration. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("TV Ratings Configuration. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -988,9 +990,9 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.TVRatingsPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            System.out.println("Align Bottom + Align Right test started");
+            logger.info("Align Bottom + Align Right test started");
 
             //Click on Video create button
             po.clickButtons(driver, 0);
@@ -1027,13 +1029,13 @@ public class DeepTests extends EventLogTest {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-            System.out.println("Align Bottom + Align Right test completed");
+            logger.info("Align Bottom + Align Right test completed");
 
             Thread.sleep(2000);
 
             // Align Top + Align Right
             // Click on align right button
-            System.out.println("Align Top + Align Right test started");
+            logger.info("Align Top + Align Right test started");
 
             po.clickAlignBottom(driver);
 
@@ -1069,13 +1071,13 @@ public class DeepTests extends EventLogTest {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-            System.out.println("Align Top + Align Right test completed");
+            logger.info("Align Top + Align Right test completed");
 
             Thread.sleep(3000);
 
             // Align Top + Align Left
             // Click on align bottom button
-            System.out.println("Align Top + Align Left test started");
+            logger.info("Align Top + Align Left test started");
 
             Thread.sleep(2000);
 
@@ -1113,13 +1115,13 @@ public class DeepTests extends EventLogTest {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-            System.out.println("Align Top + Align Left test completed");
+            logger.info("Align Top + Align Left test completed");
 
             Thread.sleep(3000);
 
             // Align Bottom + Align Left
             // Click on align bottom button
-            System.out.println("Align Bottom + Align Left test started");
+            logger.info("Align Bottom + Align Left test started");
 
             po.clickAlignTop(driver);
 
@@ -1157,12 +1159,12 @@ public class DeepTests extends EventLogTest {
             //Wait for video to finish and verify the playCompleted event .
             ev.verifyEvent("playCompleted", " Video Completed Play ", 50000);
 
-            System.out.println("Align Bottom + Align Left test completed");
+            logger.info("Align Bottom + Align Left test completed");
 
             Thread.sleep(3000);
 
         } catch (Exception e) {
-            System.out.println("TV_Ratings_Configuration throws Exception " + e);
+            logger.error("TV_Ratings_Configuration throws Exception " + e);
              e.printStackTrace();             Assert.assertTrue(false, "This will fail!");
             ScreenshotDevice.screenshot(driver,"TV_Ratings_Configuration");
         }
@@ -1183,7 +1185,7 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
 
             // Wrire to console activity name of home screen app
-            System.out.println("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -1199,7 +1201,7 @@ public class DeepTests extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreventVideoViewSharingPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -1213,7 +1215,7 @@ public class DeepTests extends EventLogTest {
             // Tap coordinates to pause
             String dimensions = driver.manage().window().getSize().toString();
 
-            //System.out.println(" Dimensions are "+dimensions);
+            //logger.info(" Dimensions are "+dimensions);
             String[] dimensionsarray = dimensions.split(",");
             int length = dimensionsarray[1].length();
             String ydimensions = dimensionsarray[1].substring(0, length - 1);
@@ -1250,7 +1252,7 @@ public class DeepTests extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed",90000);
 
         } catch (Exception e) {
-            System.out.println("present_video_view_sharing_options throws Exception " + e);
+            logger.error("present_video_view_sharing_options throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"present_video_view_sharing_options");
             Assert.assertTrue(false, "This will fail!");
@@ -1260,7 +1262,7 @@ public class DeepTests extends EventLogTest {
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);

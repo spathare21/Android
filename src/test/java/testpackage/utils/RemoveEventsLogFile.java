@@ -1,6 +1,7 @@
 package testpackage.utils;
 
 import com.sun.jmx.snmp.Timestamp;
+import org.apache.log4j.Logger;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 import java.io.File;
@@ -12,6 +13,7 @@ import java.time.Instant;
 // TOD0 : Check if file exists, only then , remove/delete the file , Check the return value
 
 public class RemoveEventsLogFile {
+    final static Logger logger = Logger.getLogger(RemoveEventsLogFile.class);
 
     public static void removeEventsFileLog()
     {
@@ -23,7 +25,7 @@ public class RemoveEventsLogFile {
         }
         catch(Exception e)
         {
-            System.out.println("Exception is : "+e);
+            logger.error("Exception is : "+e);
             e.printStackTrace();
 
         }

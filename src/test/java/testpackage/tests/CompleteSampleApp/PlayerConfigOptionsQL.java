@@ -1,4 +1,5 @@
 package testpackage.tests.CompleteSampleApp;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -11,24 +12,26 @@ import java.util.Properties;
 
 public class PlayerConfigOptionsQL extends EventLogTest {
 
+    final static Logger logger = Logger.getLogger(PlayerConfigOptionsQL.class);
+
     @BeforeClass
     public void beforeTest() throws Exception {
 
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p = prop.loadProperty("completesampleapp.properties");
 
-        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored"+ p.getProperty("appDir"));
-        System.out.println("APK name is "+ p.getProperty("app"));
-        System.out.println("Platform under Test is "+ p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is "+ p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is "+ p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is "+ p.getProperty("appActivity"));
+        logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored"+ p.getProperty("appDir"));
+        logger.debug("APK name is "+ p.getProperty("app"));
+        logger.debug("Platform under Test is "+ p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is "+ p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is "+ p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is "+ p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -37,7 +40,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         //removeEventsLogFile.removeEventsFileLog(); create events file
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -49,13 +52,13 @@ public class PlayerConfigOptionsQL extends EventLogTest {
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1 = prop1.loadProperty();
 
-        System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode " + p1.getProperty("ScreenMode"));
 
     }
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -68,7 +71,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
 
@@ -87,7 +90,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
 
             // Wrire to console activity name of home screen app
-            System.out.println("CompleteSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
 
@@ -106,7 +109,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CuePointsOptionsFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Click on Video create button
             po.clickOnCreateVideo(driver);
@@ -165,7 +168,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
 
         } catch (Exception e) {
-            System.out.println("CuePointsAndAdsControlOptions throws Exception " + e);
+            logger.error("CuePointsAndAdsControlOptions throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
             Assert.assertTrue(false, "This will fail!");
@@ -185,7 +188,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
 
@@ -204,7 +207,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreloadOptionsPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Click on Video create button
             po.clickOnCreateVideo(driver);
@@ -261,7 +264,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 80000);
 
         } catch (Exception e) {
-            System.out.println("preload_PromoImage_options throws Exception " + e);
+            logger.error("preload_PromoImage_options throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"preload_PromoImage_options");
             Assert.assertTrue(false, "This will fail!");
@@ -281,7 +284,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
 
@@ -300,7 +303,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreloadWithInitTimePlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Click on Video create button
             po.clickOnCreateVideo(driver);
@@ -321,7 +324,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed",150000);
 
         } catch (Exception e) {
-            System.out.println("preload_promo_IntialTime throws Exception " + e);
+            logger.error("preload_promo_IntialTime throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"preload_promo_IntialTime");
             Assert.assertTrue(false, "This will fail!");
@@ -343,7 +346,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
 
@@ -362,7 +365,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.TimeoutOptionsPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Click on Video create button
             po.clickOnCreateVideo(driver);
@@ -420,7 +423,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
 
         } catch (Exception e) {
-            System.out.println("timeout_Options throws Exception " + e);
+            logger.error("timeout_Options throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"timeout_Options");
             Assert.assertTrue(false, "This will fail!");
@@ -440,7 +443,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
 
@@ -459,7 +462,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.ServerConfiguredTVRatingsPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             po.waitForTextView(driver,"00:00");
 
@@ -492,7 +495,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             ev.verifyEvent("playCompleted", "video play completed",150000);
 
         } catch (Exception e) {
-            System.out.println("server_side_TvRating throws Exception " + e);
+            logger.error("server_side_TvRating throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"server_side_TvRating");
             Assert.assertTrue(false, "This will fail!");
@@ -514,7 +517,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("CompleteSampleApp App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
 
@@ -533,7 +536,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.TVRatingsPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Click on Video create button
             po.clickOnCreateVideo(driver);
@@ -576,7 +579,7 @@ public class PlayerConfigOptionsQL extends EventLogTest {
 
 
         } catch (Exception e) {
-            System.out.println("tv_rating_config throws Exception " + e);
+            logger.error("tv_rating_config throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"tv_rating_config");
             Assert.assertTrue(false, "This will fail!");

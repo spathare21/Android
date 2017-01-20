@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.apache.log4j.Logger;
 import testpackage.utils.CommandLine;
 import java.io.IOException;
 import java.util.List;
@@ -14,6 +15,7 @@ public class AdvancedPlaybackSampleApp {
 
     //WebElement playButton;
     int[] playCoordinates = new int[2];
+    final static Logger logger = Logger.getLogger(AdvancedPlaybackSampleApp.class);
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
         //waiting for homescreen to load specific text to ensure homescreen is loaded
@@ -50,9 +52,10 @@ public class AdvancedPlaybackSampleApp {
 
     public void clickOnVastAd(AndroidDriver driver) throws InterruptedException {
         //Inserting Vast Ad in video
-        System.out.println("in vast ad");
+        Thread.sleep(1000);
+        logger.info("in vast ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleLeftButton").click();
-        System.out.println("clicked");
+        logger.info("clicked");
     }
 
     //TODO: Need to delete this after refactoring code of Deeplook
@@ -66,9 +69,10 @@ public class AdvancedPlaybackSampleApp {
     public void pauseVideo(AndroidDriver driver) throws InterruptedException {
         //clicking on pasue button using dimensions
         Thread.sleep(2000);
-        System.out.println("Pausing the Video");
+        logger.info("Pausing the Video");
         // Tap coordinates to pause
         String dimensions = driver.manage().window().getSize().toString();
+        //logger.info(" Dimensions are "+dimensions);
         String[] dimensionsarray = dimensions.split(",");
         int length = dimensionsarray[1].length();
         String ydimensions = dimensionsarray[1].substring(0, length - 1);
@@ -83,16 +87,15 @@ public class AdvancedPlaybackSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
-        System.out.println("showing recent app screen");
-        //Clicking on system ui to get back the sample app
-        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();
-        System.out.println("back to SDK");
+        logger.info("showing recent app screen");
+        driver.findElement(By.xpath("//android.view.View[@index= '0']")).click();  // here clicking on system ui to get back the sample app
+        logger.info("back to SDK");
     }
 
     public void powerKeyClick(AndroidDriver driver) throws InterruptedException, IOException {
         driver.sendKeyEvent(26); // key 26 is used to lock the screen
-        System.out.println("key sent");
-        System.out.println("screen lock");
+        logger.info("key sent");
+        logger.info("screen lock");
         Thread.sleep(5000);
         driver.sendKeyEvent(82); // key 82 is used to unlock the screen
         String command = "adb shell input keyevent KEYCODE_WAKEUP";
@@ -100,72 +103,71 @@ public class AdvancedPlaybackSampleApp {
         Runtime run = Runtime.getRuntime();
         Process pr = run.exec(final_command);
         Thread.sleep(3000);
-        System.out.println("showing screen unlock");
-        System.out.println("Back to Sample App screen ");
+        logger.info("showing screen unlock");
+        logger.info("Back to Sample App screen ");
         Thread.sleep(2000);
     }
 
     public void clickOnOoyalaAd(AndroidDriver driver) throws InterruptedException {
-        //Inserting Ooyala Ads in Video
-        System.out.println("in Ooyala ad");
+        Thread.sleep(1000);
+        logger.info("in Ooyala ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleRightButton").click();
-        System.out.println("clicked");
+        logger.info("clicked");
     }
 
     public void clickOnP1(AndroidDriver driver) throws InterruptedException {
-        //Playing video one to change video programatically
-        System.out.println("in Video1 ad");
+        Thread.sleep(1000);
+        logger.info("in Video1 ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleLeftButton").click();
-        System.out.println("clicked");
-
+        logger.info("clicked");
     }
 
     public void clickOnP2(AndroidDriver driver) throws InterruptedException {
-        //Playing video two to change video programatically
-        System.out.println("in Video2 ad");
+        Thread.sleep(1000);
+        logger.info("in Video2 ad");
         driver.findElementById("com.ooyala.sample.AdvancedPlaybackSampleApp:id/doubleRightButton").click();
-        System.out.println("clicked");
+        logger.info("clicked");
 
     }
 
     public void clickFullScreen(AndroidDriver driver) throws InterruptedException {
-        //going to full screen
-        System.out.println("Clicking on full screen button");
+        Thread.sleep(1000);
+        logger.info("Clicking on full screen button");
         driver.findElementByXPath("//android.widget.ImageButton[@index='2']").click();
     }
 
     public void clickNormalScreen(AndroidDriver driver) throws InterruptedException {
-        //Coming back to normal screen from fullscreen
-        System.out.println("Clicking on normal screen button");
+        Thread.sleep(1000);
+        logger.info("Clicking on normal screen button");
         WebElement frameLayout = driver.findElement(By.id("content"));
         List<WebElement> layout = frameLayout.findElements(By.className("android.widget.LinearLayout"));
         WebElement normalScreen = layout.get(0).findElement(By.className("android.widget.ImageButton"));
         normalScreen.click();
-        System.out.println("Clicked");
+        logger.info("Clicked");
     }
 
     //Todo: Need to implement this in Deeplook
     public void backSeekInFullScreen(AndroidDriver driver) throws InterruptedException {
-        System.out.println("Clicking on Back seek button");
+        logger.info("Clicking on Back seek button");
         WebElement layout = driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
         List<WebElement> seek = layout.findElements(By.className("android.widget.ImageButton"));
         seek.get(0).click();
-        System.out.println("Back seek button clicked");
+        logger.info("Back seek button clicked");
     }
 
     //Todo: Need to implement this in Deeplook
     public void playVideoFullScreen(AndroidDriver driver) throws InterruptedException {
-        System.out.println("Clicking on play button in full screen");
+        logger.info("Clicking on play button in full screen");
         WebElement layout = driver.findElement(By.xpath("//android.widget.LinearLayout[@index=1]"));
         List<WebElement> play = layout.findElements(By.className("android.widget.ImageButton"));
         play.get(1).click();
-        System.out.println("Play button clicked");
+        logger.info("Play button clicked");
     }
 
     //Todo: Need to implement this in Deeplook
     public void pauseVideoFullScreen(AndroidDriver driver) throws InterruptedException {
         //  Thread.sleep(2000);
-        System.out.println("Pausing the Video in Full Screen");
+        logger.info("Pausing the Video in Full Screen");
         //Pausing Video
         String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray = dimensions.split(",");
@@ -178,7 +180,8 @@ public class AdvancedPlaybackSampleApp {
 
     //TODO: Need to delete this after refactoring code of Deeplook
     public void pauseSmallPlayer(AndroidDriver driver) throws InterruptedException {
-        System.out.println("Pausing the Video");
+         Thread.sleep(2000);
+        logger.info("Pausing the Video");
         //Pausing Video
         String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray = dimensions.split(",");
@@ -193,7 +196,7 @@ public class AdvancedPlaybackSampleApp {
     //TODO: Need to delete this after refactoring code of Deeplook
     public void customControlPlayButton(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println("Playing Paused Video");
+        logger.info("Playing Paused Video");
         //Play Video
         String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray = dimensions.split(",");
@@ -207,15 +210,15 @@ public class AdvancedPlaybackSampleApp {
         int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
         int buttonxdimentions = xdimensionsInt - 545;
         int buttonydimentions = ydimensionsInt - 60;
-        System.out.println("Playbutton X Axis:" + buttonxdimentions);
-        System.out.println("Playbutton X Axis:" + buttonydimentions);
+        logger.info("Playbutton X Axis:" + buttonxdimentions);
+        logger.info("Playbutton X Axis:" + buttonydimentions);
         driver.tap(1, buttonxdimentions, buttonydimentions, 2);
     }
 
     //TODO: Need to delete this after refactoring code of Deeplook
     public void customControlPauseButton(AndroidDriver driver) throws InterruptedException {
         Thread.sleep(2000);
-        System.out.println("Clicking on Pause Video");
+        logger.info("Clicking on Pause Video");
         //Pausing Video
         String dimensions = driver.manage().window().getSize().toString();
         String[] dimensionsarray = dimensions.split(",");
@@ -229,17 +232,17 @@ public class AdvancedPlaybackSampleApp {
         int ydimensionsInt = Integer.parseInt(ydimensionstrimmed);
         int buttonxdimentions = xdimensionsInt - 545;
         int buttonydimentions = ydimensionsInt - 60;
-        System.out.println("Playbutton X Axis:" + buttonxdimentions);
-        System.out.println("Playbutton X Axis:" + buttonydimentions);
+        logger.info("Playbutton X Axis:" + buttonxdimentions);
+        logger.info("Playbutton X Axis:" + buttonydimentions);
         driver.tap(1, buttonxdimentions, buttonydimentions, 2);
     }
 
     public void overlay(AndroidDriver driver) throws InterruptedException {
-        //Checking if overlay is displaying
-        System.out.println("Check Overlay Present or not");
+        Thread.sleep(1000);
+        logger.info("Check Overlay Present or not");
         WebElement overlay1 = driver.findElement(By.xpath("//android.widget.TextView[@text='This is an overlay']"));
         Assert.assertEquals(true, overlay1.isDisplayed());
-        System.out.println("Overlay  diplayed");
+        logger.info("Overlay  diplayed");
     }
 
     //TODO: Need to delete this after refactoring code of Deeplook
@@ -252,9 +255,9 @@ public class AdvancedPlaybackSampleApp {
         //Checking if control bar is displaying
         boolean isElement1Present = true;
         try {
-            driver.findElementByXPath("//android.widget.SeekBar");
-            System.out.println("The scrubber bar is displaying");
-
+            WebElement scrubberBar = driver.findElementByXPath("//android.widget.SeekBar");
+            Thread.sleep(1000);
+            logger.info("The scrubber bar is displaying");
         } catch (org.openqa.selenium.NoSuchElementException e) {
             isElement1Present = false;
         }
@@ -262,7 +265,7 @@ public class AdvancedPlaybackSampleApp {
             //clicking on screen to make control bar visible again
             WebElement screentap = driver.findElementByXPath("//android.view.View");
             screentap.click();
-            System.out.println("Scrubber bar is displaying after click");
+            logger.info("Scrubber bar is displaying after click");
         }
     }
 
@@ -271,11 +274,11 @@ public class AdvancedPlaybackSampleApp {
         WebElement seekBarField = driver.findElementByClassName("//android.widget.SeekBar");
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldHeigth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldWidth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
-        System.out.println(" Seeking ------------------------- ");
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldHeigth);
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldWidth);
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
+        logger.info(" Seeking ------------------------- ");
         driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
 
     }
@@ -285,7 +288,7 @@ public class AdvancedPlaybackSampleApp {
         int[] play = new int[2];
         Thread.sleep(2000);
         List<WebElement> imageButtons = driver.findElementsByClassName("android.widget.ImageButton");
-        System.out.printf("Size : " + imageButtons.size());
+        logger.info("Size : " + imageButtons.size());
         if (imageButtons.size() > 0) {
             //Getting Coordinates of play button
             play[0] = imageButtons.get(0).getLocation().getX();
@@ -293,16 +296,16 @@ public class AdvancedPlaybackSampleApp {
             //Getting center of play button
             playCoordinates[0] = play[0] + imageButtons.get(0).getSize().getWidth() / 2;
             playCoordinates[1] = play[1] + imageButtons.get(0).getSize().getHeight() / 2;
-            System.out.println("X playCoordinates" + playCoordinates[0]);
-            System.out.println("Y playCoordinates" + playCoordinates[1]);
+            logger.info("X playCoordinates" + playCoordinates[0]);
+            logger.info("Y playCoordinates" + playCoordinates[1]);
             driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
         }
     }
 
     public void pauseInNormalScreen(AndroidDriver driver) {
         //clicking on play button to pause video
-        System.out.println("X pauseCoordinates" + playCoordinates[0]);
-        System.out.println("Y pauseCoordinates" + playCoordinates[1]);
+        logger.info("X pauseCoordinates" + playCoordinates[0]);
+        logger.info("Y pauseCoordinates" + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
     }
 
@@ -311,29 +314,27 @@ public class AdvancedPlaybackSampleApp {
         //Getting scrubber bar's height and width
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldHeigth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarFieldWidth);
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
-        System.out.println(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
-        System.out.println(" Seeking -------------------------  ");
-        //seeking the video
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldHeigth);
+        logger.info(" Dimensions bounds value is :-" + seekBarFieldWidth);
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getHeight());
+        logger.info(" Dimensions bounds value is :-" + seekBarField.getSize().getWidth());
+        logger.info(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
     }
 
     public void readTime(AndroidDriver driver) {
         // Read playback time
         List<WebElement> startTime = driver.findElementsByClassName("android.widget.TextView");
-        System.out.println("Size:" + startTime.size());
+        logger.info("Size:" + startTime.size());
         if (startTime.size() > 0) {
             String startTimetext = startTime.get(1).getText();
-            System.out.println("The Start time of video is:" + startTimetext);
+            logger.info("The Start time of video is:" + startTimetext);
         }
     }
 
     public void resumeVideoInNormalscreen(AndroidDriver driver) {
-        //Clicking on play button to resume the video
-        System.out.println("X resumeCoordinates" + playCoordinates[0]);
-        System.out.println("Y resumeCoordinates" + playCoordinates[1]);
+        logger.info("X resumeCoordinates" + playCoordinates[0]);
+        logger.info("Y resumeCoordinates" + playCoordinates[1]);
         driver.tap(1, playCoordinates[0], playCoordinates[1], 2);
     }
 
@@ -343,12 +344,12 @@ public class AdvancedPlaybackSampleApp {
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
                 if (i<10){
-                    System.out.println("Handling Loading Spinner");
+                    logger.info("Handling Loading Spinner");
                     Thread.sleep(1000);
                     i++;
                 }
                 else{
-                    System.out.println("Loading spinner occured more than "+i+" seconds");
+                    logger.info("Loading spinner occured more than "+i+" seconds");
                     break;
                 }
             }

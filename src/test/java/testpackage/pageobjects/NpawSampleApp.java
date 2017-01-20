@@ -1,6 +1,7 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ public class NpawSampleApp {
 
     //WebElement playButton;
     int[] playCoordinates= new int[2];
+    final static Logger logger = Logger.getLogger(NpawSampleApp.class);
 
     public void waitForAppHomeScreen(AndroidDriver driver) {
 
@@ -59,15 +61,15 @@ public class NpawSampleApp {
 
         playCoordinates[0]=play[0]+imageButtons.get(0).getSize().getWidth()/2 ;
         playCoordinates[1]=play[1]+imageButtons.get(0).getSize().getHeight()/2 ;
-        System.out.println("X playCoordinates"+playCoordinates[0]);
-        System.out.println("Y playCoordinates"+playCoordinates[1]);
+        logger.info("X playCoordinates"+playCoordinates[0]);
+        logger.info("Y playCoordinates"+playCoordinates[1]);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
     // Pause the video in normal screen mode.
     public void pauseInNormalScreen(AndroidDriver driver){
-        System.out.println("X pauseCoordinates"+playCoordinates[0]);
-        System.out.println("Y pauseCoordinates"+playCoordinates[1]);
+        logger.info("X pauseCoordinates"+playCoordinates[0]);
+        logger.info("Y pauseCoordinates"+playCoordinates[1]);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
@@ -76,18 +78,18 @@ public class NpawSampleApp {
         WebElement seekBarField = driver.findElement(By.xpath("//android.widget.SeekBar"));
         int seekBarFieldWidth = seekBarField.getLocation().getX();
         int seekBarFieldHeigth = seekBarField.getLocation().getY();
-        System.out.println(" Dimensions bounds value is :-"+seekBarFieldHeigth);
-        System.out.println(" Dimensions bounds value is :-"+seekBarFieldWidth);
-        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
-        System.out.println(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
-        System.out.println(" Seeking -------------------------  ");
+        logger.info(" Dimensions bounds value is :-"+seekBarFieldHeigth);
+        logger.info(" Dimensions bounds value is :-"+seekBarFieldWidth);
+        logger.info(" Dimensions bounds value is :-"+seekBarField.getSize().getHeight());
+        logger.info(" Dimensions bounds value is :-"+seekBarField.getSize().getWidth());
+        logger.info(" Seeking -------------------------  ");
         driver.swipe(seekBarFieldWidth + 20, seekBarFieldHeigth, seekBarFieldWidth + 100, seekBarFieldHeigth, 3);
     }
 
     // Play the video after the pause mode.
     public void resumeInNormalScreen(AndroidDriver driver){
-        System.out.println("X resumeCoordinates"+playCoordinates[0]);
-        System.out.println("Y resumeCoordinates"+playCoordinates[1]);
+        logger.info("X resumeCoordinates"+playCoordinates[0]);
+        logger.info("Y resumeCoordinates"+playCoordinates[1]);
         driver.tap(1, playCoordinates[0] , playCoordinates[1], 2);
     }
 
@@ -115,14 +117,14 @@ public class NpawSampleApp {
         int i = 0;
         try {
             while (driver.findElement(By.className("android.widget.ProgressBar")).isDisplayed()) {
-                //System.out.println("Handling Loading Spinner");
+                //logger.info("Handling Loading Spinner");
                 if (i<20){
-                    System.out.println("Handling Loading Spinner");
+                    logger.info("Handling Loading Spinner");
                     Thread.sleep(1000);
                     i++;
                 }
                 else{
-                    System.out.println("Loading spinner occured more than "+i+" seconds");
+                    logger.info("Loading spinner occured more than "+i+" seconds");
                     break;
                 }
             }
