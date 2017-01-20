@@ -1,6 +1,7 @@
 package testpackage.pageobjects;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.xpath.operations.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,6 +34,12 @@ public class AdvancedPlaybackSampleApp {
         //Selecting the asset based on displayed text
         WebElement clickTextField = driver.findElement(By.xpath("//android.widget.TextView[@text='" + clickText + "']"));
         clickTextField.click();
+    }
+
+    public void custom_control(AndroidDriver driver)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.ImageButton[@index= '0']"))).click();
     }
 
     public void waitForPresence(AndroidDriver driver, String typeOf, String waitString) {

@@ -20,7 +20,7 @@ public class BasicTests extends EventLogTest {
     @BeforeClass
     public void beforeTest() throws Exception {
         // closing all recent app from background.
-        CloserecentApps.closeApps();
+        //CloserecentApps.closeApps();
         // Get Property Values
         LoadPropertyValues loadPropertyValues = new LoadPropertyValues();
         properties = loadPropertyValues.loadProperty("advancedplaybacksampleapp.properties");
@@ -314,7 +314,7 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.waitForAppHomeScreen(driver);
             // Assert if current activity is indeed equal to the activity name of app home screen
             advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.AdvancedPlaybackListActivity");
-            // Wrire to console activity name of home screen app
+            // Write to console activity name of home screen app
             logger.debug("AdvancePlaybackSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //Wait till name of assets are displaying
             advancedPlaybackSampleApp.waitForTextView(driver,"Play With InitialTime");
@@ -327,21 +327,19 @@ public class BasicTests extends EventLogTest {
             advancedPlaybackSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CustomControlsPlayerActivity");
             // Print to console output current player activity
             logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-            Thread.sleep(2000);
-            //click on play button to start playback of video
-            advancedPlaybackSampleApp.playInNormalScreen(driver);
-            //Creating an object of EventVerification class
+            //clicking on playbutton of custom control
+            advancedPlaybackSampleApp.custom_control(driver);
             EventVerification eventVerification = new EventVerification();
             //Verifying play started event
             eventVerification.verifyEvent("playStarted", " Video Started to Play ", 30000);
             // clicking on pause button to pause the video
-            advancedPlaybackSampleApp.pauseInNormalScreen(driver);
+            advancedPlaybackSampleApp.custom_control(driver);
             //Verifying pause event after video is paused
-            eventVerification.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 70000);
+            eventVerification.verifyEvent("stateChanged - state: PAUSED", "Video has been paused", 50000);
             //Clicking on play button to resume the playback
-            advancedPlaybackSampleApp.resumeVideoInNormalscreen(driver);
+            advancedPlaybackSampleApp.custom_control(driver);
             //Verifying playing event to confirm that video is resumed
-            eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 50000);
+            eventVerification.verifyEvent("stateChanged - state: PLAYING", " Video Started to Play ", 70000);
             // video completed event verification.
             eventVerification.verifyEvent("playCompleted", "video play completed", 120000);
         } catch (Exception e) {
