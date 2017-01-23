@@ -21,7 +21,7 @@
 
 
             <!-- AdvancedPlayback sample app!-->
-            <class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>
+            <class name="testpackage.tests.advancedplaybacksampleapp.BasicTests"/>
 
             <!-- Skin sample app!-->
             <class name="testpackage.tests.ooyalaSkinSampleApp.BasicTests"/>
