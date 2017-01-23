@@ -1,26 +1,14 @@
 package testpackage.tests.optionsSampleApp;
 
-import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import testpackage.pageobjects.optionsSampleApp;
+import org.testng.annotations.*;
 import testpackage.utils.*;
-
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * Created by Rohan R on 4/29/2016.
- */
 public class DeepTests extends EventLogTest {
     final static Logger logger = Logger.getLogger(DeepTests.class);
-
 
 
     @BeforeClass
@@ -86,260 +74,260 @@ public class DeepTests extends EventLogTest {
         Appuninstall.uninstall(prop);
     }
 
-    @org.testng.annotations.Test
-    public void CuePointsAndAdsControlOptions() throws Exception {
-
-        try {
-            // Creating an Object of optionsSampleApp class
-            optionsSampleApp po = new optionsSampleApp();
-            // wait till home screen of basicPlayBackApp is opened
-            po.waitForAppHomeScreen(driver);
-
-            // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
-            // Wrire to console activity name of home screen app
-            logger.debug("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
-            // Select one of the video HLS,MP4 etc .
-            po.clickBasedOnText(driver, "CuePoints and AdsControl Options");
-            Thread.sleep(2000);
-
-            //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
-            // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CuePointsOptionsFreewheelPlayerActivity");
-            // Print to console output current player activity
-            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
-
-            // CuePoints On + AdControls On Test case.
-
-            //Click on Video create button
-            po.clickButtons(driver, 0);
-            logger.info("Creating Video to Play");
-
-            // Wait for the video to be generated
-            po.waitForPresenceOfText(driver, "00:00");
-            Thread.sleep(2000);
-            logger.info("Initial Time is 00:00");
-
-            // Click on video play icon after video has been generated .
-            po.clickImagebuttons(driver, 0);
-            Thread.sleep(2000);
-
-            //Play Started Verification
-            EventVerification ev = new EventVerification();
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-            // Pause and Play Video
-            Thread.sleep(2000);
-
-            po.pauseSmallPlayer(driver);
-
-            //Wait for pause to video and verify the video is paused.
-            ev.verifyEvent("PAUSED", "Video paused", 50000);
-
-            Thread.sleep(2000);
-
-            po.clickImagebuttons(driver, 0);
-
-            //Wait for play the video and verify the video starts playing again.
-            ev.verifyEvent("PLAYING", "Video Started", 50000);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
-
-            Thread.sleep(2000);
-
-            // CuePoints Off + AdControls On Test case.
-            // Click on CurPoints On
-
-            po.clickOnCuePointsOn(driver);
-
-            //Click on Video create button
-            po.clickButtons(driver, 0);
-
-            // Wait for the video to be generated
-            po.waitForPresenceOfText(driver, "00:00");
-
-            // Click on video play icon after video has been generated .
-            po.clickImagebuttons(driver, 0);
-
-            //Play Started Verification
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-            // Pause and Play Video
-            Thread.sleep(2000);
-
-            po.pauseSmallPlayer(driver);
-
-            //Wait for pause to video and verify the video is paused.
-            ev.verifyEvent("PAUSED", "Video paused", 50000);
-
-            Thread.sleep(2000);
-
-            po.clickImagebuttons(driver, 0);
-
-            //Wait for play the video and verify the video starts playing again.
-            ev.verifyEvent("PLAYING", "Video Started", 50000);
-
-            Thread.sleep(2000);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
-
-            Thread.sleep(2000);
-
-            // CuePoints Off + AdControls Off Test case.
-            // Click on CurPoints On
-
-            po.clickOnAdsControlsOn(driver);
-
-            //Click on Video create button
-            po.clickButtons(driver, 0);
-
-            // Wait for the video to be generated
-            po.waitForPresenceOfText(driver, "00:00");
-
-            // Click on video play icon after video has been generated .
-            po.clickImagebuttons(driver, 0);
-
-            //Play Started Verification
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-            // Pause and Play Video
-            Thread.sleep(2000);
-
-            po.pauseSmallPlayer(driver);
-
-            //Wait for pause to video and verify the video is paused.
-            ev.verifyEvent("PAUSED", "Video paused", 50000);
-
-            Thread.sleep(2000);
-
-            po.clickImagebuttons(driver, 0);
-
-            //Wait for play the video and verify the video starts playing again.
-            ev.verifyEvent("PLAYING", "Video Started", 50000);
-
-            Thread.sleep(2000);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
-
-            Thread.sleep(2000);
-
-            // CuePoints On + AdControls Off Test case.
-            // Click on CurPoints On
-
-            po.clickOnCuePointsOff(driver);
-
-            //Click on Video create button
-            po.clickButtons(driver, 0);
-
-            // Wait for the video to be generated
-            po.waitForPresenceOfText(driver, "00:00");
-
-            // Click on video play icon after video has been generated .
-            po.clickImagebuttons(driver, 0);
-
-            //Play Started Verification
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to start and verify the playStarted event .
-            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
-
-            // Pause and Play Video
-            Thread.sleep(2000);
-
-            po.pauseSmallPlayer(driver);
-
-            //Wait for pause to video and verify the video is paused.
-            ev.verifyEvent("PAUSED", "Video paused", 50000);
-
-            Thread.sleep(2000);
-
-            po.clickImagebuttons(driver, 0);
-
-            //Wait for play the video and verify the video starts playing again.
-            ev.verifyEvent("PLAYING", "Video Started", 50000);
-
-            Thread.sleep(2000);
-
-            //Wait for Ad to start and verify the adStarted event .
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            //Wait for Ad to complete and verify the adCompleted event .
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
-
-            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
-
-            //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
-
-            Thread.sleep(2000);
-
-        } catch (Exception e) {
-            logger.error("CuePointsAndAdsControlOptions throws Exception " + e);
-            e.printStackTrace();
-            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
-            Assert.assertTrue(false, "This will fail!");
-        }
-
-    }
+//    @org.testng.annotations.Test
+//    public void CuePointsAndAdsControlOptions() throws Exception {
+//
+//        try {
+//            // Creating an Object of optionsSampleApp class
+//            optionsSampleApp po = new optionsSampleApp();
+//            // wait till home screen of basicPlayBackApp is opened
+//            po.waitForAppHomeScreen(driver);
+//
+//            // Assert if current activity is indeed equal to the activity name of app home screen
+//            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.OptionsListActivity");
+//            // Wrire to console activity name of home screen app
+//            logger.debug("OptionsSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+//            //Pause the running of test for a brief time .
+//            Thread.sleep(3000);
+//
+//            // Select one of the video HLS,MP4 etc .
+//            po.clickBasedOnText(driver, "CuePoints and AdsControl Options");
+//            Thread.sleep(2000);
+//
+//            //verify if player was loaded
+//            po.waitForPresence(driver, "className", "android.view.View");
+//            // Assert if current activity is indeed equal to the activity name of the video player
+//            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.CuePointsOptionsFreewheelPlayerActivity");
+//            // Print to console output current player activity
+//            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+//
+//            // CuePoints On + AdControls On Test case.
+//
+//            //Click on Video create button
+//            po.clickButtons(driver, 0);
+//            logger.info("Creating Video to Play");
+//
+//            // Wait for the video to be generated
+//            po.waitForPresenceOfText(driver, "00:00");
+//            Thread.sleep(2000);
+//            logger.info("Initial Time is 00:00");
+//
+//            // Click on video play icon after video has been generated .
+//            po.clickImagebuttons(driver, 0);
+//            Thread.sleep(2000);
+//
+//            //Play Started Verification
+//            EventVerification ev = new EventVerification();
+//
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to start and verify the playStarted event .
+//            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+//
+//            // Pause and Play Video
+//            Thread.sleep(2000);
+//
+//            po.pauseSmallPlayer(driver);
+//
+//            //Wait for pause to video and verify the video is paused.
+//            ev.verifyEvent("PAUSED", "Video paused", 50000);
+//
+//            Thread.sleep(2000);
+//
+//            po.clickImagebuttons(driver, 0);
+//
+//            //Wait for play the video and verify the video starts playing again.
+//            ev.verifyEvent("PLAYING", "Video Started", 50000);
+//
+//            //Wait for Ad to start and verify the adStarted event .
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            //Wait for Ad to complete and verify the adCompleted event .
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to finish and verify the playCompleted event .
+//            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+//
+//            Thread.sleep(2000);
+//
+//            // CuePoints Off + AdControls On Test case.
+//            // Click on CurPoints On
+//
+//            po.clickOnCuePointsOn(driver);
+//
+//            //Click on Video create button
+//            po.clickButtons(driver, 0);
+//
+//            // Wait for the video to be generated
+//            po.waitForPresenceOfText(driver, "00:00");
+//
+//            // Click on video play icon after video has been generated .
+//            po.clickImagebuttons(driver, 0);
+//
+//            //Play Started Verification
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to start and verify the playStarted event .
+//            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+//
+//            // Pause and Play Video
+//            Thread.sleep(2000);
+//
+//            po.pauseSmallPlayer(driver);
+//
+//            //Wait for pause to video and verify the video is paused.
+//            ev.verifyEvent("PAUSED", "Video paused", 50000);
+//
+//            Thread.sleep(2000);
+//
+//            po.clickImagebuttons(driver, 0);
+//
+//            //Wait for play the video and verify the video starts playing again.
+//            ev.verifyEvent("PLAYING", "Video Started", 50000);
+//
+//            Thread.sleep(2000);
+//
+//            //Wait for Ad to start and verify the adStarted event .
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            //Wait for Ad to complete and verify the adCompleted event .
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to finish and verify the playCompleted event .
+//            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+//
+//            Thread.sleep(2000);
+//
+//            // CuePoints Off + AdControls Off Test case.
+//            // Click on CurPoints On
+//
+//            po.clickOnAdsControlsOn(driver);
+//
+//            //Click on Video create button
+//            po.clickButtons(driver, 0);
+//
+//            // Wait for the video to be generated
+//            po.waitForPresenceOfText(driver, "00:00");
+//
+//            // Click on video play icon after video has been generated .
+//            po.clickImagebuttons(driver, 0);
+//
+//            //Play Started Verification
+//
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to start and verify the playStarted event .
+//            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+//
+//            // Pause and Play Video
+//            Thread.sleep(2000);
+//
+//            po.pauseSmallPlayer(driver);
+//
+//            //Wait for pause to video and verify the video is paused.
+//            ev.verifyEvent("PAUSED", "Video paused", 50000);
+//
+//            Thread.sleep(2000);
+//
+//            po.clickImagebuttons(driver, 0);
+//
+//            //Wait for play the video and verify the video starts playing again.
+//            ev.verifyEvent("PLAYING", "Video Started", 50000);
+//
+//            Thread.sleep(2000);
+//
+//            //Wait for Ad to start and verify the adStarted event .
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            //Wait for Ad to complete and verify the adCompleted event .
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to finish and verify the playCompleted event .
+//            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+//
+//            Thread.sleep(2000);
+//
+//            // CuePoints On + AdControls Off Test case.
+//            // Click on CurPoints On
+//
+//            po.clickOnCuePointsOff(driver);
+//
+//            //Click on Video create button
+//            po.clickButtons(driver, 0);
+//
+//            // Wait for the video to be generated
+//            po.waitForPresenceOfText(driver, "00:00");
+//
+//            // Click on video play icon after video has been generated .
+//            po.clickImagebuttons(driver, 0);
+//
+//            //Play Started Verification
+//
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to start and verify the playStarted event .
+//            ev.verifyEvent("playStarted", " Video Started Play ", 30000);
+//
+//            // Pause and Play Video
+//            Thread.sleep(2000);
+//
+//            po.pauseSmallPlayer(driver);
+//
+//            //Wait for pause to video and verify the video is paused.
+//            ev.verifyEvent("PAUSED", "Video paused", 50000);
+//
+//            Thread.sleep(2000);
+//
+//            po.clickImagebuttons(driver, 0);
+//
+//            //Wait for play the video and verify the video starts playing again.
+//            ev.verifyEvent("PLAYING", "Video Started", 50000);
+//
+//            Thread.sleep(2000);
+//
+//            //Wait for Ad to start and verify the adStarted event .
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            //Wait for Ad to complete and verify the adCompleted event .
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
+//
+//            ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
+//
+//            //Wait for video to finish and verify the playCompleted event .
+//            ev.verifyEvent("playCompleted", " Video Completed Play ", 30000);
+//
+//            Thread.sleep(2000);
+//
+//        } catch (Exception e) {
+//            logger.error("CuePointsAndAdsControlOptions throws Exception " + e);
+//            e.printStackTrace();
+//            ScreenshotDevice.screenshot(driver,"CuePointsAndAdsControlOptions");
+//            Assert.assertTrue(false, "This will fail!");
+//        }
+//
+//    }
 /*
     @org.testng.annotations.Test
     public void Preload_and_PromoImage_Options() throws Exception {
