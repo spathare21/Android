@@ -1,5 +1,6 @@
 package testpackage.tests.exoPlayerSampleApp;
 
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -11,6 +12,9 @@ import java.util.Properties;
 public class IMABasicTests2 extends EventLogTest {
     LoadPropertyValues prop = new LoadPropertyValues();
     Properties p;
+    exoPlayerSampleApp exoPlayerSampleApp = new exoPlayerSampleApp();
+    final static Logger logger = Logger.getLogger(IMABasicTests.class);
+
 
     @BeforeClass
     public void beforeTest() throws Exception {
@@ -34,7 +38,7 @@ public class IMABasicTests2 extends EventLogTest {
         }
         // Get Property Values
         Properties p=prop.loadProperty();
-        System.out.println(" Screen Mode "+ p.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode "+ p.getProperty("ScreenMode"));
     }
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
@@ -42,10 +46,10 @@ public class IMABasicTests2 extends EventLogTest {
         driver.closeApp();
         //quit the android driver
         driver.quit();
-        //get the propert values
+        //get the property values
         p = prop.loadProperty();
         String prop = p.getProperty("appPackage");
-        //unistall the app from the device
+        //uninstall the app from the device
         Appuninstall.uninstall(prop);
     }
 
@@ -59,62 +63,47 @@ public class IMABasicTests2 extends EventLogTest {
     @Test
     public void imaNonAdRulesPreroll() throws Exception{
         try {
-
-            // Creating an Object of ExoPlayerSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-
             // wait till home screen of ExoPlayerApp is opened
-            po.waitForAppHomeScreen(driver);
+            exoPlayerSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            // Write to console activity name of home screen app
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on Google IMA Integration
-            po.clickBasedOnText(driver, "Google IMA Integration");
-            Thread.sleep(2000);
-
+            exoPlayerSampleApp.clickBasedOnText(driver, "Google IMA Integration");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
+            logger.debug(" Print current activity name"+driver.currentActivity());
 
             //wait for the assets to load properly
-            po.waitForPresenceOfText(driver,"IMA Non Ad-Rules Preroll");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"IMA Non Ad-Rules Preroll");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Write to console activity name of home screen app
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video IMA Non Ad-Rules Preroll.
-            po.clickBasedOnTextScrollTo(driver, "IMA Ad-Rules Preroll");
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "IMA Ad-Rules Preroll");
             Thread.sleep(2000);
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            exoPlayerSampleApp.waitForPresence(driver, "className", "android.view.View");
 
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //wait for the presence of start screen
-            po.waitForPresenceOfText(driver,"h");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"h");
 
             //Clicking on Play button
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //ad Started Verification
             EventVerification ev = new EventVerification();
@@ -128,25 +117,25 @@ public class IMABasicTests2 extends EventLogTest {
             Thread.sleep(2000);
 
             //tapping on the screen
-            po.screentapping(driver);
+            exoPlayerSampleApp.screentapping(driver);
 
             //pause the video in normal screen
-            po.pausingVideo(driver);
+            exoPlayerSampleApp.pausingVideo(driver);
 
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
             //seek the video in normal screen
-            po.seek_video(driver,100);
+            exoPlayerSampleApp.seek_video(driver,600);
 
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
 
             //handle the loading spinner
-            po.loadingSpinner(driver);
+            exoPlayerSampleApp.loadingSpinner(driver);
 
             //resume the playback in normal screen
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -155,7 +144,7 @@ public class IMABasicTests2 extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e){
-            e.printStackTrace();
+            logger.error("imaNonAdRulesPreroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMA Non Ad-Rules Preroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -164,60 +153,45 @@ public class IMABasicTests2 extends EventLogTest {
     @Test
     public void imaNonAdRulesMidroll() throws Exception{
         try {
-
-            // Creating an Object of ExoPlayerSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-
             // wait till home screen of ExoPlayerApp is opened
-            po.waitForAppHomeScreen(driver);
+            exoPlayerSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            // Write to console activity name of home screen app
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on Google IMA Integration
-            po.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
-            Thread.sleep(2000);
-
-            System.out.println(" Print current activity name"+driver.currentActivity());
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
+            logger.debug(" Print current activity name"+driver.currentActivity());
 
             //wait for the assets to load properly
-            po.waitForPresenceOfText(driver,"IMA Non Ad-Rules Midroll");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"IMA Non Ad-Rules Midroll");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Write to console activity name of home screen app
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video as IMA Non Ad-Rules Midroll.
-            po.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Midroll");
-            Thread.sleep(2000);
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Midroll");
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            exoPlayerSampleApp.waitForPresence(driver, "className", "android.view.View");
 
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //wait for the presence of start screen
-            po.waitForPresenceOfText(driver,"h");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"h");
 
             //Clicking on Play button
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //create object of EventVerification
             EventVerification ev = new EventVerification();
@@ -227,25 +201,25 @@ public class IMABasicTests2 extends EventLogTest {
             Thread.sleep(2000);
 
             //tapping on the screen
-            po.screentapping(driver);
+            exoPlayerSampleApp.screentapping(driver);
 
             //pause the video in normal screen
-            po.pausingVideo(driver);
+            exoPlayerSampleApp.pausingVideo(driver);
 
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
 
             //seek video in normal screen
-            po.seek_video(driver,100);
+            exoPlayerSampleApp.seek_video(driver,500);
 
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
             //handle the loading spinner
-            po.loadingSpinner(driver);
+            exoPlayerSampleApp.loadingSpinner(driver);
 
             //resume the video playback in normal screen
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -260,7 +234,7 @@ public class IMABasicTests2 extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e){
-            e.printStackTrace();
+            logger.error("imaNonAdRulesMidroll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMA Non Ad-Rules Midroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -269,60 +243,46 @@ public class IMABasicTests2 extends EventLogTest {
     @Test
     public void imaNonAdRulesPostoll() throws Exception{
         try {
-
-            // Creating an Object of ExoPlayerSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-
             // wait till home screen of ExoPlayerApp is opened
-            po.waitForAppHomeScreen(driver);
+            exoPlayerSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            // Write to console activity name of home screen app
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on Google IMA Integration
-            po.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
-            Thread.sleep(2000);
-
-            System.out.println(" Print current activity name"+driver.currentActivity());
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
+            logger.debug(" Print current activity name"+driver.currentActivity());
 
             //wait for the assets to load properly
-            po.waitForPresenceOfText(driver,"IMA Non Ad-Rules Postroll");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"IMA Non Ad-Rules Postroll");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Write to console activity name of home screen app
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video as IMA Non Ad-Rules Postroll
-            po.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Postroll");
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Postroll");
             Thread.sleep(2000);
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            exoPlayerSampleApp.waitForPresence(driver, "className", "android.view.View");
 
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //wait for the presence of start screen
-            po.waitForPresenceOfText(driver,"h");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"h");
 
             //Clicking on Play button in Ooyala Skin
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //Creating object of EventVerification class
             EventVerification ev = new EventVerification();
@@ -332,25 +292,25 @@ public class IMABasicTests2 extends EventLogTest {
             Thread.sleep(2000);
 
             //tapping on the video screen
-            po.screentapping(driver);
+            exoPlayerSampleApp.screentapping(driver);
 
             //pause the video in normal screen
-            po.pausingVideo(driver);
+            exoPlayerSampleApp.pausingVideo(driver);
 
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
 
             //seek video in normal screen
-            po.seek_video(driver,100);
+            exoPlayerSampleApp.seek_video(driver,700);
 
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
             //handle the loading spinner
-            po.loadingSpinner(driver);
+            exoPlayerSampleApp.loadingSpinner(driver);
 
             //resume the video playback in normal screen
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -365,7 +325,7 @@ public class IMABasicTests2 extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e){
-            e.printStackTrace();
+            logger.error("imaNonAdRulesPostoll throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMA Non Ad-Rules Postroll");
             Assert.assertTrue(false, "This will fail!");
         }
@@ -374,60 +334,47 @@ public class IMABasicTests2 extends EventLogTest {
     @Test
     public void imaNonAdRulesPreMidMidPost() throws Exception{
         try {
-
-            // Creating an Object of ExoPlayerSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-
             // wait till home screen of ExoPlayerApp is opened
-            po.waitForAppHomeScreen(driver);
+            exoPlayerSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            // Write to console activity name of home screen app
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on Google IMA Integration
-            po.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
-            Thread.sleep(2000);
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
+            logger.debug(" Print current activity name"+driver.currentActivity());
 
             //wait for the assets to load properly
-            po.waitForPresenceOfText(driver,"IMA Non Ad-Rules Preroll");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"IMA Non Ad-Rules Preroll");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Write to console activity name of home screen app
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            // Select one of the video IMA Non Ad-Rules Pre-Mid-Mid-post
-            po.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Pre-Mid-Mid-Post");
+            // Select one of the video IMA Non Ad-Rules Pre-Mid-Mid-exoPlayerSampleAppst
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "IMA Non Ad-Rules Pre-Mid-Mid-Post");
             Thread.sleep(2000);
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            exoPlayerSampleApp.waitForPresence(driver, "className", "android.view.View");
 
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //wait for start screen to appear
-            po.waitForPresenceOfText(driver,"h");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"h");
 
             //Clicking on Play button
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //Creating object of EventVerification Class
             EventVerification ev = new EventVerification();
@@ -443,22 +390,22 @@ public class IMABasicTests2 extends EventLogTest {
             Thread.sleep(2000);
 
             //tapping on the video screen
-            po.screentapping(driver);
+            exoPlayerSampleApp.screentapping(driver);
 
             //pausing the video in normal screen
-            po.pausingVideo(driver);
+            exoPlayerSampleApp.pausingVideo(driver);
 
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 40000);
 
             //seek video in normal screen
-            po.seek_video(driver,70);
+            exoPlayerSampleApp.seek_video(driver,80);
 
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 50000);
 
             //resume the video playback in normal screen
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 60000);
@@ -485,71 +432,57 @@ public class IMABasicTests2 extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 90000);
         }
         catch(Exception e){
-            e.printStackTrace();
+            logger.error("imaNonAdRulesPreMidMidPost throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"IMA Non Ad-Rules Pre-Mid-Mid-Post");
             Assert.assertTrue(false, "This will fail!");
         }
     }
 
-    //@Test
+    @Test
     public void noAds() throws Exception{
         try {
-
-            // Creating an Object of ExoPlayerSampleApp class
-            exoPlayerSampleApp po = new exoPlayerSampleApp();
-
             // wait till home screen of ExoPlayerApp is opened
-            po.waitForAppHomeScreen(driver);
+            exoPlayerSampleApp.waitForAppHomeScreen(driver);
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
-
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
+            // Write to console activity name of home screen app
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on Google IMA Integration
-            po.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
-            Thread.sleep(2000);
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "Google IMA Integration");
 
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
-
-            if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
-                //Navigate back to Skin playback activity
-                driver.navigate().back();
-                Thread.sleep(2000);
-            }
+            logger.debug(" Print current activity name"+driver.currentActivity());
 
             //wait for the assets to load properly
-            po.waitForPresenceOfText(driver,"No Ads");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"IMA Non Ad-Rules Preroll");
 
             // Assert if current activity is indeed equal to the activity name of app home screen
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.IMAListActivity");
 
-            // Wrire to console activity name of home screen app
-            System.out.println("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            // Write to console activity name of home screen app
+            logger.debug("Ooyala Skin - Google IMA List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video No Ads.
-            po.clickBasedOnTextScrollTo(driver, "No Ads");
+            exoPlayerSampleApp.clickBasedOnTextScrollTo(driver, "No Ads");
             Thread.sleep(2000);
 
             //verify if player was loaded
-            po.waitForPresence(driver, "className", "android.view.View");
+            exoPlayerSampleApp.waitForPresence(driver, "className", "android.view.View");
 
             // Assert if current activity is indeed equal to the activity name of the video player
-            po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
+            exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredIMAPlayerActivity");
 
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //wait for the presence of start screen
-            po.waitForPresenceOfText(driver,"h");
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"h");
 
             //Clicking on Play button
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //ad Started Verification
             EventVerification ev = new EventVerification();
@@ -559,25 +492,25 @@ public class IMABasicTests2 extends EventLogTest {
             Thread.sleep(2000);
 
             //tapping on the screen
-            po.screentapping(driver);
+            exoPlayerSampleApp.screentapping(driver);
 
             //pause the video in normal screen
-            po.pausingVideo(driver);
+            exoPlayerSampleApp.pausingVideo(driver);
 
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 70000);
 
             //seek the video in normal screen
-            po.seek_video(driver,1090);
+            exoPlayerSampleApp.seek_video(driver,1000);
 
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
 
             //handle the loading spinner
-            po.loadingSpinner(driver);
+            exoPlayerSampleApp.loadingSpinner(driver);
 
             //resume the playback in normal screen
-            po.getPlay(driver);
+            exoPlayerSampleApp.getPlay(driver);
 
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 80000);
@@ -586,7 +519,7 @@ public class IMABasicTests2 extends EventLogTest {
             ev.verifyEvent("playCompleted", " Video Completed Play ", 190000);
         }
         catch(Exception e){
-            e.printStackTrace();
+            logger.error("NoAds throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"No Ads");
             Assert.assertTrue(false, "This will fail!");
         }

@@ -1,6 +1,7 @@
 package testpackage.tests.freewheelsampleapp;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,6 +19,7 @@ import java.util.Properties;
  * Created by Sachin on 2/29/2016.
  */
 public class DeepTests3 extends EventLogTest{
+    final static Logger logger = Logger.getLogger(DeepTests3.class);
 
 
 
@@ -25,21 +27,21 @@ public class DeepTests3 extends EventLogTest{
     public void beforeTest() throws Exception {
         // closing all recent app from background.
         CloserecentApps.closeApps();
-        System.out.println("BeforeTest \n");
+        logger.info("BeforeTest \n");
 
-        System.out.println(System.getProperty("user.dir"));
+        logger.debug(System.getProperty("user.dir"));
         // Get Property Values
         LoadPropertyValues prop = new LoadPropertyValues();
         Properties p = prop.loadProperty("freewheelsampleapp.properties");
 
-        System.out.println("Device id from properties file " + p.getProperty("deviceName"));
-        System.out.println("PortraitMode from properties file " + p.getProperty("PortraitMode"));
-        System.out.println("Path where APK is stored" + p.getProperty("appDir"));
-        System.out.println("APK name is " + p.getProperty("app"));
-        System.out.println("Platform under Test is " + p.getProperty("platformName"));
-        System.out.println("Mobile OS Version is " + p.getProperty("OSVERSION"));
-        System.out.println("Package Name of the App is " + p.getProperty("appPackage"));
-        System.out.println("Activity Name of the App is " + p.getProperty("appActivity"));
+        logger.debug("Device id from properties file " + p.getProperty("deviceName"));
+        logger.debug("PortraitMode from properties file " + p.getProperty("PortraitMode"));
+        logger.debug("Path where APK is stored" + p.getProperty("appDir"));
+        logger.debug("APK name is " + p.getProperty("app"));
+        logger.debug("Platform under Test is " + p.getProperty("platformName"));
+        logger.debug("Mobile OS Version is " + p.getProperty("OSVERSION"));
+        logger.debug("Package Name of the App is " + p.getProperty("appPackage"));
+        logger.debug("Activity Name of the App is " + p.getProperty("appActivity"));
 
         SetUpAndroidDriver setUpdriver = new SetUpAndroidDriver();
         driver = setUpdriver.setUpandReturnAndroidDriver(p.getProperty("udid"), p.getProperty("appDir"), p.getProperty("appValue"), p.getProperty("platformName"), p.getProperty("platformVersion"), p.getProperty("appPackage"), p.getProperty("appActivity"));
@@ -48,7 +50,7 @@ public class DeepTests3 extends EventLogTest{
 
     @BeforeMethod
     public void beforeMethod() throws Exception {
-        System.out.println("beforeMethod \n");
+        logger.info("beforeMethod \n");
         driver.manage().logs().get("logcat");
         PushLogFileToDevice logpush = new PushLogFileToDevice();
         logpush.pushLogFile();
@@ -60,10 +62,10 @@ public class DeepTests3 extends EventLogTest{
         LoadPropertyValues prop1 = new LoadPropertyValues();
         Properties p1 = prop1.loadProperty();
 
-        System.out.println(" Screen Mode " + p1.getProperty("ScreenMode"));
+        logger.debug(" Screen Mode " + p1.getProperty("ScreenMode"));
 
         //if(p1.getProperty("ScreenMode") != "P"){
-        //    System.out.println("Inside landscape Mode ");
+        //    logger.info("Inside landscape Mode ");
         //    driver.rotate(ScreenOrientation.LANDSCAPE);
         //}
 
@@ -74,7 +76,7 @@ public class DeepTests3 extends EventLogTest{
 
     @AfterClass
     public void afterTest() throws InterruptedException, IOException {
-        System.out.println("AfterTest \n");
+        logger.info("AfterTest \n");
         driver.closeApp();
         driver.quit();
         LoadPropertyValues prop1 = new LoadPropertyValues();
@@ -87,7 +89,7 @@ public class DeepTests3 extends EventLogTest{
     @AfterMethod
     public void afterMethod(ITestResult result) throws Exception {
         // Waiting for all the events from sdk to come in .
-        System.out.println("AfterMethod \n");
+        logger.info("AfterMethod \n");
         //ScreenshotDevice.screenshot(driver);
         RemoveEventsLogFile.removeEventsFileLog();
         Thread.sleep(10000);
@@ -107,7 +109,7 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -122,9 +124,9 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            System.out.println("FW overlay");
+            logger.info("FW overlay");
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
@@ -154,7 +156,7 @@ public class DeepTests3 extends EventLogTest{
             ev.verifyEvent("playCompleted", " Video Completed Play ", 60000);
 
         } catch (Exception e) {
-            System.out.println("FreeWheelOverlay throws Exception " + e);
+            logger.error("FreeWheelOverlay throws Exception " + e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FreeWheelOverlay");
             Assert.assertTrue(false, "This will fail!");
@@ -174,7 +176,7 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -189,7 +191,7 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OptionsFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             //Click on Video create button
             po.clickButtons(driver,0);
@@ -200,14 +202,14 @@ public class DeepTests3 extends EventLogTest{
             // Click on video play icon after video has been generated .
             po.clickImagebuttons(driver,0);
 
-            System.out.println("FWCuePointsAndAdsControlOptions_On");
+            logger.info("FWCuePointsAndAdsControlOptions_On");
             //Play Started Verification
             EventVerification ev = new EventVerification();
 
             ev.verifyEvent("adStarted", " Ad Started to Play ", 30000);
 //            WebDriverWait wait = new WebDriverWait(driver,30);
 //            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-//            System.out.println("learn more displayed");
+//            logger.info("learn more displayed");
 //            Thread.sleep(1000);
 //            // Click on the web area so that player screen shows up
 //            WebElement viewarea = driver.findElementByClassName("android.view.View");
@@ -256,7 +258,7 @@ public class DeepTests3 extends EventLogTest{
             ev.verifyEvent("adStarted", " Ad Started to Play ", 49000);
 
 //            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-//            System.out.println("learn more displayed");
+//            logger.info("learn more displayed");
 //            Thread.sleep(1000);
 //            po.clickOnViewarea(driver);
 //            // viewarea.click();
@@ -298,7 +300,7 @@ public class DeepTests3 extends EventLogTest{
             ev.verifyEvent("adStarted", " Ad Started to Play ", 50000);
 
 //            wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-//            System.out.println("learn more displayed");
+//            logger.info("learn more displayed");
 //            Thread.sleep(1000);
 //            po.clickOnViewarea(driver);
 //
@@ -340,7 +342,7 @@ public class DeepTests3 extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("FWCuePointsAndAdsControlOptions_On throws Exception "+e);
+            logger.debug("FWCuePointsAndAdsControlOptions_On throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_On");
             Assert.assertTrue(false, "This will fail!");
@@ -361,7 +363,7 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -376,9 +378,9 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OptionsFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            System.out.println("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore");
+            logger.info("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore");
             //turning off cue point
             po.cuepointOff(driver);
 
@@ -400,7 +402,7 @@ public class DeepTests3 extends EventLogTest{
 
             WebDriverWait wait = new WebDriverWait(driver,30);
             wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
+            logger.info("learn more displayed");
             Thread.sleep(1000);
 
             // clicking on learn more button
@@ -417,7 +419,7 @@ public class DeepTests3 extends EventLogTest{
             // verifing event that get back to SDK and ad start playing again
            // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
-            System.out.println("Back to SDK");
+            logger.info("Back to SDK");
 
 
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
@@ -434,7 +436,7 @@ public class DeepTests3 extends EventLogTest{
 
 
             wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
+            logger.info("learn more displayed");
             Thread.sleep(1000);
             // clicking on learn more button
             po.clickLearnMore(driver);
@@ -450,7 +452,7 @@ public class DeepTests3 extends EventLogTest{
             // verifing event that get back to SDK and ad start playing again
            // ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
-            System.out.println("Back to SDK");
+            logger.info("Back to SDK");
 
             //Wait for Ad to complete and verify the adCompleted event .
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 35000);
@@ -460,7 +462,7 @@ public class DeepTests3 extends EventLogTest{
 
 
             wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
+            logger.info("learn more displayed");
             Thread.sleep(1000);
 
             // clicking on learn more button
@@ -474,7 +476,7 @@ public class DeepTests3 extends EventLogTest{
             // getting back to SDK
             driver.navigate().back();
 
-            System.out.println("Back to SDK");
+            logger.info("Back to SDK");
 
             // verifing event that get back to SDK and ad start playing again
             //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
@@ -489,7 +491,7 @@ public class DeepTests3 extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore throws Exception "+e);
+            logger.debug("FWCuePointsAndAdsControlOptions_cuePointOff_leanmore throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_cuePointOff_leanmore");
             Assert.assertTrue(false, "This will fail!");
@@ -509,7 +511,7 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
             // Wrire to console activity name of home screen app
-            System.out.println("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("FreeWheelSample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -524,9 +526,9 @@ public class DeepTests3 extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of the video player
             po.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OptionsFreewheelPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            System.out.println("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore");
+            logger.info("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore");
             //turning off cue point
             po.adControlOff(driver);
 
@@ -546,7 +548,7 @@ public class DeepTests3 extends EventLogTest{
 
             /*WebDriverWait wait = new WebDriverWait(driver,30);
             wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//android.widget.TextView[@text='Learn More']"))));
-            System.out.println("learn more displayed");
+            logger.info("learn more displayed");
             Thread.sleep(1000);
 
             //clicking on view area for click threw
@@ -557,7 +559,7 @@ public class DeepTests3 extends EventLogTest{
             // getting back to SDK
             driver.navigate().back();
 
-            System.out.println("Back to SDK");
+            logger.info("Back to SDK");
             // verifing event that get back to SDK and ad start playing again
           //  ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
 
@@ -597,7 +599,7 @@ public class DeepTests3 extends EventLogTest{
             // getting back to SDK
             driver.navigate().back();
 
-            System.out.println("Back to SDK");
+            logger.info("Back to SDK");
 
             // verifing event that get back to SDK and ad start playing again
             //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
@@ -633,7 +635,7 @@ public class DeepTests3 extends EventLogTest{
             // getting back to SDK
             driver.navigate().back();
 
-            System.out.println("Back to SDK");
+            logger.info("Back to SDK");
 
             // verifing event that get back to SDK and ad start playing again
             //ev.verifyEvent("adStarted - state: PLAYING", "Back to SDK and ad start playing again", 30000);
@@ -662,7 +664,7 @@ public class DeepTests3 extends EventLogTest{
         }
         catch(Exception e)
         {
-            System.out.println("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore Exception "+e);
+            logger.error("FWCuePointsAndAdsControlOptions_adControlsOff_leanmore Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"FWCuePointsAndAdsControlOptions_adControlsOff_leanmore");
             Assert.assertTrue(false, "This will fail!");
