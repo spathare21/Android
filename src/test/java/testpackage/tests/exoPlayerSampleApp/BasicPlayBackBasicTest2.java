@@ -61,7 +61,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         Thread.sleep(5000);
     }
 
-   /* @Test
+    @Test
     public void multi_Ad() throws Exception{
         try {
             // wait till home screen of ExoPlayerApp is opened
@@ -400,7 +400,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             Assert.assertTrue(false, "This will fail!");
         }
     }
-*/
+
     @Test
     public void vast_AD_Wrapper() throws Exception{
         try {
@@ -467,7 +467,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
     }
 
-  /*  @Test
+    @Test
     public void vamp_VastAD_PreMidPost() throws Exception{
         try {
             // wait till home screen of ExoPlayerApp is opened
@@ -588,7 +588,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 60000);
             //seek video in normal screen
-            exoplayersampleapp.seek_video(driver,940);
+            exoplayersampleapp.seek_video(driver,970);
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
@@ -736,7 +736,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ScreenshotDevice.screenshot(driver,"widevineBase");
             Assert.assertTrue(false, "This will fail!");
         }
-    }*/
+    }
 
     //@Test
     public void VOD_CC() throws Exception{

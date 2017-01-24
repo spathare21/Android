@@ -61,7 +61,7 @@ public class FWBasicTests extends EventLogTest{
     }
 
     @Test
-    public void FreeWheelIntegrationPreRoll() throws Exception{
+    public void freeWheelIntegrationPreRoll() throws Exception{
         try {
             // wait till home screen of ExoPlayerSampleApp is opened
             exoPlayerSampleApp.waitForAppHomeScreen(driver);
@@ -69,7 +69,7 @@ public class FWBasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
+            // Write to console activity name of home screen app
             logger.debug("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on freewheel Integration
@@ -148,7 +148,7 @@ public class FWBasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
+            // Write to console activity name of home screen app
             logger.debug("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on freewheel Integration
@@ -230,7 +230,7 @@ public class FWBasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
+            // Write to console activity name of home screen app
             logger.debug("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on freewheel Integration
@@ -312,7 +312,7 @@ public class FWBasicTests extends EventLogTest{
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
 
-            // Wrire to console activity name of home screen app
+            // Write to console activity name of home screen app
             logger.debug("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //click on freewheel Integration
