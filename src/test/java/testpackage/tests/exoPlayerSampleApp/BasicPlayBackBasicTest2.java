@@ -446,7 +446,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             //pause event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PAUSED", " Video paused ", 60000);
             //seek video in normal screen
-            exoplayersampleapp.seek_video(driver,940);
+            exoplayersampleapp.seek_video(driver,920);
             //seek completed event verification
             ev.verifyEvent("seekCompleted", " Playing Video was Seeked " , 70000);
             //handling loading spinner
@@ -458,7 +458,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             //playing event verification
             ev.verifyEvent("Notification Received: stateChanged - state: PLAYING","Video resumed", 70000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 330000);
         }
         catch(Exception e){
             logger.error("VAST_AD_Wrapper throws Exception "+e);
