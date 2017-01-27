@@ -122,7 +122,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Ad playback has been completed event verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 70000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 150000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 250000);
         }
         catch(Exception e){
             logger.error("Multi_Ad Combination throws Exception "+e);

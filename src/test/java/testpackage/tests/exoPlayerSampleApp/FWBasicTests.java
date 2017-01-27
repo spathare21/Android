@@ -142,34 +142,36 @@ public class FWBasicTests extends EventLogTest{
     @Test
     public void freeWheelIntegrationMidroll() throws Exception {
         try {
-            // wait till home screen of ExoPlayerSampleApp is opened
+            // wait till home screen of basicPlayBackApp is opened
             exoPlayerSampleApp.waitForAppHomeScreen(driver);
-
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
-
-            // Write to console activity name of home screen app
+            // Wrire to console activity name of home screen app
             logger.debug("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //click on freewheel Integration
+            //Pause the running of test for a brief time .
+            Thread.sleep(3000);
+
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Integration");
+            Thread.sleep(2000);
 
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
-            // Selecting FW Midroll asset
+            // Select one of the video HLS,MP4 etc .
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Midroll");
+            Thread.sleep(2000);
+
+            logger.info("clicked on based text");
+
 
             //verify if player was loaded
             exoPlayerSampleApp.waitForPresence(driver, "className", "android.view.View");
-
             // Assert if current activity is indeed equal to the activity name of the video player
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
-
             // Print to console output current player activity
             logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
-            //wait for the start screen to appear
             exoPlayerSampleApp.waitForPresenceOfText(driver, "h");
 
             //Clicking on Play button in Ooyala Skin
@@ -177,7 +179,6 @@ public class FWBasicTests extends EventLogTest{
 
             //Play Started Verification
             EventVerification ev = new EventVerification();
-
             //Wait for video to start and verify the playStarted event .
             ev.verifyEvent("playStarted", " Video Started Play ", 30000);
             Thread.sleep(2000);
