@@ -5,10 +5,10 @@
             <listener class-name="testpackage.utils.Listeners">
             </listener>
     </listeners>
-    <test name="AdvanceSampleApp">
+    <test name="Advanced playback SampleApp">
         <classes>
-            <class name="testpackage.tests.advancePlayBackSampleApp.BasicTests"/>
-            <!--<class name="testpackage.tests.advancePlayBackSampleApp.DeepTests"/>-->
+            <class name="testpackage.tests.advancedplaybacksampleapp.BasicTests"/>
+            <!--<class name="testpackage.tests.advancedplaybacksampleappp.DeepTests"/>-->
         </classes>
     </test> <!-- AppiumTest -->
 </suite> <!-- Default Suite -->

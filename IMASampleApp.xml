@@ -5,7 +5,7 @@
                 <listener class-name="testpackage.utils.Listeners">
                 </listener>
         </listeners>
-    <test name="AppiumTest">
+    <test name="IMA Sample App">
         <classes>
 
             <class name="testpackage.tests.IMASampleApp.BasicTests"/>

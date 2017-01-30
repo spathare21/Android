@@ -5,9 +5,9 @@
             <listener class-name="testpackage.utils.Listeners">
             </listener>
     </listeners>
-    <test name="AppiumTest">
+    <test name="Pulse Sample App">
         <classes>
-            <class name="testpackage.tests.PulseSampleApp.BasicTests"/>
+            <class name="testpackage.tests.pulsesampleapp.BasicTests"/>
         </classes>
     </test> <!-- AppiumTest -->
 </suite> <!-- Default Suite -->
