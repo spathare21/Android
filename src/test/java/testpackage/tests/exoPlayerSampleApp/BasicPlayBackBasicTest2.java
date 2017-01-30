@@ -209,15 +209,15 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             //wait for the assets to load properly
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video VAST 3.0 Ad With Icon
             exoplayersampleapp.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad With Icon");
             Thread.sleep(5000);
@@ -226,7 +226,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver,"h");
             //Clicking on Play button
@@ -275,15 +275,15 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             //wait for the assets to load properly
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video VAST 3.0 Skippable Ad Long
             exoplayersampleapp.clickBasedOnTextScrollTo(driver, "VAST 3.0 Skippable Ad Long");
             //verify if player was loaded
@@ -291,7 +291,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver,"h");
             //Clicking on Play button
@@ -341,17 +341,17 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             //wait for the assets to load properly
             exoplayersampleapp.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video HLS,MP4 etc .
             exoplayersampleapp.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad With All Of The New Events");
             //verify if player was loaded
@@ -359,7 +359,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver, "h");
             //Clicking on Play button
@@ -409,15 +409,15 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video HLS,MP4 etc .
             exoplayersampleapp.clickBasedOnTextScrollTo(driver, "VAST 3.0 Ad Wrapper");
             //verify if player was loaded
@@ -425,7 +425,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver,"h");
             //Clicking on Play button in Ooyala Skin
@@ -475,15 +475,15 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video VMAP PreMidPost Single
             exoplayersampleapp.clickBasedOnTextScrollTo(driver, "VMAP PreMidPost Single");
             //verify if player was loaded
@@ -491,7 +491,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver,"h");
             //Clicking on Play button
@@ -549,17 +549,17 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             //wait for the assets to load properly
             exoplayersampleapp.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video VMAP PreMid VASTAdDATA
             exoplayersampleapp.clickBasedOnTextScrollTo(driver, "VMAP PreMid VASTAdDATA");
             //verify if player was loaded
@@ -567,7 +567,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver, "h");
             //Clicking on Play button
@@ -604,7 +604,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             ////Ad Completed event Verification
             ev.verifyEvent("adCompleted", " Ad Playback Completed ", 120000);
             //Wait for video to finish and verify the playCompleted event .
-            ev.verifyEvent("playCompleted", " Video Completed Play ", 230000);
+            ev.verifyEvent("playCompleted", " Video Completed Play ", 330000);
         } catch (Exception e){
             logger.error(" vamp_PreMidVASTAdData throws Exception "+e);
             ScreenshotDevice.screenshot(driver,"vamp_PreMidVASTAdData");
@@ -620,17 +620,17 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             //wait for the assets to load properly
             exoplayersampleapp.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video Clear HLS Main Profile
             exoplayersampleapp.clickBasedOnText(driver, "Clear HLS Main Profile");
             //verify if player was loaded
@@ -638,7 +638,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver,"h");
             //Clicking on Play button
@@ -684,17 +684,17 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             //click on basic playback
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             //display the current activity to console
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             //wait for the assets to load properly
             exoplayersampleapp.waitForPresenceOfText(driver,"4:3 Aspect Ratio");
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
             // Select one of the video HLS,MP4 etc .
             exoplayersampleapp.clickBasedOnText(driver, "Clear HLS Baseline");
             //verify if player was loaded
@@ -702,7 +702,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
             //wait for the presence of start screen
             exoplayersampleapp.waitForPresenceOfText(driver,"h");
             //Clicking on Play button
@@ -751,7 +751,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
             // Write to console activity name of home screen app
-            System.out.println("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("ExoPlayerApp Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             //Pause the running of test for a brief time .
             Thread.sleep(3000);
@@ -760,7 +760,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             exoplayersampleapp.clickBasedOnText(driver, "Basic Playback");
             Thread.sleep(2000);
 
-            System.out.println(" Print current activity name"+driver.currentActivity());
+            logger.debug(" Print current activity name"+driver.currentActivity());
             if(driver.currentActivity().toString().equals(".Settings$AppDrawOverlaySettingsActivity")){
                 //Navigate back to Skin playback activity
                 driver.navigate().back();
@@ -772,7 +772,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.BasicPlaybackListActivity");
             // Write to console activity name of home screen app
-            System.out.println("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
+            logger.debug("Ooyala Skin - Basic PlayBack List Activity Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
             // Select one of the video HLS,MP4 etc .
             exoplayersampleapp.clickBasedOnTextScrollTo(driver, "VOD with CCs");
@@ -784,7 +784,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
             // Assert if current activity is indeed equal to the activity name of the video player
             exoplayersampleapp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.OoyalaSkinPlayerActivity");
             // Print to console output current player activity
-            System.out.println("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
+            logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
             exoplayersampleapp.waitForPresenceOfText(driver,"h");
 
@@ -804,7 +804,7 @@ public class BasicPlayBackBasicTest2 extends EventLogTest {
         }
         catch(Exception e)
         {
-            System.out.println("VOD_CC throws Exception "+e);
+            logger.error("VOD_CC throws Exception "+e);
             e.printStackTrace();
             ScreenshotDevice.screenshot(driver,"VOD_CC");
             Assert.assertTrue(false, "This will fail!");

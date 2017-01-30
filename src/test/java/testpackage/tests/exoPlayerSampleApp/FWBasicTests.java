@@ -78,6 +78,9 @@ public class FWBasicTests extends EventLogTest{
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
+            //wait for the assets to load properly
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"Freewheel Preroll");
+
             // Selecting FW Preroll asset
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Preroll");
 
@@ -142,33 +145,33 @@ public class FWBasicTests extends EventLogTest{
     @Test
     public void freeWheelIntegrationMidroll() throws Exception {
         try {
-            // wait till home screen of basicPlayBackApp is opened
+            // wait till home screen of ExoPlayerSampleApp is opened
             exoPlayerSampleApp.waitForAppHomeScreen(driver);
+
             // Assert if current activity is indeed equal to the activity name of app home screen
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.complete.MainExoPlayerActivity");
-            // Wrire to console activity name of home screen app
+
+            // Write to console activity name of home screen app
             logger.debug("Exo Player Sample App Launched successfully. Activity :- " + driver.currentActivity() + "\n");
 
-            //Pause the running of test for a brief time .
-            Thread.sleep(3000);
-
+            //click on freewheel Integration
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Integration");
-            Thread.sleep(2000);
 
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
-            // Select one of the video HLS,MP4 etc .
+            //wait for the assets to load properly
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"Freewheel Preroll");
+
+            // Selecting FW Midroll asset
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Midroll");
-            Thread.sleep(2000);
-
-            logger.info("clicked on based text");
-
 
             //verify if player was loaded
             exoPlayerSampleApp.waitForPresence(driver, "className", "android.view.View");
+
             // Assert if current activity is indeed equal to the activity name of the video player
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.players.PreconfiguredFreewheelPlayerActivity");
+
             // Print to console output current player activity
             logger.debug("Player Video was loaded successfully . Activity  :- " + driver.currentActivity() + "\n");
 
@@ -239,6 +242,9 @@ public class FWBasicTests extends EventLogTest{
 
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+
+            //wait for the assets to load properly
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"Freewheel Preroll");
 
             // Selecting FW Postroll asset
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Postroll");
@@ -321,6 +327,9 @@ public class FWBasicTests extends EventLogTest{
 
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+
+            //wait for the assets to load properly
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"Freewheel Preroll");
 
             // Selecting FW PreMisPost asset
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel PreMidPost");
@@ -415,6 +424,9 @@ public class FWBasicTests extends EventLogTest{
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
 
+            //wait for the assets to load properly
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"Freewheel Preroll");
+
             // Selecting FW Overlay asset
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Overlay");
 
@@ -467,6 +479,9 @@ public class FWBasicTests extends EventLogTest{
 
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+
+            //wait for the assets to load properly
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"Freewheel Preroll");
 
             // Selecting FW MultiMidroll asset
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel Multi Midroll");
@@ -554,6 +569,9 @@ public class FWBasicTests extends EventLogTest{
 
             // Assert if current activity is Freewheel list activity
             exoPlayerSampleApp.assertCurrentActivityAgainst(driver, "com.ooyala.sample.lists.FreewheelListActivity");
+
+            //wait for the assets to load properly
+            exoPlayerSampleApp.waitForPresenceOfText(driver,"Freewheel Preroll");
 
             // Selecting FW PreMidPost asset
             exoPlayerSampleApp.clickBasedOnText(driver, "Freewheel PreMidPost");
