@@ -5,22 +5,21 @@
             <listener class-name="testpackage.utils.Listeners">
             </listener>
     </listeners>
-    <test name="ExoPlayerSampleAppQuickLookTest">
+    <test name="ExoPlayer Sample app">
 
         <classes>
 
-            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
             <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTests"/>
+            <class name="testpackage.tests.exoPlayerSampleApp.BasicPlayBackBasicTest2"/>
             <class name="testpackage.tests.exoPlayerSampleApp.FWBasicTests"/>
             <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests"/>
-           <!-- <class name="testpackage.tests.exoPlayerSampleApp.DeepTestIMA"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.DeepTestsFW"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.DeepBasicPlayback"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.DeepTests2BasicPlayback"/>
-            <class name="testpackage.tests.exoPlayerSampleApp.DeepTests3BasicPlayback"/>-->
+            <class name="testpackage.tests.exoPlayerSampleApp.IMABasicTests2"/>
+           <!--&lt;!&ndash; <class name="testpackage.tests.exoPlayerSampleApp.DeepTestIMA"/>-->
+            <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTestsFW"/>-->
+            <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepBasicPlayback"/>-->
+            <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTests2BasicPlayback"/>-->
+            <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTests3BasicPlayback"/>&ndash;&gt;-->
             <!--<class name="testpackage.tests.exoPlayerSampleApp.DeepTest4Basicplayback"/>-->
-
-
         </classes>
     </test>
 </suite>
